@@ -1,0 +1,1558 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Draw a card</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&display=swap" rel="stylesheet">
+<style>
+/* =====================================================================
+   Tokens
+   ===================================================================== */
+:root {
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  --bg: #E7EAF3;
+  --ink: #1F2547;
+  --muted: #565E85;
+  --back: #2E3A74;
+  --gold: #B8913F;
+  --panel: #F6F7FB;
+  --face: #F7F5EF;
+  --face-ink: #262B4D;
+  --shadow: 31 37 71;
+  --line: color-mix(in srgb, var(--muted) 30%, transparent);
+  --serif: "Young Serif", Georgia, serif;
+  --spring: cubic-bezier(.34, 1.56, .64, 1);
+  --w: min(24vw, 120px);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #141A33; --ink: #ECE7DA; --muted: #A9AFCB; --back: #34418A;
+    --gold: #D4AF62; --panel: #1D2444; --face: #E6E1D4; --face-ink: #262B4D;
+    --shadow: 0 0 0; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #141A33; --ink: #ECE7DA; --muted: #A9AFCB; --back: #34418A;
+  --gold: #D4AF62; --panel: #1D2444; --face: #E6E1D4; --face-ink: #262B4D;
+  --shadow: 0 0 0; color-scheme: dark;
+}
+
+/* =====================================================================
+   Page
+   ===================================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+html { height: 100%; scroll-padding-top: env(safe-area-inset-top, 0px); background: var(--bg); }
+body {
+  margin: 0; height: 100%; overflow: hidden;
+  display: flex; flex-direction: column;
+  background: var(--bg); color: var(--ink);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.5;
+}
+h1, h2 { font-family: var(--serif); font-weight: 400; margin: 0; }
+h1 { font-size: 1.75rem; }
+
+/* =====================================================================
+   Header: mode switch, title, hint, spread picker, links
+   ===================================================================== */
+header { padding: 1.5rem 1.25rem 0; text-align: center; transition: opacity .3s; }
+.revealed header { opacity: 0; pointer-events: none; }
+.hint { color: var(--muted); margin: .4rem auto 0; max-width: 30ch; }
+
+.modes {
+  display: inline-flex; gap: 2px; padding: 3px; margin: 0 auto .9rem;
+  border-radius: 999px; background: color-mix(in srgb, var(--muted) 16%, transparent);
+}
+.modes button {
+  font: inherit; font-size: .85rem; color: var(--muted); background: none; cursor: pointer;
+  border: 0; border-radius: 999px; padding: .35rem .95rem;
+  transition: background .2s, color .2s;
+}
+.modes button[aria-checked="true"] { background: var(--panel); color: var(--ink); box-shadow: 0 1px 3px rgb(var(--shadow) / .25); }
+
+.picker {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem;
+  max-width: 24rem; margin: .9rem auto 0;
+}
+.chip {
+  flex: none; white-space: nowrap;
+  font: inherit; font-size: .9rem; color: var(--ink); background: none; cursor: pointer;
+  border: 1px solid color-mix(in srgb, var(--muted) 45%, transparent);
+  border-radius: 999px; padding: .4rem .85rem;
+}
+.chip[aria-pressed="true"] { background: var(--back); border-color: var(--back); color: #fff; }
+.picker.locked .chip { opacity: .45; pointer-events: none; }
+
+.header-links { display: flex; justify-content: center; gap: 1.25rem; margin-top: .8rem; font-size: .9rem; }
+
+/* =====================================================================
+   Cards: fan, flip, chosen positions
+   ===================================================================== */
+.stage { position: relative; flex: 1; }
+.fan { position: absolute; left: 50%; top: 52%; width: 0; height: 0; }
+
+.card {
+  position: absolute;
+  width: var(--w); aspect-ratio: 7 / 12;
+  left: calc(var(--w) / -2); top: calc(var(--w) * -6 / 7);
+  border: 0; padding: 0; border-radius: 10px; cursor: pointer;
+  background: none; perspective: 900px;
+  transform: translate(0, 40px) rotate(0deg);
+  opacity: 0;
+  transition: transform .7s var(--spring), opacity .3s ease;
+  transition-delay: calc(var(--i) * 70ms);
+}
+.card:focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
+
+.flipper {
+  position: absolute; inset: 0;
+  transform-style: preserve-3d;
+  transition: transform .9s var(--spring);
+}
+.flipped .flipper { transform: rotateY(180deg); }
+
+.side {
+  position: absolute; inset: 0; border-radius: 10px;
+  backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  box-shadow:
+    0 1px 1px rgb(var(--shadow) / .14),
+    0 2px 2px rgb(var(--shadow) / .14),
+    0 4px 4px rgb(var(--shadow) / .14),
+    0 8px 8px rgb(var(--shadow) / .14),
+    0 16px 16px rgb(var(--shadow) / .10);
+}
+.side::before {
+  content: ""; position: absolute; inset: 6px;
+  border: 1px solid var(--gold); border-radius: 6px; opacity: .8;
+}
+.back {
+  background:
+    repeating-linear-gradient(45deg, rgb(255 255 255 / .05) 0 6px, transparent 6px 12px),
+    var(--back);
+  display: grid; place-items: center;
+  color: var(--gold); font-size: calc(var(--w) * .28);
+}
+.face {
+  transform: rotateY(180deg);
+  background: var(--face); color: var(--face-ink);
+  display: flex; flex-direction: column; align-items: center; justify-content: space-between;
+  padding: calc(var(--w) * .13) 8px;
+  font-family: var(--serif);
+}
+.reversed .face { transform: rotateY(180deg) rotate(180deg); }
+.face .num { font-size: calc(var(--w) * .13); color: var(--gold); }
+.face .glyph { font-size: calc(var(--w) * .42); line-height: 1; }
+.face .title { font-size: calc(var(--w) * .1); line-height: 1.2; text-align: center; }
+
+/* Dealt into the fan */
+.dealt .card {
+  transform: translate(var(--x), var(--y)) rotate(var(--a)) translateY(var(--lift, 0px));
+  opacity: 1;
+}
+.settled .card { transition-delay: 0s; }
+.settled .card:hover, .settled .card:focus-visible { --lift: -14px; }
+
+/* Every position is filled: the rest of the fan falls away */
+.fan.picked .card {
+  transform: translate(var(--x), calc(var(--y) + 70vh)) rotate(var(--a));
+  opacity: 0; pointer-events: none;
+}
+/* Chosen cards move to their spread position, set by layout() */
+.fan.dealt .card.chosen {
+  transform: translate(var(--tx), var(--ty)) scale(var(--s));
+  opacity: 1; z-index: 5; pointer-events: auto; transition-delay: 0s;
+}
+.pos-label {
+  position: absolute; left: 50%; top: 100%; transform: translateX(-50%);
+  margin-top: 6px; white-space: nowrap;
+  font-size: calc(var(--w) * .12); color: var(--muted);
+  opacity: 0; transition: opacity .3s;
+}
+.fan.multi .card.chosen .pos-label { opacity: 1; }
+.card.selected .face { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+/* =====================================================================
+   Reading panel
+   ===================================================================== */
+.result {
+  position: fixed; left: 0; right: 0; bottom: 0;
+  max-height: 58vh; overflow-y: auto;
+  padding: 1.25rem 1.25rem calc(1.25rem + env(safe-area-inset-bottom, 0px));
+  background: var(--panel); color: var(--ink);
+  border-radius: 18px 18px 0 0;
+  box-shadow: 0 -8px 24px rgb(var(--shadow) / .12);
+  transform: translateY(105%);
+  transition: transform .55s var(--spring);
+}
+.result.open { transform: translateY(0); }
+.result-inner { max-width: 32rem; margin: 0 auto; }
+.result h2 { font-size: 1.5rem; }
+.result h2:focus { outline: none; }
+
+.orient { color: var(--muted); margin: .15rem 0 .75rem; }
+.switch-hint { color: var(--muted); font-size: .9rem; margin: -.5rem 0 .75rem; }
+.keywords { margin: 0 0 1.25rem; }
+.combined { color: var(--muted); margin: -.75rem 0 1.25rem; max-width: 40ch; }
+.position { margin: 0 0 1.25rem; }
+.asks { color: var(--muted); margin: 0 0 .2rem; }
+.prompt {
+  font-family: var(--serif);
+  font-size: 1.25rem; line-height: 1.4;
+  margin: 0 0 .5rem; max-width: 32ch;
+}
+.position .prompt { margin-bottom: .6rem; }
+.reversal-note { color: var(--muted); margin: 0 0 .75rem; max-width: 40ch; }
+
+.write-label { display: block; color: var(--muted); font-size: .9rem; margin: .75rem 0 .35rem; }
+textarea {
+  display: block; width: 100%; min-height: 7.5rem; resize: vertical;
+  font: inherit; font-size: 1rem; line-height: 1.6;
+  color: var(--ink); background: var(--bg);
+  border: 1px solid transparent; border-radius: 12px;
+  padding: .8rem .9rem; margin-bottom: 1rem;
+}
+textarea::placeholder { color: var(--muted); }
+textarea:focus { outline: 2px solid var(--gold); outline-offset: 1px; }
+
+/* Learn more menu and the sections it adds */
+.more { position: relative; margin: 0 0 1rem; }
+.more-btn {
+  font: inherit; font-size: .95rem; color: var(--ink); background: none; cursor: pointer;
+  border: 1px solid color-mix(in srgb, var(--muted) 45%, transparent);
+  border-radius: 999px; padding: .45rem 1rem;
+}
+.more-btn[aria-expanded="true"] { border-color: var(--gold); }
+.more-menu {
+  position: absolute; left: 0; top: calc(100% + 6px); z-index: 10;
+  min-width: 15rem; padding: .35rem;
+  background: var(--bg); color: var(--ink); border-radius: 14px;
+  box-shadow: 0 10px 30px rgb(0 0 0 / .3);
+  animation: menu-in .35s var(--spring);
+}
+.more-menu.up { top: auto; bottom: calc(100% + 6px); }
+@keyframes menu-in { from { opacity: 0; transform: translateY(-6px) scale(.97); } }
+.more-menu button {
+  display: flex; gap: .5rem; align-items: center; width: 100%;
+  font: inherit; color: inherit; text-align: left; background: none; border: 0;
+  padding: .6rem .7rem; border-radius: 9px; cursor: pointer;
+}
+.more-menu button:hover, .more-menu button:focus-visible {
+  background: color-mix(in srgb, var(--muted) 18%, transparent); outline: none;
+}
+.more-menu .check { width: 1.1em; color: var(--gold); }
+.more-menu hr { border: 0; border-top: 1px solid var(--line); margin: .3rem .5rem; }
+
+.section { border-top: 1px solid var(--line); padding: 1rem 0 .5rem; }
+.section:last-child { margin-bottom: 1rem; }
+.section h4 { font-family: var(--serif); font-weight: 400; font-size: 1.1rem; margin: 0 0 .4rem; }
+.section p { margin: 0 0 .6rem; max-width: 42ch; }
+.section .question { font-family: var(--serif); font-size: 1.05rem; line-height: 1.4; }
+.section .use-prompt { margin-bottom: .5rem; }
+
+pre {
+  overflow-x: auto; font-size: .75rem; line-height: 1.4;
+  background: var(--bg); color: var(--ink); padding: .75rem; border-radius: 8px;
+}
+
+/* =====================================================================
+   Buttons and links
+   ===================================================================== */
+.use-prompt {
+  font: inherit; font-size: .9rem; color: var(--ink); background: none; cursor: pointer;
+  border: 1px solid var(--gold); border-radius: 999px; padding: .35rem .9rem;
+}
+.actions { display: flex; gap: .6rem; flex-wrap: wrap; align-items: center; }
+.save {
+  position: relative;
+  font: inherit; font-weight: 600; color: var(--ink); background: none; cursor: pointer;
+  border: 1.5px solid var(--gold); border-radius: 999px; padding: .65rem 1.3rem;
+}
+.save:disabled { cursor: default; opacity: .75; }
+.save-note { color: var(--muted); font-size: .9rem; margin: .6rem 0 0; }
+.again {
+  font: inherit; font-weight: 600; color: #fff; background: var(--back);
+  border: 0; border-radius: 999px; padding: .7rem 1.4rem; cursor: pointer;
+}
+.link {
+  font: inherit; color: var(--ink); background: none; border: 0; padding: 0; cursor: pointer;
+  text-decoration: underline; text-decoration-color: var(--gold);
+  text-decoration-thickness: 1.5px; text-underline-offset: 3px;
+}
+.meta { color: var(--muted); font-size: .92rem; }
+
+button:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+/* Save sparkles */
+.sparkle {
+  position: absolute; pointer-events: none;
+  color: var(--gold); animation: sparkle .8s ease-out forwards;
+}
+.sparkle svg { display: block; width: 100%; height: 100%; }
+@keyframes sparkle {
+  0% { transform: scale(0) rotate(0deg); opacity: 1; }
+  50% { transform: scale(1) rotate(90deg); opacity: 1; }
+  100% { transform: scale(0) rotate(180deg); opacity: 0; }
+}
+
+/* =====================================================================
+   Dialogs: card sheet, guide, journal
+   ===================================================================== */
+.sheet {
+  border: 0; padding: 0; width: min(92vw, 30rem); max-height: 80vh; overflow-y: auto;
+  background: var(--panel); color: var(--ink); border-radius: 18px;
+  box-shadow: 0 12px 40px rgb(0 0 0 / .35);
+}
+.sheet[open] { animation: sheet-in .5s var(--spring); }
+.sheet::backdrop { background: rgb(10 12 28 / .55); }
+@keyframes sheet-in { from { opacity: 0; transform: translateY(16px) scale(.96); } }
+.sheet-inner { position: relative; padding: 1.5rem 1.5rem 1.25rem; }
+.sheet-close {
+  position: absolute; top: .5rem; right: .5rem; width: 44px; height: 44px;
+  font: inherit; font-size: 1.1rem; color: var(--muted); background: none; border: 0; cursor: pointer;
+  border-radius: 50%;
+}
+.sheet h2 { font-size: 1.5rem; margin-bottom: .35rem; padding-right: 2.5rem; }
+.sheet h3 { font-family: var(--serif); font-weight: 400; font-size: 1.2rem; margin: 0 0 .5rem; }
+.sheet h4 { font-size: 1rem; margin: .9rem 0 .25rem; }
+.sheet p { margin: 0 0 .5rem; max-width: 44ch; }
+.sheet ol { margin: .25rem 0 0; padding-left: 1.4rem; }
+.sheet li { margin-bottom: .2rem; }
+.sheet li span { color: var(--muted); }
+.sheet .keywords, .sheet .use-prompt { margin-bottom: 1rem; }
+.sheet-num { font-family: var(--serif); color: var(--gold); }
+.members { color: var(--muted); font-size: .95rem; }
+.guide section { padding: 1rem 0; border-top: 1px solid var(--line); }
+
+.journal-list { list-style: none; margin: 0; padding: 0; }
+.journal-list li { border-top: 1px solid var(--line); }
+.journal-item {
+  display: block; width: 100%; text-align: left; cursor: pointer;
+  font: inherit; color: var(--ink); background: none; border: 0; padding: .85rem .25rem;
+}
+.journal-item .when { display: block; color: var(--muted); font-size: .85rem; }
+.journal-item .what { display: block; font-weight: 600; margin: .1rem 0; }
+.journal-item .preview {
+  display: block; color: var(--muted); font-size: .92rem;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.journal .back { margin-bottom: .75rem; }
+.journal .reflection { white-space: pre-wrap; }
+
+/* =====================================================================
+   Modes
+   ===================================================================== */
+.mode-journal .keywords, .mode-journal .combined { display: none; }
+.mode-journal textarea { min-height: 13rem; }
+.mode-simple .header-links { display: none; }
+.mode-simple:not(.panel-open) .card.selected .face { outline: none; }
+.simple-bar {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 6;
+  display: flex; justify-content: center; gap: .6rem;
+  padding: 1rem 1rem calc(1.25rem + env(safe-area-inset-bottom, 0px));
+}
+.simple-bar[hidden] { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .card, .flipper, .result { transition-duration: .01s; transition-delay: 0s; }
+  .sheet[open], .more-menu { animation: none; }
+  .sparkle { display: none; }
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="modes" id="modes" role="radiogroup" aria-label="Mode"></div>
+  <h1 id="title">Draw a card</h1>
+  <p class="hint" id="hint"></p>
+  <div class="picker" id="picker" role="group" aria-label="Choose a spread"></div>
+  <div class="header-links">
+    <button class="link" id="open-guide" type="button">How tarot works</button>
+    <button class="link" id="open-journal" type="button">Your journal</button>
+  </div>
+</header>
+
+<main class="stage">
+  <div class="fan" id="fan" role="group" aria-label="Cards"></div>
+</main>
+
+<section class="result" id="result" aria-live="polite">
+  <div class="result-inner">
+    <h2 id="name" tabindex="-1"></h2>
+    <p class="orient" id="orient"></p>
+    <p class="switch-hint" id="switch-hint" hidden>Tap a card above to read about it.</p>
+    <p class="keywords" id="keywords"></p>
+    <p class="combined" id="combined" hidden></p>
+    <div class="position" id="position" hidden>
+      <p class="asks" id="position-asks"></p>
+      <p class="prompt" id="position-prompt"></p>
+      <button class="use-prompt" id="position-use" type="button">Write from this</button>
+    </div>
+    <p class="asks" id="card-asks" hidden></p>
+    <p class="prompt" id="card-prompt"></p>
+    <p class="reversal-note" id="reversal-note" hidden>Reversed, this card may be pointing inward. What feels blocked, delayed, or private about it?</p>
+    <label class="write-label" for="entry">Your reflection</label>
+    <textarea id="entry" rows="4" placeholder="Write whatever comes up. There’s no wrong answer."></textarea>
+    <div class="more">
+      <button class="more-btn" id="more-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="more-menu">Learn more <span aria-hidden="true">▾</span></button>
+      <div class="more-menu" id="more-menu" role="menu" aria-label="Sections to show" hidden></div>
+    </div>
+    <div id="sections"></div>
+    <div class="actions">
+      <button class="save" id="save" type="button">Save reading</button>
+      <button class="again" id="again" type="button">Shuffle again</button>
+    </div>
+    <p class="save-note" id="save-note" hidden></p>
+  </div>
+</section>
+
+<div class="simple-bar" id="simple-bar" hidden>
+  <button class="save" id="simple-open" type="button">Reflect</button>
+  <button class="again" id="simple-again" type="button">Shuffle again</button>
+</div>
+
+<dialog class="sheet" id="sheet" aria-labelledby="sheet-name">
+  <div class="sheet-inner">
+    <button class="sheet-close" type="button" aria-label="Close">✕</button>
+    <p class="sheet-num" id="sheet-num"></p>
+    <h2 id="sheet-name"></h2>
+    <p class="keywords" id="sheet-keywords"></p>
+    <p class="prompt" id="sheet-prompt"></p>
+    <button class="use-prompt" id="sheet-use" type="button">Write from this</button>
+    <div id="sheet-extra"></div>
+  </div>
+</dialog>
+
+<dialog class="sheet guide" id="guide" aria-labelledby="guide-title">
+  <div class="sheet-inner">
+    <button class="sheet-close" type="button" aria-label="Close">✕</button>
+    <h2 id="guide-title">How tarot works</h2>
+    <div id="guide-body"></div>
+  </div>
+</dialog>
+
+<dialog class="sheet journal" id="journal" aria-labelledby="journal-title">
+  <div class="sheet-inner">
+    <button class="sheet-close" type="button" aria-label="Close">✕</button>
+    <h2 id="journal-title">Your journal</h2>
+    <div id="journal-body"></div>
+  </div>
+</dialog>
+
+<script>
+// =====================================================================
+// Data
+// Temporary JSON, inlined for the prototype. In the Vite app these are
+// the files in src/data, and later they become Supabase tables.
+// =====================================================================
+const DATA = {"cards": [{"id": "fool", "number": 0, "name": "The Fool", "arcana": "major", "keywords": {"upright": ["beginnings", "trust", "the leap"], "reversed": ["hesitation", "recklessness"]}, "themes": ["change", "courage"], "prompt": "Where in your life are you standing at the edge of something new?", "details": [{"id": "dog", "label": "The little dog", "prompt": "What part of you is trying to get your attention?", "region": {"x": 72, "y": 78}}, {"id": "cliff", "label": "The cliff edge", "prompt": "What would it feel like not to know what comes next?", "region": {"x": 30, "y": 85}}, {"id": "bundle", "label": "The small bundle", "prompt": "What are you carrying that you could set down?", "region": {"x": 62, "y": 30}}]}, {"id": "magician", "number": 1, "name": "The Magician", "arcana": "major", "keywords": {"upright": ["focus", "skill", "will"], "reversed": ["scattered energy", "untapped potential"]}, "themes": ["agency", "creativity"], "prompt": "What do you already have on the table that you haven’t used yet?", "details": [{"id": "table", "label": "The tools on the table", "prompt": "Which of your tools do you reach for most, and which do you forget?", "region": {"x": 50, "y": 70}}, {"id": "wand", "label": "One hand up, one hand down", "prompt": "What are you trying to bring from idea into reality?", "region": {"x": 40, "y": 22}}, {"id": "infinity", "label": "The sign above his head", "prompt": "What keeps renewing your energy?", "region": {"x": 50, "y": 10}}]}, {"id": "high-priestess", "number": 2, "name": "The High Priestess", "arcana": "major", "keywords": {"upright": ["intuition", "stillness", "mystery"], "reversed": ["ignoring your inner voice", "noise"]}, "themes": ["intuition", "rest"], "prompt": "What do you know that you haven’t said out loud yet?", "details": [{"id": "veil", "label": "The veil behind her", "prompt": "What feels just out of view right now?", "region": {"x": 50, "y": 35}}, {"id": "scroll", "label": "The half-hidden scroll", "prompt": "What are you still learning about yourself?", "region": {"x": 50, "y": 62}}, {"id": "pillars", "label": "The two pillars", "prompt": "Where are you holding two opposites at once?", "region": {"x": 15, "y": 50}}]}, {"id": "hermit", "number": 9, "name": "The Hermit", "arcana": "major", "keywords": {"upright": ["solitude", "inner guidance", "reflection"], "reversed": ["isolation", "avoiding the quiet"]}, "themes": ["solitude", "wisdom"], "prompt": "What would you hear if things got quiet?", "details": [{"id": "lantern", "label": "The lantern", "prompt": "What small light is enough for the next step?", "region": {"x": 30, "y": 30}}, {"id": "staff", "label": "The staff", "prompt": "What supports you when you walk alone?", "region": {"x": 72, "y": 60}}, {"id": "peak", "label": "The snowy peak", "prompt": "What have you climbed to get here?", "region": {"x": 50, "y": 92}}]}, {"id": "star", "number": 17, "name": "The Star", "arcana": "major", "keywords": {"upright": ["hope", "renewal", "calm"], "reversed": ["discouragement", "running on empty"]}, "themes": ["healing", "hope"], "prompt": "What is quietly being restored in you?", "details": [{"id": "water", "label": "The pouring water", "prompt": "Where are you giving, and where are you refilling?", "region": {"x": 45, "y": 72}}, {"id": "star", "label": "The great star", "prompt": "What are you hoping for that you rarely say?", "region": {"x": 50, "y": 12}}, {"id": "bird", "label": "The bird in the tree", "prompt": "What’s singing in the background of your days?", "region": {"x": 82, "y": 38}}]}, {"id": "moon", "number": 18, "name": "The Moon", "arcana": "major", "keywords": {"upright": ["imagination", "dreams", "uncertainty"], "reversed": ["clarity returning", "fear easing"]}, "themes": ["the unknown", "dreams"], "prompt": "What feels unclear right now, and what might it be asking of you?", "details": [{"id": "path", "label": "The winding path", "prompt": "What path are you on, even if you can’t see the end?", "region": {"x": 50, "y": 70}}, {"id": "dog-wolf", "label": "The dog and the wolf", "prompt": "Where do your tame and wild sides disagree?", "region": {"x": 50, "y": 60}}, {"id": "crayfish", "label": "The creature in the pool", "prompt": "What is rising up from beneath the surface?", "region": {"x": 50, "y": 88}}]}, {"id": "seven-of-wands", "arcana": "minor", "suit": "wands", "rank": 7, "name": "Seven of Wands", "keywords": {"upright": ["standing your ground", "conviction", "holding the high ground"], "reversed": ["worn down", "giving in", "overwhelm"]}, "themes": ["courage", "boundaries"], "combined": "Fire’s energy, put to the test: defending something you care about.", "prompt": "What are you willing to stand up for, even when it’s tiring?", "details": [{"id": "high-ground", "label": "The high ground", "prompt": "Where do you have more footing than you think?", "region": {"x": 50, "y": 80}}, {"id": "shoes", "label": "The mismatched shoes", "prompt": "What did you grab in a hurry to meet this moment?", "region": {"x": 45, "y": 92}}, {"id": "staves", "label": "The staves rising from below", "prompt": "Which challenges are really coming at you, and which are just noise?", "region": {"x": 70, "y": 55}}]}, {"id": "three-of-cups", "arcana": "minor", "suit": "cups", "rank": 3, "name": "Three of Cups", "keywords": {"upright": ["celebration", "friendship", "community"], "reversed": ["overindulgence", "feeling left out"]}, "themes": ["connection", "joy"], "combined": "Water’s feelings, growing outward: joy that’s shared with others.", "prompt": "Who are the people you feel most yourself around?", "details": [{"id": "raised-cups", "label": "The raised cups", "prompt": "What deserves celebrating right now?", "region": {"x": 50, "y": 15}}, {"id": "dancers", "label": "The three dancers", "prompt": "Who would you want in this circle?", "region": {"x": 50, "y": 50}}, {"id": "harvest", "label": "The harvest at their feet", "prompt": "What has grown from your relationships?", "region": {"x": 50, "y": 90}}]}, {"id": "five-of-swords", "arcana": "minor", "suit": "swords", "rank": 5, "name": "Five of Swords", "keywords": {"upright": ["conflict", "winning at a cost", "tension"], "reversed": ["making peace", "letting a fight go"]}, "themes": ["conflict", "pride"], "combined": "Air’s thoughts, disrupted: the sharp edges of an argument and what it leaves behind.", "prompt": "Is there a conflict where winning might cost more than it’s worth?", "details": [{"id": "gathered-swords", "label": "The gathered swords", "prompt": "What are you still holding from an old argument?", "region": {"x": 40, "y": 55}}, {"id": "walking-away", "label": "The figures walking away", "prompt": "Who walked away, and what did they need?", "region": {"x": 75, "y": 70}}, {"id": "sky", "label": "The broken sky", "prompt": "What does the air feel like for you after a conflict?", "region": {"x": 50, "y": 15}}]}, {"id": "ace-of-pentacles", "arcana": "minor", "suit": "pentacles", "rank": 1, "name": "Ace of Pentacles", "keywords": {"upright": ["a new opportunity", "groundedness", "a seed"], "reversed": ["a missed chance", "shaky footing"]}, "themes": ["security", "beginnings"], "combined": "Earth’s pure potential: a practical, tangible beginning you can hold in your hand.", "prompt": "What small, practical seed could you plant this week?", "details": [{"id": "hand", "label": "The hand from the cloud", "prompt": "What resource has been offered to you?", "region": {"x": 50, "y": 35}}, {"id": "archway", "label": "The garden archway", "prompt": "What path opens if you tend to this?", "region": {"x": 50, "y": 80}}, {"id": "coin", "label": "The coin", "prompt": "What does enough look like for you?", "region": {"x": 50, "y": 30}}]}, {"id": "empress", "number": 3, "name": "The Empress", "arcana": "major", "keywords": {"upright": ["abundance", "nurture", "creativity"], "reversed": ["depletion", "smothering"]}, "themes": ["care", "creativity"], "prompt": "What are you nurturing, and who nurtures you?", "details": []}, {"id": "emperor", "number": 4, "name": "The Emperor", "arcana": "major", "keywords": {"upright": ["structure", "authority", "protection"], "reversed": ["rigidity", "control"]}, "themes": ["structure", "responsibility"], "prompt": "Where does structure help you, and where does it hold you back?", "details": []}, {"id": "hierophant", "number": 5, "name": "The Hierophant", "arcana": "major", "keywords": {"upright": ["tradition", "teaching", "belonging"], "reversed": ["questioning convention", "finding your own path"]}, "themes": ["belief", "community"], "prompt": "Which beliefs did you inherit, and which have you chosen?", "details": []}, {"id": "lovers", "number": 6, "name": "The Lovers", "arcana": "major", "keywords": {"upright": ["connection", "choice", "values"], "reversed": ["misalignment", "inner conflict"]}, "themes": ["relationships", "values"], "prompt": "What choice would bring you closer to what you value?", "details": []}, {"id": "chariot", "number": 7, "name": "The Chariot", "arcana": "major", "keywords": {"upright": ["willpower", "direction", "momentum"], "reversed": ["scattered energy", "being pulled two ways"]}, "themes": ["will", "direction"], "prompt": "What are you steering toward, and what’s pulling against you?", "details": []}, {"id": "strength", "number": 8, "name": "Strength", "arcana": "major", "keywords": {"upright": ["gentle courage", "patience", "compassion"], "reversed": ["self-doubt", "forcing it"]}, "themes": ["courage", "gentleness"], "prompt": "Where could gentleness be stronger than force?", "details": []}, {"id": "wheel-of-fortune", "number": 10, "name": "The Wheel of Fortune", "arcana": "major", "keywords": {"upright": ["cycles", "change", "turning points"], "reversed": ["resisting change", "feeling stuck"]}, "themes": ["change", "cycles"], "prompt": "What cycle are you in the middle of?", "details": []}], "suits": [{"id": "wands", "name": "Wands", "element": "fire", "playing_card": "clubs", "summary": "Wands are fire: the drive to start things, create, and act. They follow your energy, ambition, and passion.", "prompt": "Where is your energy going right now, and is it going where you want it to?"}, {"id": "cups", "name": "Cups", "element": "water", "playing_card": "hearts", "summary": "Cups are water: feelings, relationships, intuition, and care. They follow what moves you and who you’re close to.", "prompt": "What are you feeling that you haven’t made room for?"}, {"id": "swords", "name": "Swords", "element": "air", "playing_card": "spades", "summary": "Swords are air: thoughts, truth, conflict, and clarity. They follow the stories in your head and the words between people.", "prompt": "What story are you telling yourself right now?"}, {"id": "pentacles", "name": "Pentacles", "element": "earth", "playing_card": "diamonds", "summary": "Pentacles are earth: the body, work, money, and home. They follow the practical, everyday ground of your life.", "prompt": "What does your body or your daily life need from you?"}], "ranks": [{"rank": 1, "name": "Ace", "plural": "Aces", "summary": "The seed: the suit’s energy in its purest form, before anything has been done with it.", "prompt": "What wants to begin?", "major": {"id": "magician", "name": "The Magician", "number": 1}}, {"rank": 2, "name": "Two", "plural": "Twos", "summary": "Choice and balance: two things held side by side, or two people meeting.", "prompt": "What are you weighing?", "major": {"id": "high-priestess", "name": "The High Priestess", "number": 2}}, {"rank": 3, "name": "Three", "plural": "Threes", "summary": "Growth: the first results, and often other people joining in.", "prompt": "What’s starting to grow?", "major": {"id": "empress", "name": "The Empress", "number": 3}}, {"rank": 4, "name": "Four", "plural": "Fours", "summary": "Stability: structure, rest, and holding still, sometimes too tightly.", "prompt": "Where do you need solid ground, and where are you gripping too hard?", "major": {"id": "emperor", "name": "The Emperor", "number": 4}}, {"rank": 5, "name": "Five", "plural": "Fives", "summary": "Disruption: the stability of the fours gets shaken, through conflict, loss, or challenge.", "prompt": "What’s been shaken up?", "major": {"id": "hierophant", "name": "The Hierophant", "number": 5}}, {"rank": 6, "name": "Six", "plural": "Sixes", "summary": "Harmony returning: recovery, generosity, and finding balance again after the fives.", "prompt": "Where is balance coming back?", "major": {"id": "lovers", "name": "The Lovers", "number": 6}}, {"rank": 7, "name": "Seven", "plural": "Sevens", "summary": "A test: reassessing, imagining, or standing your ground after early growth.", "prompt": "What are you being asked to hold on to, or let go of?", "major": {"id": "chariot", "name": "The Chariot", "number": 7}}, {"rank": 8, "name": "Eight", "plural": "Eights", "summary": "Movement: effort, skill, and a change of pace.", "prompt": "What’s in motion?", "major": {"id": "strength", "name": "Strength", "number": 8}}, {"rank": 9, "name": "Nine", "plural": "Nines", "summary": "Almost there: fruition, intensity, and often a moment alone with the results.", "prompt": "What have you nearly finished?", "major": {"id": "hermit", "name": "The Hermit", "number": 9}}, {"rank": 10, "name": "Ten", "plural": "Tens", "summary": "Completion: the end of a cycle, and sometimes too much of a good thing.", "prompt": "What has reached its limit?", "major": {"id": "wheel-of-fortune", "name": "The Wheel of Fortune", "number": 10}}], "journey": [{"row": 0, "cards": "0", "summary": "The Fool stands apart from the three rows. It’s the traveler moving through all of them: the part of you that’s always beginning.", "prompt": "Where are you a beginner right now?", "members": [{"id": "fool", "name": "The Fool"}]}, {"row": 1, "cards": "I–VII", "summary": "The first row is about the outer world: learning to act, know, love, build structure, and choose your own direction.", "prompt": "How are you finding your place among other people right now?", "members": [{"id": "magician", "name": "The Magician"}, {"id": "high-priestess", "name": "The High Priestess"}, {"id": "empress", "name": "The Empress"}, {"id": "emperor", "name": "The Emperor"}, {"id": "hierophant", "name": "The Hierophant"}, {"id": "lovers", "name": "The Lovers"}, {"id": "chariot", "name": "The Chariot"}]}, {"row": 2, "cards": "VIII–XIV", "summary": "The second row turns inward: strength, solitude, change, and balance that come from within.", "prompt": "What are you learning about yourself when no one’s watching?", "members": [{"id": "strength", "name": "Strength"}, {"id": "hermit", "name": "The Hermit"}, {"id": "wheel-of-fortune", "name": "The Wheel of Fortune"}, {"id": "justice", "name": "Justice"}, {"id": "hanged-man", "name": "The Hanged Man"}, {"id": "death", "name": "Death"}, {"id": "temperance", "name": "Temperance"}]}, {"row": 3, "cards": "XV–XXI", "summary": "The third row is deep transformation: facing shadows and fears, then moving toward hope, renewal, and wholeness.", "prompt": "What feels like it’s transforming in you?", "members": [{"id": "devil", "name": "The Devil"}, {"id": "tower", "name": "The Tower"}, {"id": "star", "name": "The Star"}, {"id": "moon", "name": "The Moon"}, {"id": "sun", "name": "The Sun"}, {"id": "judgement", "name": "Judgement"}, {"id": "world", "name": "The World"}]}], "arcana": [{"id": "major", "name": "Major Arcana", "count": 22, "summary": "Numbered 0 to XXI, these are the big themes: turning points, life lessons, and archetypes that show up in everyone’s life. When a Major appears, it often points to something larger than the day-to-day."}, {"id": "minor", "name": "Minor Arcana", "count": 56, "summary": "Four suits of 14 cards each. These are the everyday: the moods, choices, and situations that fill ordinary days. Each suit runs from Ace to Ten, plus four court cards: Page, Knight, Queen, and King."}], "spreads": [{"id": "single", "name": "One card", "summary": "A single card to sit with. Good for a daily practice.", "level": 1, "positions": [{"id": "card", "name": "The card", "prompt": "What does this card bring up for you today?"}]}, {"id": "past-present-future", "name": "Past, present, future", "summary": "Three cards that show how something has moved and where it might go.", "level": 2, "positions": [{"id": "past", "name": "Past", "prompt": "What led here?"}, {"id": "present", "name": "Present", "prompt": "What’s true right now?"}, {"id": "future", "name": "Future", "prompt": "Where is this heading if nothing changes?"}]}, {"id": "situation-obstacle-advice", "name": "Situation, obstacle, advice", "summary": "Three cards for a question you’re stuck on.", "level": 2, "positions": [{"id": "situation", "name": "The situation", "prompt": "What’s really going on?"}, {"id": "obstacle", "name": "The obstacle", "prompt": "What’s in the way?"}, {"id": "advice", "name": "The advice", "prompt": "What might help?"}]}, {"id": "elements", "name": "The four elements", "summary": "Four cards, one for each part of life the suits cover.", "level": 3, "positions": [{"id": "fire", "name": "Fire", "prompt": "What’s happening with your energy and drive?"}, {"id": "water", "name": "Water", "prompt": "What’s happening with your feelings?"}, {"id": "air", "name": "Air", "prompt": "What’s happening in your thoughts?"}, {"id": "earth", "name": "Earth", "prompt": "What’s happening with your body and daily life?"}]}, {"id": "celtic-cross", "name": "Celtic Cross", "summary": "The classic ten-card spread for looking at a situation from every side.", "level": 4, "positions": [{"id": "heart", "name": "The heart of the matter", "prompt": "What’s at the center of this?"}, {"id": "crossing", "name": "What crosses it", "prompt": "What’s complicating things?"}, {"id": "root", "name": "The root", "prompt": "What lies underneath?"}, {"id": "past", "name": "The recent past", "prompt": "What’s just behind you?"}, {"id": "possible", "name": "What’s possible", "prompt": "What could this become?"}, {"id": "near-future", "name": "The near future", "prompt": "What’s coming next?"}, {"id": "self", "name": "You, in this", "prompt": "How are you showing up?"}, {"id": "surroundings", "name": "Your surroundings", "prompt": "How are the people and places around you involved?"}, {"id": "hopes-fears", "name": "Hopes and fears", "prompt": "What are you hoping for, or afraid of?"}, {"id": "outcome", "name": "Where it’s heading", "prompt": "Where does this seem to be going?"}]}]};
+
+const CARDS = DATA.cards;
+const CARD_BY_ID = Object.fromEntries(CARDS.map(c => [c.id, c]));
+const SUITS = Object.fromEntries(DATA.suits.map(s => [s.id, s]));
+const RANKS = Object.fromEntries(DATA.ranks.map(r => [r.rank, r]));
+const JOURNEY = Object.fromEntries(DATA.journey.map(j => [j.row, j]));
+const SPREAD_BY_ID = Object.fromEntries(DATA.spreads.map(s => [s.id, s]));
+
+// The prototype deck is a subset of all card data
+const DECK_IDS = [
+  'fool', 'magician', 'high-priestess', 'hermit', 'star', 'moon',
+  'seven-of-wands', 'three-of-cups', 'five-of-swords', 'ace-of-pentacles'
+];
+const DECK = DECK_IDS.map(id => CARD_BY_ID[id]);
+
+// The Celtic Cross (level 4) waits for a bigger deck and its own layout
+const SPREADS = DATA.spreads.filter(s => s.level <= 3);
+
+// Share of cards that come up reversed. 0 turns reversals off.
+const REVERSAL_RATE = 0.25;
+
+// Placeholder card faces until real art exists.
+// \uFE0E asks for the text style of the symbol, not the emoji.
+const MAJOR_GLYPHS = { fool: '✿', magician: '∞', 'high-priestess': '◐', hermit: '✶', star: '✷', moon: '☾' };
+const SUIT_GLYPHS = { wands: '♣\uFE0E', cups: '♥\uFE0E', swords: '♠\uFE0E', pentacles: '♦\uFE0E' };
+
+// Each mode is a preset for what a reading shows
+const MODES = {
+  learn: { label: 'Learn', panel: true, sections: ['suit', 'number', 'journey'] },
+  journal: { label: 'Journal', panel: true, sections: [] },
+  simple: { label: 'Simple', panel: false, sections: [] }
+};
+
+// =====================================================================
+// Page elements
+// =====================================================================
+const header = document.querySelector('header');
+const titleEl = document.getElementById('title');
+const hint = document.getElementById('hint');
+const picker = document.getElementById('picker');
+const fan = document.getElementById('fan');
+const result = document.getElementById('result');
+const entryBox = document.getElementById('entry');
+const moreBtn = document.getElementById('more-btn');
+const moreMenu = document.getElementById('more-menu');
+const saveBtn = document.getElementById('save');
+const saveNote = document.getElementById('save-note');
+const simpleBar = document.getElementById('simple-bar');
+const sheet = document.getElementById('sheet');
+const guide = document.getElementById('guide');
+const journal = document.getElementById('journal');
+const journalBody = document.getElementById('journal-body');
+
+// =====================================================================
+// State
+// =====================================================================
+let mode = 'learn';
+let spread = SPREADS[0];
+let picks = [];          // [{ button, draw }] in position order
+let flippedCount = 0;
+let phase = 'picking';   // picking, then flipping, then reading
+let currentCard = null;  // the card shown in the panel
+let currentJson = '';    // that card's data, for the Card data section
+const shown = new Set(); // Learn more sections the reader has turned on
+let sheetPrompt = '';
+let savedId = null;      // set once the current reading is saved
+let savedBody = '';
+
+// =====================================================================
+// Helpers
+// =====================================================================
+function el(tag, props = {}, children = []) {
+  const node = Object.assign(document.createElement(tag), props);
+  node.append(...children);
+  return node;
+}
+
+function roman(n) {
+  if (n === 0) {
+    return '0';
+  }
+  const numerals = [[10, 'X'], [9, 'IX'], [5, 'V'], [4, 'IV'], [1, 'I']];
+  let out = '';
+  for (const [value, symbol] of numerals) {
+    while (n >= value) {
+      out += symbol;
+      n -= value;
+    }
+  }
+  return out;
+}
+
+function capitalize(text) {
+  return text.charAt(0).toUpperCase() + text.slice(1);
+}
+
+function randInt(max) {
+  const values = new Uint32Array(1);
+  crypto.getRandomValues(values);
+  return values[0] % max;
+}
+
+// Fisher–Yates shuffle. The code draws the cards, never an LLM.
+function shuffle(list) {
+  const copy = list.slice();
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = randInt(i + 1);
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+
+// Pollack's layout: the Fool apart, then three rows of seven
+function journeyRow(number) {
+  if (number === 0) {
+    return 0;
+  }
+  if (number <= 7) {
+    return 1;
+  }
+  if (number <= 14) {
+    return 2;
+  }
+  return 3;
+}
+
+function rowDescription(row) {
+  if (row.row === 0) {
+    return 'Card 0, outside the rows.';
+  }
+  return `Row ${row.row} of 3, cards ${row.cards}.`;
+}
+
+function formatDate(iso) {
+  return new Date(iso).toLocaleString(undefined, {
+    weekday: 'short', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit'
+  });
+}
+
+// A link that opens the card sheet for any card in the data
+function cardLink(id, label) {
+  const button = el('button', { className: 'link', type: 'button', textContent: label });
+  button.addEventListener('click', () => openSheet(id));
+  return button;
+}
+
+// A comma-separated list of cards, linked when we have their data
+function memberList(members) {
+  const p = el('p', { className: 'members' });
+  members.forEach((member, i) => {
+    if (i > 0) {
+      p.append(', ');
+    }
+    if (CARD_BY_ID[member.id]) {
+      p.append(cardLink(member.id, member.name));
+    } else {
+      p.append(member.name);
+    }
+  });
+  return p;
+}
+
+// Adds a prompt to the end of the reflection and puts the cursor after it
+function writeFrom(prompt) {
+  const current = entryBox.value.replace(/\s+$/, '');
+  if (current) {
+    entryBox.value = current + '\n\n' + prompt + '\n';
+  } else {
+    entryBox.value = prompt + '\n';
+  }
+  entryBox.focus();
+  entryBox.setSelectionRange(entryBox.value.length, entryBox.value.length);
+}
+
+// =====================================================================
+// Card faces
+// =====================================================================
+function faceNumber(card) {
+  if (card.arcana === 'major') {
+    return roman(card.number);
+  }
+  if (card.rank === 1) {
+    return 'Ace';
+  }
+  return roman(card.rank);
+}
+
+function faceGlyph(card) {
+  if (card.arcana === 'minor') {
+    return SUIT_GLYPHS[card.suit];
+  }
+  return MAJOR_GLYPHS[card.id] ?? '✦';
+}
+
+function buildCard(draw, index, total) {
+  const back = el('span', { className: 'side back', textContent: '✦' });
+  const face = el('span', { className: 'side face' }, [
+    el('span', { className: 'num', textContent: faceNumber(draw.card) }),
+    el('span', { className: 'glyph', textContent: faceGlyph(draw.card) }),
+    el('span', { className: 'title', textContent: draw.card.name })
+  ]);
+  const positionLabel = el('span', { className: 'pos-label' });
+  back.setAttribute('aria-hidden', 'true');
+  face.setAttribute('aria-hidden', 'true');
+  positionLabel.setAttribute('aria-hidden', 'true');
+
+  const button = el('button', { className: 'card', type: 'button' }, [
+    el('span', { className: 'flipper' }, [back, face]),
+    positionLabel
+  ]);
+  button.setAttribute('aria-label', `Card ${index + 1} of ${total}, face down`);
+  if (draw.reversed) {
+    button.classList.add('reversed');
+  }
+  return button;
+}
+
+// =====================================================================
+// Spread picker and dealing
+// =====================================================================
+function updateTitleAndHint() {
+  const count = spread.positions.length;
+  if (count === 1) {
+    titleEl.textContent = 'Draw a card';
+    hint.textContent = 'Take a breath, then tap whichever card you’re drawn to.';
+  } else {
+    titleEl.textContent = 'Draw your cards';
+    hint.textContent = `Take a breath, then choose ${count} cards, one at a time.`;
+  }
+}
+
+function renderPicker() {
+  picker.replaceChildren();
+  for (const option of SPREADS) {
+    const chip = el('button', { type: 'button', className: 'chip', textContent: option.name });
+    chip.setAttribute('aria-pressed', String(option.id === spread.id));
+    chip.addEventListener('click', () => {
+      if (picks.length > 0) {
+        return; // the spread is locked once a card is chosen
+      }
+      spread = option;
+      renderPicker();
+      updateTitleAndHint();
+    });
+    picker.append(chip);
+  }
+}
+
+function deal() {
+  picks = [];
+  flippedCount = 0;
+  phase = 'picking';
+  document.body.classList.remove('revealed', 'panel-open');
+  picker.classList.remove('locked');
+  result.classList.remove('open');
+  simpleBar.hidden = true;
+  entryBox.value = '';
+  resetSave();
+  updateTitleAndHint();
+  fan.className = 'fan';
+  fan.replaceChildren();
+
+  const deck = shuffle(DECK).map(card => ({ card, reversed: randInt(100) < REVERSAL_RATE * 100 }));
+  const arc = 40; // degrees from the first card in the fan to the last
+
+  deck.forEach((draw, i) => {
+    const button = buildCard(draw, i, deck.length);
+    const angle = -arc / 2 + (arc * i) / (deck.length - 1);
+    button.dataset.angle = angle;
+    button.style.setProperty('--a', angle + 'deg');
+    button.style.setProperty('--i', i);
+    button.addEventListener('click', () => tapCard(button, draw));
+    fan.append(button);
+  });
+
+  // Place each card along an arc once the cards have a size
+  requestAnimationFrame(() => {
+    const radius = fan.firstElementChild.offsetHeight * 2.2;
+    for (const button of fan.children) {
+      const radians = (parseFloat(button.dataset.angle) * Math.PI) / 180;
+      button.style.setProperty('--x', (radius * Math.sin(radians)).toFixed(1) + 'px');
+      button.style.setProperty('--y', (radius * (1 - Math.cos(radians))).toFixed(1) + 'px');
+    }
+    requestAnimationFrame(() => {
+      fan.classList.add('dealt');
+      // After the staggered deal, drop the per-card delay so hovers feel instant
+      setTimeout(() => fan.classList.add('settled'), 70 * deck.length + 700);
+    });
+  });
+}
+
+// =====================================================================
+// Choosing, flipping, and selecting cards
+// =====================================================================
+function tapCard(button, draw) {
+  const index = picks.findIndex(p => p.button === button);
+  if (index === -1) {
+    chooseCard(button, draw);
+    return;
+  }
+  if (phase === 'picking') {
+    return; // finish choosing before turning anything over
+  }
+  if (button.classList.contains('flipped')) {
+    select(index);
+  } else {
+    flip(index);
+  }
+}
+
+function chooseCard(button, draw) {
+  const count = spread.positions.length;
+  if (picks.length >= count) {
+    return;
+  }
+  const position = spread.positions[picks.length];
+  picks.push({ button, draw });
+
+  button.classList.add('chosen');
+  button.querySelector('.pos-label').textContent = position.name;
+  button.setAttribute('aria-label', `${position.name}, face down`);
+  fan.classList.toggle('multi', count > 1);
+  picker.classList.add('locked');
+
+  const remaining = count - picks.length;
+  if (remaining > 0) {
+    hint.textContent = `Choose ${remaining} more.`;
+  } else {
+    phase = 'flipping';
+    fan.classList.add('picked');
+    if (count === 1) {
+      hint.textContent = 'Tap your card to turn it over.';
+    } else {
+      hint.textContent = 'Now turn each card over, one at a time.';
+    }
+  }
+  layout();
+}
+
+function flip(index) {
+  const { button, draw } = picks[index];
+  button.classList.add('flipped');
+
+  let label = draw.card.name;
+  if (spread.positions.length > 1) {
+    label = `${spread.positions[index].name}: ${label}`;
+  }
+  if (draw.reversed) {
+    label += ', reversed';
+  }
+  button.setAttribute('aria-label', label);
+
+  flippedCount += 1;
+  select(index);
+
+  const remaining = spread.positions.length - flippedCount;
+  if (remaining > 0) {
+    hint.textContent = `${remaining} left to turn over.`;
+    return;
+  }
+  setTimeout(showReading, 900); // let the last flip land first
+}
+
+// Fills the panel with one card of the reading
+function select(index) {
+  const isMulti = spread.positions.length > 1;
+  picks.forEach((p, i) => p.button.classList.toggle('selected', isMulti && i === index));
+
+  const { card, reversed } = picks[index].draw;
+  const position = spread.positions[index];
+
+  let orientation = 'upright';
+  let words = card.keywords.upright;
+  if (reversed) {
+    orientation = 'reversed';
+    words = card.keywords.reversed;
+  }
+
+  document.getElementById('name').textContent = card.name;
+  if (isMulti) {
+    document.getElementById('orient').textContent = `${position.name}, ${orientation}`;
+  } else {
+    document.getElementById('orient').textContent = capitalize(orientation);
+  }
+  document.getElementById('switch-hint').hidden = !isMulti;
+  document.getElementById('keywords').textContent = capitalize(words.join(', '));
+
+  // Multi-card spreads show two questions: the position's and the card's
+  document.getElementById('position').hidden = !isMulti;
+  document.getElementById('position-asks').textContent = `${position.name} asks:`;
+  document.getElementById('position-prompt').textContent = position.prompt;
+  document.getElementById('card-asks').hidden = !isMulti;
+  document.getElementById('card-asks').textContent = `${card.name} asks:`;
+  document.getElementById('card-prompt').textContent = card.prompt;
+  document.getElementById('reversal-note').hidden = !reversed;
+
+  currentJson = JSON.stringify({ spread: spread.id, position: position.id, reversed, ...card }, null, 2);
+  showCardInfo(card);
+}
+
+// After the last flip: open the panel, or the quiet bar in Simple mode
+function showReading() {
+  phase = 'reading';
+  document.body.classList.add('revealed');
+  if (MODES[mode].panel) {
+    openPanel();
+  } else {
+    simpleBar.hidden = false;
+    layout();
+  }
+}
+
+function openPanel() {
+  simpleBar.hidden = true;
+  document.body.classList.add('panel-open');
+  result.classList.add('open');
+  layout();
+  document.getElementById('name').focus({ preventScroll: true });
+}
+
+function shuffleAgain() {
+  const written = entryBox.value.trim();
+  const hasUnsavedWriting = written !== '' && written !== savedBody;
+  if (hasUnsavedWriting && !confirm('Shuffle again? Your unsaved writing will be cleared.')) {
+    return;
+  }
+  deal();
+}
+
+// =====================================================================
+// Layout of the chosen cards
+// =====================================================================
+// Lays the chosen cards out in a centered row inside a vertical band
+function placeRow(top, bottom) {
+  const count = spread.positions.length;
+  const width = fan.firstElementChild.offsetWidth;   // layout size, ignores transforms
+  const height = fan.firstElementChild.offsetHeight;
+  const gap = 14;
+  let labelSpace = 0;
+  if (count > 1) {
+    labelSpace = 28;
+  }
+
+  const availableWidth = Math.min(window.innerWidth, 640) - 32;
+  const fitHeight = (bottom - top - labelSpace - 16) / height;
+  const fitWidth = (availableWidth - gap * (count - 1)) / (count * width);
+  const scale = Math.max(0.4, Math.min(1.2, fitHeight, fitWidth));
+
+  const fanBox = fan.getBoundingClientRect();
+  const y = (top + bottom - labelSpace) / 2 - fanBox.top;
+  picks.forEach((p, i) => {
+    const x = window.innerWidth / 2 + (i - (count - 1) / 2) * (width * scale + gap) - fanBox.left;
+    p.button.style.setProperty('--tx', x.toFixed(1) + 'px');
+    p.button.style.setProperty('--ty', y.toFixed(1) + 'px');
+    p.button.style.setProperty('--s', scale.toFixed(3));
+  });
+}
+
+function layout() {
+  if (picks.length === 0) {
+    return;
+  }
+  const headerBox = header.getBoundingClientRect();
+
+  if (phase === 'picking') {
+    // Between the header and the top of the fan
+    const cardHeight = fan.firstElementChild.offsetHeight;
+    placeRow(headerBox.bottom + 8, fan.getBoundingClientRect().top - cardHeight / 2 - 16);
+  } else if (phase === 'flipping') {
+    // The fan is gone, so use the whole space below the header
+    placeRow(headerBox.bottom + 8, window.innerHeight - 24);
+  } else {
+    // The header has faded, so start at its top. End above the panel or the simple bar.
+    let bottom = window.innerHeight - 24;
+    if (result.classList.contains('open')) {
+      bottom = window.innerHeight - result.offsetHeight;
+    } else if (!simpleBar.hidden) {
+      bottom = window.innerHeight - simpleBar.offsetHeight - 8;
+    }
+    placeRow(headerBox.top, bottom);
+  }
+}
+
+// =====================================================================
+// Learn more: optional sections for the card in the panel
+// =====================================================================
+function cardsWhere(test, exceptId) {
+  return CARDS
+    .filter(c => c.id !== exceptId && test(c))
+    .map(c => ({ id: c.id, name: c.name }));
+}
+
+function relatedGroups(card) {
+  if (card.arcana === 'minor') {
+    const rank = RANKS[card.rank];
+    return [
+      [`Other ${rank.plural}`, [rank.major, ...cardsWhere(c => c.rank === card.rank, card.id)]],
+      [`Other ${SUITS[card.suit].name}`, cardsWhere(c => c.suit === card.suit, card.id)]
+    ];
+  }
+  const row = JOURNEY[journeyRow(card.number)];
+  let rowLabel = `Row ${row.row} of the journey`;
+  if (row.row === 0) {
+    rowLabel = 'Outside the rows';
+  }
+  return [
+    [rowLabel, row.members.filter(m => m.id !== card.id)],
+    ['Echoes in the suits', cardsWhere(c => c.arcana === 'minor' && c.rank === card.number, card.id)]
+  ];
+}
+
+// Every section that can be shown for this card, in display order
+function sectionsFor(card) {
+  const list = [];
+
+  if (card.arcana === 'minor') {
+    const suit = SUITS[card.suit];
+    const rank = RANKS[card.rank];
+    list.push({
+      id: 'suit', label: 'The suit', title: `The suit: ${suit.name}`, prompt: suit.prompt,
+      body: () => [
+        el('p', { textContent: suit.summary }),
+        el('p', { className: 'meta', textContent: `Element: ${suit.element}. In playing cards, ${suit.name.toLowerCase()} became ${suit.playing_card}.` })
+      ]
+    });
+    list.push({
+      id: 'number', label: 'The number', title: `The number: ${rank.name}`, prompt: rank.prompt,
+      body: () => [
+        el('p', { textContent: rank.summary }),
+        el('p', { className: 'meta' }, [
+          `${rank.plural} echo `,
+          cardLink(rank.major.id, `${rank.major.name} (${roman(rank.major.number)})`),
+          ' in the Major Arcana.'
+        ])
+      ]
+    });
+  } else {
+    const row = JOURNEY[journeyRow(card.number)];
+    list.push({
+      id: 'journey', label: 'The journey', title: 'Its place in the journey', prompt: row.prompt,
+      body: () => [
+        el('p', { textContent: row.summary }),
+        el('p', { className: 'meta', textContent: rowDescription(row) })
+      ]
+    });
+    const rank = RANKS[card.number];
+    if (rank) {
+      list.push({
+        id: 'number', label: 'The number', title: `The number: ${roman(card.number)}`, prompt: rank.prompt,
+        body: () => [
+          el('p', { textContent: `${card.name} echoes the ${rank.plural} in each suit.` }),
+          el('p', { textContent: rank.summary })
+        ]
+      });
+    }
+  }
+
+  list.push({
+    id: 'related', label: 'Related cards', title: 'Related cards',
+    body: () => relatedGroups(card)
+      .filter(([, members]) => members.length > 0)
+      .flatMap(([label, members]) => [el('p', { className: 'meta', textContent: label }), memberList(members)])
+  });
+  list.push({
+    id: 'data', label: 'Card data', title: 'Card data',
+    body: () => [el('pre', { textContent: currentJson })]
+  });
+  return list;
+}
+
+function renderSections() {
+  const box = document.getElementById('sections');
+  box.replaceChildren();
+  for (const section of sectionsFor(currentCard)) {
+    if (!shown.has(section.id)) {
+      continue;
+    }
+    const block = el('div', { className: 'section' }, [el('h4', { textContent: section.title }), ...section.body()]);
+    block.dataset.id = section.id;
+    if (section.prompt) {
+      const useButton = el('button', { className: 'use-prompt', type: 'button', textContent: 'Write from this' });
+      useButton.addEventListener('click', () => writeFrom(section.prompt));
+      block.append(el('p', { className: 'question', textContent: section.prompt }), useButton);
+    }
+    box.append(block);
+  }
+}
+
+function menuItem(label, role, checked, onClick) {
+  let mark = '';
+  if (checked) {
+    mark = '✓';
+  }
+  const item = el('button', { type: 'button' }, [el('span', { className: 'check', textContent: mark }), label]);
+  item.setAttribute('role', role);
+  if (role === 'menuitemcheckbox') {
+    item.setAttribute('aria-checked', String(checked));
+  }
+  item.addEventListener('click', onClick);
+  return item;
+}
+
+function renderMenu() {
+  moreMenu.replaceChildren();
+  for (const section of sectionsFor(currentCard)) {
+    const isOn = shown.has(section.id);
+    moreMenu.append(menuItem(section.label, 'menuitemcheckbox', isOn, () => {
+      if (isOn) {
+        shown.delete(section.id);
+      } else {
+        shown.add(section.id);
+      }
+      closeMenu();
+      renderSections();
+      if (!isOn) {
+        const added = document.querySelector(`.section[data-id="${section.id}"]`);
+        added?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }));
+  }
+  moreMenu.append(el('hr'));
+  moreMenu.append(menuItem('How tarot works', 'menuitem', false, () => { closeMenu(); openGuide(); }));
+  moreMenu.append(menuItem('Your journal', 'menuitem', false, () => { closeMenu(); openJournal(); }));
+}
+
+function openMenu() {
+  renderMenu();
+  moreMenu.classList.remove('up');
+  moreMenu.hidden = false;
+  moreBtn.setAttribute('aria-expanded', 'true');
+
+  // Open upward when there's no room below inside the panel
+  const panelBox = result.getBoundingClientRect();
+  const buttonBox = moreBtn.getBoundingClientRect();
+  const menuHeight = moreMenu.offsetHeight;
+  if (buttonBox.bottom + menuHeight + 12 > panelBox.bottom) {
+    if (buttonBox.top - menuHeight - 12 > panelBox.top) {
+      moreMenu.classList.add('up');
+    } else {
+      moreMenu.scrollIntoView({ block: 'nearest' });
+    }
+  }
+  moreMenu.querySelector('button').focus();
+}
+
+function closeMenu() {
+  moreMenu.hidden = true;
+  moreBtn.setAttribute('aria-expanded', 'false');
+}
+
+// Called whenever the panel switches to a different card
+function showCardInfo(card) {
+  currentCard = card;
+  closeMenu();
+  const combined = document.getElementById('combined');
+  combined.textContent = card.combined ?? '';
+  combined.hidden = !card.combined;
+  renderSections();
+}
+
+// =====================================================================
+// Card sheet: look up any card without drawing it
+// =====================================================================
+function openSheet(id) {
+  const card = CARD_BY_ID[id];
+  if (!card) {
+    return;
+  }
+  if (card.arcana === 'major') {
+    document.getElementById('sheet-num').textContent = `Major Arcana ${roman(card.number)}`;
+  } else {
+    document.getElementById('sheet-num').textContent = SUITS[card.suit].name;
+  }
+  document.getElementById('sheet-name').textContent = card.name;
+  document.getElementById('sheet-keywords').textContent = capitalize(card.keywords.upright.join(', '));
+  document.getElementById('sheet-prompt').textContent = card.prompt;
+  sheetPrompt = card.prompt;
+
+  const extra = document.getElementById('sheet-extra');
+  extra.replaceChildren();
+  if (card.arcana === 'major') {
+    const row = JOURNEY[journeyRow(card.number)];
+    extra.append(
+      el('h3', { textContent: 'Its place in the journey' }),
+      el('p', { textContent: row.summary }),
+      el('p', { className: 'meta', textContent: rowDescription(row) })
+    );
+  }
+  sheet.showModal();
+}
+
+// =====================================================================
+// Guide: how tarot works
+// =====================================================================
+function renderGuide() {
+  const body = document.getElementById('guide-body');
+  const section = (title, children) => el('section', {}, [el('h3', { textContent: title }), ...children]);
+
+  body.append(section('Major and Minor Arcana', [
+    el('p', { textContent: 'A tarot deck has 78 cards in two parts. Arcana means secrets or mysteries.' }),
+    ...DATA.arcana.flatMap(a => [
+      el('h4', { textContent: `${a.name}, ${a.count} cards` }),
+      el('p', { textContent: a.summary })
+    ])
+  ]));
+
+  body.append(section('The journey of the Majors', [
+    el('p', { textContent: 'Rachel Pollack reads the Majors as a journey: the Fool, plus three rows of seven cards.' }),
+    ...DATA.journey.flatMap(row => {
+      let heading = `Row ${row.row}, ${row.cards}`;
+      if (row.row === 0) {
+        heading = 'The Fool, 0';
+      }
+      return [el('h4', { textContent: heading }), el('p', { textContent: row.summary }), memberList(row.members)];
+    })
+  ]));
+
+  body.append(section('Suits and numbers', [
+    el('p', { textContent: 'Each Minor card combines a suit and a number. Learn the four suits and ten numbers, and you have a way into 40 cards.' }),
+    el('h4', { textContent: 'The suits' }),
+    ...DATA.suits.map(s => el('p', { textContent: `${s.name} (${s.element}): ${s.summary.split(': ')[1]}` })),
+    el('h4', { textContent: 'The numbers' }),
+    el('ol', {}, DATA.ranks.map(r => el('li', {}, [
+      `${r.name}: `,
+      el('span', { textContent: r.summary.split(':')[0].toLowerCase() })
+    ])))
+  ]));
+
+  body.append(section('Spreads', [
+    el('p', { textContent: 'A spread is a layout where each position asks its own question. The same card reads differently as “the obstacle” than as “the advice.”' }),
+    ...DATA.spreads.flatMap(s => {
+      let cardWord = 'cards';
+      if (s.positions.length === 1) {
+        cardWord = 'card';
+      }
+      return [
+        el('h4', { textContent: `${s.name}, ${s.positions.length} ${cardWord}` }),
+        el('p', { className: 'meta', textContent: s.summary }),
+        el('ol', {}, s.positions.map(p => el('li', {}, [`${p.name}: `, el('span', { textContent: p.prompt })])))
+      ];
+    })
+  ]));
+}
+
+function openGuide() {
+  guide.showModal();
+  guide.scrollTop = 0;
+}
+
+// =====================================================================
+// Storage
+// Shaped like the future Supabase tables: readings, reading_cards,
+// entries, and profile. The rest of the app only calls these async
+// functions, so moving to Supabase means rewriting this block alone.
+// =====================================================================
+const store = (() => {
+  const KEY = 'tarot-prototype-v1';
+
+  function emptyDb() {
+    return { readings: [], reading_cards: [], entries: [], profile: {} };
+  }
+
+  function newId() {
+    if (crypto.randomUUID) {
+      return crypto.randomUUID();
+    }
+    return String(Date.now()) + Math.random().toString(16).slice(2);
+  }
+
+  function load() {
+    try {
+      return JSON.parse(localStorage.getItem(KEY)) ?? emptyDb();
+    } catch {
+      return emptyDb();
+    }
+  }
+
+  function persist(db) {
+    try {
+      localStorage.setItem(KEY, JSON.stringify(db));
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  // Joins a reading with its cards and entries, like a Supabase select with relations
+  function withRelations(db, reading) {
+    return {
+      ...reading,
+      cards: db.reading_cards
+        .filter(c => c.reading_id === reading.id)
+        .sort((a, b) => a.position - b.position),
+      entries: db.entries
+        .filter(e => e.reading_id === reading.id)
+        .sort((a, b) => a.created_at.localeCompare(b.created_at))
+    };
+  }
+
+  return {
+    async saveReading({ spreadId, cards, body }) {
+      const db = load();
+      const id = newId();
+      const now = new Date().toISOString();
+      db.readings.push({ id, spread_id: spreadId, created_at: now });
+      cards.forEach((c, i) => {
+        db.reading_cards.push({ reading_id: id, position: i, position_id: c.positionId, card_id: c.cardId, reversed: c.reversed });
+      });
+      if (body) {
+        db.entries.push({ id: newId(), reading_id: id, type: 'interpretation', body, created_at: now });
+      }
+      if (!persist(db)) {
+        throw new Error('Storage is full or unavailable.');
+      }
+      return id;
+    },
+
+    async updateInterpretation(readingId, body) {
+      const db = load();
+      const entry = db.entries.find(e => e.reading_id === readingId && e.type === 'interpretation');
+      if (entry) {
+        entry.body = body;
+        entry.updated_at = new Date().toISOString();
+      } else {
+        db.entries.push({ id: newId(), reading_id: readingId, type: 'interpretation', body, created_at: new Date().toISOString() });
+      }
+      if (!persist(db)) {
+        throw new Error('Storage is full or unavailable.');
+      }
+    },
+
+    async listReadings() {
+      const db = load();
+      return db.readings
+        .slice()
+        .sort((a, b) => b.created_at.localeCompare(a.created_at))
+        .map(r => withRelations(db, r));
+    },
+
+    async getReading(id) {
+      const db = load();
+      const reading = db.readings.find(r => r.id === id);
+      if (!reading) {
+        return null;
+      }
+      return withRelations(db, reading);
+    },
+
+    async getProfile() {
+      return load().profile ?? {};
+    },
+
+    async updateProfile(changes) {
+      const db = load();
+      db.profile = { ...(db.profile ?? {}), ...changes };
+      persist(db);
+    }
+  };
+})();
+
+// =====================================================================
+// Saving a reading
+// =====================================================================
+function resetSave() {
+  savedId = null;
+  savedBody = '';
+  saveBtn.disabled = false;
+  saveBtn.textContent = 'Save reading';
+  saveNote.hidden = true;
+}
+
+function sparkle(target) {
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    return;
+  }
+  const svgNs = 'http://www.w3.org/2000/svg';
+  for (let i = 0; i < 6; i++) {
+    const svg = document.createElementNS(svgNs, 'svg');
+    svg.setAttribute('viewBox', '0 0 20 20');
+    svg.setAttribute('aria-hidden', 'true');
+    const path = document.createElementNS(svgNs, 'path');
+    path.setAttribute('fill', 'currentColor');
+    path.setAttribute('d', 'M10 0 C10.6 6 14 9.4 20 10 C14 10.6 10.6 14 10 20 C9.4 14 6 10.6 0 10 C6 9.4 9.4 6 10 0Z');
+    svg.append(path);
+
+    const star = el('span', { className: 'sparkle' }, [svg]);
+    const size = 8 + randInt(10);
+    star.style.width = size + 'px';
+    star.style.height = size + 'px';
+    star.style.left = (randInt(110) - 5) + '%';
+    star.style.top = (randInt(140) - 20) + '%';
+    star.style.animationDelay = (i * 60) + 'ms';
+    target.append(star);
+    setTimeout(() => star.remove(), 1200);
+  }
+}
+
+async function saveReading() {
+  const body = entryBox.value.trim();
+  try {
+    if (savedId) {
+      await store.updateInterpretation(savedId, body);
+    } else {
+      savedId = await store.saveReading({
+        spreadId: spread.id,
+        body,
+        cards: picks.map((p, i) => ({
+          cardId: p.draw.card.id,
+          reversed: p.draw.reversed,
+          positionId: spread.positions[i].id
+        }))
+      });
+    }
+    savedBody = body;
+    saveBtn.textContent = 'Saved';
+    saveBtn.disabled = true;
+    saveNote.textContent = 'Saved to your journal on this device.';
+    saveNote.hidden = false;
+    sparkle(saveBtn);
+  } catch (err) {
+    saveNote.textContent = `Couldn’t save: ${err.message}`;
+    saveNote.hidden = false;
+  }
+}
+
+// =====================================================================
+// Journal
+// =====================================================================
+function interpretationOf(reading) {
+  const entry = reading.entries.find(e => e.type === 'interpretation');
+  return entry?.body ?? 'No reflection written.';
+}
+
+async function showJournalList() {
+  journalBody.replaceChildren();
+  const readings = await store.listReadings();
+  if (readings.length === 0) {
+    journalBody.append(el('p', { textContent: 'No saved readings yet. Draw your cards, write a little, then tap Save reading.' }));
+    return;
+  }
+
+  journalBody.append(el('p', { className: 'meta', textContent: 'Saved on this device only, for now.' }));
+  const list = el('ul', { className: 'journal-list' });
+  for (const reading of readings) {
+    const names = reading.cards.map(c => CARD_BY_ID[c.card_id]?.name ?? c.card_id).join(', ');
+    const spreadName = SPREAD_BY_ID[reading.spread_id]?.name ?? 'Reading';
+    const item = el('button', { className: 'journal-item', type: 'button' }, [
+      el('span', { className: 'when', textContent: `${formatDate(reading.created_at)}, ${spreadName}` }),
+      el('span', { className: 'what', textContent: names }),
+      el('span', { className: 'preview', textContent: interpretationOf(reading) })
+    ]);
+    item.addEventListener('click', () => showJournalReading(reading.id));
+    list.append(el('li', {}, [item]));
+  }
+  journalBody.append(list);
+}
+
+async function showJournalReading(id) {
+  const reading = await store.getReading(id);
+  const readingSpread = SPREAD_BY_ID[reading.spread_id];
+  const isMulti = (readingSpread?.positions.length ?? 1) > 1;
+
+  const back = el('button', { className: 'link back', type: 'button', textContent: 'All readings' });
+  back.addEventListener('click', showJournalList);
+
+  const cardItems = reading.cards.map(c => {
+    const card = CARD_BY_ID[c.card_id];
+    const parts = [];
+    if (isMulti) {
+      const position = readingSpread.positions.find(p => p.id === c.position_id);
+      parts.push(`${position?.name ?? ''}: `);
+    }
+    if (card) {
+      parts.push(cardLink(card.id, card.name));
+    } else {
+      parts.push(c.card_id);
+    }
+    if (c.reversed) {
+      parts.push(el('span', { textContent: ', reversed' }));
+    }
+    return el('li', {}, parts);
+  });
+
+  journalBody.replaceChildren(
+    back,
+    el('h3', { textContent: readingSpread?.name ?? 'Reading' }),
+    el('p', { className: 'meta', textContent: formatDate(reading.created_at) }),
+    el('ol', {}, cardItems),
+    el('h4', { textContent: 'Your reflection' }),
+    el('p', { className: 'reflection', textContent: interpretationOf(reading) })
+  );
+  journal.scrollTop = 0;
+}
+
+async function openJournal() {
+  await showJournalList();
+  journal.showModal();
+  journal.scrollTop = 0;
+}
+
+// =====================================================================
+// Modes
+// =====================================================================
+function renderModes() {
+  const box = document.getElementById('modes');
+  box.replaceChildren();
+  for (const [id, preset] of Object.entries(MODES)) {
+    const option = el('button', { type: 'button', textContent: preset.label });
+    option.setAttribute('role', 'radio');
+    option.setAttribute('aria-checked', String(id === mode));
+    option.addEventListener('click', () => setMode(id));
+    box.append(option);
+  }
+}
+
+function setMode(id, { save = true } = {}) {
+  if (!MODES[id]) {
+    return;
+  }
+  mode = id;
+  for (const name of Object.keys(MODES)) {
+    document.body.classList.toggle(`mode-${name}`, name === id);
+  }
+  shown.clear();
+  MODES[id].sections.forEach(s => shown.add(s));
+  if (currentCard) {
+    renderSections();
+  }
+  renderModes();
+  if (save) {
+    store.updateProfile({ mode: id });
+  }
+}
+
+// =====================================================================
+// Events
+// =====================================================================
+document.getElementById('open-guide').addEventListener('click', openGuide);
+document.getElementById('open-journal').addEventListener('click', openJournal);
+document.getElementById('again').addEventListener('click', shuffleAgain);
+document.getElementById('simple-again').addEventListener('click', shuffleAgain);
+document.getElementById('simple-open').addEventListener('click', openPanel);
+document.getElementById('position-use').addEventListener('click', () => {
+  writeFrom(document.getElementById('position-prompt').textContent);
+});
+document.getElementById('sheet-use').addEventListener('click', () => {
+  sheet.close();
+  writeFrom(sheetPrompt);
+});
+saveBtn.addEventListener('click', saveReading);
+
+// After saving, more writing turns the button back on
+entryBox.addEventListener('input', () => {
+  if (savedId && entryBox.value.trim() !== savedBody) {
+    saveBtn.disabled = false;
+    saveBtn.textContent = 'Save changes';
+  }
+});
+
+moreBtn.addEventListener('click', () => {
+  if (moreMenu.hidden) {
+    openMenu();
+  } else {
+    closeMenu();
+  }
+});
+document.addEventListener('click', e => {
+  if (!moreMenu.hidden && !e.target.closest('.more')) {
+    closeMenu();
+  }
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && !moreMenu.hidden) {
+    closeMenu();
+    moreBtn.focus();
+  }
+});
+
+// Dialogs close from their ✕ button or a tap on the backdrop
+for (const dialog of [sheet, guide, journal]) {
+  dialog.querySelector('.sheet-close').addEventListener('click', () => dialog.close());
+  dialog.addEventListener('click', e => {
+    if (e.target === dialog) {
+      dialog.close();
+    }
+  });
+}
+
+window.addEventListener('resize', layout);
+
+// =====================================================================
+// Start
+// =====================================================================
+renderGuide();
+renderPicker();
+setMode('learn', { save: false });
+store.getProfile().then(profile => {
+  if (profile.mode && profile.mode !== mode) {
+    setMode(profile.mode, { save: false });
+  }
+});
+deal();
+</script>
+</body>
+</html>

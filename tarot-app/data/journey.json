@@ -1,0 +1,122 @@
+[
+  {
+    "row": 0,
+    "cards": "0",
+    "summary": "The Fool stands apart from the three rows. It’s the traveler moving through all of them: the part of you that’s always beginning.",
+    "prompt": "Where are you a beginner right now?",
+    "members": [
+      {
+        "id": "fool",
+        "name": "The Fool"
+      }
+    ]
+  },
+  {
+    "row": 1,
+    "cards": "I–VII",
+    "summary": "The first row is about the outer world: learning to act, know, love, build structure, and choose your own direction.",
+    "prompt": "How are you finding your place among other people right now?",
+    "members": [
+      {
+        "id": "magician",
+        "name": "The Magician"
+      },
+      {
+        "id": "high-priestess",
+        "name": "The High Priestess"
+      },
+      {
+        "id": "empress",
+        "name": "The Empress"
+      },
+      {
+        "id": "emperor",
+        "name": "The Emperor"
+      },
+      {
+        "id": "hierophant",
+        "name": "The Hierophant"
+      },
+      {
+        "id": "lovers",
+        "name": "The Lovers"
+      },
+      {
+        "id": "chariot",
+        "name": "The Chariot"
+      }
+    ]
+  },
+  {
+    "row": 2,
+    "cards": "VIII–XIV",
+    "summary": "The second row turns inward: strength, solitude, change, and balance that come from within.",
+    "prompt": "What are you learning about yourself when no one’s watching?",
+    "members": [
+      {
+        "id": "strength",
+        "name": "Strength"
+      },
+      {
+        "id": "hermit",
+        "name": "The Hermit"
+      },
+      {
+        "id": "wheel-of-fortune",
+        "name": "The Wheel of Fortune"
+      },
+      {
+        "id": "justice",
+        "name": "Justice"
+      },
+      {
+        "id": "hanged-man",
+        "name": "The Hanged Man"
+      },
+      {
+        "id": "death",
+        "name": "Death"
+      },
+      {
+        "id": "temperance",
+        "name": "Temperance"
+      }
+    ]
+  },
+  {
+    "row": 3,
+    "cards": "XV–XXI",
+    "summary": "The third row is deep transformation: facing shadows and fears, then moving toward hope, renewal, and wholeness.",
+    "prompt": "What feels like it’s transforming in you?",
+    "members": [
+      {
+        "id": "devil",
+        "name": "The Devil"
+      },
+      {
+        "id": "tower",
+        "name": "The Tower"
+      },
+      {
+        "id": "star",
+        "name": "The Star"
+      },
+      {
+        "id": "moon",
+        "name": "The Moon"
+      },
+      {
+        "id": "sun",
+        "name": "The Sun"
+      },
+      {
+        "id": "judgement",
+        "name": "Judgement"
+      },
+      {
+        "id": "world",
+        "name": "The World"
+      }
+    ]
+  }
+]

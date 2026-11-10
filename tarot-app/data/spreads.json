@@ -1,0 +1,147 @@
+[
+  {
+    "id": "single",
+    "name": "One card",
+    "summary": "A single card to sit with. Good for a daily practice.",
+    "level": 1,
+    "positions": [
+      {
+        "id": "card",
+        "name": "The card",
+        "prompt": "What does this card bring up for you today?"
+      }
+    ]
+  },
+  {
+    "id": "past-present-future",
+    "name": "Past, present, future",
+    "summary": "Three cards that show how something has moved and where it might go.",
+    "level": 2,
+    "positions": [
+      {
+        "id": "past",
+        "name": "Past",
+        "prompt": "What led here?"
+      },
+      {
+        "id": "present",
+        "name": "Present",
+        "prompt": "What’s true right now?"
+      },
+      {
+        "id": "future",
+        "name": "Future",
+        "prompt": "Where is this heading if nothing changes?"
+      }
+    ]
+  },
+  {
+    "id": "situation-obstacle-advice",
+    "name": "Situation, obstacle, advice",
+    "summary": "Three cards for a question you’re stuck on.",
+    "level": 2,
+    "positions": [
+      {
+        "id": "situation",
+        "name": "The situation",
+        "prompt": "What’s really going on?"
+      },
+      {
+        "id": "obstacle",
+        "name": "The obstacle",
+        "prompt": "What’s in the way?"
+      },
+      {
+        "id": "advice",
+        "name": "The advice",
+        "prompt": "What might help?"
+      }
+    ]
+  },
+  {
+    "id": "elements",
+    "name": "The four elements",
+    "summary": "Four cards, one for each part of life the suits cover.",
+    "level": 3,
+    "positions": [
+      {
+        "id": "fire",
+        "name": "Fire",
+        "prompt": "What’s happening with your energy and drive?"
+      },
+      {
+        "id": "water",
+        "name": "Water",
+        "prompt": "What’s happening with your feelings?"
+      },
+      {
+        "id": "air",
+        "name": "Air",
+        "prompt": "What’s happening in your thoughts?"
+      },
+      {
+        "id": "earth",
+        "name": "Earth",
+        "prompt": "What’s happening with your body and daily life?"
+      }
+    ]
+  },
+  {
+    "id": "celtic-cross",
+    "name": "Celtic Cross",
+    "summary": "The classic ten-card spread for looking at a situation from every side.",
+    "level": 4,
+    "positions": [
+      {
+        "id": "heart",
+        "name": "The heart of the matter",
+        "prompt": "What’s at the center of this?"
+      },
+      {
+        "id": "crossing",
+        "name": "What crosses it",
+        "prompt": "What’s complicating things?"
+      },
+      {
+        "id": "root",
+        "name": "The root",
+        "prompt": "What lies underneath?"
+      },
+      {
+        "id": "past",
+        "name": "The recent past",
+        "prompt": "What’s just behind you?"
+      },
+      {
+        "id": "possible",
+        "name": "What’s possible",
+        "prompt": "What could this become?"
+      },
+      {
+        "id": "near-future",
+        "name": "The near future",
+        "prompt": "What’s coming next?"
+      },
+      {
+        "id": "self",
+        "name": "You, in this",
+        "prompt": "How are you showing up?"
+      },
+      {
+        "id": "surroundings",
+        "name": "Your surroundings",
+        "prompt": "How are the people and places around you involved?"
+      },
+      {
+        "id": "hopes-fears",
+        "name": "Hopes and fears",
+        "prompt": "What are you hoping for, or afraid of?"
+      },
+      {
+        "id": "outcome",
+        "name": "Where it’s heading",
+        "prompt": "Where does this seem to be going?"
+      }
+    ]
+  }
+]

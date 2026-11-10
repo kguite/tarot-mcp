@@ -1,0 +1,14 @@
+[
+  {
+    "id": "major",
+    "name": "Major Arcana",
+    "count": 22,
+    "summary": "Numbered 0 to XXI, these are the big themes: turning points, life lessons, and archetypes that show up in everyone’s life. When a Major appears, it often points to something larger than the day-to-day."
+  },
+  {
+    "id": "minor",
+    "name": "Minor Arcana",
+    "count": 56,
+    "summary": "Four suits of 14 cards each. These are the everyday: the moods, choices, and situations that fill ordinary days. Each suit runs from Ace to Ten, plus four court cards: Page, Knight, Queen, and King."
+  }
+]

@@ -1,0 +1,34 @@
+[
+  {
+    "id": "wands",
+    "name": "Wands",
+    "element": "fire",
+    "playing_card": "clubs",
+    "summary": "Wands are fire: the drive to start things, create, and act. They follow your energy, ambition, and passion.",
+    "prompt": "Where is your energy going right now, and is it going where you want it to?"
+  },
+  {
+    "id": "cups",
+    "name": "Cups",
+    "element": "water",
+    "playing_card": "hearts",
+    "summary": "Cups are water: feelings, relationships, intuition, and care. They follow what moves you and who you’re close to.",
+    "prompt": "What are you feeling that you haven’t made room for?"
+  },
+  {
+    "id": "swords",
+    "name": "Swords",
+    "element": "air",
+    "playing_card": "spades",
+    "summary": "Swords are air: thoughts, truth, conflict, and clarity. They follow the stories in your head and the words between people.",
+    "prompt": "What story are you telling yourself right now?"
+  },
+  {
+    "id": "pentacles",
+    "name": "Pentacles",
+    "element": "earth",
+    "playing_card": "diamonds",
+    "summary": "Pentacles are earth: the body, work, money, and home. They follow the practical, everyday ground of your life.",
+    "prompt": "What does your body or your daily life need from you?"
+  }
+]

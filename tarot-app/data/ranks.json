@@ -1,0 +1,122 @@
+[
+  {
+    "rank": 1,
+    "name": "Ace",
+    "plural": "Aces",
+    "summary": "The seed: the suit’s energy in its purest form, before anything has been done with it.",
+    "prompt": "What wants to begin?",
+    "major": {
+      "id": "magician",
+      "name": "The Magician",
+      "number": 1
+    }
+  },
+  {
+    "rank": 2,
+    "name": "Two",
+    "plural": "Twos",
+    "summary": "Choice and balance: two things held side by side, or two people meeting.",
+    "prompt": "What are you weighing?",
+    "major": {
+      "id": "high-priestess",
+      "name": "The High Priestess",
+      "number": 2
+    }
+  },
+  {
+    "rank": 3,
+    "name": "Three",
+    "plural": "Threes",
+    "summary": "Growth: the first results, and often other people joining in.",
+    "prompt": "What’s starting to grow?",
+    "major": {
+      "id": "empress",
+      "name": "The Empress",
+      "number": 3
+    }
+  },
+  {
+    "rank": 4,
+    "name": "Four",
+    "plural": "Fours",
+    "summary": "Stability: structure, rest, and holding still, sometimes too tightly.",
+    "prompt": "Where do you need solid ground, and where are you gripping too hard?",
+    "major": {
+      "id": "emperor",
+      "name": "The Emperor",
+      "number": 4
+    }
+  },
+  {
+    "rank": 5,
+    "name": "Five",
+    "plural": "Fives",
+    "summary": "Disruption: the stability of the fours gets shaken, through conflict, loss, or challenge.",
+    "prompt": "What’s been shaken up?",
+    "major": {
+      "id": "hierophant",
+      "name": "The Hierophant",
+      "number": 5
+    }
+  },
+  {
+    "rank": 6,
+    "name": "Six",
+    "plural": "Sixes",
+    "summary": "Harmony returning: recovery, generosity, and finding balance again after the fives.",
+    "prompt": "Where is balance coming back?",
+    "major": {
+      "id": "lovers",
+      "name": "The Lovers",
+      "number": 6
+    }
+  },
+  {
+    "rank": 7,
+    "name": "Seven",
+    "plural": "Sevens",
+    "summary": "A test: reassessing, imagining, or standing your ground after early growth.",
+    "prompt": "What are you being asked to hold on to, or let go of?",
+    "major": {
+      "id": "chariot",
+      "name": "The Chariot",
+      "number": 7
+    }
+  },
+  {
+    "rank": 8,
+    "name": "Eight",
+    "plural": "Eights",
+    "summary": "Movement: effort, skill, and a change of pace.",
+    "prompt": "What’s in motion?",
+    "major": {
+      "id": "strength",
+      "name": "Strength",
+      "number": 8
+    }
+  },
+  {
+    "rank": 9,
+    "name": "Nine",
+    "plural": "Nines",
+    "summary": "Almost there: fruition, intensity, and often a moment alone with the results.",
+    "prompt": "What have you nearly finished?",
+    "major": {
+      "id": "hermit",
+      "name": "The Hermit",
+      "number": 9
+    }
+  },
+  {
+    "rank": 10,
+    "name": "Ten",
+    "plural": "Tens",
+    "summary": "Completion: the end of a cycle, and sometimes too much of a good thing.",
+    "prompt": "What has reached its limit?",
+    "major": {
+      "id": "wheel-of-fortune",
+      "name": "The Wheel of Fortune",
+      "number": 10
+    }
+  }
+]

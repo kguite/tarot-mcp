@@ -17,6 +17,7 @@ The app is also a vehicle for learning: Vite + React + TypeScript, Supabase (Pos
 - No em dashes in docs or UI copy.
 - I'm on Windows with PowerShell. Give commands that work there.
 - Git: branch plus PR for changes.
+- This is a learning project. Each step gets a section in `STEPS.md`: what was done, the commands, and why.
 
 ## Product principles
 
@@ -35,7 +36,9 @@ The app is also a vehicle for learning: Vite + React + TypeScript, Supabase (Pos
 
 ## Current state
 
-A single-file HTML prototype (`prototype/draw.html`, about 1,500 lines with data inlined) published as a Claude artifact. It works on mobile and supports light and dark themes. Features:
+The repo root holds this file and `STEPS.md`. The app lives in `tarot-app/`: a Vite + React + TypeScript project with typed data and a placeholder page. Porting the prototype into it has not started.
+
+The working reference is a single-file HTML prototype (`tarot-app/prototype/draw.html`, about 1,500 lines with data inlined) published as a Claude artifact. It works on mobile and supports light and dark themes. Features:
 
 - **Draw flow:** a fan of 10 face-down cards. Choose cards one at a time into spread positions, then tap each to flip with a 3D spring. About 1 in 4 cards come up reversed (`REVERSAL_RATE`) and are shown upside down.
 - **Spreads:** One card; Past, present, future; Situation, obstacle, advice; The four elements. The Celtic Cross is in the data but hidden until the deck is bigger and it has its own layout.
@@ -50,7 +53,7 @@ The deck in play is 10 cards: The Fool, The Magician, The High Priestess, The He
 
 ## Data
 
-JSON files, normalized so cards point to shared reference data instead of repeating it:
+JSON files in `tarot-app/src/data/`, normalized so cards point to shared reference data instead of repeating it. `types.ts` has a type for each file, and `index.ts` exports each one typed (`CARDS`, `SPREADS`, `SUITS`, `RANKS`, `JOURNEY`, `ARCANA`). Import data from there, not from the JSON files.
 
 | File | Holds | Future table |
 | --- | --- | --- |
@@ -96,8 +99,8 @@ profile         mode (becomes a profiles row per user)
 
 ## Next steps
 
-1. **Set up the Vite project.** `npm create vite@latest` with React + TypeScript, git repo, Netlify deploy. Move the JSON files to `src/data/` with TypeScript types for each.
-2. **Port the prototype in pieces,** in this order, keeping behavior the same: data and types, `store`, deck logic (shuffle, reversals), the fan and flip, spreads and layout, the reading panel, Learn more, card sheet and guide, saving and journal, modes. Check each piece on a phone before moving on.
+1. **Set up the Vite project.** Done: git repo, Vite with React + TypeScript, JSON in `src/data/` with types. Left: Netlify deploy.
+2. **Port the prototype in pieces,** in this order, keeping behavior the same: data and types (done), `store`, deck logic (shuffle, reversals), the fan and flip, spreads and layout, the reading panel, Learn more, card sheet and guide, saving and journal, modes. Check each piece on a phone before moving on.
 3. **Make it a PWA** and install it on the phone.
 4. **Supabase.** Seed reference tables from the JSON, create readings, reading_cards, entries, and profiles with RLS, add OAuth, then swap the `store` internals.
 5. **MCP server** over the Supabase data, tested in Claude Desktop.

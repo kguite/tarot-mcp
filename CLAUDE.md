@@ -18,6 +18,7 @@ The app is also a vehicle for learning: Vite + React + TypeScript, Supabase (Pos
 - I'm on Windows with PowerShell. Give commands that work there.
 - Git: branch plus PR for changes.
 - This is a learning project. Each step gets a section in `STEPS.md`: what was done, the commands, and why.
+- Access (levels, permissions, circles) is designed in `ACCESS.md`. Build against it; it mirrors where speak_friend and the country dashboard are heading.
 
 ## Product principles
 
@@ -77,7 +78,7 @@ profile         mode (becomes a profiles row per user)
 
 ## Architecture decisions
 
-- **One storage boundary.** The app only calls the async `store` functions: `saveReading`, `updateInterpretation`, `listReadings`, `getReading`, `getProfile`, `updateProfile`. Moving to Supabase means rewriting their insides only. Keep this boundary in the React app (`src/lib/store.ts`).
+- **One storage boundary.** The app only calls the async `store` functions: `saveReading`, `updateInterpretation`, `listReadings`, `getReading`, `getProfile`, `updateProfile`. Moving to the FastAPI backend means rewriting their insides only. Keep this boundary in the React app (`src/lib/store.ts`).
 - **Deck vs. data.** All card data lives in `cards.json`. Which cards are in play is a separate list (`DECK_IDS`). Spreads and themed decks will want the same split.
 - **Modes are presets.** `MODES` maps each mode to settings (`panel`, default `sections`). Add behavior by adding settings, not by branching on mode names.
 - **Layout is computed.** `placeRow(top, bottom)` fits the chosen cards into a vertical band for each phase (picking, flipping, reading). Cards animate with CSS transforms driven by CSS variables.
@@ -92,19 +93,21 @@ profile         mode (becomes a profiles row per user)
 ## Target stack
 
 - **App:** Vite, React, TypeScript, installable PWA (`vite-plugin-pwa`) pinned to the phone home screen. Motion (formerly Framer Motion) for springs; canvas for particles later.
-- **Backend:** Supabase: Postgres with RLS from day one, Google and Apple OAuth, Edge Functions for every LLM call (no API keys in the client), pgvector for "you've written about this before."
-- **Hosting:** Netlify, for the app and later a remote MCP server.
+- **Backend:** one Python FastAPI app, shaped like speak_friend: REST endpoints for the React app, the MCP server at `/mcp`, and the LLM coach, all behind one shared token check. Every LLM call happens here (no API keys in the client). SQLAlchemy for the database, like speak_friend.
+- **Database:** Supabase, used only as free hosted Postgres (the same database type as the country dashboard). Not its login, and the React app never talks to it directly: React, then FastAPI, then Supabase. pgvector later for "you've written about this before."
+- **Login:** Auth0, like speak_friend. Rows are filtered in app code, the way the country dashboard and speak_friend do it.
+- **Hosting:** Netlify for the app. The remote MCP server goes where speak_friend runs (Azure App Service), to practice the same setup.
 - **LLM:** Claude API. Small model for prompts, stronger model for coaching. Prompt caching on the static part (system prompt plus card meanings), streaming, structured output, and token and cost logging per call.
-- **MCP:** TypeScript MCP SDK. Tools like `draw_cards`, `get_card`, `get_spread`, `save_reading`, `get_reading_history`. Run locally in Claude Desktop first, then remote with OAuth.
+- **MCP:** Python, `mcp==2.3.0` and pydantic, matching speak_friend and daedalus at work (`mcp-server/`). The TypeScript version is kept in `mcp-server-ts/` for comparison. Use what work uses wherever possible. Tools like `draw_cards`, `get_card`, `get_spread`, `save_reading`, `get_reading_history`. Run locally in Claude Desktop first, then remote with OAuth.
 
 ## Next steps
 
 1. **Set up the Vite project.** Done: git repo, Vite with React + TypeScript, JSON in `src/data/` with types. Left: Netlify deploy.
 2. **Port the prototype in pieces,** in this order, keeping behavior the same: data and types (done), `store`, deck logic (shuffle, reversals), the fan and flip, spreads and layout, the reading panel, Learn more, card sheet and guide, saving and journal, modes. Check each piece on a phone before moving on.
 3. **Make it a PWA** and install it on the phone.
-4. **Supabase.** Seed reference tables from the JSON, create readings, reading_cards, entries, and profiles with RLS, add OAuth, then swap the `store` internals.
-5. **MCP server** over the Supabase data, tested in Claude Desktop.
-6. **LLM coach** in an Edge Function: the person writes first, then the coach responds to their interpretation with curiosity, never prediction or diagnosis.
+4. **Backend and database.** Grow `mcp-server/` into the FastAPI app (REST plus `/mcp`). Supabase Postgres: seed reference tables from the JSON, create readings, reading_cards, entries, and profiles. Auth0 login. Then swap the `store` internals to call the FastAPI endpoints. Access follows `ACCESS.md`.
+5. **MCP server** tools over the same data (started early: `get_card` exists), with pytest tests per tool and per persona.
+6. **LLM coach** in the FastAPI app, through the Anthropic SDK with prompt caching and token logging, like daedalus: the person writes first, then the coach responds to their interpretation with curiosity, never prediction or diagnosis.
 7. **Imagination triggers** once real art exists: tap the details (using the `details` regions), step into the card (parallax and particles), talk to the figure.
 
 Later ideas: follow-up reflections on old readings, Daily mode, Practice mode (flashcards with spaced repetition), personal card pages built from past entries, weekly reviews, the Celtic Cross.

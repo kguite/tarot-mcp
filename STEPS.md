@@ -152,6 +152,167 @@ npm run dev
 
 The page should say "17 cards and 5 spreads loaded."
 
+## 4. An MCP server with one tool
+
+**What:** `mcp-server/`, a small Python program with one tool, `get_card`, that reads
+`tarot-app/src/data/cards.json`. It's a separate project from the app, with its own
+`requirements.txt` and `.venv`.
+
+**Why Python, when the app is TypeScript:** to use what work uses. speak_friend is a Python MCP
+server on the same package (`mcp==2.3.0`), and daedalus defines tools with pydantic. Everything
+learned here carries over line for line. The app and the server share only the JSON files.
+
+**How MCP works.** Think of the server as a kitchen, and Claude as a waiter who can only read
+the menu.
+- **The menu** is the tool list: each tool's name, description, and inputs. That's all Claude
+  sees. It never sees the code.
+- **The order:** Claude picks a tool that fits the question and calls it with arguments.
+- **The kitchen** is the function that runs and sends back a result. Claude writes its answer
+  from that result.
+- **A bad menu gets bad orders.** A vague description means the wrong tool or the wrong
+  arguments, even when the code is fine.
+
+**The client** (Claude Desktop, Claude Code, or the Inspector) starts the server as a background
+program and talks to it over stdin and stdout, one JSON message per line. This is the
+**stdio transport**. There are three messages:
+
+| Message | Means |
+| --- | --- |
+| `initialize` | Handshake: protocol version, and what each side supports |
+| `tools/list` | "Show me the menu." The server answers with each tool's name, description, and input schema. |
+| `tools/call` | "Run `get_card` with `{ "id": "moon" }`." The server answers with `content`. |
+
+**Gotcha:** stdout *is* the conversation, so `print()` in the server corrupts it. Log to
+stderr instead.
+
+**Setup:**
+
+```
+git switch main
+git pull
+git switch -c mcp-server
+mkdir mcp-server
+cd mcp-server
+C:\Users\KatieGuite\anaconda3\envs\dev310\python.exe -m venv .venv
+.venv\Scripts\python.exe -m pip install -r requirements.txt
+```
+
+- `requirements.txt` pins `mcp==2.3.0`, the same as speak_friend. It brings pydantic with it.
+- `.venv` is this project's own Python, made from dev310, the way speak_friend's README does it.
+  `.gitignore` leaves it out.
+
+**The code,** `server.py`, has three parts:
+1. Read `cards.json` once at startup. The path is built from `__file__`, so it's relative to
+   the file, not to the folder the server is started from.
+2. `mcp = MCPServer(name='tarot')`
+3. A plain Python function with `@mcp.tool()` on top. The SDK builds the menu from it:
+   - the function name is the tool name
+   - the docstring is the description
+   - each argument becomes an input, and `Annotated[str, Field(description=...)]` (pydantic)
+     gives it a description on the menu
+   - the return value is the result
+
+If the id doesn't exist, the function raises `ToolError` with the list of valid ids. The SDK
+turns that into a result with `isError: true`. Claude reads it and can retry with the right
+id, so a good error message is part of the menu too.
+
+**Check it raw.** Send it the messages directly (Git Bash):
+
+```
+printf '%s\n' \
+'{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-11-25","capabilities":{},"clientInfo":{"name":"test","version":"0"}}}' \
+'{"jsonrpc":"2.0","method":"notifications/initialized"}' \
+'{"jsonrpc":"2.0","id":2,"method":"tools/list"}' \
+'{"jsonrpc":"2.0","id":3,"method":"tools/call","params":{"name":"get_card","arguments":{"id":"moon"}}}' \
+'{"jsonrpc":"2.0","id":4,"method":"tools/list"}' \
+| .venv/Scripts/python.exe server.py
+```
+
+The answer to `tools/list` is exactly what Claude would see: the function's signature has
+become JSON Schema. The last request is a spare: the pipe closes as soon as the input ends,
+and the server can be cut off before its last reply.
+
+**Lesson: the result was being sent twice.** With `-> str` on the function, the SDK guesses
+you want "structured output" and sends the result twice: once as `content` and again as
+`structuredContent`, plus an `outputSchema` on the menu. `@mcp.tool(structured_output=False)`
+turns that off. The card reply dropped to about half its size (1,184 bytes). speak_friend's
+`get_demand` has the same `-> str` and plain `@mcp.tool()`, so it is worth checking there.
+
+**Check it in the Inspector** (cmd, from `mcp-server`):
+
+```
+npx @modelcontextprotocol/inspector .venv\Scripts\python.exe server.py
+```
+
+**What the Inspector is:** Postman for MCP. It plays the client, so you can make requests by
+hand and see the exact JSON, with no AI involved. Unlike Postman, it also speaks the protocol
+for you: it does the handshake, wraps each request in its envelope (`jsonrpc`, `id`,
+`method`, `params`), and matches replies by `id`. You only say which tool and what input.
+
+| REST (speak_friend) | MCP (tarot) |
+| --- | --- |
+| Postman, or FastAPI's `/docs` page | The MCP Inspector |
+| `/openapi.json`: every endpoint and its inputs | `tools/list`: every tool, description, and input schema |
+| `GET /get_demand` | `tools/call` with `get_card` and `{"id": "moon"}` |
+
+**Using it** (Inspector 2026 layout):
+1. The page shows a `python.exe` card with the command. Flip its toggle to connect. The top bar
+   shows the server's name (`tarot`, from `MCPServer(name='tarot')`) and the protocol version
+   both sides agreed on (`MCP 2025-11-25`).
+2. The Messages panel on the right is the whole conversation, newest first, so read it from the
+   bottom: `initialize`, `notifications/initialized`, then the Inspector asks for all three
+   menus by itself: `tools/list`, `prompts/list`, `resources/list`. Prompts and resources come
+   back empty, since this server only has a tool.
+3. Expand `tools/list` (the arrows icon) to see the raw menu.
+4. Open the Tools tab, pick `get_card`, enter `moon`, and run it. A `tools/call` message
+   appears at the top of the panel. Try `the-moon` to see the error.
+
+The long `MCP_INSPECTOR_API_TOKEN` in the address bar is a password for that session. Keep it
+out of screenshots you share.
+
+**Connect it to Claude Desktop.** In Claude Desktop, go to Settings, then Developer, then Edit
+Config. Add an `mcpServers` entry beside whatever is already there:
+
+```json
+"mcpServers": {
+  "tarot": {
+    "command": "C:\\Users\\KatieGuite\\Documents\\codebases\\tarot-mcp\\mcp-server\\.venv\\Scripts\\python.exe",
+    "args": ["C:\\Users\\KatieGuite\\Documents\\codebases\\tarot-mcp\\mcp-server\\server.py"]
+  }
+}
+```
+
+Fully quit Claude Desktop (from the tray icon, not just the window) and reopen it. Ask
+"What does the Moon card mean?" and watch it call `get_card`.
+
+**No API tokens needed.** The server makes no AI calls, and Claude Desktop runs on the
+claude.ai account. API tokens come later, when the app calls Claude itself.
+
+**At work: daedalus does all of this in one process.** MCP splits three jobs that daedalus
+(`src/ai/anthropic_model.py`) does itself:
+
+| Job | With MCP | In daedalus |
+| --- | --- | --- |
+| The app you chat in | Claude Desktop | `run_streamlit_app` |
+| The loop: ask Claude, run tools, repeat | Built into Claude Desktop | `_run_tool_loop` |
+| The menu | The server's `tools/list` reply | `_build_anthropic_tools`: function name, description, pydantic schema |
+| The kitchen | The server's tool handler | The app's Python function, called by `_dispatch_tool` |
+
+So daedalus uses plain tool use through the Anthropic SDK, with no MCP. The menu is built the
+same way: a name, a description, and a pydantic schema.
+
+**The same server in TypeScript** is kept in `mcp-server-ts/` (the TypeScript MCP SDK, with zod
+in place of pydantic). It was built first, then replaced to match work. Comparing the two shows
+what is the protocol and what is just one SDK's style: the messages are identical, and only the
+way you declare a tool differs.
+daedalus also prompt-caches the system prompt and messages and logs tokens per turn, which is
+the pattern to copy when tarot calls Claude itself.
+
 ## Next
 
-- Port the `store` module (saving readings) to `src/lib/store.ts`
+- Watch how Claude uses `get_card` (Inspector, then Claude Desktop)
+- pytest for `get_card`, like speak_friend's `tests/test_mcp.py`
+- Add `get_spread` and `draw_cards`
+- Grow `mcp-server/` into a FastAPI app: REST plus `/mcp`, like speak_friend's `main.py`
+- Access: levels, permissions and circles, in the build order in `ACCESS.md`
+- Port the `store` module (saving readings) to `src/lib/store.ts`, calling the FastAPI endpoints

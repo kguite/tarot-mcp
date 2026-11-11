@@ -32,8 +32,13 @@ The app is also a vehicle for learning: Vite + React + TypeScript, Supabase (Pos
 ## Content and copyright
 
 - Do not reproduce text from Pollack's or Dore's books, or any copyrighted tarot book. Write original content in our own words.
-- Public domain sources we can use: the 1909 Rider-Waite-Smith card art and A.E. Waite's *The Pictorial Key to the Tarot* (1910).
+- Public domain sources we can use: the 1909 Rider-Waite-Smith card art and A.E. Waite's *The Pictorial Key to the Tarot* (1911).
 - The current card faces are placeholders (numeral, symbol, name) until real art is added.
+- Credit every source with a link wherever its text or images are used.
+- **Waite's text: Wikisource**, *The Pictorial Key to the Tarot* (1922 William Rider & Son reprint), validated, "in the public domain in the United States". Each Part is a subpage (`/Part_2` has a section per Major). The page scans it was typed from are on Commons as `File:The_Pictorial_Key_to_the_Tarot.pdf` (353 pages, Public Domain Mark): check odd words against it. Fallback: Project Gutenberg #43548, de Laurence's 1916 reprint.
+- **Card art: Wikimedia Commons, "Rider-Waite tarot deck (Roses & Lilies)"**: an original 1909 Roses & Lilies deck scanned by Saskia Jansen, about 825 × 1,430 px. Files are `RWS1909 - 18 Moon.jpeg` and `RWS1909 - Cups 01.jpeg` (courts 11 to 14). The Fool's page says public domain in the US and life plus 70 countries; check each file's license when downloading. Avoid recolored sets, which may still be copyrighted.
+- **sacred-texts.com** blocks Claude's fetches, so it is a backup to read in the browser. Its public domain files "can be used for any purposes" (credit and link requested). Its own index pages, notes, graphics and J.B. Hare tarot reader are copyrighted. Other public domain books there: Ouspensky, *The Symbolism of the Tarot* (1913); Mathers, *The Tarot* (1888); Papus, *The Tarot of the Bohemians* (1892). Not Thierens (1930): status unknown.
+- **The Dark Forest guidebook and journal** (darkforesttarotcards.com, free, "all rights reserved") are for ideas only. The PDF sits at the repo root, ignored by `.gitignore`. Never copy its wording or design.
 
 ## Current state
 
@@ -110,11 +115,34 @@ profile         mode (becomes a profiles row per user)
 6. **LLM coach** in the FastAPI app, through the Anthropic SDK with prompt caching and token logging, like daedalus: the person writes first, then the coach responds to their interpretation with curiosity, never prediction or diagnosis.
 7. **Imagination triggers** once real art exists: tap the details (using the `details` regions), step into the card (parallax and particles), talk to the figure.
 
+## Ideas from the Dark Forest guide
+
+From the guidebook (ideas only, see Content and copyright). Each is tagged with the step it belongs to.
+
+- **Card entry fields** (data shape). Have: name, keywords, details, prompt. New: element, astrology and number meaning for Majors; a one-line summary; upright and reversed paragraphs; what each detail's symbol means (`symbols.json`); an affirmation; one line of advice; "as a person" (court cards); optional love and work lines. Skip "timing" and "leans yes": they predict.
+- **Which way figures face** (data shape). A figure facing the next card is moving toward it. A `facing` field (left, right, forward).
+- **Count what came up** (MCP tools). Mostly one suit shows where the story is; several Majors mean big themes. `draw_cards` can return the counts, computed by code, not guessed by Claude.
+- **Ask open questions** (MCP prompt). "Will I get the job?" becomes "What do I need to know going into this?" `daily_draw` can offer an open version of a yes/no question before drawing.
+- **Ask once** (MCP prompt, app). Reshuffling for a better answer is anxiety, not a reading. Draw once; think about what "Shuffle again" invites.
+- **Reversals optional while learning** (app). Answers the open question below: a reversal setting, off for beginners.
+- **The spread ladder** (access). One card, then three, then a five-card cross, then the Celtic Cross. Matches the `level` on each spread, so the levels follow a real teaching path.
+
+## Journal ideas
+
+From the Dark Forest printable journal: ideas and layout only, in our own words and design. For when the Journal level is built.
+
+- **The daily loop.** Morning: ask a question, draw one card, write a first impression before any meaning (Journal mode already hides keywords until you write). Evening: come back and write how it showed up. Then one takeaway.
+- **Fits the saved-data shape with no new table.** A `question` on `readings`, and new `entries.type` values: `first-impression`, `showed-up`, `takeaway`. The evening note is an owner-only edit of your own reading (ACCESS.md).
+- **Looking back is the skill.** A reading log, a monthly reflection, and a 30-day card-a-day view, all built on `get_reading_history`.
+- **Anchor it to a habit** ("after my morning coffee"), and missing a day is fine: no streak guilt.
+- **A moon-cycle journal** pairs with the moon-phase circles.
+- **Other page ideas:** a three-card spread page, and "the card that confused me" (a card to come back to).
+
 Later ideas: follow-up reflections on old readings, Daily mode, Practice mode (flashcards with spaced repetition), personal card pages built from past entries, weekly reviews, the Celtic Cross.
 
 ## Open questions
 
 - **Reversals on iPhone.** I once saw 9 of 9 cards reversed at the old 50% rate. It could not be reproduced in Chromium. Watch for it in Safari: does the label or the face look wrong?
-- **Card art.** Which public domain scans to use, and how to cut layers for parallax.
+- **Card art.** The Commons Roses & Lilies scans (see Content and copyright). Still open: how to host 78 images, and how to cut layers for parallax.
 - **Celtic Cross.** Needs a bigger deck and a cross-shaped layout.
 - **Reversal setting.** Should `REVERSAL_RATE` become a user preference (off for beginners)?

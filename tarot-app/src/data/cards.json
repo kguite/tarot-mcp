@@ -2005,7 +2005,15 @@
     "facing": "away",
     "pose": "standing",
     "symbols": [
-      "cup"
+      "cup",
+      "cloud",
+      "face",
+      "veil",
+      "serpent",
+      "tower",
+      "jewels",
+      "wreath",
+      "dragon"
     ],
     "details": []
   },

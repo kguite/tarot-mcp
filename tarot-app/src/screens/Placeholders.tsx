@@ -1,19 +1,7 @@
 import { Eyebrow } from '../components/Eyebrow'
 import screen from './Screen.module.css'
 
-// Journal and Settings hold their place in the navigation until saving and settings are built.
-export function Journal() {
-  return (
-    <div className={screen.screen}>
-      <div className={screen.title}>
-        <Eyebrow gold>Journal</Eyebrow>
-        <h1>Your readings</h1>
-      </div>
-      <p className={screen.note}>Saved readings will show here once saving is built.</p>
-    </div>
-  )
-}
-
+// Settings holds its place in the navigation until there are settings; for now it carries the credits.
 export function Settings() {
   return (
     <div className={screen.screen}>

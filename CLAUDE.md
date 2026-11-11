@@ -44,7 +44,7 @@ The app is also a vehicle for learning: Vite + React + TypeScript, Supabase (Pos
 
 ## Current state
 
-The repo root holds this file and `STEPS.md`. The app lives in `tarot-app/`: a Vite + React + TypeScript project in the Gilded design. `App.tsx` switches between five screens in `src/screens/` (Today, Journal, Draw, Learn, Settings) with plain state, no router yet. Draw is the real three-tap reading on a random draw (`src/lib/deck.ts`); Learn is all 78 cards to inspect; Journal and Settings are placeholders until saving exists. The prototype's saving, journal, modes and Learn more menu are not ported yet.
+The repo root holds this file and `STEPS.md`. The app lives in `tarot-app/`: a Vite + React + TypeScript project in the Gilded design. `App.tsx` switches between five screens in `src/screens/` (Today, Journal, Draw, Learn, Settings) with plain state, no router yet. Draw is the real three-tap reading on a random draw (`src/lib/deck.ts`); Learn is all 78 cards to inspect; Journal lists saved readings (local storage through `src/lib/store.ts`, the one storage boundary); Settings holds the credits. The prototype's modes and Learn more menu are not ported yet.
 
 The working reference is a single-file HTML prototype (`tarot-app/prototype/draw.html`, about 1,500 lines with data inlined) published as a Claude artifact. It works on mobile and supports light and dark themes. Features:
 

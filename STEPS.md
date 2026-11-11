@@ -691,10 +691,34 @@ not the close button, so no focus ring flashes on a tap.
 published page. When updating it, keep the previous build's files: a page still cached on the
 phone looks for the old script, and a missing one means a blank screen.
 
+## 14. Saving, and the Journal
+
+**One storage boundary.** `src/lib/store.ts` is the prototype's store, ported to TypeScript. It
+keeps three lists shaped like the future database tables (`readings`, `reading_cards`, `entries`)
+in the browser's local storage, and the rest of the app only calls its async functions:
+`saveReading`, `updateInterpretation`, `listReadings`. Moving to FastAPI later means rewriting the
+insides of this one file; nothing that calls it changes. The functions are `async` already, even
+though local storage isn't, so the switch to network calls won't change their shape.
+
+`listReadings` joins each reading with its cards and entries, the way a database select with
+relations would, so screens get one tidy object per reading.
+
+**Saved or not.** A reading remembers its `savedId` and the reflection as it was saved. The button
+reads "Save reading" before the first save, "Saved" (disabled) when nothing has changed, and "Save
+changes" after an edit. A saved, unchanged reading counts as finished, so the Draw star offers only
+new readings; an unsaved one still shows "Continue".
+
+**The Journal** lists saved readings newest first: tiny cards (reversed ones turned over), the
+spread, the date, and the first line of the reflection. Tap one for its cards (tap a card to look
+closer) and its reflection, which can be edited and saved again.
+
+**Limits, on purpose for now:** readings live in this browser only, and a reading that was never
+saved is lost on reload. Both go away when readings move to the database.
+
 ## Next
 
-- Saving: `src/lib/store.ts` (local storage first, behind the same functions FastAPI will fill in
-  later), a Save button on Draw, and the Journal listing saved readings
+- Journal: sort and group (newest or oldest first, by day or month), and filter by spread or by a
+  card ("every reading with the Moon")
 - More details per card as we notice them, aiming for about 6 each, placed on the art with the
   grid: the High Priestess's throne and pillars, the Five of Swords' wind and beach, the Moon's two
   towers. New ones may need new symbols (wind, beach)

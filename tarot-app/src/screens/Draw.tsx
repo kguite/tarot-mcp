@@ -9,8 +9,9 @@ import { ReadingPanel } from '../components/ReadingPanel'
 import { Star } from '../components/Star'
 import { TextField } from '../components/TextField'
 import type { Card } from '../data/types'
-import { newReading } from '../lib/deck'
+import { isFinished, newReading } from '../lib/deck'
 import type { Reading } from '../lib/deck'
+import { saveReading, updateInterpretation } from '../lib/store'
 import screen from './Screen.module.css'
 import styles from './Draw.module.css'
 
@@ -23,6 +24,7 @@ type Inspecting = { card: Card; reversed: boolean; context: string }
 export function Draw({ reading, onChange }: { reading: Reading; onChange: (reading: Reading) => void }) {
   const [open, setOpen] = useState<number | null>(null)
   const [inspecting, setInspecting] = useState<Inspecting | null>(null)
+  const [saveError, setSaveError] = useState<string | null>(null)
   const { spread, draws, phases, picked, reflection } = reading
 
   const placed = picked.length
@@ -46,6 +48,23 @@ export function Draw({ reading, onChange }: { reading: Reading; onChange: (readi
   function startOver() {
     onChange(newReading(spread))
     setOpen(null)
+  }
+
+  // The first save creates the reading in the journal; later saves update its reflection.
+  async function save() {
+    try {
+      let savedId = reading.savedId
+      if (savedId) {
+        await updateInterpretation(savedId, reflection)
+      } else {
+        const cards = draws.map((d) => ({ positionId: d.position.id, cardId: d.card.id, reversed: d.reversed }))
+        savedId = await saveReading(spread.id, cards, reflection)
+      }
+      onChange({ ...reading, savedId, savedReflection: reflection })
+      setSaveError(null)
+    } catch (error) {
+      setSaveError((error as Error).message)
+    }
   }
 
   const hint =
@@ -125,7 +144,13 @@ export function Draw({ reading, onChange }: { reading: Reading; onChange: (readi
             value={reflection}
             onChange={(e) => onChange({ ...reading, reflection: e.target.value })}
           />
-          <Button variant="secondary" onClick={startOver}>Start over</Button>
+          <div className={styles.actions}>
+            <Button variant="secondary" onClick={startOver}>Start over</Button>
+            <Button onClick={save} disabled={isFinished(reading)}>
+              {isFinished(reading) ? 'Saved' : reading.savedId ? 'Save changes' : 'Save reading'}
+            </Button>
+          </div>
+          {saveError && <p className={styles.error} role="alert">{saveError}</p>}
         </>
       )}
 

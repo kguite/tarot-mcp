@@ -10,7 +10,19 @@ export type Draw = { position: SpreadPosition; card: Card; reversed: boolean }
 export type Phase = 'empty' | 'down' | 'up'
 
 // A reading in progress. It lives in App, so it survives switching tabs.
-export type Reading = { spread: Spread; draws: Draw[]; phases: Phase[]; picked: number[]; reflection: string }
+// savedId and savedReflection are set once it's saved, so the screen can tell "Saved" from "Save changes".
+export type Reading = {
+  spread: Spread
+  draws: Draw[]
+  phases: Phase[]
+  picked: number[]
+  reflection: string
+  savedId?: string
+  savedReflection?: string
+}
+
+// Saved, and nothing changed since: the reading is finished, and the Draw star offers new ones only.
+export const isFinished = (r: Reading) => r.savedId !== undefined && r.reflection === r.savedReflection
 
 // crypto.getRandomValues, like the prototype and the server's SystemRandom. The code draws, never a model.
 function randomInt(max: number) {

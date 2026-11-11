@@ -86,6 +86,21 @@
   color: var(--gold);
 }
 
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+.actions > * {
+  flex: 1;
+}
+
+.error {
+  margin: 0;
+  color: var(--ivory);
+  text-align: center;
+}
+
 .meaning {
   display: flex;
   flex-direction: column;

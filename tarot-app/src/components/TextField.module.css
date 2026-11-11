@@ -1,0 +1,29 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.input {
+  min-height: 84px;
+  resize: vertical;
+  box-sizing: border-box;
+  padding: var(--space-3);
+  border-radius: var(--radius);
+  border: 1px solid var(--gold-line);
+  background: var(--night);
+  color: var(--ivory);
+  font-family: var(--font-body);
+  font-size: 15px;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--gold);
+}

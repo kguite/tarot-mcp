@@ -1,0 +1,11 @@
+.eyebrow {
+  margin: 0;
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.gold {
+  color: var(--gold);
+}

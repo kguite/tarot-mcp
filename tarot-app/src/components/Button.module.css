@@ -1,0 +1,41 @@
+.button {
+  height: 48px;
+  padding: 0 22px;
+  border-radius: var(--radius);
+  font-family: var(--font-body);
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.primary {
+  border: 0;
+  background: var(--gold);
+  color: var(--night);
+  font-weight: 600;
+}
+
+.secondary {
+  border: 1px solid var(--gold-strong);
+  background: transparent;
+  color: var(--gold);
+}
+
+.button:focus-visible,
+.icon:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.icon {
+  width: 44px;
+  height: 44px;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}

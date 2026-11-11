@@ -577,8 +577,43 @@ Claude Desktop "+ Add" connector is reached from Anthropic's servers, not your l
 
 Worth doing after every step that works: make it run, then make it plain.
 
+## 11. Design: tokens and shared components
+
+**Explore first, then build.** Three directions in navy and gold went on a design canvas as phone
+screens, each the same reading screen with real 1909 art, so only the look differed: Night sky,
+Paper and ink, Gilded frame. Gilded won. A second board pinned down its tokens and every piece of
+the screen before any React was written. Choosing on a picture is cheap; restyling components is
+not.
+
+**Tokens:** `src/styles/tokens.css` holds every color, font, space, corner and the one shadow as CSS
+variables (`--gold`, `--font-display`, `--space-4`...). Components use only the variables, so the
+whole app changes from one file. It's the same idea as `server.py`'s `Facing` and `Pose`: one place
+for each decision.
+
+**Components:** `src/components/`, each a `.tsx` and a `.module.css`. A CSS Module makes class names
+private to its file (Vite turns `.label` into something like `_label_x1y2`), so two components can
+both say `.label` without clashing. Vite supports them with nothing to install.
+
+| Component | Notes |
+| --- | --- |
+| `Card` | `state` is `down`, `resting` or `chosen`. Face down takes no card; face up must have one, and TypeScript enforces it (a discriminated union). `reversed` turns the face over. The face is a placeholder (numeral and name) until the art is hosted |
+| `Button`, `IconButton` | Real `<button>`s. `IconButton` requires a `label`, or a screen reader says only "button" |
+| `ReadingPanel` | Name, upright or reversed, summary, keywords for that side, the position's question |
+| `TextField` | The label wraps the box, so tapping the label focuses it |
+| `Ornament`, `Eyebrow`, `Keywords`, `Star` | The small pieces the others reuse |
+
+`App.tsx` is a temporary gallery: the reading screen built from these, then each card state. Run
+`npm run dev` in `tarot-app/` to see it.
+
+**At work.** country-dashboard has the same problem at a bigger size: many screens that should
+look like one app. Tokens plus a small set of shared components is how that stays true, and the
+shared-components work with Tahmina is the work version of this step.
+
 ## Next
 
+- Port the prototype screens onto these components: the fan and flip, spreads and layout, the
+  reading panel, saving and the journal
+- Host the 1909 art and put it in `Card`
 - Trim `get_card`'s reply: measure it, cut what Claude doesn't need, measure again
 - Deploy or tunnel the FastAPI app, then add its URL in Claude Desktop with "+ Add" and watch
   Claude choose between the tools

@@ -715,8 +715,27 @@ closer) and its reflection, which can be edited and saved again.
 **Limits, on purpose for now:** readings live in this browser only, and a reading that was never
 saved is lost on reload. Both go away when readings move to the database.
 
+## 15. A symbol pass over all 78 cards
+
+The symbol lists first came from Waite's text, and he barely describes many Minors: 14 cards had
+only their suit's symbol. A helper agent looked at every 1909 image and listed what is in each
+picture, reusing the existing symbols and proposing new ones only when they recur or matter. Its
+list was checked before anything was written: 266 card symbols became 442, and 14 new symbols
+joined (feather, salamander, archway, wings, fire, skull, butterfly, halo, cat, rabbit, pitchers,
+Anubis, tents, bed). One removal: Waite's text gives the Chariot a sword, but the 1909 art shows a
+wand, so the art wins.
+
+New symbols get a summary in the app's voice, written fresh (not Waite's words), and a placeholder
+`across` line. The data tests caught nothing broken; one `find_cards` test needed a new example
+because heights are now on nine Wands, not two.
+
+Delegating the looking kept 78 images out of this conversation; checking its report before
+applying kept the data honest. Same rule as everywhere: an agent's findings are a draft.
+
 ## Next
 
+- A "Waite says" section in the inspect view: his picture description and meanings from
+  `waite.json`, credited and clearly labeled as his, next to the app's own voice
 - Journal: sort and group (newest or oldest first, by day or month), and filter by spread or by a
   card ("every reading with the Moon")
 - More details per card as we notice them, aiming for about 6 each, placed on the art with the

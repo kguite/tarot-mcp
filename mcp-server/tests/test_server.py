@@ -88,11 +88,11 @@ def test_find_cards_by_symbol():
     assert found['symbol']['name'] == 'Pillars'
 
 
-# Filters combine: heights appear on the Fool, Hermit, Temperance and Tower too, but only two are Wands.
+# Filters combine: crowns are on many cards, but only three Swords.
 def test_find_cards_filters_combine():
-    found = call_json('find_cards', {'symbol': 'heights', 'suit': 'wands'})
+    found = call_json('find_cards', {'symbol': 'crown', 'suit': 'swords'})
 
-    assert [c['id'] for c in found['cards']] == ['three-of-wands', 'seven-of-wands']
+    assert [c['id'] for c in found['cards']] == ['ace-of-swords', 'queen-of-swords', 'king-of-swords']
 
 
 def test_find_cards_by_rank():

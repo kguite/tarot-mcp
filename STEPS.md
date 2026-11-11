@@ -497,11 +497,91 @@ scripts are throwaway; the data and its tests are what's kept.
 API does the filtering, the same idea as `find_cards`. And "test the data" is the habit behind
 checking a figure against the database: the code can be right and the data still wrong.
 
+## 9. Facing and pose, read off the art
+
+Two facts about each card's main figure, taken from the 1909 Roses & Lilies scans on Wikimedia
+Commons (downloaded to a scratch folder and tiled 8 to a sheet to look through quickly):
+
+- **facing:** where the figure looks, from your side of the card: `left`, `right`, `forward`, or
+  `away` when its back is turned (six cards, like the Eight of Cups). null with no figure.
+- **pose:** what its body is doing: standing, seated, walking, riding, kneeling, lying, falling,
+  upside-down, dancing, flying. Several figures sharing a pose count: the Tower's two are falling.
+
+Both are filters on `find_cards`. "Cards where someone's back is turned, in Cups" is one request.
+
+`away` was added partway through, when six cards didn't fit left, right or forward. That's the
+point of trying a shape on real data: the data tells you what's missing. A few facing calls are
+judgment calls (the Seven of Swords walks right but looks back left) and can change later.
+
+The allowed values live once in `server.py` (`Facing`, `Pose`) and the data test reads them from
+there with `get_args`, so the test and the tool can't disagree. `types.ts` has a copy for the app.
+
+## 10. One FastAPI app: REST plus MCP
+
+`mcp-server/main.py` is one FastAPI app, shaped like speak_friend's `main.py`:
+
+| Address | What |
+| --- | --- |
+| `GET /cards/{id}` | One card |
+| `GET /cards?symbol=&suit=&rank=&facing=&pose=` | Search, same as `find_cards` |
+| `GET /spreads` | The spreads |
+| `POST /spreads/{id}/draw` | A new random draw |
+| `/mcp` | The MCP server, for Claude |
+
+**REST and MCP call the same functions.** The tool decorator hands back the plain function, so
+`read_card` just calls `get_card`. The app and Claude always get the same answer, and a fix in one
+place fixes both. speak_friend does the same with `get_demand_data`.
+
+**A tool error becomes an HTTP status.** `ToolError` turns into 404 (unknown card or spread) or 400
+(bad search), with the same helpful message Claude gets. FastAPI rejects a bad `suit` with 422
+before any of our code runs, because `suit` is the same `Suit` Literal the tool uses.
+
+**Draw is POST, not GET.** GET means "read this", and browsers and caches may repeat or reuse it.
+Every draw is new and random, so it must never be cached.
+
+**The MCP part,** copied from speak_friend:
+
+- `app.mount('/', mcp.streamable_http_app(...))`, mounted last so the REST routes win.
+- `stateless_http=True, json_response=True`: each request stands alone with a plain JSON reply.
+  Simplest, and safe when several copies of the app run.
+- A `lifespan` that runs `mcp.session_manager.run()` while the app is up.
+- `TransportSecuritySettings`: MCP only answers requests addressed to its own host
+  (`MCP_SERVER_URL`, default `http://127.0.0.1:8000/mcp`). Deployed, that env var is the public URL.
+
+**Run it** from `mcp-server/`:
+
+```
+.venv\Scripts\python.exe main.py
+```
+
+Then open `http://127.0.0.1:8000/docs`: FastAPI builds a "try it" page from the code, the REST
+version of the Inspector. The Inspector itself can connect to `http://127.0.0.1:8000/mcp` with the
+Streamable HTTP transport instead of starting `server.py`.
+
+**Testing.** `tests/test_main.py` uses FastAPI's `TestClient`, which talks to the app in memory
+(it needs `httpx`). Its `base_url` is `http://127.0.0.1:8000` so the MCP host check passes. Six
+tests: a card, a 404, a search, a 422, a draw, and the MCP handshake over HTTP.
+
+**Not yet:** no login (that's ACCESS.md), and no public URL. As far as I know, a claude.ai or
+Claude Desktop "+ Add" connector is reached from Anthropic's servers, not your laptop, so
+`127.0.0.1` won't work there; it needs a deploy or a tunnel. Not tested yet.
+
+**Cleanup pass.** After it worked, a read-through for fluff found:
+
+- `get_card`'s description still listed the fields from three steps ago. The description is what
+  Claude reads, so a stale one is a real bug. Now it lists what it actually returns.
+- "Find by id" was written four ways. Now one `by_id(items, id)` helper.
+- A long `if a is None and b is None and ...` became `if all(v is None for v in (...))`.
+- Seven copies of the same async block in the tests became one `ask(lambda client: ...)` helper.
+- `/spreads` had error handling for an error that can't happen. Removed.
+
+Worth doing after every step that works: make it run, then make it plain.
+
 ## Next
 
-- Explore the data through the MCP tools (`find_cards`, `get_card`, the Waite resource) and adjust
-  the shape. Then write the placeholder fields, and read `facing` off the art for every card
-- Grow `mcp-server/` into a FastAPI app: REST plus `/mcp`, like speak_friend's `main.py`, then
-  add its URL in Claude Desktop with "+ Add" and watch Claude choose `get_card`
+- Trim `get_card`'s reply: measure it, cut what Claude doesn't need, measure again
+- Deploy or tunnel the FastAPI app, then add its URL in Claude Desktop with "+ Add" and watch
+  Claude choose between the tools
+- Explore the data through the tools and adjust the shape; write the placeholder fields
 - Access: levels, permissions and circles, in the build order in `ACCESS.md`
 - Port the `store` module (saving readings) to `src/lib/store.ts`, calling the FastAPI endpoints

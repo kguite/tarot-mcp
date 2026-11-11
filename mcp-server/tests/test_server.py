@@ -9,19 +9,25 @@ from server import CARDS, SYMBOLS, WAITE, Facing, Pose, mcp, rng
 
 
 # Client(mcp) runs the server in-process: the same calls Claude makes, no subprocess.
-def call(tool, arguments):
+# ask(lambda client: client.list_tools()) opens a client, makes one call, and returns the result.
+def ask(request):
     async def run():
         async with Client(mcp) as client:
-            return await client.call_tool(tool, arguments)
+            return await request(client)
     return asyncio.run(run())
+
+
+def call(tool, arguments):
+    return ask(lambda client: client.call_tool(tool, arguments))
+
+
+def call_json(tool, arguments):
+    return json.loads(call(tool, arguments).content[0].text)
 
 
 # The menu Claude reads lists get_card with its description and an id input.
 def test_menu_lists_get_card():
-    async def run():
-        async with Client(mcp) as client:
-            return await client.list_tools()
-    tools = {tool.name: tool for tool in asyncio.run(run()).tools}
+    tools = {tool.name: tool for tool in ask(lambda client: client.list_tools()).tools}
 
     assert 'get_card' in tools
     assert tools['get_card'].description.startswith('Look up one tarot card by id')
@@ -75,7 +81,7 @@ def test_every_card_has_waite_text():
 
 # The question the data shape was for: other cards with pillars, and what pillars mean.
 def test_find_cards_by_symbol():
-    found = json.loads(call('find_cards', {'symbol': 'pillars'}).content[0].text)
+    found = call_json('find_cards', {'symbol': 'pillars'})
 
     assert [c['id'] for c in found['cards']] == ['high-priestess', 'hierophant', 'justice', 'death']
     assert found['symbol']['name'] == 'Pillars'
@@ -83,21 +89,21 @@ def test_find_cards_by_symbol():
 
 # Filters combine: heights appear on the Fool, Hermit, Temperance and Tower too, but only two are Wands.
 def test_find_cards_filters_combine():
-    found = json.loads(call('find_cards', {'symbol': 'heights', 'suit': 'wands'}).content[0].text)
+    found = call_json('find_cards', {'symbol': 'heights', 'suit': 'wands'})
 
     assert [c['id'] for c in found['cards']] == ['three-of-wands', 'seven-of-wands']
 
 
 def test_find_cards_by_rank():
-    found = json.loads(call('find_cards', {'rank': 7}).content[0].text)
+    found = call_json('find_cards', {'rank': 7})
 
     assert [c['id'] for c in found['cards']] == ['seven-of-wands', 'seven-of-cups', 'seven-of-swords', 'seven-of-pentacles']
 
 
 # Pose and facing come from the art: who is falling, and whose back is turned, in one suit.
 def test_find_cards_by_pose_and_facing():
-    falling = json.loads(call('find_cards', {'pose': 'falling'}).content[0].text)
-    away_cups = json.loads(call('find_cards', {'facing': 'away', 'suit': 'cups'}).content[0].text)
+    falling = call_json('find_cards', {'pose': 'falling'})
+    away_cups = call_json('find_cards', {'facing': 'away', 'suit': 'cups'})
 
     assert [c['id'] for c in falling['cards']] == ['tower']
     assert [c['id'] for c in away_cups['cards']] == ['seven-of-cups', 'eight-of-cups', 'ten-of-cups']
@@ -113,7 +119,7 @@ def test_find_cards_bad_input():
 
 # Every spread is listed with its positions, so Claude can pick one by id.
 def test_list_spreads():
-    spreads = json.loads(call('list_spreads', {}).content[0].text)
+    spreads = call_json('list_spreads', {})
 
     assert [s['id'] for s in spreads][:2] == ['single', 'past-present-future']
     assert spreads[1]['positions'] == ['Past', 'Present', 'Future']
@@ -121,7 +127,7 @@ def test_list_spreads():
 
 # A draw has one card per position, in order, with no card drawn twice. Random, so check what is always true.
 def test_draw_cards_fills_each_position_once():
-    draws = json.loads(call('draw_cards', {'spread_id': 'celtic-cross'}).content[0].text)
+    draws = call_json('draw_cards', {'spread_id': 'celtic-cross'})
 
     assert len(draws) == 10
     assert draws[0]['position'] == 'The heart of the matter'
@@ -132,33 +138,35 @@ def test_draw_cards_fills_each_position_once():
 def test_draw_cards_reversed_uses_reversed_keywords(monkeypatch):
     monkeypatch.setattr(rng, 'random', lambda: 0.0)
 
-    draw = json.loads(call('draw_cards', {'spread_id': 'single'}).content[0].text)[0]
+    draw = call_json('draw_cards', {'spread_id': 'single'})[0]
     card = next(c for c in CARDS if c['id'] == draw['card_id'])
 
     assert draw['reversed']
     assert draw['keywords'] == card['keywords']['reversed']
 
 
-def read(uri):
-    async def run():
-        async with Client(mcp) as client:
-            return await client.read_resource(uri)
-    return asyncio.run(run())
+# An unknown spread is an error that lists the valid ids.
+def test_draw_cards_unknown_spread_lists_valid_ids():
+    result = call('draw_cards', {'spread_id': 'three-card'})
+
+    assert result.is_error
+    assert 'past-present-future' in result.content[0].text
+
+
+def read_waite(card_id):
+    return ask(lambda client: client.read_resource(f'tarot://waite/{card_id}')).contents[0].text
 
 
 # A resource with {id} in it is listed as a template, not as one resource per card.
 def test_waite_is_a_resource_template():
-    async def run():
-        async with Client(mcp) as client:
-            return await client.list_resource_templates()
-    templates = [t.uri_template for t in asyncio.run(run()).resource_templates]
+    templates = ask(lambda client: client.list_resource_templates()).resource_templates
 
-    assert 'tarot://waite/{id}' in templates
+    assert 'tarot://waite/{id}' in [t.uri_template for t in templates]
 
 
 # Reading a card returns Waite's own words and the credit line.
 def test_waite_moon():
-    text = read('tarot://waite/moon').contents[0].text
+    text = read_waite('moon')
 
     assert 'The path between the towers is the issue into the unknown.' in text
     assert 'Upright: Hidden enemies, danger' in text
@@ -167,7 +175,7 @@ def test_waite_moon():
 
 # Waite gives the Two of Cups no reversed meaning, so the resource leaves that line out.
 def test_waite_two_of_cups_has_no_reversed_line():
-    text = read('tarot://waite/two-of-cups').contents[0].text
+    text = read_waite('two-of-cups')
 
     assert 'Upright: Love, passion' in text
     assert 'Reversed:' not in text
@@ -185,10 +193,7 @@ def test_waite_unknown_card_is_a_protocol_error():
 
 # The prompt is on the prompts menu with an optional question.
 def test_daily_draw_is_listed():
-    async def run():
-        async with Client(mcp) as client:
-            return await client.list_prompts()
-    prompts = {p.name: p for p in asyncio.run(run()).prompts}
+    prompts = {p.name: p for p in ask(lambda client: client.list_prompts()).prompts}
 
     assert prompts['daily_draw'].arguments[0].name == 'question'
     assert not prompts['daily_draw'].arguments[0].required
@@ -196,18 +201,8 @@ def test_daily_draw_is_listed():
 
 # The question goes into the message, and Claude is told to hold back the meaning.
 def test_daily_draw_includes_question_and_waits():
-    async def run():
-        async with Client(mcp) as client:
-            return await client.get_prompt('daily_draw', {'question': 'What needs my attention?'})
-    text = asyncio.run(run()).messages[0].content.text
+    result = ask(lambda client: client.get_prompt('daily_draw', {'question': 'What needs my attention?'}))
+    text = result.messages[0].content.text
 
     assert 'What needs my attention?' in text
     assert "Don't share keywords or meanings until I have written my first impression" in text
-
-
-# An unknown spread is an error that lists the valid ids.
-def test_draw_cards_unknown_spread_lists_valid_ids():
-    result = call('draw_cards', {'spread_id': 'three-card'})
-
-    assert result.is_error
-    assert 'past-present-future' in result.content[0].text

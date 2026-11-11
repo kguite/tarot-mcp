@@ -9,10 +9,21 @@ from pydantic import Field
 
 # The app's data. The path is relative to this file, not to wherever the server is started.
 DATA_DIR = Path(__file__).parent.parent / 'tarot-app' / 'src' / 'data'
-CARDS = json.loads((DATA_DIR / 'cards.json').read_text(encoding='utf-8'))
-SPREADS = json.loads((DATA_DIR / 'spreads.json').read_text(encoding='utf-8'))
-WAITE = json.loads((DATA_DIR / 'waite.json').read_text(encoding='utf-8'))
-SYMBOLS = json.loads((DATA_DIR / 'symbols.json').read_text(encoding='utf-8'))
+
+
+def load(name):
+    return json.loads((DATA_DIR / f'{name}.json').read_text(encoding='utf-8'))
+
+
+def by_id(items, id):
+    """The item with this id, or None."""
+    return next((item for item in items if item['id'] == id), None)
+
+
+CARDS = load('cards')
+SPREADS = load('spreads')
+WAITE = load('waite')
+SYMBOLS = load('symbols')
 
 # Share of cards that come up reversed, matching the prototype.
 REVERSAL_RATE = 0.25
@@ -20,6 +31,7 @@ REVERSAL_RATE = 0.25
 # SystemRandom draws from the OS, like crypto.getRandomValues in the prototype.
 rng = random.SystemRandom()
 
+Suit = Literal['wands', 'cups', 'swords', 'pentacles']
 # Read off the 1909 art for the main figure. Kept in step with Facing and Pose in types.ts.
 Facing = Literal['left', 'right', 'forward', 'away']
 Pose = Literal['standing', 'seated', 'walking', 'riding', 'kneeling', 'lying', 'falling', 'upside-down', 'dancing', 'flying']
@@ -34,29 +46,28 @@ mcp = MCPServer(name='tarot')
 def get_card(
     id: Annotated[str, Field(description="The card's id, lowercase with hyphens, like 'moon' or 'seven-of-wands'")],
 ) -> str:
-    """Look up one tarot card by id and return its data: name, keywords upright and reversed, themes, and a reflection prompt."""
-    for card in CARDS:
-        if card['id'] == id:
-            return json.dumps(card, indent=2)
-    ids = ', '.join(c['id'] for c in CARDS)
-    raise ToolError(f"No card with id '{id}'. Valid ids: {ids}")
+    """Look up one tarot card by id and return all its data: name, arcana, number or suit and rank, keywords upright and reversed, themes, reflection prompt, summary, meaning, advice, affirmation, as a person, the main figure's facing and pose, the symbols in the picture, and tappable details."""
+    card = by_id(CARDS, id)
+    if card is None:
+        raise ToolError(f"No card with id '{id}'. Valid ids: {', '.join(c['id'] for c in CARDS)}")
+    return json.dumps(card, indent=2)
 
 
 # The filtering happens here, not in the model: Claude gets the matching cards, not all of them to scan.
 @mcp.tool(structured_output=False)
 def find_cards(
     symbol: Annotated[str | None, Field(description="A symbol id from the card pictures, like 'pillars', 'dog' or 'water'")] = None,
-    suit: Annotated[Literal['wands', 'cups', 'swords', 'pentacles'] | None, Field(description='A Minor suit')] = None,
+    suit: Annotated[Suit | None, Field(description='A Minor suit')] = None,
     rank: Annotated[int | None, Field(description='A Minor card rank: 1 Ace to 10, then 11 Page, 12 Knight, 13 Queen, 14 King. Majors have no rank.', ge=1, le=14)] = None,
     facing: Annotated[Facing | None, Field(description="Where the main figure looks, from the viewer's side. away: the figure's back is turned")] = None,
     pose: Annotated[Pose | None, Field(description="What the main figure's body is doing")] = None,
 ) -> str:
     """Find cards by what is in the picture, by suit, by number, or by the main figure's facing and pose. Filters combine. Returns each matching card's id and name, and the symbol's summary when filtering by symbol."""
-    if symbol is None and suit is None and rank is None and facing is None and pose is None:
+    if all(v is None for v in (symbol, suit, rank, facing, pose)):
         raise ToolError('Give at least one of symbol, suit, rank, facing or pose.')
     found = {}
     if symbol is not None:
-        found['symbol'] = next((s for s in SYMBOLS if s['id'] == symbol), None)
+        found['symbol'] = by_id(SYMBOLS, symbol)
         if found['symbol'] is None:
             raise ToolError(f"No symbol '{symbol}'. Valid symbols: {', '.join(s['id'] for s in SYMBOLS)}")
 
@@ -87,10 +98,9 @@ def draw_cards(
     spread_id: Annotated[str, Field(description="The spread's id from list_spreads, like 'past-present-future'")],
 ) -> str:
     """Shuffle and draw one card for each position in a spread. Returns each position with its question, the card, whether it is reversed, and the keywords for that orientation."""
-    spread = next((s for s in SPREADS if s['id'] == spread_id), None)
+    spread = by_id(SPREADS, spread_id)
     if spread is None:
-        ids = ', '.join(s['id'] for s in SPREADS)
-        raise ToolError(f"No spread with id '{spread_id}'. Valid ids: {ids}")
+        raise ToolError(f"No spread with id '{spread_id}'. Valid ids: {', '.join(s['id'] for s in SPREADS)}")
 
     positions = spread['positions']
     # sample deals from the deck: no card comes up twice.
@@ -115,7 +125,7 @@ def draw_cards(
 @mcp.resource('tarot://waite/{id}', mime_type='text/plain')
 def waite(id: str) -> str:
     """A.E. Waite's own words on one card, from The Pictorial Key to the Tarot (1911): what the picture shows, then the upright and reversed meanings."""
-    card = next((c for c in WAITE['cards'] if c['id'] == id), None)
+    card = by_id(WAITE['cards'], id)
     if card is None:
         # Unlike a tool error, this goes to the app as a protocol error, not to Claude.
         raise ResourceNotFoundError(f"No Waite text for '{id}'")

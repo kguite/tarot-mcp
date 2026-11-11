@@ -1,5 +1,5 @@
-import { artUrl } from '../data'
 import type { Card, CardSymbol } from '../data/types'
+import { CardArt } from './CardArt'
 import { Eyebrow } from './Eyebrow'
 import { IconButton } from './Button'
 import styles from './SymbolSheet.module.css'
@@ -32,7 +32,7 @@ export function SymbolSheet({ symbol, alsoIn, onPick, onClose }: SymbolSheetProp
             {alsoIn.map((card) => (
               <button key={card.id} className={styles.thumb} onClick={() => onPick(card)}>
                 <span className={styles.frame}>
-                  <img src={artUrl(card.id)} alt="" />
+                  <CardArt card={card} alt="" />
                 </span>
                 <span className={styles.thumbName}>{card.name}</span>
               </button>

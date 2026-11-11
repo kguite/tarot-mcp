@@ -1,0 +1,111 @@
+/* Each card at most 150px wide, centered, so one card is not the width of the screen. */
+.spread {
+  display: grid;
+  justify-content: center;
+  gap: var(--space-3);
+}
+
+/* A spot still waiting for its card. */
+.empty {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.outline {
+  width: 100%;
+  aspect-ratio: 0.575;
+  box-sizing: border-box;
+  border: 1px dashed var(--gold-line);
+  border-radius: var(--radius);
+}
+
+.hint {
+  margin: 0;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 19px;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* The fan: every card pivots from a point below the middle, each turned by its own --angle. */
+.fan {
+  position: relative;
+  height: 210px;
+}
+
+.fanCard {
+  position: absolute;
+  left: 50%;
+  bottom: 10px;
+  width: 92px;
+  margin-left: -46px;
+  padding: 3px;
+  box-sizing: border-box;
+  border: 1px solid var(--gold-strong);
+  border-radius: var(--radius);
+  background: var(--night);
+  cursor: pointer;
+  transform-origin: 50% 160%;
+  transform: rotate(var(--angle));
+  transition: transform 0.45s cubic-bezier(.34, 1.56, .64, 1), opacity 0.3s;
+}
+
+.fanCard:hover,
+.fanCard:focus-visible {
+  transform: rotate(var(--angle)) translateY(-10px);
+}
+
+.fanCard:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.gone {
+  transform: rotate(var(--angle)) translateY(-60px) scale(0.9);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.fanBack {
+  display: flex;
+  aspect-ratio: 0.575;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  border: 1px solid var(--gold-line);
+  border-radius: var(--radius-art);
+  background: var(--card-back);
+  color: var(--gold);
+}
+
+.meaning {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  animation: rise 0.4s cubic-bezier(.34, 1.56, .64, 1);
+}
+
+@keyframes rise {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fanCard {
+    transition: none;
+  }
+
+  .meaning {
+    animation: none;
+  }
+}

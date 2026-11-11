@@ -1,5 +1,5 @@
-import { artUrl } from '../data'
 import type { Card as CardData } from '../data/types'
+import { CardArt } from './CardArt'
 import { Star } from './Star'
 import styles from './Card.module.css'
 
@@ -24,7 +24,7 @@ export function Card(props: CardProps) {
   }
 
   const name = props.reversed ? `${props.card.name}, reversed` : props.card.name
-  const face = <img className={props.reversed ? `${styles.face} ${styles.reversed}` : styles.face} src={artUrl(props.card.id)} alt={name} />
+  const face = <CardArt card={props.card} alt={name} className={props.reversed ? `${styles.face} ${styles.reversed}` : styles.face} />
   return (
     <figure className={`${styles.card} ${styles[props.state]}`}>
       {props.onOpen ? (

@@ -1,0 +1,138 @@
+/* Phone: a bar along the bottom, five across, Draw raised in the middle. */
+.nav {
+  position: fixed;
+  inset: auto 0 0 0;
+  z-index: 10;
+  background: var(--panel);
+  border-top: 1px solid var(--gold-line);
+  padding: 6px 4px calc(14px + env(safe-area-inset-bottom));
+}
+
+.brand,
+.credit {
+  display: none;
+}
+
+.items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  align-items: end;
+}
+
+.item {
+  width: 100%;
+  min-height: 52px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  border: 0;
+  background: none;
+  color: var(--muted);
+  font-family: var(--font-body);
+  cursor: pointer;
+}
+
+.item[aria-current='page'] {
+  color: var(--gold);
+}
+
+.item:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: -2px;
+}
+
+.icon {
+  display: flex;
+}
+
+.label {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* The star sits in a gold coin that rises out of the bar. */
+.draw {
+  color: var(--gold);
+}
+
+.draw .icon {
+  width: 62px;
+  height: 62px;
+  margin-top: -34px;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  background: var(--gold);
+  color: var(--night);
+  box-shadow: 0 0 0 5px var(--night), 0 0 0 6px var(--gold-strong), var(--glow);
+}
+
+/* Desktop: the same five as an always-open gilded sidebar. */
+@media (min-width: 900px) {
+  .nav {
+    inset: 0 auto 0 0;
+    width: 260px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    padding: var(--space-6) var(--space-5);
+    border-top: 0;
+    border-right: 1px solid var(--gold);
+  }
+
+  .brand {
+    display: block;
+    margin: 0;
+    font-size: 11px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .items {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .item {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 14px;
+    min-height: 56px;
+    border-bottom: 1px solid var(--gold-faint);
+    color: var(--ivory);
+  }
+
+  .label {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 24px;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  .draw .icon {
+    width: auto;
+    height: auto;
+    margin: 0;
+    background: none;
+    color: var(--gold);
+    box-shadow: none;
+  }
+
+  .credit {
+    display: block;
+    margin: auto 0 0;
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--muted);
+    text-align: center;
+  }
+}

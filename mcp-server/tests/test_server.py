@@ -1,7 +1,8 @@
 import asyncio
 import json
 
-from mcp import Client
+import pytest
+from mcp import Client, MCPError
 
 from server import CARDS, mcp, rng
 
@@ -71,6 +72,42 @@ def test_draw_cards_reversed_uses_reversed_keywords(monkeypatch):
 
     assert draw['reversed']
     assert draw['keywords'] == card['keywords']['reversed']
+
+
+def read(uri):
+    async def run():
+        async with Client(mcp) as client:
+            return await client.read_resource(uri)
+    return asyncio.run(run())
+
+
+# A resource with {id} in it is listed as a template, not as one resource per card.
+def test_waite_is_a_resource_template():
+    async def run():
+        async with Client(mcp) as client:
+            return await client.list_resource_templates()
+    templates = [t.uri_template for t in asyncio.run(run()).resource_templates]
+
+    assert 'tarot://waite/{id}' in templates
+
+
+# Reading a card returns Waite's own words and the credit line.
+def test_waite_moon():
+    text = read('tarot://waite/moon').contents[0].text
+
+    assert 'The path between the towers is the issue into the unknown.' in text
+    assert 'Upright: Hidden enemies, danger' in text
+    assert 'Source: Arthur Edward Waite' in text
+
+
+# An unknown card is a protocol error for the app, not a result Claude reads.
+# It's caught inside the async with, because escaping it wraps the error in an ExceptionGroup.
+def test_waite_unknown_card_is_a_protocol_error():
+    async def run():
+        async with Client(mcp) as client:
+            with pytest.raises(MCPError, match="No Waite text for 'the-moon'"):
+                await client.read_resource('tarot://waite/the-moon')
+    asyncio.run(run())
 
 
 # The prompt is on the prompts menu with an optional question.

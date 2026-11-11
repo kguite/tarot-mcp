@@ -4,13 +4,14 @@ from pathlib import Path
 from typing import Annotated
 
 from mcp.server.mcpserver import MCPServer
-from mcp.server.mcpserver.exceptions import ToolError
+from mcp.server.mcpserver.exceptions import ResourceNotFoundError, ToolError
 from pydantic import Field
 
 # The app's data. The path is relative to this file, not to wherever the server is started.
 DATA_DIR = Path(__file__).parent.parent / 'tarot-app' / 'src' / 'data'
 CARDS = json.loads((DATA_DIR / 'cards.json').read_text(encoding='utf-8'))
 SPREADS = json.loads((DATA_DIR / 'spreads.json').read_text(encoding='utf-8'))
+WAITE = json.loads((DATA_DIR / 'waite.json').read_text(encoding='utf-8'))
 
 # Share of cards that come up reversed, matching the prototype.
 REVERSAL_RATE = 0.25
@@ -72,6 +73,25 @@ def draw_cards(
             'keywords': card['keywords']['reversed' if reversed_ else 'upright'],
         })
     return json.dumps(draws, indent=2)
+
+
+# A resource is reading material the person (or app) attaches. Claude reads it; nothing runs.
+# {id} makes this a template: one resource per card, read by URI like tarot://waite/moon.
+@mcp.resource('tarot://waite/{id}', mime_type='text/plain')
+def waite(id: str) -> str:
+    """A.E. Waite's own words on one card, from The Pictorial Key to the Tarot (1911): what the picture shows, then the upright and reversed meanings."""
+    card = next((c for c in WAITE['cards'] if c['id'] == id), None)
+    if card is None:
+        # Unlike a tool error, this goes to the app as a protocol error, not to Claude.
+        raise ResourceNotFoundError(f"No Waite text for '{id}'")
+    source = WAITE['source']
+    return (
+        f"{card['description']}\n\n"
+        f"Upright: {card['upright']}\n\n"
+        f"Reversed: {card['reversed']}\n\n"
+        f"Source: {source['author']}, {source['title']} ({source['edition']}), via {source['from']}. "
+        f"{source['urls']['minors_and_meanings']}"
+    )
 
 
 # A prompt is a set menu the person picks. It can do what a tool can't: tell Claude to wait.

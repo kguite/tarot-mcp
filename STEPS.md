@@ -401,13 +401,62 @@ Claude would see on the menu and might start filling in.
 `lb_database_api`, and the model never computes one. If you find yourself computing a figure in
 the chat app, you're in the wrong repo. Here, if the model is picking cards, the tool is missing.
 
+## 7. A prompt and a resource: who decides
+
+An MCP server can offer three kinds of things. The difference is who decides to use each one.
+
+| | Who decides | Restaurant | Ours |
+| --- | --- | --- | --- |
+| Tool | Claude | A dish Claude orders | `get_card`, `list_spreads`, `draw_cards` |
+| Resource | You or the app | Reading material on the table | `tarot://waite/{id}` |
+| Prompt | You | The set menu | `daily_draw` |
+
+The same data can go through any of the three. A list of journal questions could be a resource
+you attach, a tool Claude calls mid-reading, or a prompt you start. Pick by who should decide.
+
+**The prompt: daily_draw.** `@mcp.prompt()` on a function that returns a string. The string
+becomes a message to Claude, with your question filled in: draw one card, say only its name,
+ask for your first impression, wait, then talk starting from what you wrote. Step 3 is why it's
+a prompt. A tool can only hand back data; it can't make Claude wait. "Hold back the meaning" is
+an instruction, and a prompt is how a server gives Claude instructions you chose. It came from a
+journal's morning loop: first impression before the meaning.
+
+In the Inspector: the Prompts tab, pick `daily_draw`, type a question, and see the message.
+The Inspector shows the message, not the conversation. Seeing Claude wait needs Claude Desktop.
+
+**The resource: Waite's own words.** `waite.json` holds Waite's *Pictorial Key to the Tarot* for
+our 17 cards, copied exactly from Wikisource (public domain, credited with a link): what the
+picture shows, then upright and reversed. `@mcp.resource('tarot://waite/{id}')` serves one card.
+
+- **`{id}` makes it a template:** one recipe for 17 resources. It's listed under resource
+  templates, not resources, and the client fills in the id (`tarot://waite/moon`).
+- **A resource error goes to the app, not Claude.** `get_card` with a bad id returns an error
+  Claude reads and can fix. `tarot://waite/the-moon` raises a protocol error the client app has
+  to handle. That fits: you picked it, so you get the error.
+- **Waite is source material, not the app's voice.** His meanings are often bleak or dated
+  ("hidden enemies"). The app writes its own. His picture descriptions are useful as the list
+  of what is on each card, for `symbols.json`.
+
+**Getting the text.** Claude's web reader summarizes long pages instead of quoting them, so the
+two Wikisource pages came through Wikipedia's public API as HTML, and a scratch script pulled
+the text out. The only change is rejoining sentences split at the book's page breaks.
+
+**Testing.** Same `Client(mcp)` pattern: `list_prompts`, `get_prompt`, `list_resource_templates`,
+`read_resource`. One gotcha: the bad-id resource test catches the error inside `async with
+Client(...)`. If it escapes, it comes out wrapped in an `ExceptionGroup` and `pytest.raises`
+misses it.
+
+**At work.** speak_friend only has a tool, which fits: Claude decides when it needs demand
+numbers. A resource would suit fixed reference material someone attaches on purpose, like a
+glossary. A prompt would suit a check that should always run the same way, like a monthly demand
+review. Prompts are the closest MCP gets to Skills: a saved recipe you start on purpose.
+
 ## Next
 
-- One resource (Waite's text per card) with a test. The `daily_draw` prompt is built; write it up
-  here as step 7
 - Data shape: a shared `symbols.json` so details on different cards link up ("other cards with
-  pillars"), and a `find_cards` tool that filters by symbol, suit and rank. Then the other 61
-  cards in that shape, then explore the data through the MCP tools and adjust the shape
+  pillars"), built from what Waite lists in each picture, and a `find_cards` tool that filters by
+  symbol, suit and rank. Then the other 61 cards in that shape, then explore the data through the
+  MCP tools and adjust the shape
 - Grow `mcp-server/` into a FastAPI app: REST plus `/mcp`, like speak_friend's `main.py`, then
   add its URL in Claude Desktop with "+ Add" and watch Claude choose `get_card`
 - Access: levels, permissions and circles, in the build order in `ACCESS.md`

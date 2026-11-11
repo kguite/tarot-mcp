@@ -22,6 +22,7 @@ The app is also a vehicle for learning: Vite + React + TypeScript, Supabase (Pos
 
 ## Product principles
 
+- **Voice.** Psychology-minded like Jessica Dore, inclusive like Lindsay Mack, in original words. Describe qualities, never gender or looks (Waite's "dark man", "the Querent, if male" are out), court cards included.
 - **Reflection, not prediction.** No copy or LLM output that tells someone what will happen. Prompts ask questions; the person interprets.
 - **The code draws the cards, never the LLM.** Shuffling and reversals use `crypto.getRandomValues` and Fisher–Yates. An LLM may interpret a draw it is given, never produce one.
 - **Small deliberate rituals.** Tap a card to choose it, tap again to turn it over. Keep that two-step reveal.
@@ -56,17 +57,17 @@ The working reference is a single-file HTML prototype (`tarot-app/prototype/draw
 - **Saving and journal:** Save reading (with sparkles), Save changes after edits, and a journal list and detail view. Stored in localStorage through the `store` module.
 - **Modes:** Learn (sections open by default), Journal (writing first, keywords hidden), Simple (just the cards, with Reflect and Shuffle again buttons). The mode is remembered.
 
-The deck in play is 10 cards: The Fool, The Magician, The High Priestess, The Hermit, The Star, The Moon, Seven of Wands, Three of Cups, Five of Swords, Ace of Pentacles. Seven more Majors (Empress through Wheel of Fortune) exist in the data as lookup-only cards so every "echo" link resolves.
+The prototype's deck in play is 10 cards: The Fool, The Magician, The High Priestess, The Hermit, The Star, The Moon, Seven of Wands, Three of Cups, Five of Swords, Ace of Pentacles, plus seven lookup-only Majors. The app's `cards.json` now has all 78.
 
 ## Data
 
-JSON files in `tarot-app/src/data/`, normalized so cards point to shared reference data instead of repeating it. `types.ts` has a type for each file, and `index.ts` exports each one typed (`CARDS`, `SPREADS`, `SUITS`, `RANKS`, `JOURNEY`, `ARCANA`). Import data from there, not from the JSON files.
+JSON files in `tarot-app/src/data/`, normalized so cards point to shared reference data instead of repeating it. `types.ts` has a type for each file, and `index.ts` exports each one typed (`CARDS`, `SPREADS`, `SUITS`, `RANKS`, `JOURNEY`, `ARCANA`, `SYMBOLS`). Import data from there, not from the JSON files. `waite.json` is read only by the MCP server.
 
 | File | Holds | Future table |
 | --- | --- | --- |
-| `cards.json` | Every card: id, name, arcana, number (Majors) or suit and rank (Minors), keywords upright and reversed, themes, prompt, `combined` line (Minors), tappable `details` with rough x/y regions | `cards`, `card_details` |
-| `suits.json` | Element, playing-card suit, summary, prompt | `suits` |
-| `ranks.json` | Ace to Ten: name, plural, summary, prompt, the Major it echoes | `ranks` |
+| `cards.json` | All 78, in deck order: id, name, arcana, number (Majors) or suit and rank (Minors), keywords upright and reversed, themes, prompt, `combined` line (Minors), `summary`, `meaning` (upright and reversed), `advice`, `affirmation`, `as_a_person`, `facing`, `symbols` (everything in the picture), tappable `details` with rough x/y regions and their `symbols`. The long written fields are placeholders ("<name> placeholder summary.") except on the Moon, Seven of Wands and Queen of Cups. `facing` is read off the 1909 art and is null until checked | `cards`, `card_details` |
+| `symbols.json` | What appears in card pictures (pillars, dog, water): id, name, summary. Cards point to these by id | `symbols`, `card_symbols` |
+| `ranks.json` | Ace to Ten, then Page, Knight, Queen, King (11 to 14): name, plural, summary, prompt, the Major it echoes (none for courts) | `ranks` |
 | `journey.json` | Pollack's rows 0 to 3: summary, prompt, member cards | `journey_rows` |
 | `arcana.json` | Major and Minor Arcana descriptions | `arcana` |
 | `spreads.json` | Spreads with ordered positions (id, name, prompt) and a `level` for unlocking | `spreads`, `spread_positions` |

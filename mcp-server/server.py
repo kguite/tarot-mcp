@@ -1,7 +1,7 @@
 import json
 import random
 from pathlib import Path
-from typing import Annotated
+from typing import Annotated, Literal
 
 from mcp.server.mcpserver import MCPServer
 from mcp.server.mcpserver.exceptions import ResourceNotFoundError, ToolError
@@ -12,6 +12,7 @@ DATA_DIR = Path(__file__).parent.parent / 'tarot-app' / 'src' / 'data'
 CARDS = json.loads((DATA_DIR / 'cards.json').read_text(encoding='utf-8'))
 SPREADS = json.loads((DATA_DIR / 'spreads.json').read_text(encoding='utf-8'))
 WAITE = json.loads((DATA_DIR / 'waite.json').read_text(encoding='utf-8'))
+SYMBOLS = json.loads((DATA_DIR / 'symbols.json').read_text(encoding='utf-8'))
 
 # Share of cards that come up reversed, matching the prototype.
 REVERSAL_RATE = 0.25
@@ -35,6 +36,32 @@ def get_card(
             return json.dumps(card, indent=2)
     ids = ', '.join(c['id'] for c in CARDS)
     raise ToolError(f"No card with id '{id}'. Valid ids: {ids}")
+
+
+# The filtering happens here, not in the model: Claude gets the matching cards, not all of them to scan.
+@mcp.tool(structured_output=False)
+def find_cards(
+    symbol: Annotated[str | None, Field(description="A symbol id from the card pictures, like 'pillars', 'dog' or 'water'")] = None,
+    suit: Annotated[Literal['wands', 'cups', 'swords', 'pentacles'] | None, Field(description='A Minor suit')] = None,
+    rank: Annotated[int | None, Field(description='A Minor card rank: 1 Ace to 10, then 11 Page, 12 Knight, 13 Queen, 14 King. Majors have no rank.', ge=1, le=14)] = None,
+) -> str:
+    """Find cards by what is in the picture, by suit, or by number. Filters combine. Returns each matching card's id and name, and the symbol's summary when filtering by symbol."""
+    if symbol is None and suit is None and rank is None:
+        raise ToolError('Give at least one of symbol, suit or rank.')
+    found = {}
+    if symbol is not None:
+        found['symbol'] = next((s for s in SYMBOLS if s['id'] == symbol), None)
+        if found['symbol'] is None:
+            raise ToolError(f"No symbol '{symbol}'. Valid symbols: {', '.join(s['id'] for s in SYMBOLS)}")
+
+    found['cards'] = [
+        {'id': c['id'], 'name': c['name']}
+        for c in CARDS
+        if (symbol is None or symbol in c['symbols'])
+        and (suit is None or c.get('suit') == suit)
+        and (rank is None or c.get('rank') == rank)
+    ]
+    return json.dumps(found, indent=2)
 
 
 @mcp.tool(structured_output=False)
@@ -85,10 +112,11 @@ def waite(id: str) -> str:
         # Unlike a tool error, this goes to the app as a protocol error, not to Claude.
         raise ResourceNotFoundError(f"No Waite text for '{id}'")
     source = WAITE['source']
+    reversed_ = f"Reversed: {card['reversed']}\n\n" if card['reversed'] else ''  # none for the Two of Cups
     return (
         f"{card['description']}\n\n"
         f"Upright: {card['upright']}\n\n"
-        f"Reversed: {card['reversed']}\n\n"
+        f"{reversed_}"
         f"Source: {source['author']}, {source['title']} ({source['edition']}), via {source['from']}. "
         f"{source['urls']['minors_and_meanings']}"
     )

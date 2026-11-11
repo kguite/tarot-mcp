@@ -20,11 +20,31 @@
       "courage"
     ],
     "prompt": "Where in your life are you standing at the edge of something new?",
+    "summary": "The Fool placeholder summary.",
+    "meaning": {
+      "upright": "The Fool placeholder upright paragraph.",
+      "reversed": "The Fool placeholder reversed paragraph."
+    },
+    "advice": "The Fool placeholder advice.",
+    "affirmation": "The Fool placeholder affirmation.",
+    "as_a_person": "The Fool placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "heights",
+      "dog",
+      "flowers",
+      "wand",
+      "bundle",
+      "sun"
+    ],
     "details": [
       {
         "id": "dog",
         "label": "The little dog",
         "prompt": "What part of you is trying to get your attention?",
+        "symbols": [
+          "dog"
+        ],
         "region": {
           "x": 72,
           "y": 78
@@ -34,6 +54,9 @@
         "id": "cliff",
         "label": "The cliff edge",
         "prompt": "What would it feel like not to know what comes next?",
+        "symbols": [
+          "heights"
+        ],
         "region": {
           "x": 30,
           "y": 85
@@ -43,6 +66,9 @@
         "id": "bundle",
         "label": "The small bundle",
         "prompt": "What are you carrying that you could set down?",
+        "symbols": [
+          "bundle"
+        ],
         "region": {
           "x": 62,
           "y": 30
@@ -71,11 +97,33 @@
       "creativity"
     ],
     "prompt": "What do you already have on the table that you haven’t used yet?",
+    "summary": "The Magician placeholder summary.",
+    "meaning": {
+      "upright": "The Magician placeholder upright paragraph.",
+      "reversed": "The Magician placeholder reversed paragraph."
+    },
+    "advice": "The Magician placeholder advice.",
+    "affirmation": "The Magician placeholder affirmation.",
+    "as_a_person": "The Magician placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "infinity",
+      "serpent",
+      "wand",
+      "table",
+      "cup",
+      "sword",
+      "pentacle",
+      "flowers"
+    ],
     "details": [
       {
         "id": "table",
         "label": "The tools on the table",
         "prompt": "Which of your tools do you reach for most, and which do you forget?",
+        "symbols": [
+          "table"
+        ],
         "region": {
           "x": 50,
           "y": 70
@@ -85,6 +133,9 @@
         "id": "wand",
         "label": "One hand up, one hand down",
         "prompt": "What are you trying to bring from idea into reality?",
+        "symbols": [
+          "wand"
+        ],
         "region": {
           "x": 40,
           "y": 22
@@ -94,6 +145,9 @@
         "id": "infinity",
         "label": "The sign above his head",
         "prompt": "What keeps renewing your energy?",
+        "symbols": [
+          "infinity"
+        ],
         "region": {
           "x": 50,
           "y": 10
@@ -122,11 +176,32 @@
       "rest"
     ],
     "prompt": "What do you know that you haven’t said out loud yet?",
+    "summary": "The High Priestess placeholder summary.",
+    "meaning": {
+      "upright": "The High Priestess placeholder upright paragraph.",
+      "reversed": "The High Priestess placeholder reversed paragraph."
+    },
+    "advice": "The High Priestess placeholder advice.",
+    "affirmation": "The High Priestess placeholder affirmation.",
+    "as_a_person": "The High Priestess placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "moon",
+      "crown",
+      "cross",
+      "scroll",
+      "pillars",
+      "veil",
+      "pomegranates"
+    ],
     "details": [
       {
         "id": "veil",
         "label": "The veil behind her",
         "prompt": "What feels just out of view right now?",
+        "symbols": [
+          "veil"
+        ],
         "region": {
           "x": 50,
           "y": 35
@@ -136,6 +211,9 @@
         "id": "scroll",
         "label": "The half-hidden scroll",
         "prompt": "What are you still learning about yourself?",
+        "symbols": [
+          "scroll"
+        ],
         "region": {
           "x": 50,
           "y": 62
@@ -145,12 +223,244 @@
         "id": "pillars",
         "label": "The two pillars",
         "prompt": "Where are you holding two opposites at once?",
+        "symbols": [
+          "pillars"
+        ],
         "region": {
           "x": 15,
           "y": 50
         }
       }
     ]
+  },
+  {
+    "id": "empress",
+    "number": 3,
+    "name": "The Empress",
+    "arcana": "major",
+    "keywords": {
+      "upright": [
+        "abundance",
+        "nurture",
+        "creativity"
+      ],
+      "reversed": [
+        "depletion",
+        "smothering"
+      ]
+    },
+    "themes": [
+      "care",
+      "creativity"
+    ],
+    "prompt": "What are you nurturing, and who nurtures you?",
+    "summary": "The Empress placeholder summary.",
+    "meaning": {
+      "upright": "The Empress placeholder upright paragraph.",
+      "reversed": "The Empress placeholder reversed paragraph."
+    },
+    "advice": "The Empress placeholder advice.",
+    "affirmation": "The Empress placeholder affirmation.",
+    "as_a_person": "The Empress placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "crown",
+      "star",
+      "harvest",
+      "water",
+      "sceptre",
+      "globe"
+    ],
+    "details": []
+  },
+  {
+    "id": "emperor",
+    "number": 4,
+    "name": "The Emperor",
+    "arcana": "major",
+    "keywords": {
+      "upright": [
+        "structure",
+        "authority",
+        "protection"
+      ],
+      "reversed": [
+        "rigidity",
+        "control"
+      ]
+    },
+    "themes": [
+      "structure",
+      "responsibility"
+    ],
+    "prompt": "Where does structure help you, and where does it hold you back?",
+    "summary": "The Emperor placeholder summary.",
+    "meaning": {
+      "upright": "The Emperor placeholder upright paragraph.",
+      "reversed": "The Emperor placeholder reversed paragraph."
+    },
+    "advice": "The Emperor placeholder advice.",
+    "affirmation": "The Emperor placeholder affirmation.",
+    "as_a_person": "The Emperor placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "sceptre",
+      "globe",
+      "crown",
+      "ram",
+      "throne"
+    ],
+    "details": []
+  },
+  {
+    "id": "hierophant",
+    "number": 5,
+    "name": "The Hierophant",
+    "arcana": "major",
+    "keywords": {
+      "upright": [
+        "tradition",
+        "teaching",
+        "belonging"
+      ],
+      "reversed": [
+        "questioning convention",
+        "finding your own path"
+      ]
+    },
+    "themes": [
+      "belief",
+      "community"
+    ],
+    "prompt": "Which beliefs did you inherit, and which have you chosen?",
+    "summary": "The Hierophant placeholder summary.",
+    "meaning": {
+      "upright": "The Hierophant placeholder upright paragraph.",
+      "reversed": "The Hierophant placeholder reversed paragraph."
+    },
+    "advice": "The Hierophant placeholder advice.",
+    "affirmation": "The Hierophant placeholder affirmation.",
+    "as_a_person": "The Hierophant placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "crown",
+      "pillars",
+      "sceptre",
+      "cross",
+      "keys"
+    ],
+    "details": []
+  },
+  {
+    "id": "lovers",
+    "number": 6,
+    "name": "The Lovers",
+    "arcana": "major",
+    "keywords": {
+      "upright": [
+        "connection",
+        "choice",
+        "values"
+      ],
+      "reversed": [
+        "misalignment",
+        "inner conflict"
+      ]
+    },
+    "themes": [
+      "relationships",
+      "values"
+    ],
+    "prompt": "What choice would bring you closer to what you value?",
+    "summary": "The Lovers placeholder summary.",
+    "meaning": {
+      "upright": "The Lovers placeholder upright paragraph.",
+      "reversed": "The Lovers placeholder reversed paragraph."
+    },
+    "advice": "The Lovers placeholder advice.",
+    "affirmation": "The Lovers placeholder affirmation.",
+    "as_a_person": "The Lovers placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "sun",
+      "angel",
+      "tree",
+      "serpent"
+    ],
+    "details": []
+  },
+  {
+    "id": "chariot",
+    "number": 7,
+    "name": "The Chariot",
+    "arcana": "major",
+    "keywords": {
+      "upright": [
+        "willpower",
+        "direction",
+        "momentum"
+      ],
+      "reversed": [
+        "scattered energy",
+        "being pulled two ways"
+      ]
+    },
+    "themes": [
+      "will",
+      "direction"
+    ],
+    "prompt": "What are you steering toward, and what’s pulling against you?",
+    "summary": "The Chariot placeholder summary.",
+    "meaning": {
+      "upright": "The Chariot placeholder upright paragraph.",
+      "reversed": "The Chariot placeholder reversed paragraph."
+    },
+    "advice": "The Chariot placeholder advice.",
+    "affirmation": "The Chariot placeholder affirmation.",
+    "as_a_person": "The Chariot placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "sword",
+      "sphinx"
+    ],
+    "details": []
+  },
+  {
+    "id": "strength",
+    "number": 8,
+    "name": "Strength",
+    "arcana": "major",
+    "keywords": {
+      "upright": [
+        "gentle courage",
+        "patience",
+        "compassion"
+      ],
+      "reversed": [
+        "self-doubt",
+        "forcing it"
+      ]
+    },
+    "themes": [
+      "courage",
+      "gentleness"
+    ],
+    "prompt": "Where could gentleness be stronger than force?",
+    "summary": "Strength placeholder summary.",
+    "meaning": {
+      "upright": "Strength placeholder upright paragraph.",
+      "reversed": "Strength placeholder reversed paragraph."
+    },
+    "advice": "Strength placeholder advice.",
+    "affirmation": "Strength placeholder affirmation.",
+    "as_a_person": "Strength placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "infinity",
+      "lion",
+      "flowers"
+    ],
+    "details": []
   },
   {
     "id": "hermit",
@@ -173,11 +483,29 @@
       "wisdom"
     ],
     "prompt": "What would you hear if things got quiet?",
+    "summary": "The Hermit placeholder summary.",
+    "meaning": {
+      "upright": "The Hermit placeholder upright paragraph.",
+      "reversed": "The Hermit placeholder reversed paragraph."
+    },
+    "advice": "The Hermit placeholder advice.",
+    "affirmation": "The Hermit placeholder affirmation.",
+    "as_a_person": "The Hermit placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "lantern",
+      "star",
+      "heights",
+      "wand"
+    ],
     "details": [
       {
         "id": "lantern",
         "label": "The lantern",
         "prompt": "What small light is enough for the next step?",
+        "symbols": [
+          "lantern"
+        ],
         "region": {
           "x": 30,
           "y": 30
@@ -187,6 +515,9 @@
         "id": "staff",
         "label": "The staff",
         "prompt": "What supports you when you walk alone?",
+        "symbols": [
+          "wand"
+        ],
         "region": {
           "x": 72,
           "y": 60
@@ -196,12 +527,286 @@
         "id": "peak",
         "label": "The snowy peak",
         "prompt": "What have you climbed to get here?",
+        "symbols": [
+          "heights"
+        ],
         "region": {
           "x": 50,
           "y": 92
         }
       }
     ]
+  },
+  {
+    "id": "wheel-of-fortune",
+    "number": 10,
+    "name": "The Wheel of Fortune",
+    "arcana": "major",
+    "keywords": {
+      "upright": [
+        "cycles",
+        "change",
+        "turning points"
+      ],
+      "reversed": [
+        "resisting change",
+        "feeling stuck"
+      ]
+    },
+    "themes": [
+      "change",
+      "cycles"
+    ],
+    "prompt": "What cycle are you in the middle of?",
+    "summary": "The Wheel of Fortune placeholder summary.",
+    "meaning": {
+      "upright": "The Wheel of Fortune placeholder upright paragraph.",
+      "reversed": "The Wheel of Fortune placeholder reversed paragraph."
+    },
+    "advice": "The Wheel of Fortune placeholder advice.",
+    "affirmation": "The Wheel of Fortune placeholder affirmation.",
+    "as_a_person": "The Wheel of Fortune placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "wheel",
+      "sphinx",
+      "serpent"
+    ],
+    "details": []
+  },
+  {
+    "id": "justice",
+    "number": 11,
+    "name": "Justice",
+    "arcana": "major",
+    "keywords": {
+      "upright": [
+        "fairness",
+        "truth",
+        "accountability"
+      ],
+      "reversed": [
+        "avoiding responsibility",
+        "imbalance"
+      ]
+    },
+    "themes": [
+      "truth",
+      "balance"
+    ],
+    "prompt": "Where are you being asked to be honest about cause and effect?",
+    "summary": "Justice placeholder summary.",
+    "meaning": {
+      "upright": "Justice placeholder upright paragraph.",
+      "reversed": "Justice placeholder reversed paragraph."
+    },
+    "advice": "Justice placeholder advice.",
+    "affirmation": "Justice placeholder affirmation.",
+    "as_a_person": "Justice placeholder as a person.",
+    "facing": "forward",
+    "symbols": [
+      "pillars",
+      "sword",
+      "scales",
+      "crown",
+      "throne",
+      "veil"
+    ],
+    "details": []
+  },
+  {
+    "id": "hanged-man",
+    "number": 12,
+    "name": "The Hanged Man",
+    "arcana": "major",
+    "keywords": {
+      "upright": [
+        "pause",
+        "surrender",
+        "a new view"
+      ],
+      "reversed": [
+        "stalling",
+        "resisting the pause"
+      ]
+    },
+    "themes": [
+      "perspective",
+      "surrender"
+    ],
+    "prompt": "What might you see if you stopped pushing and looked from another angle?",
+    "summary": "The Hanged Man placeholder summary.",
+    "meaning": {
+      "upright": "The Hanged Man placeholder upright paragraph.",
+      "reversed": "The Hanged Man placeholder reversed paragraph."
+    },
+    "advice": "The Hanged Man placeholder advice.",
+    "affirmation": "The Hanged Man placeholder affirmation.",
+    "as_a_person": "The Hanged Man placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "tree",
+      "cross"
+    ],
+    "details": []
+  },
+  {
+    "id": "death",
+    "number": 13,
+    "name": "Death",
+    "arcana": "major",
+    "keywords": {
+      "upright": [
+        "endings",
+        "transition",
+        "letting go"
+      ],
+      "reversed": [
+        "holding on",
+        "fear of change"
+      ]
+    },
+    "themes": [
+      "change",
+      "endings"
+    ],
+    "prompt": "What is ending, and what room does that make?",
+    "summary": "Death placeholder summary.",
+    "meaning": {
+      "upright": "Death placeholder upright paragraph.",
+      "reversed": "Death placeholder reversed paragraph."
+    },
+    "advice": "Death placeholder advice.",
+    "affirmation": "Death placeholder affirmation.",
+    "as_a_person": "Death placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "horse",
+      "banner",
+      "flowers",
+      "pillars",
+      "sun",
+      "child",
+      "crown"
+    ],
+    "details": []
+  },
+  {
+    "id": "temperance",
+    "number": 14,
+    "name": "Temperance",
+    "arcana": "major",
+    "keywords": {
+      "upright": [
+        "balance",
+        "patience",
+        "blending"
+      ],
+      "reversed": [
+        "excess",
+        "out of rhythm"
+      ]
+    },
+    "themes": [
+      "balance",
+      "healing"
+    ],
+    "prompt": "What needs a gentler mix in your life right now?",
+    "summary": "Temperance placeholder summary.",
+    "meaning": {
+      "upright": "Temperance placeholder upright paragraph.",
+      "reversed": "Temperance placeholder reversed paragraph."
+    },
+    "advice": "Temperance placeholder advice.",
+    "affirmation": "Temperance placeholder affirmation.",
+    "as_a_person": "Temperance placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "angel",
+      "sun",
+      "cup",
+      "water",
+      "path",
+      "crown",
+      "heights"
+    ],
+    "details": []
+  },
+  {
+    "id": "devil",
+    "number": 15,
+    "name": "The Devil",
+    "arcana": "major",
+    "keywords": {
+      "upright": [
+        "attachment",
+        "compulsion",
+        "shadow"
+      ],
+      "reversed": [
+        "loosening the chains",
+        "self-awareness"
+      ]
+    },
+    "themes": [
+      "attachment",
+      "freedom"
+    ],
+    "prompt": "What has a hold on you that you could loosen?",
+    "summary": "The Devil placeholder summary.",
+    "meaning": {
+      "upright": "The Devil placeholder upright paragraph.",
+      "reversed": "The Devil placeholder reversed paragraph."
+    },
+    "advice": "The Devil placeholder advice.",
+    "affirmation": "The Devil placeholder affirmation.",
+    "as_a_person": "The Devil placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "torch",
+      "chains",
+      "pentacle"
+    ],
+    "details": []
+  },
+  {
+    "id": "tower",
+    "number": 16,
+    "name": "The Tower",
+    "arcana": "major",
+    "keywords": {
+      "upright": [
+        "sudden change",
+        "revelation",
+        "things falling apart"
+      ],
+      "reversed": [
+        "avoiding change",
+        "aftershock"
+      ]
+    },
+    "themes": [
+      "change",
+      "truth"
+    ],
+    "prompt": "What structure in your life no longer holds up?",
+    "summary": "The Tower placeholder summary.",
+    "meaning": {
+      "upright": "The Tower placeholder upright paragraph.",
+      "reversed": "The Tower placeholder reversed paragraph."
+    },
+    "advice": "The Tower placeholder advice.",
+    "affirmation": "The Tower placeholder affirmation.",
+    "as_a_person": "The Tower placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "tower",
+      "lightning",
+      "crown",
+      "cloud",
+      "heights"
+    ],
+    "details": []
   },
   {
     "id": "star",
@@ -224,11 +829,29 @@
       "hope"
     ],
     "prompt": "What is quietly being restored in you?",
+    "summary": "The Star placeholder summary.",
+    "meaning": {
+      "upright": "The Star placeholder upright paragraph.",
+      "reversed": "The Star placeholder reversed paragraph."
+    },
+    "advice": "The Star placeholder advice.",
+    "affirmation": "The Star placeholder affirmation.",
+    "as_a_person": "The Star placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "star",
+      "water",
+      "tree",
+      "bird"
+    ],
     "details": [
       {
         "id": "water",
         "label": "The pouring water",
         "prompt": "Where are you giving, and where are you refilling?",
+        "symbols": [
+          "water"
+        ],
         "region": {
           "x": 45,
           "y": 72
@@ -238,6 +861,9 @@
         "id": "star",
         "label": "The great star",
         "prompt": "What are you hoping for that you rarely say?",
+        "symbols": [
+          "star"
+        ],
         "region": {
           "x": 50,
           "y": 12
@@ -247,6 +873,9 @@
         "id": "bird",
         "label": "The bird in the tree",
         "prompt": "What’s singing in the background of your days?",
+        "symbols": [
+          "bird"
+        ],
         "region": {
           "x": 82,
           "y": 38
@@ -275,11 +904,34 @@
       "dreams"
     ],
     "prompt": "What feels unclear right now, and what might it be asking of you?",
+    "summary": "Not everything is clear yet, and that’s where imagination does its work.",
+    "meaning": {
+      "upright": "The Moon only half lights the way. Shapes look stranger than they are, and old fears get loud. This card asks you to move slowly through what you can’t fully see, and to notice what your imagination is making of it: the dreams as well as the worries.",
+      "reversed": "The fog is starting to lift. A fear that felt huge looks smaller in better light, or something you’ve been half sensing comes up where you can look at it. What is clearer now than it was?"
+    },
+    "advice": "Name one fear out loud and check it against what you actually know.",
+    "affirmation": "I can move forward without seeing all of it.",
+    "as_a_person": null,
+    "facing": "left",
+    "symbols": [
+      "moon",
+      "heights",
+      "dew",
+      "tower",
+      "path",
+      "dog",
+      "wolf",
+      "crayfish",
+      "water"
+    ],
     "details": [
       {
         "id": "path",
         "label": "The winding path",
         "prompt": "What path are you on, even if you can’t see the end?",
+        "symbols": [
+          "path"
+        ],
         "region": {
           "x": 50,
           "y": 70
@@ -289,6 +941,10 @@
         "id": "dog-wolf",
         "label": "The dog and the wolf",
         "prompt": "Where do your tame and wild sides disagree?",
+        "symbols": [
+          "dog",
+          "wolf"
+        ],
         "region": {
           "x": 50,
           "y": 60
@@ -298,12 +954,369 @@
         "id": "crayfish",
         "label": "The creature in the pool",
         "prompt": "What is rising up from beneath the surface?",
+        "symbols": [
+          "crayfish"
+        ],
         "region": {
           "x": 50,
           "y": 88
         }
       }
     ]
+  },
+  {
+    "id": "sun",
+    "number": 19,
+    "name": "The Sun",
+    "arcana": "major",
+    "keywords": {
+      "upright": [
+        "joy",
+        "warmth",
+        "vitality"
+      ],
+      "reversed": [
+        "dimmed joy",
+        "trying too hard"
+      ]
+    },
+    "themes": [
+      "joy",
+      "clarity"
+    ],
+    "prompt": "What lights you up when you stop overthinking it?",
+    "summary": "The Sun placeholder summary.",
+    "meaning": {
+      "upright": "The Sun placeholder upright paragraph.",
+      "reversed": "The Sun placeholder reversed paragraph."
+    },
+    "advice": "The Sun placeholder advice.",
+    "affirmation": "The Sun placeholder affirmation.",
+    "as_a_person": "The Sun placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "sun",
+      "child",
+      "horse",
+      "banner",
+      "garden"
+    ],
+    "details": []
+  },
+  {
+    "id": "judgement",
+    "number": 20,
+    "name": "Judgement",
+    "arcana": "major",
+    "keywords": {
+      "upright": [
+        "awakening",
+        "a calling",
+        "reckoning"
+      ],
+      "reversed": [
+        "self-doubt",
+        "ignoring the call"
+      ]
+    },
+    "themes": [
+      "calling",
+      "renewal"
+    ],
+    "prompt": "What is calling you, and are you ready to answer?",
+    "summary": "Judgement placeholder summary.",
+    "meaning": {
+      "upright": "Judgement placeholder upright paragraph.",
+      "reversed": "Judgement placeholder reversed paragraph."
+    },
+    "advice": "Judgement placeholder advice.",
+    "affirmation": "Judgement placeholder affirmation.",
+    "as_a_person": "Judgement placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "angel",
+      "trumpet",
+      "banner",
+      "cross",
+      "tomb",
+      "cloud",
+      "child"
+    ],
+    "details": []
+  },
+  {
+    "id": "world",
+    "number": 21,
+    "name": "The World",
+    "arcana": "major",
+    "keywords": {
+      "upright": [
+        "completion",
+        "wholeness",
+        "integration"
+      ],
+      "reversed": [
+        "loose ends",
+        "not quite finished"
+      ]
+    },
+    "themes": [
+      "completion",
+      "wholeness"
+    ],
+    "prompt": "What has come full circle for you?",
+    "summary": "The World placeholder summary.",
+    "meaning": {
+      "upright": "The World placeholder upright paragraph.",
+      "reversed": "The World placeholder reversed paragraph."
+    },
+    "advice": "The World placeholder advice.",
+    "affirmation": "The World placeholder affirmation.",
+    "as_a_person": "The World placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "four-creatures",
+      "flowers",
+      "wand",
+      "dance"
+    ],
+    "details": []
+  },
+  {
+    "id": "ace-of-wands",
+    "arcana": "minor",
+    "suit": "wands",
+    "rank": 1,
+    "name": "Ace of Wands",
+    "keywords": {
+      "upright": [
+        "inspiration",
+        "a spark",
+        "potential"
+      ],
+      "reversed": [
+        "delay",
+        "creative block"
+      ]
+    },
+    "themes": [
+      "inspiration",
+      "beginnings"
+    ],
+    "combined": "Fire’s pure potential: a spark of energy and the urge to begin.",
+    "prompt": "What idea is asking for your energy?",
+    "summary": "Ace of Wands placeholder summary.",
+    "meaning": {
+      "upright": "Ace of Wands placeholder upright paragraph.",
+      "reversed": "Ace of Wands placeholder reversed paragraph."
+    },
+    "advice": "Ace of Wands placeholder advice.",
+    "affirmation": "Ace of Wands placeholder affirmation.",
+    "as_a_person": "Ace of Wands placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "wand",
+      "hand-from-cloud"
+    ],
+    "details": []
+  },
+  {
+    "id": "two-of-wands",
+    "arcana": "minor",
+    "suit": "wands",
+    "rank": 2,
+    "name": "Two of Wands",
+    "keywords": {
+      "upright": [
+        "planning",
+        "vision",
+        "choice"
+      ],
+      "reversed": [
+        "fear of the unknown",
+        "playing it safe"
+      ]
+    },
+    "themes": [
+      "vision",
+      "choice"
+    ],
+    "combined": "Fire’s energy, weighed: planning what comes next from where you stand.",
+    "prompt": "What would you plan for if you trusted your reach?",
+    "summary": "Two of Wands placeholder summary.",
+    "meaning": {
+      "upright": "Two of Wands placeholder upright paragraph.",
+      "reversed": "Two of Wands placeholder reversed paragraph."
+    },
+    "advice": "Two of Wands placeholder advice.",
+    "affirmation": "Two of Wands placeholder affirmation.",
+    "as_a_person": "Two of Wands placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "wand",
+      "globe",
+      "water",
+      "flowers"
+    ],
+    "details": []
+  },
+  {
+    "id": "three-of-wands",
+    "arcana": "minor",
+    "suit": "wands",
+    "rank": 3,
+    "name": "Three of Wands",
+    "keywords": {
+      "upright": [
+        "expansion",
+        "foresight",
+        "waiting for a return"
+      ],
+      "reversed": [
+        "delays",
+        "a narrow view"
+      ]
+    },
+    "themes": [
+      "growth",
+      "patience"
+    ],
+    "combined": "Fire’s energy, growing outward: plans set in motion and the long view.",
+    "prompt": "What have you set in motion that needs patience now?",
+    "summary": "Three of Wands placeholder summary.",
+    "meaning": {
+      "upright": "Three of Wands placeholder upright paragraph.",
+      "reversed": "Three of Wands placeholder reversed paragraph."
+    },
+    "advice": "Three of Wands placeholder advice.",
+    "affirmation": "Three of Wands placeholder affirmation.",
+    "as_a_person": "Three of Wands placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "wand",
+      "heights",
+      "water",
+      "boat"
+    ],
+    "details": []
+  },
+  {
+    "id": "four-of-wands",
+    "arcana": "minor",
+    "suit": "wands",
+    "rank": 4,
+    "name": "Four of Wands",
+    "keywords": {
+      "upright": [
+        "celebration",
+        "home",
+        "belonging"
+      ],
+      "reversed": [
+        "unsettled",
+        "a home in transition"
+      ]
+    },
+    "themes": [
+      "home",
+      "celebration"
+    ],
+    "combined": "Fire’s energy, at rest: a moment to celebrate what you’ve built.",
+    "prompt": "Where do you feel at home, and who is there with you?",
+    "summary": "Four of Wands placeholder summary.",
+    "meaning": {
+      "upright": "Four of Wands placeholder upright paragraph.",
+      "reversed": "Four of Wands placeholder reversed paragraph."
+    },
+    "advice": "Four of Wands placeholder advice.",
+    "affirmation": "Four of Wands placeholder affirmation.",
+    "as_a_person": "Four of Wands placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "wand",
+      "flowers",
+      "bridge",
+      "house",
+      "water",
+      "harvest"
+    ],
+    "details": []
+  },
+  {
+    "id": "five-of-wands",
+    "arcana": "minor",
+    "suit": "wands",
+    "rank": 5,
+    "name": "Five of Wands",
+    "keywords": {
+      "upright": [
+        "friction",
+        "competition",
+        "many voices"
+      ],
+      "reversed": [
+        "avoiding conflict",
+        "finding common ground"
+      ]
+    },
+    "themes": [
+      "conflict",
+      "energy"
+    ],
+    "combined": "Fire’s energy, scattered: everyone pushing in their own direction.",
+    "prompt": "Is this friction moving you forward, or just wearing you out?",
+    "summary": "Five of Wands placeholder summary.",
+    "meaning": {
+      "upright": "Five of Wands placeholder upright paragraph.",
+      "reversed": "Five of Wands placeholder reversed paragraph."
+    },
+    "advice": "Five of Wands placeholder advice.",
+    "affirmation": "Five of Wands placeholder affirmation.",
+    "as_a_person": "Five of Wands placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "wand"
+    ],
+    "details": []
+  },
+  {
+    "id": "six-of-wands",
+    "arcana": "minor",
+    "suit": "wands",
+    "rank": 6,
+    "name": "Six of Wands",
+    "keywords": {
+      "upright": [
+        "recognition",
+        "progress",
+        "confidence"
+      ],
+      "reversed": [
+        "self-doubt",
+        "needing approval"
+      ]
+    },
+    "themes": [
+      "success",
+      "recognition"
+    ],
+    "combined": "Fire’s energy, rewarded: being seen for what you’ve done.",
+    "prompt": "What would you celebrate if no one else was watching?",
+    "summary": "Six of Wands placeholder summary.",
+    "meaning": {
+      "upright": "Six of Wands placeholder upright paragraph.",
+      "reversed": "Six of Wands placeholder reversed paragraph."
+    },
+    "advice": "Six of Wands placeholder advice.",
+    "affirmation": "Six of Wands placeholder affirmation.",
+    "as_a_person": "Six of Wands placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "wand",
+      "horse",
+      "wreath"
+    ],
+    "details": []
   },
   {
     "id": "seven-of-wands",
@@ -329,11 +1342,27 @@
     ],
     "combined": "Fire’s energy, put to the test: defending something you care about.",
     "prompt": "What are you willing to stand up for, even when it’s tiring?",
+    "summary": "You’re holding your ground, and it’s taking everything you’ve got.",
+    "meaning": {
+      "upright": "One person on the high ground, with challenges rising from every side. It’s tiring, and it’s also a sign that you have something worth defending and a position worth keeping. The question is which of these challenges really needs an answer.",
+      "reversed": "The pressure is wearing you down, or you’re defending ground you no longer care about. It may be time to rest, to ask for help, or to let one of these fights go."
+    },
+    "advice": "Pick the one challenge that matters most this week, and let the others wait.",
+    "affirmation": "I can stand firm without fighting everything.",
+    "as_a_person": "Determined and outspoken, quick to defend what they believe in.",
+    "facing": "forward",
+    "symbols": [
+      "heights",
+      "wand"
+    ],
     "details": [
       {
         "id": "high-ground",
         "label": "The high ground",
         "prompt": "Where do you have more footing than you think?",
+        "symbols": [
+          "heights"
+        ],
         "region": {
           "x": 50,
           "y": 80
@@ -343,6 +1372,7 @@
         "id": "shoes",
         "label": "The mismatched shoes",
         "prompt": "What did you grab in a hurry to meet this moment?",
+        "symbols": [],
         "region": {
           "x": 45,
           "y": 92
@@ -352,12 +1382,360 @@
         "id": "staves",
         "label": "The staves rising from below",
         "prompt": "Which challenges are really coming at you, and which are just noise?",
+        "symbols": [
+          "wand"
+        ],
         "region": {
           "x": 70,
           "y": 55
         }
       }
     ]
+  },
+  {
+    "id": "eight-of-wands",
+    "arcana": "minor",
+    "suit": "wands",
+    "rank": 8,
+    "name": "Eight of Wands",
+    "keywords": {
+      "upright": [
+        "momentum",
+        "swift action",
+        "news"
+      ],
+      "reversed": [
+        "delays",
+        "scattered energy"
+      ]
+    },
+    "themes": [
+      "movement",
+      "speed"
+    ],
+    "combined": "Fire’s energy, in flight: things moving quickly toward their end.",
+    "prompt": "What is picking up speed in your life?",
+    "summary": "Eight of Wands placeholder summary.",
+    "meaning": {
+      "upright": "Eight of Wands placeholder upright paragraph.",
+      "reversed": "Eight of Wands placeholder reversed paragraph."
+    },
+    "advice": "Eight of Wands placeholder advice.",
+    "affirmation": "Eight of Wands placeholder affirmation.",
+    "as_a_person": "Eight of Wands placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "wand"
+    ],
+    "details": []
+  },
+  {
+    "id": "nine-of-wands",
+    "arcana": "minor",
+    "suit": "wands",
+    "rank": 9,
+    "name": "Nine of Wands",
+    "keywords": {
+      "upright": [
+        "resilience",
+        "persistence",
+        "staying on guard"
+      ],
+      "reversed": [
+        "exhaustion",
+        "defensiveness"
+      ]
+    },
+    "themes": [
+      "resilience",
+      "boundaries"
+    ],
+    "combined": "Fire’s energy, nearly spent: still standing, still on guard.",
+    "prompt": "What are you guarding, and is it still worth the effort?",
+    "summary": "Nine of Wands placeholder summary.",
+    "meaning": {
+      "upright": "Nine of Wands placeholder upright paragraph.",
+      "reversed": "Nine of Wands placeholder reversed paragraph."
+    },
+    "advice": "Nine of Wands placeholder advice.",
+    "affirmation": "Nine of Wands placeholder affirmation.",
+    "as_a_person": "Nine of Wands placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "wand"
+    ],
+    "details": []
+  },
+  {
+    "id": "ten-of-wands",
+    "arcana": "minor",
+    "suit": "wands",
+    "rank": 10,
+    "name": "Ten of Wands",
+    "keywords": {
+      "upright": [
+        "burden",
+        "responsibility",
+        "overload"
+      ],
+      "reversed": [
+        "putting it down",
+        "sharing the load"
+      ]
+    },
+    "themes": [
+      "burden",
+      "effort"
+    ],
+    "combined": "Fire’s energy, overloaded: carrying more than one person should.",
+    "prompt": "What are you carrying that isn’t yours to carry?",
+    "summary": "Ten of Wands placeholder summary.",
+    "meaning": {
+      "upright": "Ten of Wands placeholder upright paragraph.",
+      "reversed": "Ten of Wands placeholder reversed paragraph."
+    },
+    "advice": "Ten of Wands placeholder advice.",
+    "affirmation": "Ten of Wands placeholder affirmation.",
+    "as_a_person": "Ten of Wands placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "wand"
+    ],
+    "details": []
+  },
+  {
+    "id": "page-of-wands",
+    "arcana": "minor",
+    "suit": "wands",
+    "rank": 11,
+    "name": "Page of Wands",
+    "keywords": {
+      "upright": [
+        "curiosity",
+        "enthusiasm",
+        "a new idea"
+      ],
+      "reversed": [
+        "hesitation",
+        "scattered ideas"
+      ]
+    },
+    "themes": [
+      "curiosity",
+      "beginnings"
+    ],
+    "combined": "Fire’s energy, newly found: eager to explore and try things out.",
+    "prompt": "What are you curious enough to try?",
+    "summary": "Page of Wands placeholder summary.",
+    "meaning": {
+      "upright": "Page of Wands placeholder upright paragraph.",
+      "reversed": "Page of Wands placeholder reversed paragraph."
+    },
+    "advice": "Page of Wands placeholder advice.",
+    "affirmation": "Page of Wands placeholder affirmation.",
+    "as_a_person": "Page of Wands placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "wand"
+    ],
+    "details": []
+  },
+  {
+    "id": "knight-of-wands",
+    "arcana": "minor",
+    "suit": "wands",
+    "rank": 12,
+    "name": "Knight of Wands",
+    "keywords": {
+      "upright": [
+        "passion",
+        "adventure",
+        "bold action"
+      ],
+      "reversed": [
+        "impulsiveness",
+        "burnout"
+      ]
+    },
+    "themes": [
+      "passion",
+      "action"
+    ],
+    "combined": "Fire’s energy, charging ahead: passion that wants to move now.",
+    "prompt": "Where are you rushing in, and where could you use that fire?",
+    "summary": "Knight of Wands placeholder summary.",
+    "meaning": {
+      "upright": "Knight of Wands placeholder upright paragraph.",
+      "reversed": "Knight of Wands placeholder reversed paragraph."
+    },
+    "advice": "Knight of Wands placeholder advice.",
+    "affirmation": "Knight of Wands placeholder affirmation.",
+    "as_a_person": "Knight of Wands placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "wand",
+      "horse"
+    ],
+    "details": []
+  },
+  {
+    "id": "queen-of-wands",
+    "arcana": "minor",
+    "suit": "wands",
+    "rank": 13,
+    "name": "Queen of Wands",
+    "keywords": {
+      "upright": [
+        "confidence",
+        "warmth",
+        "magnetism"
+      ],
+      "reversed": [
+        "self-doubt",
+        "burning others out"
+      ]
+    },
+    "themes": [
+      "confidence",
+      "warmth"
+    ],
+    "combined": "Fire’s energy, held with warmth: confidence that draws people in.",
+    "prompt": "What would you do if you trusted your own spark?",
+    "summary": "Queen of Wands placeholder summary.",
+    "meaning": {
+      "upright": "Queen of Wands placeholder upright paragraph.",
+      "reversed": "Queen of Wands placeholder reversed paragraph."
+    },
+    "advice": "Queen of Wands placeholder advice.",
+    "affirmation": "Queen of Wands placeholder affirmation.",
+    "as_a_person": "Queen of Wands placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "wand",
+      "crown",
+      "throne"
+    ],
+    "details": []
+  },
+  {
+    "id": "king-of-wands",
+    "arcana": "minor",
+    "suit": "wands",
+    "rank": 14,
+    "name": "King of Wands",
+    "keywords": {
+      "upright": [
+        "leadership",
+        "vision",
+        "boldness"
+      ],
+      "reversed": [
+        "impatience",
+        "domineering"
+      ]
+    },
+    "themes": [
+      "leadership",
+      "vision"
+    ],
+    "combined": "Fire’s energy, leading others: a vision big enough to share.",
+    "prompt": "What vision could you lead others toward?",
+    "summary": "King of Wands placeholder summary.",
+    "meaning": {
+      "upright": "King of Wands placeholder upright paragraph.",
+      "reversed": "King of Wands placeholder reversed paragraph."
+    },
+    "advice": "King of Wands placeholder advice.",
+    "affirmation": "King of Wands placeholder affirmation.",
+    "as_a_person": "King of Wands placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "wand",
+      "crown",
+      "throne",
+      "lion"
+    ],
+    "details": []
+  },
+  {
+    "id": "ace-of-cups",
+    "arcana": "minor",
+    "suit": "cups",
+    "rank": 1,
+    "name": "Ace of Cups",
+    "keywords": {
+      "upright": [
+        "new feelings",
+        "openness",
+        "love"
+      ],
+      "reversed": [
+        "emotional block",
+        "holding back"
+      ]
+    },
+    "themes": [
+      "love",
+      "beginnings"
+    ],
+    "combined": "Water’s pure potential: a heart opening, full and overflowing.",
+    "prompt": "What would you let in if your heart were open?",
+    "summary": "Ace of Cups placeholder summary.",
+    "meaning": {
+      "upright": "Ace of Cups placeholder upright paragraph.",
+      "reversed": "Ace of Cups placeholder reversed paragraph."
+    },
+    "advice": "Ace of Cups placeholder advice.",
+    "affirmation": "Ace of Cups placeholder affirmation.",
+    "as_a_person": "Ace of Cups placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "cup",
+      "hand-from-cloud",
+      "water",
+      "flowers",
+      "bird",
+      "cross"
+    ],
+    "details": []
+  },
+  {
+    "id": "two-of-cups",
+    "arcana": "minor",
+    "suit": "cups",
+    "rank": 2,
+    "name": "Two of Cups",
+    "keywords": {
+      "upright": [
+        "connection",
+        "partnership",
+        "mutual care"
+      ],
+      "reversed": [
+        "imbalance",
+        "disconnection"
+      ]
+    },
+    "themes": [
+      "connection",
+      "partnership"
+    ],
+    "combined": "Water’s feelings, shared between two: a meeting of hearts.",
+    "prompt": "Who meets you as an equal?",
+    "summary": "Two of Cups placeholder summary.",
+    "meaning": {
+      "upright": "Two of Cups placeholder upright paragraph.",
+      "reversed": "Two of Cups placeholder reversed paragraph."
+    },
+    "advice": "Two of Cups placeholder advice.",
+    "affirmation": "Two of Cups placeholder affirmation.",
+    "as_a_person": "Two of Cups placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "cup",
+      "lion"
+    ],
+    "details": []
   },
   {
     "id": "three-of-cups",
@@ -382,11 +1760,28 @@
     ],
     "combined": "Water’s feelings, growing outward: joy that’s shared with others.",
     "prompt": "Who are the people you feel most yourself around?",
+    "summary": "Three of Cups placeholder summary.",
+    "meaning": {
+      "upright": "Three of Cups placeholder upright paragraph.",
+      "reversed": "Three of Cups placeholder reversed paragraph."
+    },
+    "advice": "Three of Cups placeholder advice.",
+    "affirmation": "Three of Cups placeholder affirmation.",
+    "as_a_person": "Three of Cups placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "cup",
+      "garden",
+      "harvest"
+    ],
     "details": [
       {
         "id": "raised-cups",
         "label": "The raised cups",
         "prompt": "What deserves celebrating right now?",
+        "symbols": [
+          "cup"
+        ],
         "region": {
           "x": 50,
           "y": 15
@@ -396,6 +1791,7 @@
         "id": "dancers",
         "label": "The three dancers",
         "prompt": "Who would you want in this circle?",
+        "symbols": [],
         "region": {
           "x": 50,
           "y": 50
@@ -405,12 +1801,624 @@
         "id": "harvest",
         "label": "The harvest at their feet",
         "prompt": "What has grown from your relationships?",
+        "symbols": [
+          "harvest"
+        ],
         "region": {
           "x": 50,
           "y": 90
         }
       }
     ]
+  },
+  {
+    "id": "four-of-cups",
+    "arcana": "minor",
+    "suit": "cups",
+    "rank": 4,
+    "name": "Four of Cups",
+    "keywords": {
+      "upright": [
+        "apathy",
+        "contemplation",
+        "withdrawal"
+      ],
+      "reversed": [
+        "re-engaging",
+        "noticing what’s offered"
+      ]
+    },
+    "themes": [
+      "reflection",
+      "discontent"
+    ],
+    "combined": "Water’s feelings, turned inward: not quite satisfied with what’s here.",
+    "prompt": "What is being offered that you haven’t noticed?",
+    "summary": "Four of Cups placeholder summary.",
+    "meaning": {
+      "upright": "Four of Cups placeholder upright paragraph.",
+      "reversed": "Four of Cups placeholder reversed paragraph."
+    },
+    "advice": "Four of Cups placeholder advice.",
+    "affirmation": "Four of Cups placeholder affirmation.",
+    "as_a_person": "Four of Cups placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "cup",
+      "tree",
+      "hand-from-cloud"
+    ],
+    "details": []
+  },
+  {
+    "id": "five-of-cups",
+    "arcana": "minor",
+    "suit": "cups",
+    "rank": 5,
+    "name": "Five of Cups",
+    "keywords": {
+      "upright": [
+        "grief",
+        "regret",
+        "loss"
+      ],
+      "reversed": [
+        "acceptance",
+        "moving on"
+      ]
+    },
+    "themes": [
+      "grief",
+      "healing"
+    ],
+    "combined": "Water’s feelings, spilled: loss, and what still remains.",
+    "prompt": "What is still standing, even after the loss?",
+    "summary": "Five of Cups placeholder summary.",
+    "meaning": {
+      "upright": "Five of Cups placeholder upright paragraph.",
+      "reversed": "Five of Cups placeholder reversed paragraph."
+    },
+    "advice": "Five of Cups placeholder advice.",
+    "affirmation": "Five of Cups placeholder affirmation.",
+    "as_a_person": "Five of Cups placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "cup",
+      "bridge",
+      "house"
+    ],
+    "details": []
+  },
+  {
+    "id": "six-of-cups",
+    "arcana": "minor",
+    "suit": "cups",
+    "rank": 6,
+    "name": "Six of Cups",
+    "keywords": {
+      "upright": [
+        "nostalgia",
+        "memories",
+        "innocence"
+      ],
+      "reversed": [
+        "stuck in the past",
+        "moving forward"
+      ]
+    },
+    "themes": [
+      "memory",
+      "kindness"
+    ],
+    "combined": "Water’s feelings, remembered: the sweetness of the past.",
+    "prompt": "What memory are you returning to, and why now?",
+    "summary": "Six of Cups placeholder summary.",
+    "meaning": {
+      "upright": "Six of Cups placeholder upright paragraph.",
+      "reversed": "Six of Cups placeholder reversed paragraph."
+    },
+    "advice": "Six of Cups placeholder advice.",
+    "affirmation": "Six of Cups placeholder affirmation.",
+    "as_a_person": "Six of Cups placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "cup",
+      "child",
+      "garden",
+      "flowers"
+    ],
+    "details": []
+  },
+  {
+    "id": "seven-of-cups",
+    "arcana": "minor",
+    "suit": "cups",
+    "rank": 7,
+    "name": "Seven of Cups",
+    "keywords": {
+      "upright": [
+        "daydreams",
+        "options",
+        "imagination"
+      ],
+      "reversed": [
+        "clarity",
+        "choosing"
+      ]
+    },
+    "themes": [
+      "choice",
+      "imagination"
+    ],
+    "combined": "Water’s feelings, dreaming: many possibilities, some real and some not.",
+    "prompt": "Which of these dreams is worth acting on?",
+    "summary": "Seven of Cups placeholder summary.",
+    "meaning": {
+      "upright": "Seven of Cups placeholder upright paragraph.",
+      "reversed": "Seven of Cups placeholder reversed paragraph."
+    },
+    "advice": "Seven of Cups placeholder advice.",
+    "affirmation": "Seven of Cups placeholder affirmation.",
+    "as_a_person": "Seven of Cups placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "cup"
+    ],
+    "details": []
+  },
+  {
+    "id": "eight-of-cups",
+    "arcana": "minor",
+    "suit": "cups",
+    "rank": 8,
+    "name": "Eight of Cups",
+    "keywords": {
+      "upright": [
+        "walking away",
+        "seeking more",
+        "letting go"
+      ],
+      "reversed": [
+        "fear of leaving",
+        "staying stuck"
+      ]
+    },
+    "themes": [
+      "change",
+      "seeking"
+    ],
+    "combined": "Water’s feelings, moving on: leaving what no longer fills you.",
+    "prompt": "What are you ready to walk away from?",
+    "summary": "Eight of Cups placeholder summary.",
+    "meaning": {
+      "upright": "Eight of Cups placeholder upright paragraph.",
+      "reversed": "Eight of Cups placeholder reversed paragraph."
+    },
+    "advice": "Eight of Cups placeholder advice.",
+    "affirmation": "Eight of Cups placeholder affirmation.",
+    "as_a_person": "Eight of Cups placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "cup"
+    ],
+    "details": []
+  },
+  {
+    "id": "nine-of-cups",
+    "arcana": "minor",
+    "suit": "cups",
+    "rank": 9,
+    "name": "Nine of Cups",
+    "keywords": {
+      "upright": [
+        "contentment",
+        "satisfaction",
+        "gratitude"
+      ],
+      "reversed": [
+        "smugness",
+        "wanting more"
+      ]
+    },
+    "themes": [
+      "contentment",
+      "gratitude"
+    ],
+    "combined": "Water’s feelings, satisfied: a wish that’s come true.",
+    "prompt": "What do you have now that you once wished for?",
+    "summary": "Nine of Cups placeholder summary.",
+    "meaning": {
+      "upright": "Nine of Cups placeholder upright paragraph.",
+      "reversed": "Nine of Cups placeholder reversed paragraph."
+    },
+    "advice": "Nine of Cups placeholder advice.",
+    "affirmation": "Nine of Cups placeholder affirmation.",
+    "as_a_person": "Nine of Cups placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "cup"
+    ],
+    "details": []
+  },
+  {
+    "id": "ten-of-cups",
+    "arcana": "minor",
+    "suit": "cups",
+    "rank": 10,
+    "name": "Ten of Cups",
+    "keywords": {
+      "upright": [
+        "harmony",
+        "belonging",
+        "emotional fulfillment"
+      ],
+      "reversed": [
+        "disconnection",
+        "strained relationships"
+      ]
+    },
+    "themes": [
+      "belonging",
+      "joy"
+    ],
+    "combined": "Water’s feelings, complete: love that’s shared and lasting.",
+    "prompt": "Where do you feel you truly belong?",
+    "summary": "Ten of Cups placeholder summary.",
+    "meaning": {
+      "upright": "Ten of Cups placeholder upright paragraph.",
+      "reversed": "Ten of Cups placeholder reversed paragraph."
+    },
+    "advice": "Ten of Cups placeholder advice.",
+    "affirmation": "Ten of Cups placeholder affirmation.",
+    "as_a_person": "Ten of Cups placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "cup",
+      "rainbow",
+      "child",
+      "house",
+      "dance"
+    ],
+    "details": []
+  },
+  {
+    "id": "page-of-cups",
+    "arcana": "minor",
+    "suit": "cups",
+    "rank": 11,
+    "name": "Page of Cups",
+    "keywords": {
+      "upright": [
+        "creativity",
+        "emotional openness",
+        "a message"
+      ],
+      "reversed": [
+        "emotional immaturity",
+        "blocked creativity"
+      ]
+    },
+    "themes": [
+      "creativity",
+      "curiosity"
+    ],
+    "combined": "Water’s feelings, newly found: open to surprise and imagination.",
+    "prompt": "What unexpected feeling or idea is surfacing?",
+    "summary": "Page of Cups placeholder summary.",
+    "meaning": {
+      "upright": "Page of Cups placeholder upright paragraph.",
+      "reversed": "Page of Cups placeholder reversed paragraph."
+    },
+    "advice": "Page of Cups placeholder advice.",
+    "affirmation": "Page of Cups placeholder affirmation.",
+    "as_a_person": "Page of Cups placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "cup",
+      "fish"
+    ],
+    "details": []
+  },
+  {
+    "id": "knight-of-cups",
+    "arcana": "minor",
+    "suit": "cups",
+    "rank": 12,
+    "name": "Knight of Cups",
+    "keywords": {
+      "upright": [
+        "romance",
+        "following the heart",
+        "an invitation"
+      ],
+      "reversed": [
+        "moodiness",
+        "unrealistic expectations"
+      ]
+    },
+    "themes": [
+      "romance",
+      "idealism"
+    ],
+    "combined": "Water’s feelings, in motion: following the heart where it leads.",
+    "prompt": "Where is your heart leading you?",
+    "summary": "Knight of Cups placeholder summary.",
+    "meaning": {
+      "upright": "Knight of Cups placeholder upright paragraph.",
+      "reversed": "Knight of Cups placeholder reversed paragraph."
+    },
+    "advice": "Knight of Cups placeholder advice.",
+    "affirmation": "Knight of Cups placeholder affirmation.",
+    "as_a_person": "Knight of Cups placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "cup",
+      "horse"
+    ],
+    "details": []
+  },
+  {
+    "id": "queen-of-cups",
+    "arcana": "minor",
+    "suit": "cups",
+    "rank": 13,
+    "name": "Queen of Cups",
+    "keywords": {
+      "upright": [
+        "empathy",
+        "intuition",
+        "emotional depth"
+      ],
+      "reversed": [
+        "giving too much",
+        "lost in feelings"
+      ]
+    },
+    "themes": [
+      "care",
+      "intuition"
+    ],
+    "combined": "Water’s feelings, held with care: someone who understands what others feel.",
+    "prompt": "Whose feelings are you holding, and who holds yours?",
+    "summary": "Deep feeling, held steadily: care that listens before it acts.",
+    "meaning": {
+      "upright": "The Queen sits at the water’s edge, studying a closed, ornate cup. She feels things deeply and reads people well, but she doesn’t spill over. This card asks how you can stay open to feeling, your own and other people’s, while keeping your own shape.",
+      "reversed": "Feeling everything for everyone can leave you flooded, or empty. Or you may be closing off to stay safe. What do you need to refill, and where would a boundary help?"
+    },
+    "advice": "Before you look after someone else’s feelings today, check in on your own.",
+    "affirmation": "I can care deeply and still keep my shape.",
+    "as_a_person": "Warm and intuitive, a good listener who feels things deeply.",
+    "facing": "left",
+    "symbols": [
+      "crown",
+      "cup",
+      "water",
+      "angel",
+      "throne"
+    ],
+    "details": [
+      {
+        "id": "closed-cup",
+        "label": "The closed cup",
+        "prompt": "What are you keeping covered, even from yourself?",
+        "symbols": [
+          "cup"
+        ],
+        "region": {
+          "x": 33,
+          "y": 37
+        }
+      },
+      {
+        "id": "shore",
+        "label": "The water at her feet",
+        "prompt": "Which feelings are lapping at the edges of your day?",
+        "symbols": [
+          "water"
+        ],
+        "region": {
+          "x": 20,
+          "y": 78
+        }
+      }
+    ]
+  },
+  {
+    "id": "king-of-cups",
+    "arcana": "minor",
+    "suit": "cups",
+    "rank": 14,
+    "name": "King of Cups",
+    "keywords": {
+      "upright": [
+        "emotional balance",
+        "calm",
+        "wisdom"
+      ],
+      "reversed": [
+        "emotional suppression",
+        "volatility"
+      ]
+    },
+    "themes": [
+      "balance",
+      "compassion"
+    ],
+    "combined": "Water’s feelings, steadied: calm care in the middle of strong currents.",
+    "prompt": "How can you stay steady while still feeling everything?",
+    "summary": "King of Cups placeholder summary.",
+    "meaning": {
+      "upright": "King of Cups placeholder upright paragraph.",
+      "reversed": "King of Cups placeholder reversed paragraph."
+    },
+    "advice": "King of Cups placeholder advice.",
+    "affirmation": "King of Cups placeholder affirmation.",
+    "as_a_person": "King of Cups placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "cup",
+      "crown",
+      "throne",
+      "sceptre",
+      "water",
+      "boat",
+      "fish"
+    ],
+    "details": []
+  },
+  {
+    "id": "ace-of-swords",
+    "arcana": "minor",
+    "suit": "swords",
+    "rank": 1,
+    "name": "Ace of Swords",
+    "keywords": {
+      "upright": [
+        "clarity",
+        "truth",
+        "breakthrough"
+      ],
+      "reversed": [
+        "confusion",
+        "mental fog"
+      ]
+    },
+    "themes": [
+      "clarity",
+      "truth"
+    ],
+    "combined": "Air’s pure potential: a clear thought that cuts through.",
+    "prompt": "What truth is becoming clear to you?",
+    "summary": "Ace of Swords placeholder summary.",
+    "meaning": {
+      "upright": "Ace of Swords placeholder upright paragraph.",
+      "reversed": "Ace of Swords placeholder reversed paragraph."
+    },
+    "advice": "Ace of Swords placeholder advice.",
+    "affirmation": "Ace of Swords placeholder affirmation.",
+    "as_a_person": "Ace of Swords placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "sword",
+      "hand-from-cloud",
+      "crown"
+    ],
+    "details": []
+  },
+  {
+    "id": "two-of-swords",
+    "arcana": "minor",
+    "suit": "swords",
+    "rank": 2,
+    "name": "Two of Swords",
+    "keywords": {
+      "upright": [
+        "indecision",
+        "stalemate",
+        "avoidance"
+      ],
+      "reversed": [
+        "making a choice",
+        "information overload"
+      ]
+    },
+    "themes": [
+      "choice",
+      "avoidance"
+    ],
+    "combined": "Air’s thoughts, at a standstill: two options and a blindfold.",
+    "prompt": "What decision are you avoiding, and what would help you see it?",
+    "summary": "Two of Swords placeholder summary.",
+    "meaning": {
+      "upright": "Two of Swords placeholder upright paragraph.",
+      "reversed": "Two of Swords placeholder reversed paragraph."
+    },
+    "advice": "Two of Swords placeholder advice.",
+    "affirmation": "Two of Swords placeholder affirmation.",
+    "as_a_person": "Two of Swords placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "sword",
+      "blindfold"
+    ],
+    "details": []
+  },
+  {
+    "id": "three-of-swords",
+    "arcana": "minor",
+    "suit": "swords",
+    "rank": 3,
+    "name": "Three of Swords",
+    "keywords": {
+      "upright": [
+        "heartbreak",
+        "grief",
+        "painful truth"
+      ],
+      "reversed": [
+        "healing",
+        "releasing pain"
+      ]
+    },
+    "themes": [
+      "grief",
+      "healing"
+    ],
+    "combined": "Air’s thoughts, piercing: a painful truth that hurts to hear.",
+    "prompt": "What hurt needs to be acknowledged before it can heal?",
+    "summary": "Three of Swords placeholder summary.",
+    "meaning": {
+      "upright": "Three of Swords placeholder upright paragraph.",
+      "reversed": "Three of Swords placeholder reversed paragraph."
+    },
+    "advice": "Three of Swords placeholder advice.",
+    "affirmation": "Three of Swords placeholder affirmation.",
+    "as_a_person": "Three of Swords placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "sword",
+      "heart",
+      "cloud"
+    ],
+    "details": []
+  },
+  {
+    "id": "four-of-swords",
+    "arcana": "minor",
+    "suit": "swords",
+    "rank": 4,
+    "name": "Four of Swords",
+    "keywords": {
+      "upright": [
+        "rest",
+        "recovery",
+        "retreat"
+      ],
+      "reversed": [
+        "restlessness",
+        "burnout"
+      ]
+    },
+    "themes": [
+      "rest",
+      "recovery"
+    ],
+    "combined": "Air’s thoughts, at rest: a pause to let the mind recover.",
+    "prompt": "What would real rest look like for you right now?",
+    "summary": "Four of Swords placeholder summary.",
+    "meaning": {
+      "upright": "Four of Swords placeholder upright paragraph.",
+      "reversed": "Four of Swords placeholder reversed paragraph."
+    },
+    "advice": "Four of Swords placeholder advice.",
+    "affirmation": "Four of Swords placeholder affirmation.",
+    "as_a_person": "Four of Swords placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "sword",
+      "tomb"
+    ],
+    "details": []
   },
   {
     "id": "five-of-swords",
@@ -435,11 +2443,26 @@
     ],
     "combined": "Air’s thoughts, disrupted: the sharp edges of an argument and what it leaves behind.",
     "prompt": "Is there a conflict where winning might cost more than it’s worth?",
+    "summary": "Five of Swords placeholder summary.",
+    "meaning": {
+      "upright": "Five of Swords placeholder upright paragraph.",
+      "reversed": "Five of Swords placeholder reversed paragraph."
+    },
+    "advice": "Five of Swords placeholder advice.",
+    "affirmation": "Five of Swords placeholder affirmation.",
+    "as_a_person": "Five of Swords placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "sword"
+    ],
     "details": [
       {
         "id": "gathered-swords",
         "label": "The gathered swords",
         "prompt": "What are you still holding from an old argument?",
+        "symbols": [
+          "sword"
+        ],
         "region": {
           "x": 40,
           "y": 55
@@ -449,6 +2472,7 @@
         "id": "walking-away",
         "label": "The figures walking away",
         "prompt": "Who walked away, and what did they need?",
+        "symbols": [],
         "region": {
           "x": 75,
           "y": 70
@@ -458,12 +2482,356 @@
         "id": "sky",
         "label": "The broken sky",
         "prompt": "What does the air feel like for you after a conflict?",
+        "symbols": [],
         "region": {
           "x": 50,
           "y": 15
         }
       }
     ]
+  },
+  {
+    "id": "six-of-swords",
+    "arcana": "minor",
+    "suit": "swords",
+    "rank": 6,
+    "name": "Six of Swords",
+    "keywords": {
+      "upright": [
+        "transition",
+        "moving on",
+        "calmer waters"
+      ],
+      "reversed": [
+        "feeling stuck",
+        "unfinished business"
+      ]
+    },
+    "themes": [
+      "transition",
+      "healing"
+    ],
+    "combined": "Air’s thoughts, in passage: moving toward calmer water.",
+    "prompt": "What are you leaving behind as you move forward?",
+    "summary": "Six of Swords placeholder summary.",
+    "meaning": {
+      "upright": "Six of Swords placeholder upright paragraph.",
+      "reversed": "Six of Swords placeholder reversed paragraph."
+    },
+    "advice": "Six of Swords placeholder advice.",
+    "affirmation": "Six of Swords placeholder affirmation.",
+    "as_a_person": "Six of Swords placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "sword",
+      "boat",
+      "water"
+    ],
+    "details": []
+  },
+  {
+    "id": "seven-of-swords",
+    "arcana": "minor",
+    "suit": "swords",
+    "rank": 7,
+    "name": "Seven of Swords",
+    "keywords": {
+      "upright": [
+        "strategy",
+        "secrecy",
+        "going it alone"
+      ],
+      "reversed": [
+        "coming clean",
+        "rethinking the plan"
+      ]
+    },
+    "themes": [
+      "strategy",
+      "honesty"
+    ],
+    "combined": "Air’s thoughts, scheming: a plan made on your own.",
+    "prompt": "Is there something you’re not saying, even to yourself?",
+    "summary": "Seven of Swords placeholder summary.",
+    "meaning": {
+      "upright": "Seven of Swords placeholder upright paragraph.",
+      "reversed": "Seven of Swords placeholder reversed paragraph."
+    },
+    "advice": "Seven of Swords placeholder advice.",
+    "affirmation": "Seven of Swords placeholder affirmation.",
+    "as_a_person": "Seven of Swords placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "sword"
+    ],
+    "details": []
+  },
+  {
+    "id": "eight-of-swords",
+    "arcana": "minor",
+    "suit": "swords",
+    "rank": 8,
+    "name": "Eight of Swords",
+    "keywords": {
+      "upright": [
+        "feeling trapped",
+        "self-limiting beliefs",
+        "helplessness"
+      ],
+      "reversed": [
+        "release",
+        "a new perspective"
+      ]
+    },
+    "themes": [
+      "limitation",
+      "freedom"
+    ],
+    "combined": "Air’s thoughts, binding: a trap that is looser than it looks.",
+    "prompt": "Which of these limits are real, and which are thoughts?",
+    "summary": "Eight of Swords placeholder summary.",
+    "meaning": {
+      "upright": "Eight of Swords placeholder upright paragraph.",
+      "reversed": "Eight of Swords placeholder reversed paragraph."
+    },
+    "advice": "Eight of Swords placeholder advice.",
+    "affirmation": "Eight of Swords placeholder affirmation.",
+    "as_a_person": "Eight of Swords placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "sword",
+      "blindfold",
+      "chains"
+    ],
+    "details": []
+  },
+  {
+    "id": "nine-of-swords",
+    "arcana": "minor",
+    "suit": "swords",
+    "rank": 9,
+    "name": "Nine of Swords",
+    "keywords": {
+      "upright": [
+        "anxiety",
+        "worry",
+        "sleeplessness"
+      ],
+      "reversed": [
+        "hope",
+        "reaching out"
+      ]
+    },
+    "themes": [
+      "anxiety",
+      "fear"
+    ],
+    "combined": "Air’s thoughts, racing at night: worry that grows in the dark.",
+    "prompt": "What would you say to a friend who was worrying like this?",
+    "summary": "Nine of Swords placeholder summary.",
+    "meaning": {
+      "upright": "Nine of Swords placeholder upright paragraph.",
+      "reversed": "Nine of Swords placeholder reversed paragraph."
+    },
+    "advice": "Nine of Swords placeholder advice.",
+    "affirmation": "Nine of Swords placeholder affirmation.",
+    "as_a_person": "Nine of Swords placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "sword"
+    ],
+    "details": []
+  },
+  {
+    "id": "ten-of-swords",
+    "arcana": "minor",
+    "suit": "swords",
+    "rank": 10,
+    "name": "Ten of Swords",
+    "keywords": {
+      "upright": [
+        "rock bottom",
+        "endings",
+        "exhaustion"
+      ],
+      "reversed": [
+        "recovery",
+        "the worst is over"
+      ]
+    },
+    "themes": [
+      "endings",
+      "release"
+    ],
+    "combined": "Air’s thoughts, at their end: nothing more to lose, and the dawn coming.",
+    "prompt": "What can begin now that this is over?",
+    "summary": "Ten of Swords placeholder summary.",
+    "meaning": {
+      "upright": "Ten of Swords placeholder upright paragraph.",
+      "reversed": "Ten of Swords placeholder reversed paragraph."
+    },
+    "advice": "Ten of Swords placeholder advice.",
+    "affirmation": "Ten of Swords placeholder affirmation.",
+    "as_a_person": "Ten of Swords placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "sword"
+    ],
+    "details": []
+  },
+  {
+    "id": "page-of-swords",
+    "arcana": "minor",
+    "suit": "swords",
+    "rank": 11,
+    "name": "Page of Swords",
+    "keywords": {
+      "upright": [
+        "curiosity",
+        "vigilance",
+        "new ideas"
+      ],
+      "reversed": [
+        "gossip",
+        "scattered thinking"
+      ]
+    },
+    "themes": [
+      "curiosity",
+      "alertness"
+    ],
+    "combined": "Air’s thoughts, newly sharpened: eager, watchful, full of questions.",
+    "prompt": "What are you trying to understand?",
+    "summary": "Page of Swords placeholder summary.",
+    "meaning": {
+      "upright": "Page of Swords placeholder upright paragraph.",
+      "reversed": "Page of Swords placeholder reversed paragraph."
+    },
+    "advice": "Page of Swords placeholder advice.",
+    "affirmation": "Page of Swords placeholder affirmation.",
+    "as_a_person": "Page of Swords placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "sword",
+      "cloud"
+    ],
+    "details": []
+  },
+  {
+    "id": "knight-of-swords",
+    "arcana": "minor",
+    "suit": "swords",
+    "rank": 12,
+    "name": "Knight of Swords",
+    "keywords": {
+      "upright": [
+        "drive",
+        "ambition",
+        "fast thinking"
+      ],
+      "reversed": [
+        "recklessness",
+        "rushing in"
+      ]
+    },
+    "themes": [
+      "ambition",
+      "action"
+    ],
+    "combined": "Air’s thoughts, charging: ideas rushed into action.",
+    "prompt": "Where could slowing down make you sharper?",
+    "summary": "Knight of Swords placeholder summary.",
+    "meaning": {
+      "upright": "Knight of Swords placeholder upright paragraph.",
+      "reversed": "Knight of Swords placeholder reversed paragraph."
+    },
+    "advice": "Knight of Swords placeholder advice.",
+    "affirmation": "Knight of Swords placeholder affirmation.",
+    "as_a_person": "Knight of Swords placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "sword",
+      "horse"
+    ],
+    "details": []
+  },
+  {
+    "id": "queen-of-swords",
+    "arcana": "minor",
+    "suit": "swords",
+    "rank": 13,
+    "name": "Queen of Swords",
+    "keywords": {
+      "upright": [
+        "clarity",
+        "honesty",
+        "independence"
+      ],
+      "reversed": [
+        "coldness",
+        "harsh judgment"
+      ]
+    },
+    "themes": [
+      "honesty",
+      "boundaries"
+    ],
+    "combined": "Air’s thoughts, held with clarity: honest, direct, and fair.",
+    "prompt": "What would you say if you spoke with kind clarity?",
+    "summary": "Queen of Swords placeholder summary.",
+    "meaning": {
+      "upright": "Queen of Swords placeholder upright paragraph.",
+      "reversed": "Queen of Swords placeholder reversed paragraph."
+    },
+    "advice": "Queen of Swords placeholder advice.",
+    "affirmation": "Queen of Swords placeholder affirmation.",
+    "as_a_person": "Queen of Swords placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "sword",
+      "crown",
+      "throne"
+    ],
+    "details": []
+  },
+  {
+    "id": "king-of-swords",
+    "arcana": "minor",
+    "suit": "swords",
+    "rank": 14,
+    "name": "King of Swords",
+    "keywords": {
+      "upright": [
+        "clear judgment",
+        "authority",
+        "integrity"
+      ],
+      "reversed": [
+        "rigidity",
+        "misuse of power"
+      ]
+    },
+    "themes": [
+      "judgment",
+      "integrity"
+    ],
+    "combined": "Air’s thoughts, leading others: fair decisions made with a clear head.",
+    "prompt": "What decision needs both your head and your fairness?",
+    "summary": "King of Swords placeholder summary.",
+    "meaning": {
+      "upright": "King of Swords placeholder upright paragraph.",
+      "reversed": "King of Swords placeholder reversed paragraph."
+    },
+    "advice": "King of Swords placeholder advice.",
+    "affirmation": "King of Swords placeholder affirmation.",
+    "as_a_person": "King of Swords placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "sword",
+      "crown",
+      "throne"
+    ],
+    "details": []
   },
   {
     "id": "ace-of-pentacles",
@@ -488,11 +2856,28 @@
     ],
     "combined": "Earth’s pure potential: a practical, tangible beginning you can hold in your hand.",
     "prompt": "What small, practical seed could you plant this week?",
+    "summary": "Ace of Pentacles placeholder summary.",
+    "meaning": {
+      "upright": "Ace of Pentacles placeholder upright paragraph.",
+      "reversed": "Ace of Pentacles placeholder reversed paragraph."
+    },
+    "advice": "Ace of Pentacles placeholder advice.",
+    "affirmation": "Ace of Pentacles placeholder affirmation.",
+    "as_a_person": "Ace of Pentacles placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "hand-from-cloud",
+      "pentacle",
+      "garden"
+    ],
     "details": [
       {
         "id": "hand",
         "label": "The hand from the cloud",
         "prompt": "What resource has been offered to you?",
+        "symbols": [
+          "hand-from-cloud"
+        ],
         "region": {
           "x": 50,
           "y": 35
@@ -502,6 +2887,9 @@
         "id": "archway",
         "label": "The garden archway",
         "prompt": "What path opens if you tend to this?",
+        "symbols": [
+          "garden"
+        ],
         "region": {
           "x": 50,
           "y": 80
@@ -511,6 +2899,9 @@
         "id": "coin",
         "label": "The coin",
         "prompt": "What does enough look like for you?",
+        "symbols": [
+          "pentacle"
+        ],
         "region": {
           "x": 50,
           "y": 30
@@ -519,164 +2910,504 @@
     ]
   },
   {
-    "id": "empress",
-    "number": 3,
-    "name": "The Empress",
-    "arcana": "major",
+    "id": "two-of-pentacles",
+    "arcana": "minor",
+    "suit": "pentacles",
+    "rank": 2,
+    "name": "Two of Pentacles",
     "keywords": {
       "upright": [
-        "abundance",
-        "nurture",
-        "creativity"
+        "balance",
+        "adaptability",
+        "juggling"
       ],
       "reversed": [
-        "depletion",
-        "smothering"
+        "overwhelm",
+        "dropping the ball"
+      ]
+    },
+    "themes": [
+      "balance",
+      "adaptability"
+    ],
+    "combined": "Earth’s matters, juggled: keeping two things in motion.",
+    "prompt": "What are you juggling, and what could you set down?",
+    "summary": "Two of Pentacles placeholder summary.",
+    "meaning": {
+      "upright": "Two of Pentacles placeholder upright paragraph.",
+      "reversed": "Two of Pentacles placeholder reversed paragraph."
+    },
+    "advice": "Two of Pentacles placeholder advice.",
+    "affirmation": "Two of Pentacles placeholder affirmation.",
+    "as_a_person": "Two of Pentacles placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "pentacle",
+      "infinity",
+      "dance"
+    ],
+    "details": []
+  },
+  {
+    "id": "three-of-pentacles",
+    "arcana": "minor",
+    "suit": "pentacles",
+    "rank": 3,
+    "name": "Three of Pentacles",
+    "keywords": {
+      "upright": [
+        "teamwork",
+        "craft",
+        "collaboration"
+      ],
+      "reversed": [
+        "misalignment",
+        "working alone"
+      ]
+    },
+    "themes": [
+      "craft",
+      "collaboration"
+    ],
+    "combined": "Earth’s work, growing: skill shared with others.",
+    "prompt": "Who helps make your work better?",
+    "summary": "Three of Pentacles placeholder summary.",
+    "meaning": {
+      "upright": "Three of Pentacles placeholder upright paragraph.",
+      "reversed": "Three of Pentacles placeholder reversed paragraph."
+    },
+    "advice": "Three of Pentacles placeholder advice.",
+    "affirmation": "Three of Pentacles placeholder affirmation.",
+    "as_a_person": "Three of Pentacles placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "pentacle"
+    ],
+    "details": []
+  },
+  {
+    "id": "four-of-pentacles",
+    "arcana": "minor",
+    "suit": "pentacles",
+    "rank": 4,
+    "name": "Four of Pentacles",
+    "keywords": {
+      "upright": [
+        "security",
+        "holding on",
+        "control"
+      ],
+      "reversed": [
+        "letting go",
+        "generosity"
+      ]
+    },
+    "themes": [
+      "security",
+      "control"
+    ],
+    "combined": "Earth’s resources, held tight: safety, and the fear of losing it.",
+    "prompt": "What are you holding on to out of fear?",
+    "summary": "Four of Pentacles placeholder summary.",
+    "meaning": {
+      "upright": "Four of Pentacles placeholder upright paragraph.",
+      "reversed": "Four of Pentacles placeholder reversed paragraph."
+    },
+    "advice": "Four of Pentacles placeholder advice.",
+    "affirmation": "Four of Pentacles placeholder affirmation.",
+    "as_a_person": "Four of Pentacles placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "pentacle",
+      "crown"
+    ],
+    "details": []
+  },
+  {
+    "id": "five-of-pentacles",
+    "arcana": "minor",
+    "suit": "pentacles",
+    "rank": 5,
+    "name": "Five of Pentacles",
+    "keywords": {
+      "upright": [
+        "hardship",
+        "feeling left out",
+        "worry"
+      ],
+      "reversed": [
+        "recovery",
+        "finding help"
+      ]
+    },
+    "themes": [
+      "hardship",
+      "support"
+    ],
+    "combined": "Earth’s matters, in winter: hardship, and help that is closer than it looks.",
+    "prompt": "Where could you ask for help you haven’t asked for?",
+    "summary": "Five of Pentacles placeholder summary.",
+    "meaning": {
+      "upright": "Five of Pentacles placeholder upright paragraph.",
+      "reversed": "Five of Pentacles placeholder reversed paragraph."
+    },
+    "advice": "Five of Pentacles placeholder advice.",
+    "affirmation": "Five of Pentacles placeholder affirmation.",
+    "as_a_person": "Five of Pentacles placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "pentacle",
+      "snow",
+      "window"
+    ],
+    "details": []
+  },
+  {
+    "id": "six-of-pentacles",
+    "arcana": "minor",
+    "suit": "pentacles",
+    "rank": 6,
+    "name": "Six of Pentacles",
+    "keywords": {
+      "upright": [
+        "generosity",
+        "giving and receiving",
+        "fairness"
+      ],
+      "reversed": [
+        "strings attached",
+        "imbalance"
+      ]
+    },
+    "themes": [
+      "generosity",
+      "fairness"
+    ],
+    "combined": "Earth’s resources, shared: giving and receiving in balance.",
+    "prompt": "Where are you giving, and where are you receiving?",
+    "summary": "Six of Pentacles placeholder summary.",
+    "meaning": {
+      "upright": "Six of Pentacles placeholder upright paragraph.",
+      "reversed": "Six of Pentacles placeholder reversed paragraph."
+    },
+    "advice": "Six of Pentacles placeholder advice.",
+    "affirmation": "Six of Pentacles placeholder affirmation.",
+    "as_a_person": "Six of Pentacles placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "pentacle",
+      "scales"
+    ],
+    "details": []
+  },
+  {
+    "id": "seven-of-pentacles",
+    "arcana": "minor",
+    "suit": "pentacles",
+    "rank": 7,
+    "name": "Seven of Pentacles",
+    "keywords": {
+      "upright": [
+        "patience",
+        "investment",
+        "taking stock"
+      ],
+      "reversed": [
+        "impatience",
+        "wasted effort"
+      ]
+    },
+    "themes": [
+      "patience",
+      "growth"
+    ],
+    "combined": "Earth’s work, growing slowly: waiting to see what grows.",
+    "prompt": "What are you tending that needs more time?",
+    "summary": "Seven of Pentacles placeholder summary.",
+    "meaning": {
+      "upright": "Seven of Pentacles placeholder upright paragraph.",
+      "reversed": "Seven of Pentacles placeholder reversed paragraph."
+    },
+    "advice": "Seven of Pentacles placeholder advice.",
+    "affirmation": "Seven of Pentacles placeholder affirmation.",
+    "as_a_person": "Seven of Pentacles placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "pentacle",
+      "garden"
+    ],
+    "details": []
+  },
+  {
+    "id": "eight-of-pentacles",
+    "arcana": "minor",
+    "suit": "pentacles",
+    "rank": 8,
+    "name": "Eight of Pentacles",
+    "keywords": {
+      "upright": [
+        "practice",
+        "skill",
+        "diligence"
+      ],
+      "reversed": [
+        "perfectionism",
+        "lack of focus"
+      ]
+    },
+    "themes": [
+      "practice",
+      "craft"
+    ],
+    "combined": "Earth’s work, practiced: getting better one piece at a time.",
+    "prompt": "What skill are you building, one day at a time?",
+    "summary": "Eight of Pentacles placeholder summary.",
+    "meaning": {
+      "upright": "Eight of Pentacles placeholder upright paragraph.",
+      "reversed": "Eight of Pentacles placeholder reversed paragraph."
+    },
+    "advice": "Eight of Pentacles placeholder advice.",
+    "affirmation": "Eight of Pentacles placeholder affirmation.",
+    "as_a_person": "Eight of Pentacles placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "pentacle"
+    ],
+    "details": []
+  },
+  {
+    "id": "nine-of-pentacles",
+    "arcana": "minor",
+    "suit": "pentacles",
+    "rank": 9,
+    "name": "Nine of Pentacles",
+    "keywords": {
+      "upright": [
+        "self-sufficiency",
+        "abundance",
+        "enjoyment"
+      ],
+      "reversed": [
+        "overwork",
+        "dependence"
+      ]
+    },
+    "themes": [
+      "independence",
+      "abundance"
+    ],
+    "combined": "Earth’s rewards, enjoyed: a life you’ve grown yourself.",
+    "prompt": "What have you grown that you can enjoy now?",
+    "summary": "Nine of Pentacles placeholder summary.",
+    "meaning": {
+      "upright": "Nine of Pentacles placeholder upright paragraph.",
+      "reversed": "Nine of Pentacles placeholder reversed paragraph."
+    },
+    "advice": "Nine of Pentacles placeholder advice.",
+    "affirmation": "Nine of Pentacles placeholder affirmation.",
+    "as_a_person": "Nine of Pentacles placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "pentacle",
+      "bird",
+      "harvest",
+      "garden",
+      "house"
+    ],
+    "details": []
+  },
+  {
+    "id": "ten-of-pentacles",
+    "arcana": "minor",
+    "suit": "pentacles",
+    "rank": 10,
+    "name": "Ten of Pentacles",
+    "keywords": {
+      "upright": [
+        "legacy",
+        "family",
+        "lasting security"
+      ],
+      "reversed": [
+        "family tension",
+        "instability"
+      ]
+    },
+    "themes": [
+      "legacy",
+      "family"
+    ],
+    "combined": "Earth’s resources, complete: what lasts across generations.",
+    "prompt": "What do you want to pass on?",
+    "summary": "Ten of Pentacles placeholder summary.",
+    "meaning": {
+      "upright": "Ten of Pentacles placeholder upright paragraph.",
+      "reversed": "Ten of Pentacles placeholder reversed paragraph."
+    },
+    "advice": "Ten of Pentacles placeholder advice.",
+    "affirmation": "Ten of Pentacles placeholder affirmation.",
+    "as_a_person": "Ten of Pentacles placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "pentacle",
+      "house",
+      "dog",
+      "child"
+    ],
+    "details": []
+  },
+  {
+    "id": "page-of-pentacles",
+    "arcana": "minor",
+    "suit": "pentacles",
+    "rank": 11,
+    "name": "Page of Pentacles",
+    "keywords": {
+      "upright": [
+        "learning",
+        "ambition",
+        "a new opportunity"
+      ],
+      "reversed": [
+        "procrastination",
+        "lack of focus"
+      ]
+    },
+    "themes": [
+      "learning",
+      "opportunity"
+    ],
+    "combined": "Earth’s matters, newly found: a student with a practical goal.",
+    "prompt": "What practical skill do you want to learn?",
+    "summary": "Page of Pentacles placeholder summary.",
+    "meaning": {
+      "upright": "Page of Pentacles placeholder upright paragraph.",
+      "reversed": "Page of Pentacles placeholder reversed paragraph."
+    },
+    "advice": "Page of Pentacles placeholder advice.",
+    "affirmation": "Page of Pentacles placeholder affirmation.",
+    "as_a_person": "Page of Pentacles placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "pentacle"
+    ],
+    "details": []
+  },
+  {
+    "id": "knight-of-pentacles",
+    "arcana": "minor",
+    "suit": "pentacles",
+    "rank": 12,
+    "name": "Knight of Pentacles",
+    "keywords": {
+      "upright": [
+        "reliability",
+        "steady progress",
+        "routine"
+      ],
+      "reversed": [
+        "stagnation",
+        "boredom"
+      ]
+    },
+    "themes": [
+      "steadiness",
+      "routine"
+    ],
+    "combined": "Earth’s work, in slow motion: steady, careful, and reliable.",
+    "prompt": "What steady habit is carrying you forward?",
+    "summary": "Knight of Pentacles placeholder summary.",
+    "meaning": {
+      "upright": "Knight of Pentacles placeholder upright paragraph.",
+      "reversed": "Knight of Pentacles placeholder reversed paragraph."
+    },
+    "advice": "Knight of Pentacles placeholder advice.",
+    "affirmation": "Knight of Pentacles placeholder affirmation.",
+    "as_a_person": "Knight of Pentacles placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "pentacle",
+      "horse"
+    ],
+    "details": []
+  },
+  {
+    "id": "queen-of-pentacles",
+    "arcana": "minor",
+    "suit": "pentacles",
+    "rank": 13,
+    "name": "Queen of Pentacles",
+    "keywords": {
+      "upright": [
+        "nurturing",
+        "practicality",
+        "comfort"
+      ],
+      "reversed": [
+        "self-neglect",
+        "overgiving"
       ]
     },
     "themes": [
       "care",
-      "creativity"
+      "comfort"
     ],
-    "prompt": "What are you nurturing, and who nurtures you?",
+    "combined": "Earth’s resources, held with care: practical warmth and a well-kept home.",
+    "prompt": "How are you caring for your body and your home?",
+    "summary": "Queen of Pentacles placeholder summary.",
+    "meaning": {
+      "upright": "Queen of Pentacles placeholder upright paragraph.",
+      "reversed": "Queen of Pentacles placeholder reversed paragraph."
+    },
+    "advice": "Queen of Pentacles placeholder advice.",
+    "affirmation": "Queen of Pentacles placeholder affirmation.",
+    "as_a_person": "Queen of Pentacles placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "pentacle",
+      "crown",
+      "throne"
+    ],
     "details": []
   },
   {
-    "id": "emperor",
-    "number": 4,
-    "name": "The Emperor",
-    "arcana": "major",
+    "id": "king-of-pentacles",
+    "arcana": "minor",
+    "suit": "pentacles",
+    "rank": 14,
+    "name": "King of Pentacles",
     "keywords": {
       "upright": [
-        "structure",
-        "authority",
-        "protection"
+        "stability",
+        "abundance",
+        "providing"
       ],
       "reversed": [
-        "rigidity",
-        "control"
+        "greed",
+        "stubbornness"
       ]
     },
     "themes": [
-      "structure",
-      "responsibility"
+      "security",
+      "abundance"
     ],
-    "prompt": "Where does structure help you, and where does it hold you back?",
-    "details": []
-  },
-  {
-    "id": "hierophant",
-    "number": 5,
-    "name": "The Hierophant",
-    "arcana": "major",
-    "keywords": {
-      "upright": [
-        "tradition",
-        "teaching",
-        "belonging"
-      ],
-      "reversed": [
-        "questioning convention",
-        "finding your own path"
-      ]
+    "combined": "Earth’s resources, leading others: steady success that provides.",
+    "prompt": "What does real security look like for you?",
+    "summary": "King of Pentacles placeholder summary.",
+    "meaning": {
+      "upright": "King of Pentacles placeholder upright paragraph.",
+      "reversed": "King of Pentacles placeholder reversed paragraph."
     },
-    "themes": [
-      "belief",
-      "community"
+    "advice": "King of Pentacles placeholder advice.",
+    "affirmation": "King of Pentacles placeholder affirmation.",
+    "as_a_person": "King of Pentacles placeholder as a person.",
+    "facing": null,
+    "symbols": [
+      "pentacle",
+      "crown",
+      "throne",
+      "bull"
     ],
-    "prompt": "Which beliefs did you inherit, and which have you chosen?",
-    "details": []
-  },
-  {
-    "id": "lovers",
-    "number": 6,
-    "name": "The Lovers",
-    "arcana": "major",
-    "keywords": {
-      "upright": [
-        "connection",
-        "choice",
-        "values"
-      ],
-      "reversed": [
-        "misalignment",
-        "inner conflict"
-      ]
-    },
-    "themes": [
-      "relationships",
-      "values"
-    ],
-    "prompt": "What choice would bring you closer to what you value?",
-    "details": []
-  },
-  {
-    "id": "chariot",
-    "number": 7,
-    "name": "The Chariot",
-    "arcana": "major",
-    "keywords": {
-      "upright": [
-        "willpower",
-        "direction",
-        "momentum"
-      ],
-      "reversed": [
-        "scattered energy",
-        "being pulled two ways"
-      ]
-    },
-    "themes": [
-      "will",
-      "direction"
-    ],
-    "prompt": "What are you steering toward, and what’s pulling against you?",
-    "details": []
-  },
-  {
-    "id": "strength",
-    "number": 8,
-    "name": "Strength",
-    "arcana": "major",
-    "keywords": {
-      "upright": [
-        "gentle courage",
-        "patience",
-        "compassion"
-      ],
-      "reversed": [
-        "self-doubt",
-        "forcing it"
-      ]
-    },
-    "themes": [
-      "courage",
-      "gentleness"
-    ],
-    "prompt": "Where could gentleness be stronger than force?",
-    "details": []
-  },
-  {
-    "id": "wheel-of-fortune",
-    "number": 10,
-    "name": "The Wheel of Fortune",
-    "arcana": "major",
-    "keywords": {
-      "upright": [
-        "cycles",
-        "change",
-        "turning points"
-      ],
-      "reversed": [
-        "resisting change",
-        "feeling stuck"
-      ]
-    },
-    "themes": [
-      "change",
-      "cycles"
-    ],
-    "prompt": "What cycle are you in the middle of?",
     "details": []
   }
 ]

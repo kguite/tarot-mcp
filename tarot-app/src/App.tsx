@@ -1,91 +1,57 @@
 import { useState } from 'react'
-import { Button, IconButton } from './components/Button'
-import { Card } from './components/Card'
-import { CardInspect } from './components/CardInspect'
-import { Eyebrow } from './components/Eyebrow'
-import { Keywords } from './components/Keywords'
-import { Ornament } from './components/Ornament'
-import { ReadingPanel } from './components/ReadingPanel'
-import { TextField } from './components/TextField'
-import { CARDS, SPREADS } from './data'
-import type { Card as CardData } from './data/types'
+import { DrawSheet } from './components/DrawSheet'
+import { Nav } from './components/Nav'
+import type { Page } from './components/Nav'
+import { SPREADS } from './data'
+import { newReading } from './lib/deck'
+import type { Reading } from './lib/deck'
+import { Draw } from './screens/Draw'
+import { Learn } from './screens/Learn'
+import { Journal, Settings } from './screens/Placeholders'
+import { Today } from './screens/Today'
 import styles from './App.module.css'
 
-// Temporary: a gallery of the shared components, until the prototype is ported screen by screen.
-const byId = (id: string) => CARDS.find((c) => c.id === id)!
-const spread = SPREADS.find((s) => s.id === 'past-present-future')!
-const [past, present, future] = spread.positions
-
-type Inspecting = { card: CardData; reversed: boolean; context: string }
-
+// Which page is showing is plain state for now; a router (with real URLs and the back button) can come later.
+// The reading in progress lives here, above the pages, so switching tabs never loses it.
 function App() {
-  const [inspecting, setInspecting] = useState<Inspecting | null>(null)
-  const [reflection, setReflection] = useState('')
+  const [page, setPage] = useState<Page>('today')
+  const [reading, setReading] = useState<Reading | null>(null)
+  const [choosing, setChoosing] = useState(false)
 
-  const open = (card: CardData, position: string, reversed = false) =>
-    setInspecting({ card, reversed, context: `${position} · ${reversed ? 'reversed' : 'upright'}` })
+  function start(spreadId: string) {
+    setReading(newReading(SPREADS.find((s) => s.id === spreadId)!))
+    setChoosing(false)
+    setPage('draw')
+  }
+
+  // The Draw star asks first (continue, or which new reading) instead of going straight to a page.
+  function go(next: Page) {
+    if (next === 'draw') setChoosing(true)
+    else setPage(next)
+  }
 
   return (
-    <main className={styles.page}>
-      <header className={styles.top}>
-        <IconButton label="Back">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6" /></svg>
-        </IconButton>
-        <IconButton label="Menu">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
-        </IconButton>
-      </header>
-
-      <div className={styles.title}>
-        <Eyebrow gold>Your reading</Eyebrow>
-        <h1>{spread.name}</h1>
-        <Ornament />
-      </div>
-
-      <div className={styles.spread}>
-        <Card state="resting" label={past.name} card={byId('seven-of-wands')} onOpen={() => open(byId('seven-of-wands'), past.name)} />
-        <Card state="chosen" label={present.name} card={byId('moon')} onOpen={() => open(byId('moon'), present.name)} />
-        <Card state="resting" label={future.name} card={byId('queen-of-cups')} reversed onOpen={() => open(byId('queen-of-cups'), future.name, true)} />
-      </div>
-
-      <ReadingPanel card={byId('moon')} reversed={false} position={present.name} question={present.prompt} />
-      <TextField
-        label="Your reflection"
-        placeholder="Write whatever comes up. There’s no wrong answer."
-        value={reflection}
-        onChange={(e) => setReflection(e.target.value)}
-      />
-      <div className={styles.actions}>
-        <Button variant="secondary">Shuffle</Button>
-        <Button>Save</Button>
-      </div>
-
-      <h2 className={styles.section}>Card states</h2>
-      <div className={styles.spread}>
-        <Card state="down" label="Choose" />
-        <Card state="resting" label="Resting" card={byId('star')} />
-        <Card state="chosen" label="Chosen" card={byId('star')} />
-      </div>
-
-      <h2 className={styles.section}>Keywords, reversed</h2>
-      <Keywords words={byId('moon').keywords.reversed} />
-
-      {inspecting && (
-        <CardInspect
-          key={inspecting.card.id}
-          card={inspecting.card}
-          reversed={inspecting.reversed}
-          context={inspecting.context}
-          onClose={() => setInspecting(null)}
-          onOpen={(card) => setInspecting({ card, reversed: false, context: 'Also in' })}
-          onWrite={(prompt) => {
-            // Like the prototype: add the question to the reflection, on its own line, and go back to writing.
-            setReflection((text) => (text.trim() ? `${text.trimEnd()}\n\n${prompt}\n` : `${prompt}\n`))
-            setInspecting(null)
+    <>
+      <Nav current={page} onGo={go} />
+      <main className={styles.content}>
+        {page === 'today' && <Today onStart={start} />}
+        {page === 'draw' && reading && <Draw key={reading.draws.map((d) => d.card.id).join()} reading={reading} onChange={setReading} />}
+        {page === 'learn' && <Learn />}
+        {page === 'journal' && <Journal />}
+        {page === 'settings' && <Settings />}
+      </main>
+      {choosing && (
+        <DrawSheet
+          reading={reading}
+          onContinue={() => {
+            setChoosing(false)
+            setPage('draw')
           }}
+          onStart={start}
+          onClose={() => setChoosing(false)}
         />
       )}
-    </main>
+    </>
   )
 }
 

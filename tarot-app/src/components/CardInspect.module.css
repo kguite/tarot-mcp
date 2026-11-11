@@ -33,8 +33,9 @@
   text-align: center;
 }
 
-.title h1 {
+.name {
   font-size: 26px;
+  outline: none;
 }
 
 .body {
@@ -79,7 +80,7 @@
   cursor: zoom-out;
 }
 
-.art img {
+.art > :first-child {
   display: block;
   width: 100%;
 }

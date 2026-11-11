@@ -1,8 +1,9 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import type { MouseEvent } from 'react'
-import { artUrl, CARDS, SYMBOLS } from '../data'
+import { CARDS, SYMBOLS } from '../data'
 import type { Card } from '../data/types'
 import { Button, IconButton } from './Button'
+import { CardArt } from './CardArt'
 import { Eyebrow } from './Eyebrow'
 import { SymbolSheet } from './SymbolSheet'
 import styles from './CardInspect.module.css'
@@ -13,13 +14,15 @@ type CardInspectProps = {
   context: string
   onClose: () => void
   onOpen: (card: Card) => void
-  onWrite: (prompt: string) => void
+  // Only where there is a reflection to write into; without it the button is left out.
+  onWrite?: (prompt: string) => void
 }
 
 // A card up close: the art in its frame with rings on the tappable details, what's in the picture, and the figure.
 // The parent gives it key={card.id}, so opening another card starts fresh.
 export function CardInspect({ card, reversed = false, context, onClose, onOpen, onWrite }: CardInspectProps) {
   const dialog = useRef<HTMLDialogElement>(null)
+  const title = useRef<HTMLHeadingElement>(null)
   const viewport = useRef<HTMLDivElement>(null)
   const zoomPoint = useRef({ x: 0.5, y: 0.5 })
   const [detailId, setDetailId] = useState<string | null>(null)
@@ -27,8 +30,10 @@ export function CardInspect({ card, reversed = false, context, onClose, onOpen, 
   const [zoomed, setZoomed] = useState(false)
 
   // showModal gives the focus trap, Escape to close and the dimmed backdrop for free.
+  // It focuses the first button (Close), which shows its focus ring; start on the title instead.
   useEffect(() => {
     dialog.current?.showModal()
+    title.current?.focus()
   }, [])
 
   // After zooming in, scroll so the spot that was tapped stays in view.
@@ -60,7 +65,7 @@ export function CardInspect({ card, reversed = false, context, onClose, onOpen, 
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
         </IconButton>
         <div className={styles.title}>
-          <h1>{card.name}</h1>
+          <h1 ref={title} tabIndex={-1} className={styles.name}>{card.name}</h1>
           <Eyebrow gold>{context}</Eyebrow>
         </div>
         <IconButton label={zoomed ? 'Zoom out' : 'Zoom in'} onClick={() => toggleZoom()}>
@@ -73,7 +78,7 @@ export function CardInspect({ card, reversed = false, context, onClose, onOpen, 
           <div ref={viewport} className={zoomed ? `${styles.viewport} ${styles.zoomed}` : styles.viewport}>
             {/* Rings are placed in percent of this box, so they stay on the art when it zooms or turns over. */}
             <div className={reversed ? `${styles.art} ${styles.reversed}` : styles.art} onDoubleClick={toggleZoom}>
-              <img src={artUrl(card.id)} alt={reversed ? `${card.name}, reversed` : card.name} draggable={false} />
+              <CardArt card={card} alt={reversed ? `${card.name}, reversed` : card.name} />
               {card.details.map((d) => (
                 <button
                   key={d.id}
@@ -87,13 +92,15 @@ export function CardInspect({ card, reversed = false, context, onClose, onOpen, 
             </div>
           </div>
         </div>
-        <Eyebrow>{zoomed ? 'Scroll to look around' : 'Double-tap or use the zoom button'}</Eyebrow>
+        <Eyebrow>
+          {zoomed ? 'Scroll to look around' : card.details.length ? 'Tap a gold ring, or double-tap to zoom' : 'Double-tap or use the zoom button'}
+        </Eyebrow>
 
         {detail && (
           <section className={styles.detail} aria-label="Selected detail">
             <Eyebrow gold>{detail.label}</Eyebrow>
             <p className={styles.prompt}>{detail.prompt}</p>
-            <Button variant="secondary" className={styles.write} onClick={() => onWrite(detail.prompt)}>Write from this</Button>
+            {onWrite && <Button variant="secondary" className={styles.write} onClick={() => onWrite(detail.prompt)}>Write from this</Button>}
           </section>
         )}
 

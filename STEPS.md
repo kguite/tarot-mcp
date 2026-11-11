@@ -643,9 +643,58 @@ numbers were wrong.
 
 Not yet checked in a real browser or on a phone, only built; double-tap on phones in particular.
 
+## 13. The draw screen and the navigation
+
+Both were tried on the design canvas first (a tappable prototype for the draw), then built.
+
+**Navigation.** `Nav` is one component with one set of buttons. The CSS lays it out as a bottom bar
+with Draw as a raised gold star on a phone, and as an always-open sidebar on a screen wider than
+900px (`@media (min-width: 900px)`). No JavaScript decides which: the browser does, from the
+width. Which page shows is plain React state in `App.tsx`; a router, for real URLs and the back
+button, can come when there's a reason.
+
+**The draw.** `src/lib/deck.ts` shuffles all 78 with Fisher–Yates and `crypto.getRandomValues` and
+reverses about 1 in 4: the same rules as `draw_cards` on the server, in the app's own code. The
+cards are drawn when the screen opens; picking from the fan only decides the order you meet them.
+Then three taps per card:
+
+1. **Pick** from the fan: it springs into the next empty spot, face down.
+2. **Turn over** (`FlipCard`): both faces are always there, back to back. The inner box turns
+   180 degrees around Y, and `backface-visibility: hidden` hides whichever face points away.
+3. **Tap again** for the meaning: the `ReadingPanel` rises, with "Look closer" into `CardInspect`.
+
+The meaning waits on purpose: reading the picture first helps you remember the card.
+
+**The fan** is seven buttons stacked on the same spot, each turned by its own CSS variable
+(`--angle`) around a point below the middle. One CSS rule, seven angles.
+
+**Learn** shows all 78 cards; tap one to inspect it. Tabs and filters come later. `CardInspect`'s
+"Write from this" only appears where there is a reflection to write into.
+
+**Tried on a phone** (a build published as a private page), which found three things:
+
+- **Leaving the Draw tab threw the reading away.** Each page only exists while it shows, so its
+  state went with it. The fix is "lifting state up": the reading now lives in `App`, above the
+  pages, and `Draw` gets it as a prop and hands changes back. Only passing things (which meaning
+  is open) stay inside `Draw`.
+- **What should the star do?** Going straight to a reading risked losing one; always starting
+  fresh risked it more. It opens `DrawSheet`, a bottom sheet: "Continue your reading" (with tiny
+  versions of its spots) when one is in progress, then the spreads. A raised center button that
+  opens a short "what kind?" menu is a common pattern, so it reads as expected.
+- **One card was the width of the screen.** Each spot is now at most 150px, centered.
+
+Also: `CardArt` is now the one place card art is drawn; if an image fails to load it shows the
+card's name instead of an empty frame. And the inspect view opens with focus on the card's title,
+not the close button, so no focus ring flashes on a tap.
+
+**Publishing a preview:** `vite build --base ./` makes every path relative, so the build works as a
+published page. When updating it, keep the previous build's files: a page still cached on the
+phone looks for the old script, and a missing one means a blank screen.
+
 ## Next
 
-- Try CardInspect on a phone; then the draw screen: the fan, pick, and flip with the spring
+- Saving: `src/lib/store.ts` (local storage first, behind the same functions FastAPI will fill in
+  later), a Save button on Draw, and the Journal listing saved readings
 - More details per card as we notice them, aiming for about 6 each, placed on the art with the
   grid: the High Priestess's throne and pillars, the Five of Swords' wind and beach, the Moon's two
   towers. New ones may need new symbols (wind, beach)
@@ -654,4 +703,4 @@ Not yet checked in a real browser or on a phone, only built; double-tap on phone
   Claude choose between the tools
 - Explore the data through the tools and adjust the shape; write the placeholder fields
 - Access: levels, permissions and circles, in the build order in `ACCESS.md`
-- Port the `store` module (saving readings) to `src/lib/store.ts`, calling the FastAPI endpoints
+- Point `store.ts` at the FastAPI endpoints once readings live in the database

@@ -16,3 +16,20 @@ export const CardsIcon = () => (
 export const SlidersIcon = () => (
   <svg {...props}><path d="M4 7h10M18 7h2M4 17h4M12 17h8" /><circle cx="16" cy="7" r="2" /><circle cx="10" cy="17" r="2" /></svg>
 )
+
+// Suit marks for the Learn filter, drawn to match the line icons above.
+export const WandIcon = () => (
+  <svg {...props}><path d="M7 21L17 5" /><path d="M17 5l1.5-2M15.5 7.5l2.5-.5M13.6 10.5l-2-1" /></svg>
+)
+
+export const CupIcon = () => (
+  <svg {...props}><path d="M6 4h12v3a6 6 0 0 1-12 0z" /><path d="M12 13v5M8 20h8" /></svg>
+)
+
+export const SwordIcon = () => (
+  <svg {...props}><path d="M12 2v14M8 16h8M12 16v5" /><path d="M10.5 4.5L12 2l1.5 2.5" /></svg>
+)
+
+export const PentacleIcon = () => (
+  <svg {...props}><circle cx="12" cy="12" r="9" /><path d="M12 5l4 12-10-7.5h12L8 17z" /></svg>
+)

@@ -732,6 +732,22 @@ because heights are now on nine Wands, not two.
 Delegating the looking kept 78 images out of this conversation; checking its report before
 applying kept the data honest. Same rule as everywhere: an agent's findings are a draft.
 
+## 16. Filtering Learn by suit
+
+A row of six buttons over the Learn grid: All, Majors, Wands, Cups, Swords, Pentacles. Picking
+one shows only that group's cards, with a panel above them saying what the group means.
+
+- **One piece of state.** Learn keeps only which group is picked (`null` for All). The filtered
+  cards and the panel are worked out from it on every render, not stored, so they can never
+  disagree with the buttons.
+- **Toggle buttons, not tabs.** Each is a plain `<button>` with `aria-pressed`, so a screen
+  reader says "Cups, pressed". The CSS styles `[aria-pressed='true']`, so the look and the
+  meaning come from the same attribute.
+- **No new text.** The panel reuses `suits.json` (element, summary, reflection question) and
+  `arcana.json` (the Majors summary), the same words the app shows elsewhere.
+- **Icons drawn as line SVGs** in `icons.tsx`, matching the nav icons; Majors borrows the star
+  from the card back. Six across fits a phone, icon over label.
+
 ## Next
 
 - A "Waite says" section in the inspect view: his picture description and meanings from

@@ -403,8 +403,8 @@ the chat app, you're in the wrong repo. Here, if the model is picking cards, the
 
 ## Next
 
-- One resource (Waite's text per card) and one MCP prompt (`three_card_reading`), each with a
-  test
+- One resource (Waite's text per card) with a test. The `daily_draw` prompt is built; write it up
+  here as step 7
 - Data shape: a shared `symbols.json` so details on different cards link up ("other cards with
   pillars"), and a `find_cards` tool that filters by symbol, suit and rank. Then the other 61
   cards in that shape, then explore the data through the MCP tools and adjust the shape

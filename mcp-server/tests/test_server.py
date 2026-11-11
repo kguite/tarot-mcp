@@ -73,6 +73,28 @@ def test_draw_cards_reversed_uses_reversed_keywords(monkeypatch):
     assert draw['keywords'] == card['keywords']['reversed']
 
 
+# The prompt is on the prompts menu with an optional question.
+def test_daily_draw_is_listed():
+    async def run():
+        async with Client(mcp) as client:
+            return await client.list_prompts()
+    prompts = {p.name: p for p in asyncio.run(run()).prompts}
+
+    assert prompts['daily_draw'].arguments[0].name == 'question'
+    assert not prompts['daily_draw'].arguments[0].required
+
+
+# The question goes into the message, and Claude is told to hold back the meaning.
+def test_daily_draw_includes_question_and_waits():
+    async def run():
+        async with Client(mcp) as client:
+            return await client.get_prompt('daily_draw', {'question': 'What needs my attention?'})
+    text = asyncio.run(run()).messages[0].content.text
+
+    assert 'What needs my attention?' in text
+    assert "Don't share keywords or meanings until I have written my first impression" in text
+
+
 # An unknown spread is an error that lists the valid ids.
 def test_draw_cards_unknown_spread_lists_valid_ids():
     result = call('draw_cards', {'spread_id': 'three-card'})

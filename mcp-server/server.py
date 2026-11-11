@@ -74,6 +74,21 @@ def draw_cards(
     return json.dumps(draws, indent=2)
 
 
+# A prompt is a set menu the person picks. It can do what a tool can't: tell Claude to wait.
+@mcp.prompt()
+def daily_draw(
+    question: Annotated[str, Field(description='What you are asking today. Leave blank for an open draw.')] = '',
+) -> str:
+    """A one-card daily draw: your first impression comes before any meaning."""
+    asking = f'My question today: {question}' if question else 'I have no question today, just an open draw.'
+    return f"""Let's do a daily one-card draw. {asking}
+
+1. Call draw_cards with spread_id 'single'.
+2. Tell me only the card's name and whether it is reversed. Then ask what I notice first, before any meaning.
+3. Wait for my answer. Don't share keywords or meanings until I have written my first impression.
+4. Then talk about the card, starting from what I wrote. Ask questions; don't predict what will happen."""
+
+
 if __name__ == '__main__':
     # stdio: stdout is the channel to the client, so never print() here.
     mcp.run()

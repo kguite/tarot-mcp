@@ -28,7 +28,8 @@
     "advice": "The Fool placeholder advice.",
     "affirmation": "The Fool placeholder affirmation.",
     "as_a_person": "The Fool placeholder as a person.",
-    "facing": null,
+    "facing": "left",
+    "pose": "walking",
     "symbols": [
       "heights",
       "dog",
@@ -105,7 +106,8 @@
     "advice": "The Magician placeholder advice.",
     "affirmation": "The Magician placeholder affirmation.",
     "as_a_person": "The Magician placeholder as a person.",
-    "facing": null,
+    "facing": "forward",
+    "pose": "standing",
     "symbols": [
       "infinity",
       "serpent",
@@ -184,7 +186,8 @@
     "advice": "The High Priestess placeholder advice.",
     "affirmation": "The High Priestess placeholder affirmation.",
     "as_a_person": "The High Priestess placeholder as a person.",
-    "facing": null,
+    "facing": "forward",
+    "pose": "seated",
     "symbols": [
       "moon",
       "crown",
@@ -262,7 +265,8 @@
     "advice": "The Empress placeholder advice.",
     "affirmation": "The Empress placeholder affirmation.",
     "as_a_person": "The Empress placeholder as a person.",
-    "facing": null,
+    "facing": "forward",
+    "pose": "seated",
     "symbols": [
       "crown",
       "star",
@@ -302,7 +306,8 @@
     "advice": "The Emperor placeholder advice.",
     "affirmation": "The Emperor placeholder affirmation.",
     "as_a_person": "The Emperor placeholder as a person.",
-    "facing": null,
+    "facing": "forward",
+    "pose": "seated",
     "symbols": [
       "sceptre",
       "globe",
@@ -341,7 +346,8 @@
     "advice": "The Hierophant placeholder advice.",
     "affirmation": "The Hierophant placeholder affirmation.",
     "as_a_person": "The Hierophant placeholder as a person.",
-    "facing": null,
+    "facing": "forward",
+    "pose": "seated",
     "symbols": [
       "crown",
       "pillars",
@@ -380,7 +386,8 @@
     "advice": "The Lovers placeholder advice.",
     "affirmation": "The Lovers placeholder affirmation.",
     "as_a_person": "The Lovers placeholder as a person.",
-    "facing": null,
+    "facing": "forward",
+    "pose": "flying",
     "symbols": [
       "sun",
       "angel",
@@ -418,7 +425,8 @@
     "advice": "The Chariot placeholder advice.",
     "affirmation": "The Chariot placeholder affirmation.",
     "as_a_person": "The Chariot placeholder as a person.",
-    "facing": null,
+    "facing": "forward",
+    "pose": "riding",
     "symbols": [
       "sword",
       "sphinx"
@@ -454,7 +462,8 @@
     "advice": "Strength placeholder advice.",
     "affirmation": "Strength placeholder affirmation.",
     "as_a_person": "Strength placeholder as a person.",
-    "facing": null,
+    "facing": "right",
+    "pose": "standing",
     "symbols": [
       "infinity",
       "lion",
@@ -491,7 +500,8 @@
     "advice": "The Hermit placeholder advice.",
     "affirmation": "The Hermit placeholder affirmation.",
     "as_a_person": "The Hermit placeholder as a person.",
-    "facing": null,
+    "facing": "left",
+    "pose": "standing",
     "symbols": [
       "lantern",
       "star",
@@ -567,6 +577,7 @@
     "affirmation": "The Wheel of Fortune placeholder affirmation.",
     "as_a_person": "The Wheel of Fortune placeholder as a person.",
     "facing": null,
+    "pose": null,
     "symbols": [
       "wheel",
       "sphinx",
@@ -604,6 +615,7 @@
     "affirmation": "Justice placeholder affirmation.",
     "as_a_person": "Justice placeholder as a person.",
     "facing": "forward",
+    "pose": "seated",
     "symbols": [
       "pillars",
       "sword",
@@ -643,7 +655,8 @@
     "advice": "The Hanged Man placeholder advice.",
     "affirmation": "The Hanged Man placeholder affirmation.",
     "as_a_person": "The Hanged Man placeholder as a person.",
-    "facing": null,
+    "facing": "forward",
+    "pose": "upside-down",
     "symbols": [
       "tree",
       "cross"
@@ -679,7 +692,8 @@
     "advice": "Death placeholder advice.",
     "affirmation": "Death placeholder affirmation.",
     "as_a_person": "Death placeholder as a person.",
-    "facing": null,
+    "facing": "right",
+    "pose": "riding",
     "symbols": [
       "horse",
       "banner",
@@ -720,7 +734,8 @@
     "advice": "Temperance placeholder advice.",
     "affirmation": "Temperance placeholder affirmation.",
     "as_a_person": "Temperance placeholder as a person.",
-    "facing": null,
+    "facing": "forward",
+    "pose": "standing",
     "symbols": [
       "angel",
       "sun",
@@ -761,7 +776,8 @@
     "advice": "The Devil placeholder advice.",
     "affirmation": "The Devil placeholder affirmation.",
     "as_a_person": "The Devil placeholder as a person.",
-    "facing": null,
+    "facing": "forward",
+    "pose": "seated",
     "symbols": [
       "torch",
       "chains",
@@ -799,6 +815,7 @@
     "affirmation": "The Tower placeholder affirmation.",
     "as_a_person": "The Tower placeholder as a person.",
     "facing": null,
+    "pose": "falling",
     "symbols": [
       "tower",
       "lightning",
@@ -837,7 +854,8 @@
     "advice": "The Star placeholder advice.",
     "affirmation": "The Star placeholder affirmation.",
     "as_a_person": "The Star placeholder as a person.",
-    "facing": null,
+    "facing": "left",
+    "pose": "kneeling",
     "symbols": [
       "star",
       "water",
@@ -913,6 +931,7 @@
     "affirmation": "I can move forward without seeing all of it.",
     "as_a_person": null,
     "facing": "left",
+    "pose": null,
     "symbols": [
       "moon",
       "heights",
@@ -993,7 +1012,8 @@
     "advice": "The Sun placeholder advice.",
     "affirmation": "The Sun placeholder affirmation.",
     "as_a_person": "The Sun placeholder as a person.",
-    "facing": null,
+    "facing": "forward",
+    "pose": "riding",
     "symbols": [
       "sun",
       "child",
@@ -1032,7 +1052,8 @@
     "advice": "Judgement placeholder advice.",
     "affirmation": "Judgement placeholder affirmation.",
     "as_a_person": "Judgement placeholder as a person.",
-    "facing": null,
+    "facing": "right",
+    "pose": "flying",
     "symbols": [
       "angel",
       "trumpet",
@@ -1073,7 +1094,8 @@
     "advice": "The World placeholder advice.",
     "affirmation": "The World placeholder affirmation.",
     "as_a_person": "The World placeholder as a person.",
-    "facing": null,
+    "facing": "left",
+    "pose": "dancing",
     "symbols": [
       "four-creatures",
       "flowers",
@@ -1114,6 +1136,7 @@
     "affirmation": "Ace of Wands placeholder affirmation.",
     "as_a_person": "Ace of Wands placeholder as a person.",
     "facing": null,
+    "pose": null,
     "symbols": [
       "wand",
       "hand-from-cloud"
@@ -1151,7 +1174,8 @@
     "advice": "Two of Wands placeholder advice.",
     "affirmation": "Two of Wands placeholder affirmation.",
     "as_a_person": "Two of Wands placeholder as a person.",
-    "facing": null,
+    "facing": "right",
+    "pose": "standing",
     "symbols": [
       "wand",
       "globe",
@@ -1191,7 +1215,8 @@
     "advice": "Three of Wands placeholder advice.",
     "affirmation": "Three of Wands placeholder affirmation.",
     "as_a_person": "Three of Wands placeholder as a person.",
-    "facing": null,
+    "facing": "away",
+    "pose": "standing",
     "symbols": [
       "wand",
       "heights",
@@ -1232,6 +1257,7 @@
     "affirmation": "Four of Wands placeholder affirmation.",
     "as_a_person": "Four of Wands placeholder as a person.",
     "facing": null,
+    "pose": null,
     "symbols": [
       "wand",
       "flowers",
@@ -1274,6 +1300,7 @@
     "affirmation": "Five of Wands placeholder affirmation.",
     "as_a_person": "Five of Wands placeholder as a person.",
     "facing": null,
+    "pose": null,
     "symbols": [
       "wand"
     ],
@@ -1310,7 +1337,8 @@
     "advice": "Six of Wands placeholder advice.",
     "affirmation": "Six of Wands placeholder affirmation.",
     "as_a_person": "Six of Wands placeholder as a person.",
-    "facing": null,
+    "facing": "right",
+    "pose": "riding",
     "symbols": [
       "wand",
       "horse",
@@ -1351,6 +1379,7 @@
     "affirmation": "I can stand firm without fighting everything.",
     "as_a_person": "Determined and outspoken, quick to defend what they believe in.",
     "facing": "forward",
+    "pose": "standing",
     "symbols": [
       "heights",
       "wand"
@@ -1424,6 +1453,7 @@
     "affirmation": "Eight of Wands placeholder affirmation.",
     "as_a_person": "Eight of Wands placeholder as a person.",
     "facing": null,
+    "pose": null,
     "symbols": [
       "wand"
     ],
@@ -1460,7 +1490,8 @@
     "advice": "Nine of Wands placeholder advice.",
     "affirmation": "Nine of Wands placeholder affirmation.",
     "as_a_person": "Nine of Wands placeholder as a person.",
-    "facing": null,
+    "facing": "left",
+    "pose": "standing",
     "symbols": [
       "wand"
     ],
@@ -1497,7 +1528,8 @@
     "advice": "Ten of Wands placeholder advice.",
     "affirmation": "Ten of Wands placeholder affirmation.",
     "as_a_person": "Ten of Wands placeholder as a person.",
-    "facing": null,
+    "facing": "away",
+    "pose": "walking",
     "symbols": [
       "wand"
     ],
@@ -1534,7 +1566,8 @@
     "advice": "Page of Wands placeholder advice.",
     "affirmation": "Page of Wands placeholder affirmation.",
     "as_a_person": "Page of Wands placeholder as a person.",
-    "facing": null,
+    "facing": "right",
+    "pose": "standing",
     "symbols": [
       "wand"
     ],
@@ -1571,7 +1604,8 @@
     "advice": "Knight of Wands placeholder advice.",
     "affirmation": "Knight of Wands placeholder affirmation.",
     "as_a_person": "Knight of Wands placeholder as a person.",
-    "facing": null,
+    "facing": "left",
+    "pose": "riding",
     "symbols": [
       "wand",
       "horse"
@@ -1609,7 +1643,8 @@
     "advice": "Queen of Wands placeholder advice.",
     "affirmation": "Queen of Wands placeholder affirmation.",
     "as_a_person": "Queen of Wands placeholder as a person.",
-    "facing": null,
+    "facing": "forward",
+    "pose": "seated",
     "symbols": [
       "wand",
       "crown",
@@ -1648,7 +1683,8 @@
     "advice": "King of Wands placeholder advice.",
     "affirmation": "King of Wands placeholder affirmation.",
     "as_a_person": "King of Wands placeholder as a person.",
-    "facing": null,
+    "facing": "left",
+    "pose": "seated",
     "symbols": [
       "wand",
       "crown",
@@ -1689,6 +1725,7 @@
     "affirmation": "Ace of Cups placeholder affirmation.",
     "as_a_person": "Ace of Cups placeholder as a person.",
     "facing": null,
+    "pose": null,
     "symbols": [
       "cup",
       "hand-from-cloud",
@@ -1731,6 +1768,7 @@
     "affirmation": "Two of Cups placeholder affirmation.",
     "as_a_person": "Two of Cups placeholder as a person.",
     "facing": null,
+    "pose": "standing",
     "symbols": [
       "cup",
       "lion"
@@ -1769,6 +1807,7 @@
     "affirmation": "Three of Cups placeholder affirmation.",
     "as_a_person": "Three of Cups placeholder as a person.",
     "facing": null,
+    "pose": "dancing",
     "symbols": [
       "cup",
       "garden",
@@ -1842,7 +1881,8 @@
     "advice": "Four of Cups placeholder advice.",
     "affirmation": "Four of Cups placeholder affirmation.",
     "as_a_person": "Four of Cups placeholder as a person.",
-    "facing": null,
+    "facing": "forward",
+    "pose": "seated",
     "symbols": [
       "cup",
       "tree",
@@ -1881,7 +1921,8 @@
     "advice": "Five of Cups placeholder advice.",
     "affirmation": "Five of Cups placeholder affirmation.",
     "as_a_person": "Five of Cups placeholder as a person.",
-    "facing": null,
+    "facing": "left",
+    "pose": "standing",
     "symbols": [
       "cup",
       "bridge",
@@ -1920,7 +1961,8 @@
     "advice": "Six of Cups placeholder advice.",
     "affirmation": "Six of Cups placeholder affirmation.",
     "as_a_person": "Six of Cups placeholder as a person.",
-    "facing": null,
+    "facing": "right",
+    "pose": "standing",
     "symbols": [
       "cup",
       "child",
@@ -1960,7 +2002,8 @@
     "advice": "Seven of Cups placeholder advice.",
     "affirmation": "Seven of Cups placeholder affirmation.",
     "as_a_person": "Seven of Cups placeholder as a person.",
-    "facing": null,
+    "facing": "away",
+    "pose": "standing",
     "symbols": [
       "cup"
     ],
@@ -1997,7 +2040,8 @@
     "advice": "Eight of Cups placeholder advice.",
     "affirmation": "Eight of Cups placeholder affirmation.",
     "as_a_person": "Eight of Cups placeholder as a person.",
-    "facing": null,
+    "facing": "away",
+    "pose": "walking",
     "symbols": [
       "cup"
     ],
@@ -2034,7 +2078,8 @@
     "advice": "Nine of Cups placeholder advice.",
     "affirmation": "Nine of Cups placeholder affirmation.",
     "as_a_person": "Nine of Cups placeholder as a person.",
-    "facing": null,
+    "facing": "forward",
+    "pose": "seated",
     "symbols": [
       "cup"
     ],
@@ -2071,7 +2116,8 @@
     "advice": "Ten of Cups placeholder advice.",
     "affirmation": "Ten of Cups placeholder affirmation.",
     "as_a_person": "Ten of Cups placeholder as a person.",
-    "facing": null,
+    "facing": "away",
+    "pose": "standing",
     "symbols": [
       "cup",
       "rainbow",
@@ -2112,7 +2158,8 @@
     "advice": "Page of Cups placeholder advice.",
     "affirmation": "Page of Cups placeholder affirmation.",
     "as_a_person": "Page of Cups placeholder as a person.",
-    "facing": null,
+    "facing": "left",
+    "pose": "standing",
     "symbols": [
       "cup",
       "fish"
@@ -2150,7 +2197,8 @@
     "advice": "Knight of Cups placeholder advice.",
     "affirmation": "Knight of Cups placeholder affirmation.",
     "as_a_person": "Knight of Cups placeholder as a person.",
-    "facing": null,
+    "facing": "right",
+    "pose": "riding",
     "symbols": [
       "cup",
       "horse"
@@ -2189,6 +2237,7 @@
     "affirmation": "I can care deeply and still keep my shape.",
     "as_a_person": "Warm and intuitive, a good listener who feels things deeply.",
     "facing": "left",
+    "pose": "seated",
     "symbols": [
       "crown",
       "cup",
@@ -2254,7 +2303,8 @@
     "advice": "King of Cups placeholder advice.",
     "affirmation": "King of Cups placeholder affirmation.",
     "as_a_person": "King of Cups placeholder as a person.",
-    "facing": null,
+    "facing": "forward",
+    "pose": "seated",
     "symbols": [
       "cup",
       "crown",
@@ -2298,6 +2348,7 @@
     "affirmation": "Ace of Swords placeholder affirmation.",
     "as_a_person": "Ace of Swords placeholder as a person.",
     "facing": null,
+    "pose": null,
     "symbols": [
       "sword",
       "hand-from-cloud",
@@ -2336,7 +2387,8 @@
     "advice": "Two of Swords placeholder advice.",
     "affirmation": "Two of Swords placeholder affirmation.",
     "as_a_person": "Two of Swords placeholder as a person.",
-    "facing": null,
+    "facing": "forward",
+    "pose": "seated",
     "symbols": [
       "sword",
       "blindfold"
@@ -2375,6 +2427,7 @@
     "affirmation": "Three of Swords placeholder affirmation.",
     "as_a_person": "Three of Swords placeholder as a person.",
     "facing": null,
+    "pose": null,
     "symbols": [
       "sword",
       "heart",
@@ -2414,6 +2467,7 @@
     "affirmation": "Four of Swords placeholder affirmation.",
     "as_a_person": "Four of Swords placeholder as a person.",
     "facing": null,
+    "pose": "lying",
     "symbols": [
       "sword",
       "tomb"
@@ -2451,7 +2505,8 @@
     "advice": "Five of Swords placeholder advice.",
     "affirmation": "Five of Swords placeholder affirmation.",
     "as_a_person": "Five of Swords placeholder as a person.",
-    "facing": null,
+    "facing": "left",
+    "pose": "standing",
     "symbols": [
       "sword"
     ],
@@ -2521,7 +2576,8 @@
     "advice": "Six of Swords placeholder advice.",
     "affirmation": "Six of Swords placeholder affirmation.",
     "as_a_person": "Six of Swords placeholder as a person.",
-    "facing": null,
+    "facing": "away",
+    "pose": "standing",
     "symbols": [
       "sword",
       "boat",
@@ -2560,7 +2616,8 @@
     "advice": "Seven of Swords placeholder advice.",
     "affirmation": "Seven of Swords placeholder affirmation.",
     "as_a_person": "Seven of Swords placeholder as a person.",
-    "facing": null,
+    "facing": "left",
+    "pose": "walking",
     "symbols": [
       "sword"
     ],
@@ -2597,7 +2654,8 @@
     "advice": "Eight of Swords placeholder advice.",
     "affirmation": "Eight of Swords placeholder affirmation.",
     "as_a_person": "Eight of Swords placeholder as a person.",
-    "facing": null,
+    "facing": "forward",
+    "pose": "standing",
     "symbols": [
       "sword",
       "blindfold",
@@ -2636,7 +2694,8 @@
     "advice": "Nine of Swords placeholder advice.",
     "affirmation": "Nine of Swords placeholder affirmation.",
     "as_a_person": "Nine of Swords placeholder as a person.",
-    "facing": null,
+    "facing": "forward",
+    "pose": "seated",
     "symbols": [
       "sword"
     ],
@@ -2674,6 +2733,7 @@
     "affirmation": "Ten of Swords placeholder affirmation.",
     "as_a_person": "Ten of Swords placeholder as a person.",
     "facing": null,
+    "pose": "lying",
     "symbols": [
       "sword"
     ],
@@ -2710,7 +2770,8 @@
     "advice": "Page of Swords placeholder advice.",
     "affirmation": "Page of Swords placeholder affirmation.",
     "as_a_person": "Page of Swords placeholder as a person.",
-    "facing": null,
+    "facing": "left",
+    "pose": "standing",
     "symbols": [
       "sword",
       "cloud"
@@ -2748,7 +2809,8 @@
     "advice": "Knight of Swords placeholder advice.",
     "affirmation": "Knight of Swords placeholder affirmation.",
     "as_a_person": "Knight of Swords placeholder as a person.",
-    "facing": null,
+    "facing": "left",
+    "pose": "riding",
     "symbols": [
       "sword",
       "horse"
@@ -2786,7 +2848,8 @@
     "advice": "Queen of Swords placeholder advice.",
     "affirmation": "Queen of Swords placeholder affirmation.",
     "as_a_person": "Queen of Swords placeholder as a person.",
-    "facing": null,
+    "facing": "right",
+    "pose": "seated",
     "symbols": [
       "sword",
       "crown",
@@ -2825,7 +2888,8 @@
     "advice": "King of Swords placeholder advice.",
     "affirmation": "King of Swords placeholder affirmation.",
     "as_a_person": "King of Swords placeholder as a person.",
-    "facing": null,
+    "facing": "forward",
+    "pose": "seated",
     "symbols": [
       "sword",
       "crown",
@@ -2865,6 +2929,7 @@
     "affirmation": "Ace of Pentacles placeholder affirmation.",
     "as_a_person": "Ace of Pentacles placeholder as a person.",
     "facing": null,
+    "pose": null,
     "symbols": [
       "hand-from-cloud",
       "pentacle",
@@ -2940,7 +3005,8 @@
     "advice": "Two of Pentacles placeholder advice.",
     "affirmation": "Two of Pentacles placeholder affirmation.",
     "as_a_person": "Two of Pentacles placeholder as a person.",
-    "facing": null,
+    "facing": "forward",
+    "pose": "dancing",
     "symbols": [
       "pentacle",
       "infinity",
@@ -2980,6 +3046,7 @@
     "affirmation": "Three of Pentacles placeholder affirmation.",
     "as_a_person": "Three of Pentacles placeholder as a person.",
     "facing": null,
+    "pose": "standing",
     "symbols": [
       "pentacle"
     ],
@@ -3016,7 +3083,8 @@
     "advice": "Four of Pentacles placeholder advice.",
     "affirmation": "Four of Pentacles placeholder affirmation.",
     "as_a_person": "Four of Pentacles placeholder as a person.",
-    "facing": null,
+    "facing": "forward",
+    "pose": "seated",
     "symbols": [
       "pentacle",
       "crown"
@@ -3055,6 +3123,7 @@
     "affirmation": "Five of Pentacles placeholder affirmation.",
     "as_a_person": "Five of Pentacles placeholder as a person.",
     "facing": null,
+    "pose": "walking",
     "symbols": [
       "pentacle",
       "snow",
@@ -3093,7 +3162,8 @@
     "advice": "Six of Pentacles placeholder advice.",
     "affirmation": "Six of Pentacles placeholder affirmation.",
     "as_a_person": "Six of Pentacles placeholder as a person.",
-    "facing": null,
+    "facing": "left",
+    "pose": "standing",
     "symbols": [
       "pentacle",
       "scales"
@@ -3131,7 +3201,8 @@
     "advice": "Seven of Pentacles placeholder advice.",
     "affirmation": "Seven of Pentacles placeholder affirmation.",
     "as_a_person": "Seven of Pentacles placeholder as a person.",
-    "facing": null,
+    "facing": "left",
+    "pose": "standing",
     "symbols": [
       "pentacle",
       "garden"
@@ -3169,7 +3240,8 @@
     "advice": "Eight of Pentacles placeholder advice.",
     "affirmation": "Eight of Pentacles placeholder affirmation.",
     "as_a_person": "Eight of Pentacles placeholder as a person.",
-    "facing": null,
+    "facing": "right",
+    "pose": "seated",
     "symbols": [
       "pentacle"
     ],
@@ -3206,7 +3278,8 @@
     "advice": "Nine of Pentacles placeholder advice.",
     "affirmation": "Nine of Pentacles placeholder affirmation.",
     "as_a_person": "Nine of Pentacles placeholder as a person.",
-    "facing": null,
+    "facing": "right",
+    "pose": "standing",
     "symbols": [
       "pentacle",
       "bird",
@@ -3248,6 +3321,7 @@
     "affirmation": "Ten of Pentacles placeholder affirmation.",
     "as_a_person": "Ten of Pentacles placeholder as a person.",
     "facing": null,
+    "pose": null,
     "symbols": [
       "pentacle",
       "house",
@@ -3287,7 +3361,8 @@
     "advice": "Page of Pentacles placeholder advice.",
     "affirmation": "Page of Pentacles placeholder affirmation.",
     "as_a_person": "Page of Pentacles placeholder as a person.",
-    "facing": null,
+    "facing": "right",
+    "pose": "standing",
     "symbols": [
       "pentacle"
     ],
@@ -3324,7 +3399,8 @@
     "advice": "Knight of Pentacles placeholder advice.",
     "affirmation": "Knight of Pentacles placeholder affirmation.",
     "as_a_person": "Knight of Pentacles placeholder as a person.",
-    "facing": null,
+    "facing": "right",
+    "pose": "riding",
     "symbols": [
       "pentacle",
       "horse"
@@ -3362,7 +3438,8 @@
     "advice": "Queen of Pentacles placeholder advice.",
     "affirmation": "Queen of Pentacles placeholder affirmation.",
     "as_a_person": "Queen of Pentacles placeholder as a person.",
-    "facing": null,
+    "facing": "left",
+    "pose": "seated",
     "symbols": [
       "pentacle",
       "crown",
@@ -3401,7 +3478,8 @@
     "advice": "King of Pentacles placeholder advice.",
     "affirmation": "King of Pentacles placeholder affirmation.",
     "as_a_person": "King of Pentacles placeholder as a person.",
-    "facing": null,
+    "facing": "forward",
+    "pose": "seated",
     "symbols": [
       "pentacle",
       "crown",

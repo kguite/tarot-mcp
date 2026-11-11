@@ -20,6 +20,10 @@ REVERSAL_RATE = 0.25
 # SystemRandom draws from the OS, like crypto.getRandomValues in the prototype.
 rng = random.SystemRandom()
 
+# Read off the 1909 art for the main figure. Kept in step with Facing and Pose in types.ts.
+Facing = Literal['left', 'right', 'forward', 'away']
+Pose = Literal['standing', 'seated', 'walking', 'riding', 'kneeling', 'lying', 'falling', 'upside-down', 'dancing', 'flying']
+
 mcp = MCPServer(name='tarot')
 
 
@@ -44,10 +48,12 @@ def find_cards(
     symbol: Annotated[str | None, Field(description="A symbol id from the card pictures, like 'pillars', 'dog' or 'water'")] = None,
     suit: Annotated[Literal['wands', 'cups', 'swords', 'pentacles'] | None, Field(description='A Minor suit')] = None,
     rank: Annotated[int | None, Field(description='A Minor card rank: 1 Ace to 10, then 11 Page, 12 Knight, 13 Queen, 14 King. Majors have no rank.', ge=1, le=14)] = None,
+    facing: Annotated[Facing | None, Field(description="Where the main figure looks, from the viewer's side. away: the figure's back is turned")] = None,
+    pose: Annotated[Pose | None, Field(description="What the main figure's body is doing")] = None,
 ) -> str:
-    """Find cards by what is in the picture, by suit, or by number. Filters combine. Returns each matching card's id and name, and the symbol's summary when filtering by symbol."""
-    if symbol is None and suit is None and rank is None:
-        raise ToolError('Give at least one of symbol, suit or rank.')
+    """Find cards by what is in the picture, by suit, by number, or by the main figure's facing and pose. Filters combine. Returns each matching card's id and name, and the symbol's summary when filtering by symbol."""
+    if symbol is None and suit is None and rank is None and facing is None and pose is None:
+        raise ToolError('Give at least one of symbol, suit, rank, facing or pose.')
     found = {}
     if symbol is not None:
         found['symbol'] = next((s for s in SYMBOLS if s['id'] == symbol), None)
@@ -60,6 +66,8 @@ def find_cards(
         if (symbol is None or symbol in c['symbols'])
         and (suit is None or c.get('suit') == suit)
         and (rank is None or c.get('rank') == rank)
+        and (facing is None or c['facing'] == facing)
+        and (pose is None or c['pose'] == pose)
     ]
     return json.dumps(found, indent=2)
 

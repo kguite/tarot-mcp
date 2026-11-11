@@ -30,7 +30,11 @@ export interface CardDetail {
   region: { x: number; y: number }
 }
 
-export type Facing = 'left' | 'right' | 'forward'
+// away: the figure's back is to you (Three of Wands, Eight of Cups).
+export type Facing = 'left' | 'right' | 'forward' | 'away'
+export type Pose =
+  | 'standing' | 'seated' | 'walking' | 'riding' | 'kneeling'
+  | 'lying' | 'falling' | 'upside-down' | 'dancing' | 'flying'
 
 // Most written fields are placeholders ("<name> placeholder summary.") until the wording is done.
 interface CardBase {
@@ -44,8 +48,11 @@ interface CardBase {
   advice: string
   affirmation: string
   as_a_person: string | null
-  // Which way the main figure looks, read off the 1909 art. null when there is no figure, or not checked yet.
+  // Which way the main figure looks, from the viewer's side, read off the 1909 art.
+  // null when there is no figure or no single main one.
   facing: Facing | null
+  // What that figure's body is doing. Several figures sharing one pose count (the Tower's two falling).
+  pose: Pose | null
   // Everything in the picture, as symbol ids. details are the tappable few.
   symbols: string[]
   details: CardDetail[]

@@ -25,7 +25,7 @@ The app is also a vehicle for learning: Vite + React + TypeScript, Supabase (Pos
 - **Voice.** Psychology-minded like Jessica Dore, inclusive like Lindsay Mack, in original words. Describe qualities, never gender or looks (Waite's "dark man", "the Querent, if male" are out), court cards included.
 - **Reflection, not prediction.** No copy or LLM output that tells someone what will happen. Prompts ask questions; the person interprets.
 - **The code draws the cards, never the LLM.** Shuffling and reversals use `crypto.getRandomValues` and Fisher–Yates. An LLM may interpret a draw it is given, never produce one.
-- **Small deliberate rituals.** Tap a card to choose it, tap again to turn it over. Keep that two-step reveal.
+- **Small deliberate rituals.** Three taps per card: choose it, turn it over, then tap again for its meaning. The meaning waits so you try to read the picture first, which helps recall.
 - **Learn by combining.** A Minor card is suit × number. A Major has a place in Pollack's journey (the Fool, then three rows of seven). Every Major I to X echoes the matching number in the Minors.
 - **Quiet by default.** Extra info is opt-in (the Learn more menu, modes), never piled on.
 - **Motion with purpose.** Josh Comeau style springs, layered shadows, and small moments of delight (the save sparkles). Always respect `prefers-reduced-motion`.
@@ -101,6 +101,8 @@ Picked 2026-11-11 from three options on the design canvas (https://claude.ai/art
 - **Components** in `tarot-app/src/components/`, one `.tsx` plus a `.module.css` each: Card (down, resting, chosen; reversed; `onOpen` makes it a button), Button and IconButton, Ornament, Eyebrow, Keywords, TextField, ReadingPanel, Star, CardInspect (a card up close: rings on its details, zoom, "In this picture", the figure) and SymbolSheet (a symbol's meaning and the other cards it is on). `App.tsx` is a temporary gallery of them; tap a card to inspect it.
 - **Card art:** `public/cards/<id>.webp`, the 1909 Roses & Lilies scans; `artUrl(id)` in `src/data` builds the path. Detail `region`s were placed on this art with a 10% grid (2026-11-11); place new ones the same way.
 - **Motion:** keep the prototype's spring easing `cubic-bezier(.34, 1.56, .64, 1)` when porting the flip; respect `prefers-reduced-motion`.
+- **Navigation** (picked 2026-11-11, "Nav B" and "Nav C" on the canvas): five places, Today, Journal, Draw, Learn, Settings. On a phone, a bottom bar with Draw as a raised gold star in the middle. On desktop (wider than about 900px), the same five as an always-open gilded sidebar on the left, with the art credit at its foot. One nav component draws itself either way. Desktop is mostly for reading back the journal and learning the cards, so give those room there.
+- **How design gets decided:** on the canvas, from a phone. Options side by side, pick one, then build it.
 
 ## Target stack
 

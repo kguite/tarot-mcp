@@ -13,20 +13,41 @@ export interface Keywords {
   reversed: string[]
 }
 
+// Something that appears in card pictures, like pillars or a dog. Cards point to these by id.
+export interface CardSymbol {
+  id: string
+  name: string
+  summary: string
+}
+
 // Something to tap on the card art. region is a rough x and y on the card, 0 to 100.
+// symbols are the ids this spot shows (the dog and the wolf is two).
 export interface CardDetail {
   id: string
   label: string
   prompt: string
+  symbols: string[]
   region: { x: number; y: number }
 }
 
+export type Facing = 'left' | 'right' | 'forward'
+
+// Most written fields are placeholders ("<name> placeholder summary.") until the wording is done.
 interface CardBase {
   id: string
   name: string
   keywords: Keywords
   themes: string[]
   prompt: string
+  summary: string
+  meaning: { upright: string; reversed: string }
+  advice: string
+  affirmation: string
+  as_a_person: string | null
+  // Which way the main figure looks, read off the 1909 art. null when there is no figure, or not checked yet.
+  facing: Facing | null
+  // Everything in the picture, as symbol ids. details are the tappable few.
+  symbols: string[]
   details: CardDetail[]
 }
 
@@ -60,7 +81,8 @@ export interface Rank {
   plural: string
   summary: string
   prompt: string
-  major: CardRef & { number: number }
+  // The Major with the same number. Court ranks (11 to 14) have none.
+  major?: CardRef & { number: number }
 }
 
 export interface JourneyRow {

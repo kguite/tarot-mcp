@@ -118,5 +118,33 @@
       "name": "The Wheel of Fortune",
       "number": 10
     }
+  },
+  {
+    "rank": 11,
+    "name": "Page",
+    "plural": "Pages",
+    "summary": "The student: curious, new to the suit’s energy, often bringing a message.",
+    "prompt": "What are you just starting to learn?"
+  },
+  {
+    "rank": 12,
+    "name": "Knight",
+    "plural": "Knights",
+    "summary": "The suit in motion: chasing it, committed, sometimes going too fast.",
+    "prompt": "What are you rushing toward?"
+  },
+  {
+    "rank": 13,
+    "name": "Queen",
+    "plural": "Queens",
+    "summary": "The suit held inward: mastery through care, understanding, and steady presence.",
+    "prompt": "What do you understand deeply?"
+  },
+  {
+    "rank": 14,
+    "name": "King",
+    "plural": "Kings",
+    "summary": "The suit held outward: mastery through leading, deciding, and steadying others.",
+    "prompt": "Where are you being asked to lead?"
   }
 ]

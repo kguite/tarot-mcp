@@ -4,7 +4,7 @@ import json
 import pytest
 from mcp import Client, MCPError
 
-from server import CARDS, mcp, rng
+from server import CARDS, SYMBOLS, WAITE, mcp, rng
 
 
 # Client(mcp) runs the server in-process: the same calls Claude makes, no subprocess.
@@ -44,6 +44,60 @@ def test_get_card_unknown_id_lists_valid_ids():
     assert result.is_error
     assert "No card with id 'the-moon'" in result.content[0].text
     assert 'moon' in result.content[0].text
+
+
+# Symbol ids are typed by hand, so a typo would silently drop a card from find_cards.
+def test_symbol_ids_line_up():
+    symbol_ids = {s['id'] for s in SYMBOLS}
+    used = set()
+    for card in CARDS:
+        assert set(card['symbols']) <= symbol_ids, card['id']
+        for detail in card['details']:
+            assert set(detail['symbols']) <= set(card['symbols']), (card['id'], detail['id'])
+        used |= set(card['symbols'])
+
+    assert used == symbol_ids
+
+
+def test_full_deck_with_every_field():
+    fields = {'summary', 'meaning', 'advice', 'affirmation', 'as_a_person', 'facing'}
+    assert len(CARDS) == 78
+    for card in CARDS:
+        assert fields <= card.keys(), card['id']
+        assert card['facing'] in {None, 'left', 'right', 'forward'}, card['id']
+
+
+def test_every_card_has_waite_text():
+    assert {c['id'] for c in CARDS} == {c['id'] for c in WAITE['cards']}
+
+
+# The question the data shape was for: other cards with pillars, and what pillars mean.
+def test_find_cards_by_symbol():
+    found = json.loads(call('find_cards', {'symbol': 'pillars'}).content[0].text)
+
+    assert [c['id'] for c in found['cards']] == ['high-priestess', 'hierophant', 'justice', 'death']
+    assert found['symbol']['name'] == 'Pillars'
+
+
+# Filters combine: heights appear on the Fool, Hermit, Temperance and Tower too, but only two are Wands.
+def test_find_cards_filters_combine():
+    found = json.loads(call('find_cards', {'symbol': 'heights', 'suit': 'wands'}).content[0].text)
+
+    assert [c['id'] for c in found['cards']] == ['three-of-wands', 'seven-of-wands']
+
+
+def test_find_cards_by_rank():
+    found = json.loads(call('find_cards', {'rank': 7}).content[0].text)
+
+    assert [c['id'] for c in found['cards']] == ['seven-of-wands', 'seven-of-cups', 'seven-of-swords', 'seven-of-pentacles']
+
+
+# Bad input is an error Claude can read: an unknown symbol lists the valid ones, a bad suit fails the schema.
+def test_find_cards_bad_input():
+    assert call('find_cards', {}).is_error
+    unknown = call('find_cards', {'symbol': 'pilars'})
+    assert unknown.is_error and 'pillars' in unknown.content[0].text
+    assert call('find_cards', {'suit': 'hearts'}).is_error
 
 
 # Every spread is listed with its positions, so Claude can pick one by id.
@@ -98,6 +152,14 @@ def test_waite_moon():
     assert 'The path between the towers is the issue into the unknown.' in text
     assert 'Upright: Hidden enemies, danger' in text
     assert 'Source: Arthur Edward Waite' in text
+
+
+# Waite gives the Two of Cups no reversed meaning, so the resource leaves that line out.
+def test_waite_two_of_cups_has_no_reversed_line():
+    text = read('tarot://waite/two-of-cups').contents[0].text
+
+    assert 'Upright: Love, passion' in text
+    assert 'Reversed:' not in text
 
 
 # An unknown card is a protocol error for the app, not a result Claude reads.

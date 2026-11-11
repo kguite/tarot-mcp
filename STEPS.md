@@ -451,12 +451,56 @@ numbers. A resource would suit fixed reference material someone attaches on purp
 glossary. A prompt would suit a check that should always run the same way, like a monthly demand
 review. Prompts are the closest MCP gets to Skills: a saved recipe you start on purpose.
 
+## 8. The data shape, then all 78 cards
+
+Branch `data-shape`. The goal: settle what a card looks like on a few cards, then fill the deck
+once, in the final shape.
+
+**Symbols link the cards.** "Other cards with pillars" was impossible: each card's details had
+made-up ids, so nothing said the High Priestess's pillars and the Hierophant's were the same
+thing. Now `symbols.json` lists what appears in card pictures (64 so far: pillars, dog, water,
+blindfold...), and cards point to them by id. Two levels:
+
+| Field | Holds | Used for |
+| --- | --- | --- |
+| `card.symbols` | Everything in the picture | `find_cards` |
+| `detail.symbols` | What one tappable spot shows ("the dog and the wolf" is two) | The app's tap targets |
+
+The symbol lists come from Waite's own descriptions of the 1909 pictures (Part 2 for Majors,
+Part 3 for Minors; his Part 1 describes older decks, so it was skipped), plus a look at the art
+where his text is thin. Some links that fell out: pillars on the High Priestess, Hierophant,
+Justice and Death; a blindfold on the Two and Eight of Swords; scales on Justice and the Six of
+Pentacles.
+
+**find_cards.** Filters by `symbol`, `suit` and `rank`, and they combine. With a symbol, the reply
+includes its summary. This is "push filtering into the API": Claude asks for the pillars cards and
+gets four, instead of reading 78 and maybe missing one. `suit` is a `Literal` of the four suits,
+so the allowed values are on the menu before Claude calls.
+
+**Shape first, on three cards.** The Moon (a Major with no person), the Seven of Wands (a numbered
+Minor) and the Queen of Cups (a new court card) got every new field: `summary`, `meaning` (upright
+and reversed paragraphs), `advice`, `affirmation`, `as_a_person`, and `facing`. Court ranks 11 to
+14 were added to `ranks.json`. Then the other cards got real keywords, themes, prompts and symbols,
+and placeholders ("Two of Wands placeholder summary.") in the long fields, so the whole shape works
+now and the wording can come later. `facing` is read off the art, so it stays null until checked.
+
+**Tests that check the data, not the code.** Symbol ids are typed by hand, so a test checks that
+every id a card uses exists, every detail's symbols are on its card, and every symbol is used.
+Others check there are 78 cards with every field, and that each card has Waite's text. A typo like
+`pilars` would otherwise just quietly drop a card from every search.
+
+**Scripts for bulk edits.** Adding fields to 78 cards by hand is 78 chances to slip, so small
+scripts in the session scratchpad did it, keeping the files' formatting and key order. The
+scripts are throwaway; the data and its tests are what's kept.
+
+**At work.** The demand lookup in demand_scenarios takes `group_by`, `columns` and `filters` so the
+API does the filtering, the same idea as `find_cards`. And "test the data" is the habit behind
+checking a figure against the database: the code can be right and the data still wrong.
+
 ## Next
 
-- Data shape: a shared `symbols.json` so details on different cards link up ("other cards with
-  pillars"), built from what Waite lists in each picture, and a `find_cards` tool that filters by
-  symbol, suit and rank. Then the other 61 cards in that shape, then explore the data through the
-  MCP tools and adjust the shape
+- Explore the data through the MCP tools (`find_cards`, `get_card`, the Waite resource) and adjust
+  the shape. Then write the placeholder fields, and read `facing` off the art for every card
 - Grow `mcp-server/` into a FastAPI app: REST plus `/mcp`, like speak_friend's `main.py`, then
   add its URL in Claude Desktop with "+ Add" and watch Claude choose `get_card`
 - Access: levels, permissions and circles, in the build order in `ACCESS.md`

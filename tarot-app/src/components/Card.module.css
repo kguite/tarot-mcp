@@ -16,6 +16,18 @@
   transition: border-color 0.3s, box-shadow 0.3s;
 }
 
+.button {
+  display: block;
+  background: none;
+  color: inherit;
+  cursor: zoom-in;
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
 .chosen .frame {
   border-color: var(--gold);
   box-shadow: var(--glow);

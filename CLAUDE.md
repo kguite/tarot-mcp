@@ -98,7 +98,8 @@ Picked 2026-11-11 from three options on the design canvas (https://claude.ai/art
 - **Tokens** live in `tarot-app/src/styles/tokens.css`; components use the variables, never raw values. Night `#0F1530` page, panel `#151C3D`, card back `#1E2758`, ivory `#ECE7DA` text, muted `#A9AFCB` labels, gold `#D4AF62` accent, gold lines at 25/35/50%. One shadow: a soft gold glow, only on the chosen card.
 - **Type:** Cormorant Garamond for what you read slowly (titles, card names, the italic summary), DM Sans for what you use (body, labels, buttons, fields). Labels are small spaced capitals.
 - **Shape:** thin gold frames, small corners (2 art, 4 frames and buttons, 6 panels), a four-pointed star as the ornament and on the card back.
-- **Components** in `tarot-app/src/components/`, one `.tsx` plus a `.module.css` each: Card (down, resting, chosen; reversed), Button and IconButton, Ornament, Eyebrow, Keywords, TextField, ReadingPanel, Star. `App.tsx` is a temporary gallery of them.
+- **Components** in `tarot-app/src/components/`, one `.tsx` plus a `.module.css` each: Card (down, resting, chosen; reversed; `onOpen` makes it a button), Button and IconButton, Ornament, Eyebrow, Keywords, TextField, ReadingPanel, Star, CardInspect (a card up close: rings on its details, zoom, "In this picture", the figure) and SymbolSheet (a symbol's meaning and the other cards it is on). `App.tsx` is a temporary gallery of them; tap a card to inspect it.
+- **Card art:** `public/cards/<id>.webp`, the 1909 Roses & Lilies scans; `artUrl(id)` in `src/data` builds the path. Detail `region`s were placed on this art with a 10% grid (2026-11-11); place new ones the same way.
 - **Motion:** keep the prototype's spring easing `cubic-bezier(.34, 1.56, .64, 1)` when porting the flip; respect `prefers-reduced-motion`.
 
 ## Target stack

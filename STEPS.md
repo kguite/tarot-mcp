@@ -270,20 +270,11 @@ for you: it does the handshake, wraps each request in its envelope (`jsonrpc`, `
 The long `MCP_INSPECTOR_API_TOKEN` in the address bar is a password for that session. Keep it
 out of screenshots you share.
 
-**Connect it to Claude Desktop.** In Claude Desktop, go to Settings, then Developer, then Edit
-Config. Add an `mcpServers` entry beside whatever is already there:
-
-```json
-"mcpServers": {
-  "tarot": {
-    "command": "C:\\Users\\KatieGuite\\Documents\\codebases\\tarot-mcp\\mcp-server\\.venv\\Scripts\\python.exe",
-    "args": ["C:\\Users\\KatieGuite\\Documents\\codebases\\tarot-mcp\\mcp-server\\server.py"]
-  }
-}
-```
-
-Fully quit Claude Desktop (from the tray icon, not just the window) and reopen it. Ask
-"What does the Moon card mean?" and watch it call `get_card`.
+**Claude Desktop: skipped for now.** A stdio server is added to Claude Desktop through a config
+file, normally reached from Settings, then Developer. This version of Claude Desktop
+(3.6556.1) has no Developer menu, only Customize (Connectors, Skills, Plugins). So the plan is
+the remote route instead: once the server speaks HTTP, add its URL with "+ Add" under
+Connectors. That's also how speak_friend is reached, so it's the more useful one to learn.
 
 **No API tokens needed.** The server makes no AI calls, and Claude Desktop runs on the
 claude.ai account. API tokens come later, when the app calls Claude itself.
@@ -308,11 +299,66 @@ way you declare a tool differs.
 daedalus also prompt-caches the system prompt and messages and logs tokens per turn, which is
 the pattern to copy when tarot calls Claude itself.
 
+## 5. Test the tool with pytest
+
+The Inspector is checking by hand. A test checks the same thing every time, in under a second.
+
+**Setup.** pytest goes in `requirements.txt` (pinned to `9.1.1`, the same as speak_friend), then:
+
+```
+cd mcp-server
+.venv\Scripts\python.exe -m pip install -r requirements.txt
+.venv\Scripts\python.exe -m pytest tests -q
+```
+
+Run it from `mcp-server/` with `python -m pytest`, not plain `pytest`. `python -m` puts the
+current folder on the import path, so the test can `import server`. speak_friend runs its tests
+the same way. pytest leaves a `.pytest_cache` folder behind, so it's in `.gitignore`.
+
+**The trick: test through MCP, not around it.** The SDK's `Client` usually takes a URL or a
+command. In tests it can take the server object itself and run it in-process:
+
+```python
+async with Client(mcp) as client:
+    result = await client.call_tool('get_card', {'id': 'moon'})
+```
+
+That's the same `tools/list` and `tools/call` Claude sends, with no subprocess and no Inspector.
+Calling `get_card('moon')` directly would test the kitchen but not the menu or the reply shape.
+
+**The three tests** (`mcp-server/tests/test_server.py`):
+
+| Test | Checks |
+| --- | --- |
+| The menu | `tools/list` has `get_card`, its description, and `id` as a required input |
+| A good call | `moon` comes back once, as text, and its name is The Moon |
+| A bad call | `the-moon` comes back with `is_error` set, and the text lists the valid ids |
+
+"Once" is the test for the "result sent twice" lesson in step 4. Without
+`structured_output=False` the reply still has one content block but gains a `structuredContent`
+copy, so the test checks `structured_content` is empty, not just the block count. To see it
+bite, delete `structured_output=False` from `server.py`, rerun, watch that test fail, and put it
+back.
+
+**Field names in Python are snake_case.** The wire says `isError` and `inputSchema`; the SDK's
+Python objects say `is_error` and `input_schema`.
+
+**At work.**
+
+| | tarot | speak_friend | demand_scenarios |
+| --- | --- | --- | --- |
+| Test file | `mcp-server/tests/test_server.py` | `tests/test_mcp.py` | `tests/` |
+| What it tests | The tool, through MCP | The token check only, no tool call | The tool wrappers |
+| How it stays offline | `Client(mcp)` in-process | A fake Auth0 key (`tests/fake_auth0.py`) | The HTTP client is replaced |
+| Run | `python -m pytest tests -q` | `python -m pytest` | `python -m pytest tests -q` |
+
+speak_friend has no test that calls `get_demand` through MCP. This pattern would be the one to
+add there.
+
 ## Next
 
-- Watch how Claude uses `get_card` (Inspector, then Claude Desktop)
-- pytest for `get_card`, like speak_friend's `tests/test_mcp.py`
 - Add `get_spread` and `draw_cards`
-- Grow `mcp-server/` into a FastAPI app: REST plus `/mcp`, like speak_friend's `main.py`
+- Grow `mcp-server/` into a FastAPI app: REST plus `/mcp`, like speak_friend's `main.py`, then
+  add its URL in Claude Desktop with "+ Add" and watch Claude choose `get_card`
 - Access: levels, permissions and circles, in the build order in `ACCESS.md`
 - Port the `store` module (saving readings) to `src/lib/store.ts`, calling the FastAPI endpoints

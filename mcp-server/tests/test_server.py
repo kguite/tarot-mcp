@@ -64,6 +64,7 @@ def test_symbol_ids_line_up():
         used |= set(card['symbols'])
 
     assert used == symbol_ids
+    assert all(s['across'] for s in SYMBOLS)
 
 
 def test_full_deck_with_every_field():

@@ -355,9 +355,59 @@ Python objects say `is_error` and `input_schema`.
 speak_friend has no test that calls `get_demand` through MCP. This pattern would be the one to
 add there.
 
+## 6. Two more tools: list_spreads and draw_cards
+
+One tool gives Claude nothing to choose. With three, "do a past, present, future reading" means
+Claude reads the menu, calls `list_spreads` if it needs the id, then calls `draw_cards`.
+
+**list_spreads** takes no input and returns each spread's id, name, summary and position names.
+It was planned as `get_spread(id)`, but Claude's first question is "which spreads are there", and
+the positions come back with the draw anyway.
+
+**draw_cards(spread_id)** works like a reading at a table:
+
+1. Find the spread in `spreads.json`. Its `positions` list is the spots, in order (Past, Present,
+   Future). It says how many cards and what each spot means, not how they're laid out. Layout is
+   the app's job.
+2. Deal: `rng.sample(CARDS, len(positions))` picks that many different cards, like dealing from
+   a real deck. No card comes up twice.
+3. Pair them: `zip(positions, cards)` joins them like a zipper, one pair at a time. Past gets the
+   first card, Present the second.
+4. Flip a weighted coin per card: `rng.random()` is a number from 0 to 1, and under 0.25 means
+   reversed. About 1 card in 4, matching the prototype.
+5. Send back each position, its question, the card, reversed or not, and only the keywords for
+   that side.
+
+`rng` is `random.SystemRandom()`, which asks the operating system for random numbers, like
+`crypto.getRandomValues` in the prototype.
+
+**The code draws the cards, never the model.** A model is bad at being random and might pick
+cards that fit the question. Claude asks for a draw and reads what came up.
+
+**Testing something random.** You can't check which cards come up, only what's always true:
+
+| Test | Checks |
+| --- | --- |
+| list_spreads | The spreads come back in order, with their positions |
+| A full draw | A Celtic Cross has 10 cards, in position order, all different |
+| A reversed draw | With the random number pinned to 0, the card is reversed and has the reversed keywords |
+| A bad spread id | `three-card` is an error that lists the valid ids |
+
+Pinning uses pytest's `monkeypatch`: for one test, `rng.random` is swapped for a function that
+always returns 0. That gives a repeatable draw without adding a seed input to the tool, which
+Claude would see on the menu and might start filling in.
+
+**At work.** demand_scenarios has the same rule as "the code draws": every number comes from
+`lb_database_api`, and the model never computes one. If you find yourself computing a figure in
+the chat app, you're in the wrong repo. Here, if the model is picking cards, the tool is missing.
+
 ## Next
 
-- Add `get_spread` and `draw_cards`
+- One resource (Waite's text per card) and one MCP prompt (`three_card_reading`), each with a
+  test
+- Data shape: a shared `symbols.json` so details on different cards link up ("other cards with
+  pillars"), and a `find_cards` tool that filters by symbol, suit and rank. Then the other 61
+  cards in that shape, then explore the data through the MCP tools and adjust the shape
 - Grow `mcp-server/` into a FastAPI app: REST plus `/mcp`, like speak_friend's `main.py`, then
   add its URL in Claude Desktop with "+ Add" and watch Claude choose `get_card`
 - Access: levels, permissions and circles, in the build order in `ACCESS.md`

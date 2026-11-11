@@ -89,7 +89,7 @@ reading but never change it. A copy of someone else's reading is always private 
 4. **Two kinds of no.**
    - A tool you can't use is left off your menu: a Free user's Claude never sees `save_reading`.
    - A choice you can't make inside a tool you can use is refused with the reason:
-     `get_spread` for the Celtic Cross at Journal returns "needs `draw:advanced`".
+     `draw_cards` for the Celtic Cross at Journal returns "needs `draw:advanced`".
 5. **Permissions say what kind. Attributes say which ones.** `circles` is a list in the token,
    not one permission per circle (and `countries` would be the same, not 190 permissions).
 6. **Permissions and row filtering are separate locks.** `read:journal` lets you open the
@@ -151,13 +151,13 @@ dashboard just displays what comes back.
 
 ## Build order
 
-1. `get_spread` and `draw_cards` on the local server, no access checks yet.
+1. `list_spreads` and `draw_cards` on the local server, no access checks yet. (Done.)
 2. Move the server to HTTP.
 3. Test tokens, signed both ways work signs them: a shared secret (the country dashboard's
    session cookie, `jose`) and a key pair (Auth0's RS256, the way speak_friend's tests fake
    Auth0). Decode one and read its claims. Cookie for the browser app versus Bearer header
    for MCP. 401 versus 403. A pytest test per persona.
-4. Dial 1: Public with no token, filter `get_spread` by permission, leave out `details` without
+4. Dial 1: Public with no token, filter `list_spreads` by permission, leave out `details` without
    `read:card-details`, and build each person's menu from their token.
 5. Dial 2: readings in Supabase Postgres with owner and visibility, the read rule as a SQL
    `WHERE` in app code (the way the country dashboard and speak_friend filter), circles, the

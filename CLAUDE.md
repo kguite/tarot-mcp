@@ -98,7 +98,7 @@ profile         mode (becomes a profiles row per user)
 - **Login:** Auth0, like speak_friend. Rows are filtered in app code, the way the country dashboard and speak_friend do it.
 - **Hosting:** Netlify for the app. The remote MCP server goes where speak_friend runs (Azure App Service), to practice the same setup.
 - **LLM:** Claude API. Small model for prompts, stronger model for coaching. Prompt caching on the static part (system prompt plus card meanings), streaming, structured output, and token and cost logging per call.
-- **MCP:** Python, `mcp==2.3.0` and pydantic, matching speak_friend and daedalus at work (`mcp-server/`). The TypeScript version is kept in `mcp-server-ts/` for comparison. Use what work uses wherever possible. Tools like `draw_cards`, `get_card`, `get_spread`, `save_reading`, `get_reading_history`. Run locally in Claude Desktop first, then remote with OAuth.
+- **MCP:** Python, `mcp==2.3.0` and pydantic, matching speak_friend and daedalus at work (`mcp-server/`). The TypeScript version is kept in `mcp-server-ts/` for comparison. Use what work uses wherever possible. Tools like `draw_cards`, `get_card`, `list_spreads`, `save_reading`, `get_reading_history`. Run locally in Claude Desktop first, then remote with OAuth.
 
 ## Next steps
 

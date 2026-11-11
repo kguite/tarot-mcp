@@ -1,4 +1,5 @@
 import json
+import random
 from pathlib import Path
 from typing import Annotated
 
@@ -6,9 +7,16 @@ from mcp.server.mcpserver import MCPServer
 from mcp.server.mcpserver.exceptions import ToolError
 from pydantic import Field
 
-# The app's card data. The path is relative to this file, not to wherever the server is started.
-CARDS_PATH = Path(__file__).parent.parent / 'tarot-app' / 'src' / 'data' / 'cards.json'
-CARDS = json.loads(CARDS_PATH.read_text(encoding='utf-8'))
+# The app's data. The path is relative to this file, not to wherever the server is started.
+DATA_DIR = Path(__file__).parent.parent / 'tarot-app' / 'src' / 'data'
+CARDS = json.loads((DATA_DIR / 'cards.json').read_text(encoding='utf-8'))
+SPREADS = json.loads((DATA_DIR / 'spreads.json').read_text(encoding='utf-8'))
+
+# Share of cards that come up reversed, matching the prototype.
+REVERSAL_RATE = 0.25
+
+# SystemRandom draws from the OS, like crypto.getRandomValues in the prototype.
+rng = random.SystemRandom()
 
 mcp = MCPServer(name='tarot')
 
@@ -26,6 +34,44 @@ def get_card(
             return json.dumps(card, indent=2)
     ids = ', '.join(c['id'] for c in CARDS)
     raise ToolError(f"No card with id '{id}'. Valid ids: {ids}")
+
+
+@mcp.tool(structured_output=False)
+def list_spreads() -> str:
+    """List the tarot spreads: id, name, a one-line summary, and the positions in order."""
+    return json.dumps([
+        {'id': s['id'], 'name': s['name'], 'summary': s['summary'], 'positions': [p['name'] for p in s['positions']]}
+        for s in SPREADS
+    ], indent=2)
+
+
+# The code draws the cards, never the model: Claude asks for a draw and reads what came up.
+@mcp.tool(structured_output=False)
+def draw_cards(
+    spread_id: Annotated[str, Field(description="The spread's id from list_spreads, like 'past-present-future'")],
+) -> str:
+    """Shuffle and draw one card for each position in a spread. Returns each position with its question, the card, whether it is reversed, and the keywords for that orientation."""
+    spread = next((s for s in SPREADS if s['id'] == spread_id), None)
+    if spread is None:
+        ids = ', '.join(s['id'] for s in SPREADS)
+        raise ToolError(f"No spread with id '{spread_id}'. Valid ids: {ids}")
+
+    positions = spread['positions']
+    # sample deals from the deck: no card comes up twice.
+    cards = rng.sample(CARDS, len(positions))
+
+    draws = []
+    for position, card in zip(positions, cards):
+        reversed_ = rng.random() < REVERSAL_RATE
+        draws.append({
+            'position': position['name'],
+            'question': position['prompt'],
+            'card_id': card['id'],
+            'card': card['name'],
+            'reversed': reversed_,
+            'keywords': card['keywords']['reversed' if reversed_ else 'upright'],
+        })
+    return json.dumps(draws, indent=2)
 
 
 if __name__ == '__main__':

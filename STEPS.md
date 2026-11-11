@@ -609,11 +609,46 @@ both say `.label` without clashing. Vite supports them with nothing to install.
 look like one app. Tokens plus a small set of shared components is how that stays true, and the
 shared-components work with Tahmina is the work version of this step.
 
+## 12. The art, and a card up close
+
+**The art.** All 78 scans of the 1909 Roses & Lilies deck went into `tarot-app/public/cards` as WebP
+(19.4 MB). Vite serves `public/` as-is, so the Moon is `/cards/moon.webp`; `artUrl(id)` in
+`src/data` builds the path. A script asked Commons for every file's license before downloading
+and would have stopped on anything not public domain; `public/cards/CREDITS.md` lists the result.
+
+Wikimedia rate-limits fast downloads (HTTP 429). The fix was patience, not cleverness: skip files
+already saved, wait between files, and back off longer after each 429. Its cached thumbnail service
+is far less limited than the original files.
+
+**Check data against the real thing.** The 32 tappable details had positions guessed before there
+was art. Drawing them on each image with a 10% grid showed most were off: the Hermit's "staff"
+ring sat on his robe, the Five of Swords' "figures walking away" was on the main figure. All 32
+were re-placed and drawn again to confirm. Same lesson as testing the data: the code was fine, the
+numbers were wrong.
+
+**CardInspect.** Tap a card in the gallery to open it:
+
+- A native `<dialog>` opened with `showModal()`. The browser gives the focus trap, Escape to
+  close and the dimmed backdrop, with no library.
+- Gold rings on the details, placed in percent on the same box as the image, so they stay on the
+  art when it zooms or turns over. Tap one for its question; "Write from this" adds it to the
+  reflection, like the prototype.
+- Zoom: the button, or a double-click, makes the art 200% wide inside a box that scrolls, so you
+  pan by scrolling or dragging. Pinch-to-zoom is left for later.
+- "In this picture": the card's symbols as chips, lit gold when they belong to the tapped detail.
+  Tap one for the SymbolSheet: its meaning, its `across` line, and the other cards it is on, which
+  open in turn.
+- The parent passes `key={card.id}`, so opening another card starts fresh instead of carrying the
+  old selection over. That's React's way to say "this is a different thing now".
+
+Not yet checked in a real browser or on a phone, only built; double-tap on phones in particular.
+
 ## Next
 
-- Port the prototype screens onto these components: the fan and flip, spreads and layout, the
-  reading panel, saving and the journal
-- Host the 1909 art and put it in `Card`
+- Try CardInspect on a phone; then the draw screen: the fan, pick, and flip with the spring
+- More details per card as we notice them, aiming for about 6 each, placed on the art with the
+  grid: the High Priestess's throne and pillars, the Five of Swords' wind and beach, the Moon's two
+  towers. New ones may need new symbols (wind, beach)
 - Trim `get_card`'s reply: measure it, cut what Claude doesn't need, measure again
 - Deploy or tunnel the FastAPI app, then add its URL in Claude Desktop with "+ Add" and watch
   Claude choose between the tools

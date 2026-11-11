@@ -16,3 +16,6 @@ export const RANKS = ranksJson as Rank[]
 export const SPREADS = spreadsJson as Spread[]
 export const SUITS = suitsJson as Suit[]
 export const SYMBOLS = symbolsJson as CardSymbol[]
+
+// Each card's 1909 art, in public/cards (credits in public/cards/CREDITS.md).
+export const artUrl = (id: string) => `${import.meta.env.BASE_URL}cards/${id}.webp`

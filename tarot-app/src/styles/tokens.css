@@ -1,0 +1,30 @@
+/* The Gilded design tokens. Components use these, never raw values, so a change here changes everything. */
+:root {
+  --night: #0F1530;
+  --panel: #151C3D;
+  --card-back: #1E2758;
+  --ivory: #ECE7DA;
+  --muted: #A9AFCB;
+  --gold: #D4AF62;
+  --gold-faint: rgba(212, 175, 98, 0.25);
+  --gold-line: rgba(212, 175, 98, 0.35);
+  --gold-strong: rgba(212, 175, 98, 0.5);
+  --glow: 0 0 24px rgba(212, 175, 98, 0.25);
+
+  /* Cormorant for what you read slowly (titles, names, summaries); DM Sans for what you use. */
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 32px;
+
+  --radius-art: 2px;
+  --radius: 4px;
+  --radius-panel: 6px;
+
+  color-scheme: dark;
+}

@@ -1,0 +1,13 @@
+.ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: var(--gold);
+}
+
+.rule {
+  width: 48px;
+  height: 1px;
+  background: var(--gold-strong);
+}

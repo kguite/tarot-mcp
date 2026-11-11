@@ -91,11 +91,15 @@ profile         mode (becomes a profiles row per user)
 - **Layout is computed.** `placeRow(top, bottom)` fits the chosen cards into a vertical band for each phase (picking, flipping, reading). Cards animate with CSS transforms driven by CSS variables.
 - **Mobile first.** Test at about 390×760. Safe-area insets are handled. Light and dark tokens are defined on `:root`.
 
-## Design tokens
+## Design: Gilded frame
 
-- **Colors (light / dark):** bg `#E7EAF3` / `#141A33`, ink `#1F2547` / `#ECE7DA`, muted `#565E85` / `#A9AFCB`, card back `#2E3A74` / `#34418A`, gold `#B8913F` / `#D4AF62`, panel `#F6F7FB` / `#1D2444`, card face `#F7F5EF` / `#E6E1D4`.
-- **Type:** Young Serif (Google Fonts) for headings, card faces, and prompts. System sans for body.
-- **Motion:** spring easing `cubic-bezier(.34, 1.56, .64, 1)`. Layered shadows on cards.
+Picked 2026-11-11 from three options on the design canvas (https://claude.ai/artifact/CDoqSPyZf2wtUXnB7rmDXz, which also has the tokens and components board). Dark only for now. The prototype's light/dark palette and Young Serif are retired in the app.
+
+- **Tokens** live in `tarot-app/src/styles/tokens.css`; components use the variables, never raw values. Night `#0F1530` page, panel `#151C3D`, card back `#1E2758`, ivory `#ECE7DA` text, muted `#A9AFCB` labels, gold `#D4AF62` accent, gold lines at 25/35/50%. One shadow: a soft gold glow, only on the chosen card.
+- **Type:** Cormorant Garamond for what you read slowly (titles, card names, the italic summary), DM Sans for what you use (body, labels, buttons, fields). Labels are small spaced capitals.
+- **Shape:** thin gold frames, small corners (2 art, 4 frames and buttons, 6 panels), a four-pointed star as the ornament and on the card back.
+- **Components** in `tarot-app/src/components/`, one `.tsx` plus a `.module.css` each: Card (down, resting, chosen; reversed), Button and IconButton, Ornament, Eyebrow, Keywords, TextField, ReadingPanel, Star. `App.tsx` is a temporary gallery of them.
+- **Motion:** keep the prototype's spring easing `cubic-bezier(.34, 1.56, .64, 1)` when porting the flip; respect `prefers-reduced-motion`.
 
 ## Target stack
 

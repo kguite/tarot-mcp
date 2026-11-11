@@ -1,37 +1,18 @@
-/* Design tokens from the prototype. Light by default, dark when the system asks. */
-:root {
-  --bg: #E7EAF3;
-  --ink: #1F2547;
-  --muted: #565E85;
-  --back: #2E3A74;
-  --gold: #B8913F;
-  --panel: #F6F7FB;
-  --face: #F7F5EF;
-  --face-ink: #262B4D;
-  color-scheme: light;
-}
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #141A33;
-    --ink: #ECE7DA;
-    --muted: #A9AFCB;
-    --back: #34418A;
-    --gold: #D4AF62;
-    --panel: #1D2444;
-    --face: #E6E1D4;
-    color-scheme: dark;
-  }
-}
+@import './styles/tokens.css';
 
 body {
   margin: 0;
-  background: var(--bg);
-  color: var(--ink);
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--night);
+  color: var(--ivory);
+  font-family: var(--font-body);
+  font-size: 15px;
   line-height: 1.5;
 }
 
-main {
-  padding: 1.5rem 1.25rem;
-  text-align: center;
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  margin: 0;
 }

@@ -31,12 +31,13 @@
     "facing": "left",
     "pose": "walking",
     "symbols": [
+      "sun",
       "heights",
       "dog",
       "flowers",
       "wand",
       "bundle",
-      "sun"
+      "feather"
     ],
     "details": [
       {
@@ -109,14 +110,15 @@
     "facing": "forward",
     "pose": "standing",
     "symbols": [
-      "infinity",
-      "serpent",
       "wand",
+      "infinity",
       "table",
       "cup",
-      "sword",
       "pentacle",
-      "flowers"
+      "sword",
+      "flowers",
+      "garden",
+      "serpent"
     ],
     "details": [
       {
@@ -189,11 +191,11 @@
     "facing": "forward",
     "pose": "seated",
     "symbols": [
-      "moon",
+      "pillars",
       "crown",
+      "moon",
       "cross",
       "scroll",
-      "pillars",
       "veil",
       "pomegranates"
     ],
@@ -270,10 +272,13 @@
     "symbols": [
       "crown",
       "star",
-      "harvest",
-      "water",
       "sceptre",
-      "globe"
+      "globe",
+      "heart",
+      "throne",
+      "harvest",
+      "tree",
+      "water"
     ],
     "details": []
   },
@@ -309,11 +314,12 @@
     "facing": "forward",
     "pose": "seated",
     "symbols": [
-      "sceptre",
-      "globe",
+      "throne",
       "crown",
       "ram",
-      "throne"
+      "sceptre",
+      "globe",
+      "heights"
     ],
     "details": []
   },
@@ -350,9 +356,10 @@
     "pose": "seated",
     "symbols": [
       "crown",
-      "pillars",
       "sceptre",
       "cross",
+      "pillars",
+      "throne",
       "keys"
     ],
     "details": []
@@ -391,8 +398,11 @@
     "symbols": [
       "sun",
       "angel",
+      "cloud",
       "tree",
-      "serpent"
+      "serpent",
+      "fire",
+      "heights"
     ],
     "details": []
   },
@@ -428,8 +438,16 @@
     "facing": "forward",
     "pose": "riding",
     "symbols": [
-      "sword",
-      "sphinx"
+      "crown",
+      "star",
+      "wand",
+      "veil",
+      "sphinx",
+      "moon",
+      "wings",
+      "house",
+      "tower",
+      "water"
     ],
     "details": []
   },
@@ -465,9 +483,11 @@
     "facing": "right",
     "pose": "standing",
     "symbols": [
-      "infinity",
       "lion",
-      "flowers"
+      "infinity",
+      "flowers",
+      "wreath",
+      "heights"
     ],
     "details": []
   },
@@ -505,8 +525,9 @@
     "symbols": [
       "lantern",
       "star",
+      "wand",
       "heights",
-      "wand"
+      "snow"
     ],
     "details": [
       {
@@ -581,7 +602,11 @@
     "symbols": [
       "wheel",
       "sphinx",
-      "serpent"
+      "sword",
+      "serpent",
+      "anubis",
+      "four-creatures",
+      "cloud"
     ],
     "details": []
   },
@@ -617,11 +642,11 @@
     "facing": "forward",
     "pose": "seated",
     "symbols": [
-      "pillars",
+      "crown",
       "sword",
       "scales",
-      "crown",
       "throne",
+      "pillars",
       "veil"
     ],
     "details": []
@@ -659,7 +684,8 @@
     "pose": "upside-down",
     "symbols": [
       "tree",
-      "cross"
+      "cross",
+      "halo"
     ],
     "details": []
   },
@@ -695,13 +721,17 @@
     "facing": "right",
     "pose": "riding",
     "symbols": [
+      "skull",
       "horse",
       "banner",
       "flowers",
-      "pillars",
-      "sun",
+      "crown",
       "child",
-      "crown"
+      "pillars",
+      "tower",
+      "sun",
+      "water",
+      "boat"
     ],
     "details": []
   },
@@ -738,12 +768,14 @@
     "pose": "standing",
     "symbols": [
       "angel",
-      "sun",
+      "halo",
       "cup",
       "water",
       "path",
+      "sun",
       "crown",
-      "heights"
+      "heights",
+      "flowers"
     ],
     "details": []
   },
@@ -781,7 +813,9 @@
     "symbols": [
       "torch",
       "chains",
-      "pentacle"
+      "pentacle",
+      "fire",
+      "harvest"
     ],
     "details": []
   },
@@ -820,7 +854,9 @@
       "tower",
       "lightning",
       "crown",
+      "fire",
       "cloud",
+      "dew",
       "heights"
     ],
     "details": []
@@ -858,9 +894,11 @@
     "pose": "kneeling",
     "symbols": [
       "star",
+      "pitcher",
       "water",
       "tree",
-      "bird"
+      "bird",
+      "heights"
     ],
     "details": [
       {
@@ -934,14 +972,15 @@
     "pose": null,
     "symbols": [
       "moon",
-      "heights",
+      "face",
       "dew",
       "tower",
-      "path",
       "dog",
       "wolf",
       "crayfish",
-      "water"
+      "water",
+      "path",
+      "heights"
     ],
     "details": [
       {
@@ -1016,10 +1055,13 @@
     "pose": "riding",
     "symbols": [
       "sun",
+      "face",
       "child",
       "horse",
       "banner",
-      "garden"
+      "flowers",
+      "garden",
+      "feather"
     ],
     "details": []
   },
@@ -1059,9 +1101,11 @@
       "trumpet",
       "banner",
       "cross",
-      "tomb",
       "cloud",
-      "child"
+      "tomb",
+      "child",
+      "heights",
+      "water"
     ],
     "details": []
   },
@@ -1097,10 +1141,12 @@
     "facing": "left",
     "pose": "dancing",
     "symbols": [
+      "wreath",
       "four-creatures",
-      "flowers",
       "wand",
-      "dance"
+      "dance",
+      "cloud",
+      "flowers"
     ],
     "details": []
   },
@@ -1138,8 +1184,13 @@
     "facing": null,
     "pose": null,
     "symbols": [
+      "hand-from-cloud",
       "wand",
-      "hand-from-cloud"
+      "cloud",
+      "tower",
+      "heights",
+      "water",
+      "tree"
     ],
     "details": []
   },
@@ -1179,8 +1230,10 @@
     "symbols": [
       "wand",
       "globe",
+      "flowers",
       "water",
-      "flowers"
+      "heights",
+      "house"
     ],
     "details": []
   },
@@ -1261,10 +1314,12 @@
     "symbols": [
       "wand",
       "flowers",
-      "bridge",
+      "harvest",
+      "dance",
+      "tower",
       "house",
-      "water",
-      "harvest"
+      "bridge",
+      "water"
     ],
     "details": []
   },
@@ -1341,8 +1396,8 @@
     "pose": "riding",
     "symbols": [
       "wand",
-      "horse",
-      "wreath"
+      "wreath",
+      "horse"
     ],
     "details": []
   },
@@ -1381,8 +1436,8 @@
     "facing": "forward",
     "pose": "standing",
     "symbols": [
-      "heights",
-      "wand"
+      "wand",
+      "heights"
     ],
     "details": [
       {
@@ -1455,7 +1510,10 @@
     "facing": null,
     "pose": null,
     "symbols": [
-      "wand"
+      "wand",
+      "heights",
+      "house",
+      "water"
     ],
     "details": []
   },
@@ -1493,7 +1551,8 @@
     "facing": "left",
     "pose": "standing",
     "symbols": [
-      "wand"
+      "wand",
+      "heights"
     ],
     "details": []
   },
@@ -1531,7 +1590,9 @@
     "facing": "away",
     "pose": "walking",
     "symbols": [
-      "wand"
+      "wand",
+      "house",
+      "tree"
     ],
     "details": []
   },
@@ -1569,7 +1630,10 @@
     "facing": "right",
     "pose": "standing",
     "symbols": [
-      "wand"
+      "wand",
+      "feather",
+      "salamander",
+      "heights"
     ],
     "details": []
   },
@@ -1608,7 +1672,10 @@
     "pose": "riding",
     "symbols": [
       "wand",
-      "horse"
+      "horse",
+      "salamander",
+      "feather",
+      "heights"
     ],
     "details": []
   },
@@ -1648,7 +1715,11 @@
     "symbols": [
       "wand",
       "crown",
-      "throne"
+      "throne",
+      "lion",
+      "flowers",
+      "cat",
+      "heights"
     ],
     "details": []
   },
@@ -1689,7 +1760,8 @@
       "wand",
       "crown",
       "throne",
-      "lion"
+      "lion",
+      "salamander"
     ],
     "details": []
   },
@@ -1729,10 +1801,12 @@
     "symbols": [
       "cup",
       "hand-from-cloud",
-      "water",
-      "flowers",
       "bird",
-      "cross"
+      "cross",
+      "water",
+      "dew",
+      "flowers",
+      "cloud"
     ],
     "details": []
   },
@@ -1771,7 +1845,12 @@
     "pose": "standing",
     "symbols": [
       "cup",
-      "lion"
+      "lion",
+      "wings",
+      "serpent",
+      "wreath",
+      "house",
+      "heights"
     ],
     "details": []
   },
@@ -1810,8 +1889,10 @@
     "pose": "dancing",
     "symbols": [
       "cup",
+      "dance",
+      "harvest",
       "garden",
-      "harvest"
+      "flowers"
     ],
     "details": [
       {
@@ -1885,8 +1966,10 @@
     "pose": "seated",
     "symbols": [
       "cup",
+      "hand-from-cloud",
+      "cloud",
       "tree",
-      "hand-from-cloud"
+      "heights"
     ],
     "details": []
   },
@@ -1925,8 +2008,10 @@
     "pose": "standing",
     "symbols": [
       "cup",
+      "water",
       "bridge",
-      "house"
+      "house",
+      "tree"
     ],
     "details": []
   },
@@ -1965,9 +2050,11 @@
     "pose": "standing",
     "symbols": [
       "cup",
+      "flowers",
       "child",
-      "garden",
-      "flowers"
+      "house",
+      "tower",
+      "garden"
     ],
     "details": []
   },
@@ -2013,6 +2100,7 @@
       "tower",
       "jewels",
       "wreath",
+      "skull",
       "dragon"
     ],
     "details": []
@@ -2051,7 +2139,12 @@
     "facing": "away",
     "pose": "walking",
     "symbols": [
-      "cup"
+      "cup",
+      "moon",
+      "face",
+      "heights",
+      "water",
+      "wand"
     ],
     "details": []
   },
@@ -2089,7 +2182,10 @@
     "facing": "forward",
     "pose": "seated",
     "symbols": [
-      "cup"
+      "cup",
+      "table",
+      "veil",
+      "feather"
     ],
     "details": []
   },
@@ -2130,8 +2226,10 @@
       "cup",
       "rainbow",
       "child",
+      "dance",
       "house",
-      "dance"
+      "water",
+      "tree"
     ],
     "details": []
   },
@@ -2170,7 +2268,8 @@
     "pose": "standing",
     "symbols": [
       "cup",
-      "fish"
+      "fish",
+      "water"
     ],
     "details": []
   },
@@ -2209,7 +2308,11 @@
     "pose": "riding",
     "symbols": [
       "cup",
-      "horse"
+      "horse",
+      "wings",
+      "water",
+      "heights",
+      "tree"
     ],
     "details": []
   },
@@ -2249,9 +2352,10 @@
     "symbols": [
       "crown",
       "cup",
-      "water",
+      "cross",
+      "throne",
       "angel",
-      "throne"
+      "water"
     ],
     "details": [
       {
@@ -2314,13 +2418,13 @@
     "facing": "forward",
     "pose": "seated",
     "symbols": [
-      "cup",
       "crown",
-      "throne",
+      "cup",
       "sceptre",
+      "throne",
       "water",
-      "boat",
-      "fish"
+      "fish",
+      "boat"
     ],
     "details": []
   },
@@ -2360,7 +2464,10 @@
     "symbols": [
       "sword",
       "hand-from-cloud",
-      "crown"
+      "crown",
+      "cloud",
+      "dew",
+      "heights"
     ],
     "details": []
   },
@@ -2399,7 +2506,9 @@
     "pose": "seated",
     "symbols": [
       "sword",
-      "blindfold"
+      "blindfold",
+      "moon",
+      "water"
     ],
     "details": []
   },
@@ -2437,8 +2546,8 @@
     "facing": null,
     "pose": null,
     "symbols": [
-      "sword",
       "heart",
+      "sword",
       "cloud"
     ],
     "details": []
@@ -2478,7 +2587,8 @@
     "pose": "lying",
     "symbols": [
       "sword",
-      "tomb"
+      "tomb",
+      "window"
     ],
     "details": []
   },
@@ -2516,7 +2626,9 @@
     "facing": "left",
     "pose": "standing",
     "symbols": [
-      "sword"
+      "sword",
+      "cloud",
+      "water"
     ],
     "details": [
       {
@@ -2587,9 +2699,10 @@
     "facing": "away",
     "pose": "standing",
     "symbols": [
-      "sword",
       "boat",
-      "water"
+      "sword",
+      "water",
+      "tree"
     ],
     "details": []
   },
@@ -2627,7 +2740,9 @@
     "facing": "left",
     "pose": "walking",
     "symbols": [
-      "sword"
+      "sword",
+      "tent",
+      "banner"
     ],
     "details": []
   },
@@ -2667,7 +2782,10 @@
     "symbols": [
       "sword",
       "blindfold",
-      "chains"
+      "chains",
+      "water",
+      "tower",
+      "heights"
     ],
     "details": []
   },
@@ -2705,7 +2823,9 @@
     "facing": "forward",
     "pose": "seated",
     "symbols": [
-      "sword"
+      "sword",
+      "bed",
+      "flowers"
     ],
     "details": []
   },
@@ -2743,7 +2863,9 @@
     "facing": null,
     "pose": "lying",
     "symbols": [
-      "sword"
+      "sword",
+      "water",
+      "heights"
     ],
     "details": []
   },
@@ -2782,7 +2904,10 @@
     "pose": "standing",
     "symbols": [
       "sword",
-      "cloud"
+      "cloud",
+      "bird",
+      "heights",
+      "tree"
     ],
     "details": []
   },
@@ -2821,7 +2946,10 @@
     "pose": "riding",
     "symbols": [
       "sword",
-      "horse"
+      "horse",
+      "feather",
+      "cloud",
+      "tree"
     ],
     "details": []
   },
@@ -2861,7 +2989,12 @@
     "symbols": [
       "sword",
       "crown",
-      "throne"
+      "throne",
+      "butterfly",
+      "angel",
+      "cloud",
+      "bird",
+      "tree"
     ],
     "details": []
   },
@@ -2901,7 +3034,11 @@
     "symbols": [
       "sword",
       "crown",
-      "throne"
+      "throne",
+      "butterfly",
+      "cloud",
+      "bird",
+      "tree"
     ],
     "details": []
   },
@@ -2941,7 +3078,12 @@
     "symbols": [
       "hand-from-cloud",
       "pentacle",
-      "garden"
+      "cloud",
+      "garden",
+      "flowers",
+      "archway",
+      "path",
+      "heights"
     ],
     "details": [
       {
@@ -3018,7 +3160,9 @@
     "symbols": [
       "pentacle",
       "infinity",
-      "dance"
+      "dance",
+      "water",
+      "boat"
     ],
     "details": []
   },
@@ -3056,7 +3200,9 @@
     "facing": null,
     "pose": "standing",
     "symbols": [
-      "pentacle"
+      "pentacle",
+      "archway",
+      "scroll"
     ],
     "details": []
   },
@@ -3095,7 +3241,9 @@
     "pose": "seated",
     "symbols": [
       "pentacle",
-      "crown"
+      "crown",
+      "house",
+      "tower"
     ],
     "details": []
   },
@@ -3134,8 +3282,8 @@
     "pose": "walking",
     "symbols": [
       "pentacle",
-      "snow",
-      "window"
+      "window",
+      "snow"
     ],
     "details": []
   },
@@ -3174,7 +3322,8 @@
     "pose": "standing",
     "symbols": [
       "pentacle",
-      "scales"
+      "scales",
+      "house"
     ],
     "details": []
   },
@@ -3213,6 +3362,7 @@
     "pose": "standing",
     "symbols": [
       "pentacle",
+      "harvest",
       "garden"
     ],
     "details": []
@@ -3251,7 +3401,9 @@
     "facing": "right",
     "pose": "seated",
     "symbols": [
-      "pentacle"
+      "pentacle",
+      "table",
+      "house"
     ],
     "details": []
   },
@@ -3293,7 +3445,9 @@
       "bird",
       "harvest",
       "garden",
-      "house"
+      "house",
+      "tree",
+      "heights"
     ],
     "details": []
   },
@@ -3332,9 +3486,12 @@
     "pose": null,
     "symbols": [
       "pentacle",
+      "archway",
       "house",
+      "tower",
       "dog",
-      "child"
+      "child",
+      "harvest"
     ],
     "details": []
   },
@@ -3372,7 +3529,11 @@
     "facing": "right",
     "pose": "standing",
     "symbols": [
-      "pentacle"
+      "pentacle",
+      "flowers",
+      "garden",
+      "tree",
+      "heights"
     ],
     "details": []
   },
@@ -3411,7 +3572,10 @@
     "pose": "riding",
     "symbols": [
       "pentacle",
-      "horse"
+      "horse",
+      "garden",
+      "tree",
+      "heights"
     ],
     "details": []
   },
@@ -3451,7 +3615,12 @@
     "symbols": [
       "pentacle",
       "crown",
-      "throne"
+      "throne",
+      "flowers",
+      "rabbit",
+      "garden",
+      "heights",
+      "tree"
     ],
     "details": []
   },
@@ -3492,7 +3661,14 @@
       "pentacle",
       "crown",
       "throne",
-      "bull"
+      "bull",
+      "sceptre",
+      "globe",
+      "harvest",
+      "flowers",
+      "garden",
+      "house",
+      "tower"
     ],
     "details": []
   }

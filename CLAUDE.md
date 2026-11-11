@@ -146,6 +146,11 @@ From the Dark Forest printable journal: ideas and layout only, in our own words 
 
 Later ideas: follow-up reflections on old readings, Daily mode, Practice mode (flashcards with spaced repetition), personal card pages built from past entries, weekly reviews, the Celtic Cross.
 
+Ideas seen in the Labyrinthos app (2026-11-11; ideas only, our own design and words):
+
+- **Browse the deck.** A grid of all 78 cards with a search box and tabs for Majors, Wands, Cups, Swords, Pentacles and All. Our data can go further: filter by symbol, facing and pose, the same filters `find_cards` and `GET /cards` already have.
+- **Readers with personalities.** A few characters who each read the cards in their own voice, for the LLM coach step. Each is its own system prompt over the same tools, like demand_scenarios' three assistants (Demand, Cofinancing, VPOP) sharing one chat client. Every character still follows the voice rules: reflection, not prediction. In MCP each reader is a prompt you pick ("read with the Sage") over the same tools, and the same persona text can be the coach's system prompt (one definition, two doors). Gating readers by level is an access lesson: filter the prompts menu by the token.
+
 ## Open questions
 
 - **Reversals on iPhone.** I once saw 9 of 9 cards reversed at the old 50% rate. It could not be reproduced in Chromium. Watch for it in Safari: does the label or the face look wrong?

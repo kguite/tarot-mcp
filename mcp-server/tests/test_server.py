@@ -1,10 +1,11 @@
 import asyncio
 import json
+from typing import get_args
 
 import pytest
 from mcp import Client, MCPError
 
-from server import CARDS, SYMBOLS, WAITE, mcp, rng
+from server import CARDS, SYMBOLS, WAITE, Facing, Pose, mcp, rng
 
 
 # Client(mcp) runs the server in-process: the same calls Claude makes, no subprocess.
@@ -60,11 +61,12 @@ def test_symbol_ids_line_up():
 
 
 def test_full_deck_with_every_field():
-    fields = {'summary', 'meaning', 'advice', 'affirmation', 'as_a_person', 'facing'}
+    fields = {'summary', 'meaning', 'advice', 'affirmation', 'as_a_person', 'facing', 'pose'}
     assert len(CARDS) == 78
     for card in CARDS:
         assert fields <= card.keys(), card['id']
-        assert card['facing'] in {None, 'left', 'right', 'forward'}, card['id']
+        assert card['facing'] in {None, *get_args(Facing)}, card['id']
+        assert card['pose'] in {None, *get_args(Pose)}, card['id']
 
 
 def test_every_card_has_waite_text():
@@ -90,6 +92,15 @@ def test_find_cards_by_rank():
     found = json.loads(call('find_cards', {'rank': 7}).content[0].text)
 
     assert [c['id'] for c in found['cards']] == ['seven-of-wands', 'seven-of-cups', 'seven-of-swords', 'seven-of-pentacles']
+
+
+# Pose and facing come from the art: who is falling, and whose back is turned, in one suit.
+def test_find_cards_by_pose_and_facing():
+    falling = json.loads(call('find_cards', {'pose': 'falling'}).content[0].text)
+    away_cups = json.loads(call('find_cards', {'facing': 'away', 'suit': 'cups'}).content[0].text)
+
+    assert [c['id'] for c in falling['cards']] == ['tower']
+    assert [c['id'] for c in away_cups['cards']] == ['seven-of-cups', 'eight-of-cups', 'ten-of-cups']
 
 
 # Bad input is an error Claude can read: an unknown symbol lists the valid ones, a bad suit fails the schema.

@@ -748,6 +748,10 @@ one shows only that group's cards, with a panel above them saying what the group
 - **Icons drawn as line SVGs** in `icons.tsx`, matching the nav icons; Majors borrows the star
   from the card back. Six across fits a phone, icon over label.
 
+At work: country-dashboard's subnational coverage list does the same thing. Each row is a button
+with `aria-pressed` and one `focus` state picks which region is shown
+(`apps/frontend/src/pages/data-validation/SubnationalCoverage.tsx`).
+
 ## Next
 
 - A "Waite says" section in the inspect view: his picture description and meanings from

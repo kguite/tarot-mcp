@@ -3,11 +3,12 @@ import { DrawSheet } from './components/DrawSheet'
 import { Nav } from './components/Nav'
 import type { Page } from './components/Nav'
 import { SPREADS } from './data'
-import { newReading } from './lib/deck'
+import { isFinished, newReading } from './lib/deck'
 import type { Reading } from './lib/deck'
 import { Draw } from './screens/Draw'
+import { Journal } from './screens/Journal'
 import { Learn } from './screens/Learn'
-import { Journal, Settings } from './screens/Placeholders'
+import { Settings } from './screens/Placeholders'
 import { Today } from './screens/Today'
 import styles from './App.module.css'
 
@@ -42,7 +43,7 @@ function App() {
       </main>
       {choosing && (
         <DrawSheet
-          reading={reading}
+          reading={reading && !isFinished(reading) ? reading : null}
           onContinue={() => {
             setChoosing(false)
             setPage('draw')

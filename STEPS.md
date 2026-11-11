@@ -152,6 +152,312 @@ npm run dev
 
 The page should say "17 cards and 5 spreads loaded."
 
+## 4. An MCP server with one tool
+
+**What:** `mcp-server/`, a small Python program with one tool, `get_card`, that reads
+`tarot-app/src/data/cards.json`. It's a separate project from the app, with its own
+`requirements.txt` and `.venv`.
+
+**Why Python, when the app is TypeScript:** to use what work uses. speak_friend is a Python MCP
+server on the same package (`mcp==2.3.0`), and daedalus defines tools with pydantic. Everything
+learned here carries over line for line. The app and the server share only the JSON files.
+
+**How MCP works.** Think of the server as a kitchen, and Claude as a waiter who can only read
+the menu.
+- **The menu** is the tool list: each tool's name, description, and inputs. That's all Claude
+  sees. It never sees the code.
+- **The order:** Claude picks a tool that fits the question and calls it with arguments.
+- **The kitchen** is the function that runs and sends back a result. Claude writes its answer
+  from that result.
+- **A bad menu gets bad orders.** A vague description means the wrong tool or the wrong
+  arguments, even when the code is fine.
+
+**The client** (Claude Desktop, Claude Code, or the Inspector) starts the server as a background
+program and talks to it over stdin and stdout, one JSON message per line. This is the
+**stdio transport**. There are three messages:
+
+| Message | Means |
+| --- | --- |
+| `initialize` | Handshake: protocol version, and what each side supports |
+| `tools/list` | "Show me the menu." The server answers with each tool's name, description, and input schema. |
+| `tools/call` | "Run `get_card` with `{ "id": "moon" }`." The server answers with `content`. |
+
+**Gotcha:** stdout *is* the conversation, so `print()` in the server corrupts it. Log to
+stderr instead.
+
+**Setup:**
+
+```
+git switch main
+git pull
+git switch -c mcp-server
+mkdir mcp-server
+cd mcp-server
+C:\Users\KatieGuite\anaconda3\envs\dev310\python.exe -m venv .venv
+.venv\Scripts\python.exe -m pip install -r requirements.txt
+```
+
+- `requirements.txt` pins `mcp==2.3.0`, the same as speak_friend. It brings pydantic with it.
+- `.venv` is this project's own Python, made from dev310, the way speak_friend's README does it.
+  `.gitignore` leaves it out.
+
+**The code,** `server.py`, has three parts:
+1. Read `cards.json` once at startup. The path is built from `__file__`, so it's relative to
+   the file, not to the folder the server is started from.
+2. `mcp = MCPServer(name='tarot')`
+3. A plain Python function with `@mcp.tool()` on top. The SDK builds the menu from it:
+   - the function name is the tool name
+   - the docstring is the description
+   - each argument becomes an input, and `Annotated[str, Field(description=...)]` (pydantic)
+     gives it a description on the menu
+   - the return value is the result
+
+If the id doesn't exist, the function raises `ToolError` with the list of valid ids. The SDK
+turns that into a result with `isError: true`. Claude reads it and can retry with the right
+id, so a good error message is part of the menu too.
+
+**Check it raw.** Send it the messages directly (Git Bash):
+
+```
+printf '%s\n' \
+'{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-11-25","capabilities":{},"clientInfo":{"name":"test","version":"0"}}}' \
+'{"jsonrpc":"2.0","method":"notifications/initialized"}' \
+'{"jsonrpc":"2.0","id":2,"method":"tools/list"}' \
+'{"jsonrpc":"2.0","id":3,"method":"tools/call","params":{"name":"get_card","arguments":{"id":"moon"}}}' \
+'{"jsonrpc":"2.0","id":4,"method":"tools/list"}' \
+| .venv/Scripts/python.exe server.py
+```
+
+The answer to `tools/list` is exactly what Claude would see: the function's signature has
+become JSON Schema. The last request is a spare: the pipe closes as soon as the input ends,
+and the server can be cut off before its last reply.
+
+**Lesson: the result was being sent twice.** With `-> str` on the function, the SDK guesses
+you want "structured output" and sends the result twice: once as `content` and again as
+`structuredContent`, plus an `outputSchema` on the menu. `@mcp.tool(structured_output=False)`
+turns that off. The card reply dropped to about half its size (1,184 bytes). speak_friend's
+`get_demand` has the same `-> str` and plain `@mcp.tool()`, so it is worth checking there.
+
+**Check it in the Inspector** (cmd, from `mcp-server`):
+
+```
+npx @modelcontextprotocol/inspector .venv\Scripts\python.exe server.py
+```
+
+**What the Inspector is:** Postman for MCP. It plays the client, so you can make requests by
+hand and see the exact JSON, with no AI involved. Unlike Postman, it also speaks the protocol
+for you: it does the handshake, wraps each request in its envelope (`jsonrpc`, `id`,
+`method`, `params`), and matches replies by `id`. You only say which tool and what input.
+
+| REST (speak_friend) | MCP (tarot) |
+| --- | --- |
+| Postman, or FastAPI's `/docs` page | The MCP Inspector |
+| `/openapi.json`: every endpoint and its inputs | `tools/list`: every tool, description, and input schema |
+| `GET /get_demand` | `tools/call` with `get_card` and `{"id": "moon"}` |
+
+**Using it** (Inspector 2026 layout):
+1. The page shows a `python.exe` card with the command. Flip its toggle to connect. The top bar
+   shows the server's name (`tarot`, from `MCPServer(name='tarot')`) and the protocol version
+   both sides agreed on (`MCP 2025-11-25`).
+2. The Messages panel on the right is the whole conversation, newest first, so read it from the
+   bottom: `initialize`, `notifications/initialized`, then the Inspector asks for all three
+   menus by itself: `tools/list`, `prompts/list`, `resources/list`. Prompts and resources come
+   back empty, since this server only has a tool.
+3. Expand `tools/list` (the arrows icon) to see the raw menu.
+4. Open the Tools tab, pick `get_card`, enter `moon`, and run it. A `tools/call` message
+   appears at the top of the panel. Try `the-moon` to see the error.
+
+The long `MCP_INSPECTOR_API_TOKEN` in the address bar is a password for that session. Keep it
+out of screenshots you share.
+
+**Claude Desktop: skipped for now.** A stdio server is added to Claude Desktop through a config
+file, normally reached from Settings, then Developer. This version of Claude Desktop
+(3.6556.1) has no Developer menu, only Customize (Connectors, Skills, Plugins). So the plan is
+the remote route instead: once the server speaks HTTP, add its URL with "+ Add" under
+Connectors. That's also how speak_friend is reached, so it's the more useful one to learn.
+
+**No API tokens needed.** The server makes no AI calls, and Claude Desktop runs on the
+claude.ai account. API tokens come later, when the app calls Claude itself.
+
+**At work: daedalus does all of this in one process.** MCP splits three jobs that daedalus
+(`src/ai/anthropic_model.py`) does itself:
+
+| Job | With MCP | In daedalus |
+| --- | --- | --- |
+| The app you chat in | Claude Desktop | `run_streamlit_app` |
+| The loop: ask Claude, run tools, repeat | Built into Claude Desktop | `_run_tool_loop` |
+| The menu | The server's `tools/list` reply | `_build_anthropic_tools`: function name, description, pydantic schema |
+| The kitchen | The server's tool handler | The app's Python function, called by `_dispatch_tool` |
+
+So daedalus uses plain tool use through the Anthropic SDK, with no MCP. The menu is built the
+same way: a name, a description, and a pydantic schema.
+
+**The same server in TypeScript** is kept in `mcp-server-ts/` (the TypeScript MCP SDK, with zod
+in place of pydantic). It was built first, then replaced to match work. Comparing the two shows
+what is the protocol and what is just one SDK's style: the messages are identical, and only the
+way you declare a tool differs.
+daedalus also prompt-caches the system prompt and messages and logs tokens per turn, which is
+the pattern to copy when tarot calls Claude itself.
+
+## 5. Test the tool with pytest
+
+The Inspector is checking by hand. A test checks the same thing every time, in under a second.
+
+**Setup.** pytest goes in `requirements.txt` (pinned to `9.1.1`, the same as speak_friend), then:
+
+```
+cd mcp-server
+.venv\Scripts\python.exe -m pip install -r requirements.txt
+.venv\Scripts\python.exe -m pytest tests -q
+```
+
+Run it from `mcp-server/` with `python -m pytest`, not plain `pytest`. `python -m` puts the
+current folder on the import path, so the test can `import server`. speak_friend runs its tests
+the same way. pytest leaves a `.pytest_cache` folder behind, so it's in `.gitignore`.
+
+**The trick: test through MCP, not around it.** The SDK's `Client` usually takes a URL or a
+command. In tests it can take the server object itself and run it in-process:
+
+```python
+async with Client(mcp) as client:
+    result = await client.call_tool('get_card', {'id': 'moon'})
+```
+
+That's the same `tools/list` and `tools/call` Claude sends, with no subprocess and no Inspector.
+Calling `get_card('moon')` directly would test the kitchen but not the menu or the reply shape.
+
+**The three tests** (`mcp-server/tests/test_server.py`):
+
+| Test | Checks |
+| --- | --- |
+| The menu | `tools/list` has `get_card`, its description, and `id` as a required input |
+| A good call | `moon` comes back once, as text, and its name is The Moon |
+| A bad call | `the-moon` comes back with `is_error` set, and the text lists the valid ids |
+
+"Once" is the test for the "result sent twice" lesson in step 4. Without
+`structured_output=False` the reply still has one content block but gains a `structuredContent`
+copy, so the test checks `structured_content` is empty, not just the block count. To see it
+bite, delete `structured_output=False` from `server.py`, rerun, watch that test fail, and put it
+back.
+
+**Field names in Python are snake_case.** The wire says `isError` and `inputSchema`; the SDK's
+Python objects say `is_error` and `input_schema`.
+
+**At work.**
+
+| | tarot | speak_friend | demand_scenarios |
+| --- | --- | --- | --- |
+| Test file | `mcp-server/tests/test_server.py` | `tests/test_mcp.py` | `tests/` |
+| What it tests | The tool, through MCP | The token check only, no tool call | The tool wrappers |
+| How it stays offline | `Client(mcp)` in-process | A fake Auth0 key (`tests/fake_auth0.py`) | The HTTP client is replaced |
+| Run | `python -m pytest tests -q` | `python -m pytest` | `python -m pytest tests -q` |
+
+speak_friend has no test that calls `get_demand` through MCP. This pattern would be the one to
+add there.
+
+## 6. Two more tools: list_spreads and draw_cards
+
+One tool gives Claude nothing to choose. With three, "do a past, present, future reading" means
+Claude reads the menu, calls `list_spreads` if it needs the id, then calls `draw_cards`.
+
+**list_spreads** takes no input and returns each spread's id, name, summary and position names.
+It was planned as `get_spread(id)`, but Claude's first question is "which spreads are there", and
+the positions come back with the draw anyway.
+
+**draw_cards(spread_id)** works like a reading at a table:
+
+1. Find the spread in `spreads.json`. Its `positions` list is the spots, in order (Past, Present,
+   Future). It says how many cards and what each spot means, not how they're laid out. Layout is
+   the app's job.
+2. Deal: `rng.sample(CARDS, len(positions))` picks that many different cards, like dealing from
+   a real deck. No card comes up twice.
+3. Pair them: `zip(positions, cards)` joins them like a zipper, one pair at a time. Past gets the
+   first card, Present the second.
+4. Flip a weighted coin per card: `rng.random()` is a number from 0 to 1, and under 0.25 means
+   reversed. About 1 card in 4, matching the prototype.
+5. Send back each position, its question, the card, reversed or not, and only the keywords for
+   that side.
+
+`rng` is `random.SystemRandom()`, which asks the operating system for random numbers, like
+`crypto.getRandomValues` in the prototype.
+
+**The code draws the cards, never the model.** A model is bad at being random and might pick
+cards that fit the question. Claude asks for a draw and reads what came up.
+
+**Testing something random.** You can't check which cards come up, only what's always true:
+
+| Test | Checks |
+| --- | --- |
+| list_spreads | The spreads come back in order, with their positions |
+| A full draw | A Celtic Cross has 10 cards, in position order, all different |
+| A reversed draw | With the random number pinned to 0, the card is reversed and has the reversed keywords |
+| A bad spread id | `three-card` is an error that lists the valid ids |
+
+Pinning uses pytest's `monkeypatch`: for one test, `rng.random` is swapped for a function that
+always returns 0. That gives a repeatable draw without adding a seed input to the tool, which
+Claude would see on the menu and might start filling in.
+
+**At work.** demand_scenarios has the same rule as "the code draws": every number comes from
+`lb_database_api`, and the model never computes one. If you find yourself computing a figure in
+the chat app, you're in the wrong repo. Here, if the model is picking cards, the tool is missing.
+
+## 7. A prompt and a resource: who decides
+
+An MCP server can offer three kinds of things. The difference is who decides to use each one.
+
+| | Who decides | Restaurant | Ours |
+| --- | --- | --- | --- |
+| Tool | Claude | A dish Claude orders | `get_card`, `list_spreads`, `draw_cards` |
+| Resource | You or the app | Reading material on the table | `tarot://waite/{id}` |
+| Prompt | You | The set menu | `daily_draw` |
+
+The same data can go through any of the three. A list of journal questions could be a resource
+you attach, a tool Claude calls mid-reading, or a prompt you start. Pick by who should decide.
+
+**The prompt: daily_draw.** `@mcp.prompt()` on a function that returns a string. The string
+becomes a message to Claude, with your question filled in: draw one card, say only its name,
+ask for your first impression, wait, then talk starting from what you wrote. Step 3 is why it's
+a prompt. A tool can only hand back data; it can't make Claude wait. "Hold back the meaning" is
+an instruction, and a prompt is how a server gives Claude instructions you chose. It came from a
+journal's morning loop: first impression before the meaning.
+
+In the Inspector: the Prompts tab, pick `daily_draw`, type a question, and see the message.
+The Inspector shows the message, not the conversation. Seeing Claude wait needs Claude Desktop.
+
+**The resource: Waite's own words.** `waite.json` holds Waite's *Pictorial Key to the Tarot* for
+our 17 cards, copied exactly from Wikisource (public domain, credited with a link): what the
+picture shows, then upright and reversed. `@mcp.resource('tarot://waite/{id}')` serves one card.
+
+- **`{id}` makes it a template:** one recipe for 17 resources. It's listed under resource
+  templates, not resources, and the client fills in the id (`tarot://waite/moon`).
+- **A resource error goes to the app, not Claude.** `get_card` with a bad id returns an error
+  Claude reads and can fix. `tarot://waite/the-moon` raises a protocol error the client app has
+  to handle. That fits: you picked it, so you get the error.
+- **Waite is source material, not the app's voice.** His meanings are often bleak or dated
+  ("hidden enemies"). The app writes its own. His picture descriptions are useful as the list
+  of what is on each card, for `symbols.json`.
+
+**Getting the text.** Claude's web reader summarizes long pages instead of quoting them, so the
+two Wikisource pages came through Wikipedia's public API as HTML, and a scratch script pulled
+the text out. The only change is rejoining sentences split at the book's page breaks.
+
+**Testing.** Same `Client(mcp)` pattern: `list_prompts`, `get_prompt`, `list_resource_templates`,
+`read_resource`. One gotcha: the bad-id resource test catches the error inside `async with
+Client(...)`. If it escapes, it comes out wrapped in an `ExceptionGroup` and `pytest.raises`
+misses it.
+
+**At work.** speak_friend only has a tool, which fits: Claude decides when it needs demand
+numbers. A resource would suit fixed reference material someone attaches on purpose, like a
+glossary. A prompt would suit a check that should always run the same way, like a monthly demand
+review. Prompts are the closest MCP gets to Skills: a saved recipe you start on purpose.
+
 ## Next
 
-- Port the `store` module (saving readings) to `src/lib/store.ts`
+- Data shape: a shared `symbols.json` so details on different cards link up ("other cards with
+  pillars"), built from what Waite lists in each picture, and a `find_cards` tool that filters by
+  symbol, suit and rank. Then the other 61 cards in that shape, then explore the data through the
+  MCP tools and adjust the shape
+- Grow `mcp-server/` into a FastAPI app: REST plus `/mcp`, like speak_friend's `main.py`, then
+  add its URL in Claude Desktop with "+ Add" and watch Claude choose `get_card`
+- Access: levels, permissions and circles, in the build order in `ACCESS.md`
+- Port the `store` module (saving readings) to `src/lib/store.ts`, calling the FastAPI endpoints

@@ -18,6 +18,8 @@ export interface CardSymbol {
   id: string
   name: string
   summary: string
+  // How the symbol shows up across its cards, for the "Also in" sheet. Placeholder text for now.
+  across: string
 }
 
 // Something to tap on the card art. region is a rough x and y on the card, 0 to 100.

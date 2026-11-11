@@ -23,47 +23,35 @@
 
 .back,
 .face {
+  display: block;
+  width: 100%;
   aspect-ratio: 0.575;
   border-radius: var(--radius-art);
   box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: var(--card-back);
   border: 1px solid var(--gold-strong);
   color: var(--gold);
 }
 
 .face {
-  flex-direction: column;
-  gap: var(--space-2);
-  padding: var(--space-2);
+  object-fit: cover;
   background: var(--panel);
-  text-align: center;
 }
 
 /* A resting card sits back a little, so the chosen one leads. */
 .resting .face {
-  opacity: 0.8;
+  filter: saturate(0.8);
+  opacity: 0.85;
 }
 
 .reversed {
   transform: rotate(180deg);
-}
-
-.numeral {
-  font-family: var(--font-display);
-  font-size: 20px;
-  color: var(--gold);
-}
-
-.name {
-  font-family: var(--font-display);
-  font-size: 15px;
-  line-height: 1.15;
 }
 
 .label {

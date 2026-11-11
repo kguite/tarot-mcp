@@ -7,8 +7,8 @@ type CardProps =
   | { state: 'down'; label: string }
   | { state: 'resting' | 'chosen'; label: string; card: CardData; reversed?: boolean }
 
-const ROMAN = ['0', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII', 'XIII', 'XIV',
-  'XV', 'XVI', 'XVII', 'XVIII', 'XIX', 'XX', 'XXI']
+// The 1909 art lives in public/cards (credits in public/cards/CREDITS.md).
+const artUrl =(id: string) => `${import.meta.env.BASE_URL}cards/${id}.webp`
 
 export function Card(props: CardProps) {
   return (
@@ -19,11 +19,11 @@ export function Card(props: CardProps) {
             <Star size={34} center />
           </div>
         ) : (
-          // Placeholder face until the 1909 art is hosted: the numeral and the name.
-          <div className={props.reversed ? `${styles.face} ${styles.reversed}` : styles.face}>
-            <span className={styles.numeral}>{props.card.arcana === 'major' ? ROMAN[props.card.number] : props.card.rank}</span>
-            <span className={styles.name}>{props.card.name}</span>
-          </div>
+          <img
+            className={props.reversed ? `${styles.face} ${styles.reversed}` : styles.face}
+            src={artUrl(props.card.id)}
+            alt={props.reversed ? `${props.card.name}, reversed` : props.card.name}
+          />
         )}
       </div>
       <figcaption className={styles.label}>{props.label}</figcaption>

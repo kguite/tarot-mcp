@@ -62,7 +62,7 @@ def find_cards(
     facing: Annotated[Facing | None, Field(description="Where the main figure looks, from the viewer's side. away: the figure's back is turned")] = None,
     pose: Annotated[Pose | None, Field(description="What the main figure's body is doing")] = None,
 ) -> str:
-    """Find cards by what is in the picture, by suit, by number, or by the main figure's facing and pose. Filters combine. Returns each matching card's id and name, and the symbol's summary when filtering by symbol."""
+    """Find cards by what is in the picture, by suit, by number, or by the main figure's facing and pose. Filters combine. Returns each matching card's id and name, and the symbol's summary and across line when filtering by symbol."""
     if all(v is None for v in (symbol, suit, rank, facing, pose)):
         raise ToolError('Give at least one of symbol, suit, rank, facing or pose.')
     found = {}

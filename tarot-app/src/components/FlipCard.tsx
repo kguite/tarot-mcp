@@ -10,11 +10,13 @@ type FlipCardProps = {
   selected: boolean
   label: string
   onTap: () => void
+  onLookCloser: () => void
 }
 
 // A drawn card in its spot: face down until tapped, then turned over with a 3D spring.
 // Both faces are always there; turning the inner box 180 degrees shows the other one.
-export function FlipCard({ card, reversed, faceUp, selected, label, onTap }: FlipCardProps) {
+// The open card's label becomes "Look closer"; its position name is already in the meaning panel.
+export function FlipCard({ card, reversed, faceUp, selected, label, onTap, onLookCloser }: FlipCardProps) {
   const name = reversed ? `${card.name}, reversed` : card.name
   const action = !faceUp ? `Turn over the ${label} card` : selected ? `Hide the meaning of ${name}` : `Show the meaning of ${name}`
   return (
@@ -25,11 +27,13 @@ export function FlipCard({ card, reversed, faceUp, selected, label, onTap }: Fli
             <Star size={28} center />
           </span>
           <span className={`${styles.face} ${styles.front}`}>
-            <CardArt card={card} alt="" className={reversed ? styles.reversed : undefined} />
+            <CardArt card={card} alt="" reversed={reversed} />
           </span>
         </span>
       </button>
-      <figcaption className={styles.label}>{label}</figcaption>
+      <figcaption className={styles.label}>
+        {selected ? <button className={styles.closer} onClick={onLookCloser}>Look closer</button> : label}
+      </figcaption>
     </figure>
   )
 }

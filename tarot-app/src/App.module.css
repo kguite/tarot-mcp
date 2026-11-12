@@ -5,7 +5,7 @@
 
 @media (min-width: 900px) {
   .content {
-    margin-left: 260px;
+    margin-left: var(--sidebar-width);
     padding-bottom: 0;
   }
 }

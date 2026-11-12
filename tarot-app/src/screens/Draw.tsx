@@ -57,7 +57,7 @@ export function Draw({ reading, onChange }: { reading: Reading; onChange: (readi
       if (savedId) {
         await updateInterpretation(savedId, reflection)
       } else {
-        const cards = draws.map((d) => ({ positionId: d.position.id, cardId: d.card.id, reversed: d.reversed }))
+        const cards = draws.map((d) => ({ cardId: d.card.id, reversed: d.reversed }))
         savedId = await saveReading(spread.id, cards, reflection)
       }
       onChange({ ...reading, savedId, savedReflection: reflection })
@@ -75,84 +75,86 @@ export function Draw({ reading, onChange }: { reading: Reading; onChange: (readi
   const shown = open === null ? null : draws[open]
 
   return (
-    <div className={screen.screen}>
+    <div className={`${screen.screen} ${screen.wide}`}>
       <div className={screen.title}>
         <Eyebrow gold>Your reading</Eyebrow>
         <h1>{spread.name}</h1>
         <Ornament />
       </div>
 
-      <div className={styles.spread} style={{ gridTemplateColumns: `repeat(${Math.min(draws.length, 4)}, minmax(0, 150px))` }}>
-        {draws.map((draw, i) =>
-          phases[i] === 'empty' ? (
-            <figure key={i} className={styles.empty}>
-              <span className={styles.outline} />
-              <figcaption>{draw.position.name}</figcaption>
-            </figure>
-          ) : (
-            <FlipCard
-              key={i}
-              card={draw.card}
-              reversed={draw.reversed}
-              faceUp={phases[i] === 'up'}
-              selected={open === i}
-              label={draw.position.name}
-              onTap={() => tap(i)}
-            />
-          ),
-        )}
-      </div>
-
-      {hint && <p className={styles.hint}>{hint}</p>}
-
-      {left > 0 && (
-        <div className={styles.fan}>
-          {Array.from({ length: FAN }, (_, k) => (
-            <button
-              key={k}
-              className={picked.includes(k) ? `${styles.fanCard} ${styles.gone}` : styles.fanCard}
-              style={{ '--angle': `${-27 + k * 9}deg` } as CSSProperties}
-              onClick={() => pick(k)}
-              aria-label="Choose this card"
-              disabled={picked.includes(k)}
-            >
-              <span className={styles.fanBack}>
-                <Star size={22} />
-              </span>
-            </button>
-          ))}
-        </div>
-      )}
-
-      {shown && (
-        <div className={styles.meaning}>
-          <ReadingPanel card={shown.card} reversed={shown.reversed} position={shown.position.name} question={shown.position.prompt} />
-          <Button
-            variant="secondary"
-            onClick={() => setInspecting({ card: shown.card, reversed: shown.reversed, context: `${shown.position.name} · ${shown.reversed ? 'reversed' : 'upright'}` })}
-          >
-            Look closer
-          </Button>
-        </div>
-      )}
-
-      {left === 0 && (
-        <>
-          <TextField
-            label="Your reflection"
-            placeholder="Write whatever comes up. There’s no wrong answer."
-            value={reflection}
-            onChange={(e) => onChange({ ...reading, reflection: e.target.value })}
-          />
-          <div className={styles.actions}>
-            <Button variant="secondary" onClick={startOver}>Start over</Button>
-            <Button onClick={save} disabled={isFinished(reading)}>
-              {isFinished(reading) ? 'Saved' : reading.savedId ? 'Save changes' : 'Save reading'}
-            </Button>
+      {/* Two columns on a wide screen, stacked on a phone. Left: the cards and what they mean.
+          Right: the fan while choosing, then the journal (reflection and save). */}
+      <div className={left > 0 ? `${styles.stage} ${styles.choosing}` : styles.stage}>
+        <div className={styles.side}>
+          <div className={styles.spread} style={{ gridTemplateColumns: `repeat(${Math.min(draws.length, 4)}, minmax(0, var(--card-max)))` }}>
+            {draws.map((draw, i) =>
+              phases[i] === 'empty' ? (
+                <figure key={i} className={styles.empty}>
+                  <span className={styles.outline} />
+                  <figcaption>{draw.position.name}</figcaption>
+                </figure>
+              ) : (
+                <FlipCard
+                  key={i}
+                  card={draw.card}
+                  reversed={draw.reversed}
+                  faceUp={phases[i] === 'up'}
+                  selected={open === i}
+                  label={draw.position.name}
+                  onTap={() => tap(i)}
+                  onLookCloser={() => setInspecting({ card: draw.card, reversed: draw.reversed, context: `${draw.position.name} · ${draw.reversed ? 'reversed' : 'upright'}` })}
+                />
+              ),
+            )}
           </div>
-          {saveError && <p className={styles.error} role="alert">{saveError}</p>}
-        </>
-      )}
+          {left === 0 && hint && <p className={styles.hint}>{hint}</p>}
+          {shown && (
+            <div className={styles.meaning}>
+              <ReadingPanel card={shown.card} reversed={shown.reversed} position={shown.position.name} question={shown.position.prompt} />
+            </div>
+          )}
+        </div>
+
+        <div className={styles.side}>
+          {left > 0 && hint && <p className={styles.hint}>{hint}</p>}
+          {left > 0 ? (
+            <div className={styles.fan}>
+              {Array.from({ length: FAN }, (_, k) => (
+                <button
+                  key={k}
+                  className={picked.includes(k) ? `${styles.fanCard} ${styles.gone}` : styles.fanCard}
+                  style={{ '--angle': `${-27 + k * 9}deg` } as CSSProperties}
+                  onClick={() => pick(k)}
+                  aria-label="Choose this card"
+                  disabled={picked.includes(k)}
+                >
+                  <span className={styles.fanBack}>
+                    <Star size={22} />
+                  </span>
+                </button>
+              ))}
+            </div>
+          ) : (
+            <>
+              <div className={styles.journal}>
+                <TextField
+                  label="Your reflection"
+                  placeholder="Write whatever comes up. There’s no wrong answer."
+                  value={reflection}
+                  onChange={(e) => onChange({ ...reading, reflection: e.target.value })}
+                />
+              </div>
+              <div className={styles.actions}>
+                <Button variant="secondary" onClick={startOver}>Start over</Button>
+                <Button onClick={save} disabled={isFinished(reading)}>
+                  {isFinished(reading) ? 'Saved' : reading.savedId ? 'Save changes' : 'Save reading'}
+                </Button>
+              </div>
+              {saveError && <p className={screen.error} role="alert">{saveError}</p>}
+            </>
+          )}
+        </div>
+      </div>
 
       {inspecting && (
         <CardInspect

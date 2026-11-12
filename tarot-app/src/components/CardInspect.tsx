@@ -73,64 +73,72 @@ export function CardInspect({ card, reversed = false, context, onClose, onOpen, 
         </IconButton>
       </header>
 
+      {/* The art, then the notes about it: stacked on a phone, side by side on a wide screen. */}
       <div className={styles.body}>
-        <div className={styles.frame}>
-          <div ref={viewport} className={zoomed ? `${styles.viewport} ${styles.zoomed}` : styles.viewport}>
-            {/* Rings are placed in percent of this box, so they stay on the art when it zooms or turns over. */}
-            <div className={reversed ? `${styles.art} ${styles.reversed}` : styles.art} onDoubleClick={toggleZoom}>
-              <CardArt card={card} alt={reversed ? `${card.name}, reversed` : card.name} />
-              {card.details.map((d) => (
-                <button
-                  key={d.id}
-                  className={d.id === detailId ? `${styles.ring} ${styles.selected}` : styles.ring}
-                  style={{ left: `${d.region.x}%`, top: `${d.region.y}%` }}
-                  aria-label={d.label}
-                  aria-pressed={d.id === detailId}
-                  onClick={() => setDetailId(d.id === detailId ? null : d.id)}
-                />
-              ))}
+        <div className={styles.look}>
+          <div className={styles.frame}>
+            <div ref={viewport} className={zoomed ? `${styles.viewport} ${styles.zoomed}` : styles.viewport}>
+              {/* Rings are placed in percent of this box, so they stay on the art when it zooms or turns over. */}
+              <div className={reversed ? `${styles.art} ${styles.reversed}` : styles.art} onDoubleClick={toggleZoom}>
+                <CardArt card={card} alt={reversed ? `${card.name}, reversed` : card.name} />
+                {card.details.map((d) => (
+                  <button
+                    key={d.id}
+                    className={d.id === detailId ? `${styles.ring} ${styles.selected}` : styles.ring}
+                    style={{ left: `${d.region.x}%`, top: `${d.region.y}%` }}
+                    aria-label={d.label}
+                    aria-pressed={d.id === detailId}
+                    onClick={() => setDetailId(d.id === detailId ? null : d.id)}
+                  />
+                ))}
+              </div>
             </div>
           </div>
+          <Eyebrow>
+            {zoomed ? 'Scroll to look around' : card.details.length ? 'Tap a gold ring, or double-tap to zoom' : 'Double-tap or use the zoom button'}
+          </Eyebrow>
         </div>
-        <Eyebrow>
-          {zoomed ? 'Scroll to look around' : card.details.length ? 'Tap a gold ring, or double-tap to zoom' : 'Double-tap or use the zoom button'}
-        </Eyebrow>
 
-        {detail && (
-          <section className={styles.detail} aria-label="Selected detail">
-            <Eyebrow gold>{detail.label}</Eyebrow>
-            <p className={styles.prompt}>{detail.prompt}</p>
-            {onWrite && <Button variant="secondary" className={styles.write} onClick={() => onWrite(detail.prompt)}>Write from this</Button>}
-          </section>
-        )}
+        {/* A picked symbol takes the notes' place: a sheet over the dialog on a phone, the right column on a wide screen. */}
+        <div className={styles.notes}>
+          {symbol ? (
+            <SymbolSheet
+              symbol={symbol}
+              alsoIn={CARDS.filter((c) => c.id !== card.id && c.symbols.includes(symbol.id))}
+              onPick={onOpen}
+              onClose={() => setSymbolId(null)}
+            />
+          ) : (
+            <>
+              {detail && (
+                <section className={styles.detail} aria-label="Selected detail">
+                  <Eyebrow gold>{detail.label}</Eyebrow>
+                  <p className={styles.prompt}>{detail.prompt}</p>
+                  {onWrite && <Button variant="secondary" className={styles.write} onClick={() => onWrite(detail.prompt)}>Write from this</Button>}
+                </section>
+              )}
 
-        <section className={styles.section}>
-          <h2 className={styles.heading}>In this picture</h2>
-          <div className={styles.chips}>
-            {symbols.map((s) => (
-              <button key={s.id} className={detail?.symbols.includes(s.id) ? `${styles.chip} ${styles.lit}` : styles.chip} onClick={() => setSymbolId(s.id)}>
-                {s.name}
-              </button>
-            ))}
-          </div>
-        </section>
+              <section className={styles.section}>
+                <h2 className={styles.heading}>In this picture</h2>
+                <div className={styles.chips}>
+                  {symbols.map((s) => (
+                    <button key={s.id} className={detail?.symbols.includes(s.id) ? `${styles.chip} ${styles.lit}` : styles.chip} onClick={() => setSymbolId(s.id)}>
+                      {s.name}
+                    </button>
+                  ))}
+                </div>
+              </section>
 
-        {figure && (
-          <section className={styles.section}>
-            <h2 className={styles.heading}>The figure</h2>
-            <p className={styles.figure}>{figure}</p>
-          </section>
-        )}
+              {figure && (
+                <section className={styles.section}>
+                  <h2 className={styles.heading}>The figure</h2>
+                  <p className={styles.figure}>{figure}</p>
+                </section>
+              )}
+            </>
+          )}
+        </div>
       </div>
-
-      {symbol && (
-        <SymbolSheet
-          symbol={symbol}
-          alsoIn={CARDS.filter((c) => c.id !== card.id && c.symbols.includes(symbol.id))}
-          onPick={onOpen}
-          onClose={() => setSymbolId(null)}
-        />
-      )}
     </dialog>
   )
 }

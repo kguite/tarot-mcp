@@ -1,21 +1,75 @@
+/* Each side is a column, and on a phone the two sides stack: cards, hint, meaning, then the fan or the journal. */
+.stage,
+.side {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+/* On a wide screen, the cards and meaning on the left, the fan or journal on the right. Stacked, the
+   fan fell below the fold. Centered while choosing. After, both columns are the same height: the
+   reflection box stretches to fill, so the save buttons line up with Look closer at the bottom. */
+@media (min-width: 900px) {
+  .stage {
+    display: grid;
+    /* The cards side a little wider: a wider meaning panel wraps onto fewer rows. */
+    grid-template-columns: minmax(0, 1.2fr) minmax(300px, 1fr);
+    gap: var(--space-6);
+  }
+
+  .choosing {
+    align-items: center;
+  }
+
+  .journal {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .journal label,
+  .journal textarea {
+    flex: 1;
+  }
+}
+
 /* Each card at most 150px wide, centered, so one card is not the width of the screen. */
 .spread {
+  --card-max: 150px;
   display: grid;
   justify-content: center;
   gap: var(--space-3);
 }
 
+/* Desktop: smaller cards and buttons, so a reading and the journal fit a laptop's height.
+   After .spread, or its 150px wins. */
+@media (min-width: 900px) {
+  .stage {
+    padding-inline: var(--space-6);
+  }
+
+  .spread {
+    --card-max: 120px;
+  }
+
+  /* Tighter, so the longest position name ("The situation") fits on one line under a card. */
+  .spread figcaption {
+    letter-spacing: var(--tracking-tight);
+  }
+
+  .actions button {
+    height: var(--control-sm);
+    font-size: var(--text-small);
+  }
+}
+
 /* A spot still waiting for its card. */
 .empty {
-  margin: 0;
+  composes: eyebrow from '../components/Eyebrow.module.css';
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--space-2);
-  font-size: 11px;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: var(--muted);
 }
 
 .outline {
@@ -30,7 +84,7 @@
   margin: 0;
   font-family: var(--font-display);
   font-style: italic;
-  font-size: 19px;
+  font-size: var(--text-name);
   color: var(--muted);
   text-align: center;
 }
@@ -44,10 +98,10 @@
 .fanCard {
   position: absolute;
   left: 50%;
-  bottom: 10px;
+  bottom: var(--space-3);
   width: 92px;
-  margin-left: -46px;
-  padding: 3px;
+  margin-left: -46px; /* Half the width, to center it: transform is taken by the rotation. */
+  padding: var(--space-1);
   box-sizing: border-box;
   border: 1px solid var(--gold-strong);
   border-radius: var(--radius);
@@ -55,7 +109,7 @@
   cursor: pointer;
   transform-origin: 50% 160%;
   transform: rotate(var(--angle));
-  transition: transform 0.45s cubic-bezier(.34, 1.56, .64, 1), opacity 0.3s;
+  transition: transform 0.45s var(--ease-spring), opacity 0.3s;
 }
 
 .fanCard:hover,
@@ -88,24 +142,18 @@
 
 .actions {
   display: flex;
-  gap: 10px;
+  gap: var(--space-3);
 }
 
 .actions > * {
   flex: 1;
 }
 
-.error {
-  margin: 0;
-  color: var(--ivory);
-  text-align: center;
-}
-
 .meaning {
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
-  animation: rise 0.4s cubic-bezier(.34, 1.56, .64, 1);
+  gap: var(--space-5);
+  animation: rise 0.4s var(--ease-spring);
 }
 
 @keyframes rise {

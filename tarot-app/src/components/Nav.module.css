@@ -5,7 +5,7 @@
   z-index: 10;
   background: var(--panel);
   border-top: 1px solid var(--gold-line);
-  padding: 6px 4px calc(14px + env(safe-area-inset-bottom));
+  padding: var(--space-2) var(--space-1) calc(var(--space-4) + env(safe-area-inset-bottom));
 }
 
 .brand,
@@ -29,7 +29,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 4px;
+  gap: var(--space-1);
   border: 0;
   background: none;
   color: var(--muted);
@@ -51,8 +51,8 @@
 }
 
 .label {
-  font-size: 11px;
-  letter-spacing: 0.12em;
+  font-size: var(--text-caps);
+  letter-spacing: var(--tracking-tight);
   text-transform: uppercase;
 }
 
@@ -77,7 +77,7 @@
 @media (min-width: 900px) {
   .nav {
     inset: 0 auto 0 0;
-    width: 260px;
+    width: var(--sidebar-width);
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -90,22 +90,24 @@
   .brand {
     display: block;
     margin: 0;
-    font-size: 11px;
-    letter-spacing: 0.32em;
+    font-size: var(--text-caps);
+    letter-spacing: var(--tracking-wide);
     text-transform: uppercase;
     color: var(--gold);
   }
 
+  /* stretch undoes the phone bar's align-items: end, which in a column pushed each item right. */
   .items {
     display: flex;
     flex-direction: column;
+    align-items: stretch;
   }
 
   .item {
     flex-direction: row;
     justify-content: flex-start;
-    gap: 14px;
-    min-height: 56px;
+    gap: var(--space-3);
+    min-height: 46px;
     border-bottom: 1px solid var(--gold-faint);
     color: var(--ivory);
   }
@@ -113,7 +115,7 @@
   .label {
     font-family: var(--font-display);
     font-weight: 600;
-    font-size: 24px;
+    font-size: var(--text-name);
     letter-spacing: 0;
     text-transform: none;
   }
@@ -130,7 +132,7 @@
   .credit {
     display: block;
     margin: auto 0 0;
-    font-size: 12px;
+    font-size: var(--text-small);
     line-height: 1.5;
     color: var(--muted);
     text-align: center;

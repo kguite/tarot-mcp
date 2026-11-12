@@ -1,11 +1,32 @@
 @import './styles/tokens.css';
 
+/* The layout is sized for a phone, so on a big screen everything is scaled up a little, in steps.
+   One scale for every screen, so nothing jumps between tabs. 1.25 is the most that still fits
+   Draw and the card view in a laptop's height (tried 1.6: the tall screens ran off the bottom). */
+@media (min-width: 1100px) {
+  html {
+    zoom: 1.1;
+  }
+}
+
+@media (min-width: 1300px) {
+  html {
+    zoom: 1.2;
+  }
+}
+
+@media (min-width: 1440px) {
+  html {
+    zoom: 1.25;
+  }
+}
+
 body {
   margin: 0;
   background: var(--night);
   color: var(--ivory);
   font-family: var(--font-body);
-  font-size: 15px;
+  font-size: var(--text-body);
   line-height: 1.5;
 }
 

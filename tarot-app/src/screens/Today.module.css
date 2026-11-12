@@ -16,12 +16,12 @@
 .section {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: var(--space-3);
 }
 
 .row {
-  min-height: 48px;
-  padding: 0 14px;
+  min-height: var(--control);
+  padding: 0 var(--space-4);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -39,10 +39,10 @@
 
 .name {
   font-family: var(--font-display);
-  font-size: 19px;
+  font-size: var(--text-name);
 }
 
 .count {
-  font-size: 12px;
+  font-size: var(--text-small);
   color: var(--muted);
 }

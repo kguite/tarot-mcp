@@ -1,7 +1,7 @@
 .eyebrow {
   margin: 0;
-  font-size: 11px;
-  letter-spacing: 0.24em;
+  font-size: var(--text-caps);
+  letter-spacing: var(--tracking);
   text-transform: uppercase;
   color: var(--muted);
 }

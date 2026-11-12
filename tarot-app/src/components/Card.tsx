@@ -24,7 +24,7 @@ export function Card(props: CardProps) {
   }
 
   const name = props.reversed ? `${props.card.name}, reversed` : props.card.name
-  const face = <CardArt card={props.card} alt={name} className={props.reversed ? `${styles.face} ${styles.reversed}` : styles.face} />
+  const face = <CardArt card={props.card} alt={name} className={styles.face} reversed={props.reversed} />
   return (
     <figure className={`${styles.card} ${styles[props.state]}`}>
       {props.onOpen ? (

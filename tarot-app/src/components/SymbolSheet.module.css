@@ -11,8 +11,8 @@
   background: var(--panel);
   border-top: 1px solid var(--gold);
   border-radius: var(--radius-panel) var(--radius-panel) 0 0;
-  box-shadow: 0 -12px 32px rgba(0, 0, 0, 0.45);
-  animation: rise 0.3s cubic-bezier(.34, 1.56, .64, 1);
+  box-shadow: var(--shadow-sheet);
+  animation: rise 0.3s var(--ease-spring);
 }
 
 @keyframes rise {
@@ -29,7 +29,7 @@
 }
 
 .name {
-  font-size: 32px;
+  font-size: var(--text-page);
   text-align: center;
 }
 
@@ -38,7 +38,7 @@
   font-family: var(--font-display);
   font-style: italic;
   font-weight: 500;
-  font-size: 21px;
+  font-size: var(--text-summary);
   line-height: 1.3;
   text-align: center;
 }
@@ -46,7 +46,7 @@
 .rule {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: var(--space-3);
 }
 
 .rule::before,
@@ -98,18 +98,52 @@
 
 .thumbName {
   font-family: var(--font-display);
-  font-size: 16px;
+  font-size: var(--text-lead);
   line-height: 1.15;
   text-align: center;
 }
 
 .across {
   margin: 0;
-  font-size: 13px;
+  font-size: var(--text-ui);
   color: var(--muted);
   text-align: center;
 }
 
+/* Desktop: not a sheet but the close-up's right column, beside the card, with small cards in a row. */
+@media (min-width: 900px) {
+  .sheet {
+    position: static;
+    max-height: none;
+    overflow: visible;
+    padding: 0;
+    background: none;
+    border-top: 0;
+    border-radius: 0;
+    box-shadow: none;
+    animation: appear 0.2s ease-out;
+  }
+
+  .name {
+    font-size: var(--text-title);
+  }
+
+  .cards {
+    grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+  }
+
+  .thumbName {
+    font-size: var(--text-body);
+  }
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+}
+
+/* Last, so it also stops the desktop animation. */
 @media (prefers-reduced-motion: reduce) {
   .sheet {
     animation: none;

@@ -916,8 +916,8 @@ The card view ends with "Interpretations", each voice labeled as whose it is.
 
 ## Next
 
-- A "Waite says" section in the inspect view: his picture description and meanings from
-  `waite.json`, credited and clearly labeled as his, next to the app's own voice
+- Dore and Mack in Interpretations: a note in our own words or a page reference, never their
+  wording (both books are copyrighted)
 - Journal: sort and group (newest or oldest first, by day or month), and filter by spread or by a
   card ("every reading with the Moon")
 - New symbols for things spots show but no symbol names (field, branch, snail, beach), so the

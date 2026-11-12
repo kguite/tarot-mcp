@@ -75,6 +75,42 @@
           "x": 68,
           "y": 18
         }
+      },
+      {
+        "id": "sun",
+        "label": "The bright sun",
+        "prompt": "What is lighting your way that you rarely notice?",
+        "symbols": [
+          "sun"
+        ],
+        "region": {
+          "x": 84,
+          "y": 8
+        }
+      },
+      {
+        "id": "white-rose",
+        "label": "The white rose",
+        "prompt": "What simple, gentle thing are you carrying with you?",
+        "symbols": [
+          "flowers"
+        ],
+        "region": {
+          "x": 83,
+          "y": 27
+        }
+      },
+      {
+        "id": "far-peaks",
+        "label": "The distant mountains",
+        "prompt": "What far-off goal still draws your eye?",
+        "symbols": [
+          "heights"
+        ],
+        "region": {
+          "x": 86,
+          "y": 53
+        }
       }
     ]
   },
@@ -156,6 +192,31 @@
           "x": 39,
           "y": 17
         }
+      },
+      {
+        "id": "garden",
+        "label": "The garden of roses and lilies",
+        "prompt": "What are you growing that needs your care today?",
+        "symbols": [
+          "garden",
+          "flowers"
+        ],
+        "region": {
+          "x": 50,
+          "y": 82
+        }
+      },
+      {
+        "id": "roses-overhead",
+        "label": "The roses overhead",
+        "prompt": "What beauty around you have you stopped noticing?",
+        "symbols": [
+          "flowers"
+        ],
+        "region": {
+          "x": 86,
+          "y": 17
+        }
       }
     ]
   },
@@ -235,6 +296,30 @@
           "x": 15,
           "y": 50
         }
+      },
+      {
+        "id": "moon-crown",
+        "label": "The moon crown",
+        "prompt": "What part of your life moves in quiet cycles?",
+        "symbols": [
+          "crown"
+        ],
+        "region": {
+          "x": 46,
+          "y": 25
+        }
+      },
+      {
+        "id": "moon-at-feet",
+        "label": "The moon at her feet",
+        "prompt": "What steadies you when your feelings rise and fall?",
+        "symbols": [
+          "moon"
+        ],
+        "region": {
+          "x": 71,
+          "y": 73
+        }
       }
     ]
   },
@@ -280,7 +365,81 @@
       "tree",
       "water"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "crown-of-stars",
+        "label": "The crown of stars",
+        "prompt": "What would you wear proudly if no one judged it?",
+        "symbols": [
+          "crown",
+          "star"
+        ],
+        "region": {
+          "x": 45,
+          "y": 17
+        }
+      },
+      {
+        "id": "heart-shield",
+        "label": "The heart-shaped shield",
+        "prompt": "Where do you let tenderness be your protection?",
+        "symbols": [
+          "heart"
+        ],
+        "region": {
+          "x": 25,
+          "y": 64
+        }
+      },
+      {
+        "id": "wheat-field",
+        "label": "The ripe wheat",
+        "prompt": "What have you grown that’s ready to be enjoyed?",
+        "symbols": [
+          "harvest"
+        ],
+        "region": {
+          "x": 60,
+          "y": 80
+        }
+      },
+      {
+        "id": "scepter",
+        "label": "The scepter in her hand",
+        "prompt": "Where are you ready to claim your own authority?",
+        "symbols": [
+          "sceptre"
+        ],
+        "region": {
+          "x": 31,
+          "y": 24
+        }
+      },
+      {
+        "id": "waterfall",
+        "label": "The waterfall",
+        "prompt": "What in your life is flowing freely right now?",
+        "symbols": [
+          "water"
+        ],
+        "region": {
+          "x": 88,
+          "y": 55
+        }
+      },
+      {
+        "id": "tall-trees",
+        "label": "The tall trees",
+        "prompt": "What have you let grow slowly and steadily?",
+        "symbols": [
+          "tree"
+        ],
+        "region": {
+          "x": 80,
+          "y": 25
+        }
+      }
+    ]
   },
   {
     "id": "emperor",
@@ -321,7 +480,67 @@
       "globe",
       "heights"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "ankh-sceptre",
+        "label": "The raised scepter",
+        "prompt": "Where in your life are you ready to take charge?",
+        "symbols": [
+          "sceptre"
+        ],
+        "region": {
+          "x": 14,
+          "y": 31
+        }
+      },
+      {
+        "id": "ram-head",
+        "label": "The ram’s head on the throne",
+        "prompt": "What do you push through by sheer stubbornness?",
+        "symbols": [
+          "ram",
+          "throne"
+        ],
+        "region": {
+          "x": 80,
+          "y": 56
+        }
+      },
+      {
+        "id": "armor",
+        "label": "The armor under the robe",
+        "prompt": "What protection do you keep on even when resting?",
+        "symbols": [],
+        "region": {
+          "x": 48,
+          "y": 75
+        }
+      },
+      {
+        "id": "crown",
+        "label": "The gold crown",
+        "prompt": "What responsibility do you wear, and does it fit?",
+        "symbols": [
+          "crown"
+        ],
+        "region": {
+          "x": 46,
+          "y": 18
+        }
+      },
+      {
+        "id": "bare-mountains",
+        "label": "The bare mountains",
+        "prompt": "Where in your life do you need firmer ground?",
+        "symbols": [
+          "heights"
+        ],
+        "region": {
+          "x": 88,
+          "y": 38
+        }
+      }
+    ]
   },
   {
     "id": "hierophant",
@@ -362,7 +581,77 @@
       "throne",
       "keys"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "raised-hand",
+        "label": "The raised hand",
+        "prompt": "Whose guidance do you trust, and why theirs?",
+        "symbols": [],
+        "region": {
+          "x": 24,
+          "y": 22
+        }
+      },
+      {
+        "id": "crossed-keys",
+        "label": "The crossed keys",
+        "prompt": "What door would open if you asked for help?",
+        "symbols": [
+          "keys"
+        ],
+        "region": {
+          "x": 48,
+          "y": 83
+        }
+      },
+      {
+        "id": "kneeling-figures",
+        "label": "The kneeling figures",
+        "prompt": "Which traditions do you follow without questioning them?",
+        "symbols": [],
+        "region": {
+          "x": 14,
+          "y": 74
+        }
+      },
+      {
+        "id": "triple-crown",
+        "label": "The tall triple crown",
+        "prompt": "Which traditions have shaped how you see the world?",
+        "symbols": [
+          "crown"
+        ],
+        "region": {
+          "x": 48,
+          "y": 13
+        }
+      },
+      {
+        "id": "cross-staff",
+        "label": "The triple cross staff",
+        "prompt": "What long-held belief do you lean on most?",
+        "symbols": [
+          "sceptre",
+          "cross"
+        ],
+        "region": {
+          "x": 76,
+          "y": 21
+        }
+      },
+      {
+        "id": "gray-pillars",
+        "label": "The gray pillars",
+        "prompt": "What structure around you gives your days their shape?",
+        "symbols": [
+          "pillars"
+        ],
+        "region": {
+          "x": 88,
+          "y": 46
+        }
+      }
+    ]
   },
   {
     "id": "lovers",
@@ -404,7 +693,80 @@
       "fire",
       "heights"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "angel",
+        "label": "The angel above",
+        "prompt": "What bigger value do your closest bonds rest on?",
+        "symbols": [
+          "angel"
+        ],
+        "region": {
+          "x": 50,
+          "y": 21
+        }
+      },
+      {
+        "id": "serpent-tree",
+        "label": "The serpent in the tree",
+        "prompt": "What temptation keeps showing up in your choices?",
+        "symbols": [
+          "serpent",
+          "tree"
+        ],
+        "region": {
+          "x": 9,
+          "y": 57
+        }
+      },
+      {
+        "id": "mountain",
+        "label": "The mountain between them",
+        "prompt": "What stands between you and someone you care about?",
+        "symbols": [
+          "heights"
+        ],
+        "region": {
+          "x": 50,
+          "y": 73
+        }
+      },
+      {
+        "id": "sun",
+        "label": "The sun overhead",
+        "prompt": "Where do you feel most clearly seen and warmed?",
+        "symbols": [
+          "sun"
+        ],
+        "region": {
+          "x": 30,
+          "y": 8
+        }
+      },
+      {
+        "id": "flame-tree",
+        "label": "The tree of flames",
+        "prompt": "What desire is burning in you right now?",
+        "symbols": [
+          "tree",
+          "fire"
+        ],
+        "region": {
+          "x": 88,
+          "y": 42
+        }
+      },
+      {
+        "id": "woman-looking-up",
+        "label": "The woman looking up",
+        "prompt": "What do you see when you look beyond the person beside you?",
+        "symbols": [],
+        "region": {
+          "x": 22,
+          "y": 47
+        }
+      }
+    ]
   },
   {
     "id": "chariot",
@@ -449,7 +811,82 @@
       "tower",
       "water"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "starry-canopy",
+        "label": "The starry canopy",
+        "prompt": "What larger purpose are you carrying with you?",
+        "symbols": [
+          "star",
+          "veil"
+        ],
+        "region": {
+          "x": 50,
+          "y": 12
+        }
+      },
+      {
+        "id": "black-sphinx",
+        "label": "The black sphinx",
+        "prompt": "What darker part of you still helps pull you forward?",
+        "symbols": [
+          "sphinx"
+        ],
+        "region": {
+          "x": 20,
+          "y": 72
+        }
+      },
+      {
+        "id": "city-behind",
+        "label": "The city left behind",
+        "prompt": "What familiar place are you ready to move away from?",
+        "symbols": [
+          "house",
+          "tower"
+        ],
+        "region": {
+          "x": 88,
+          "y": 40
+        }
+      },
+      {
+        "id": "white-sphinx",
+        "label": "The white sphinx",
+        "prompt": "What two pulls in you need to move together?",
+        "symbols": [
+          "sphinx"
+        ],
+        "region": {
+          "x": 75,
+          "y": 70
+        }
+      },
+      {
+        "id": "winged-disk",
+        "label": "The winged disk",
+        "prompt": "What lifts you when the road gets heavy?",
+        "symbols": [
+          "wings"
+        ],
+        "region": {
+          "x": 48,
+          "y": 58
+        }
+      },
+      {
+        "id": "wand",
+        "label": "The wand in his hand",
+        "prompt": "What are you steering by will alone?",
+        "symbols": [
+          "wand"
+        ],
+        "region": {
+          "x": 22,
+          "y": 30
+        }
+      }
+    ]
   },
   {
     "id": "strength",
@@ -489,7 +926,57 @@
       "wreath",
       "heights"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "infinity",
+        "label": "The infinity sign",
+        "prompt": "What patience in you never seems to run out?",
+        "symbols": [
+          "infinity"
+        ],
+        "region": {
+          "x": 16,
+          "y": 20
+        }
+      },
+      {
+        "id": "hands-on-lion",
+        "label": "The hands on the lion",
+        "prompt": "What fierce feeling could you meet with gentleness?",
+        "symbols": [
+          "lion"
+        ],
+        "region": {
+          "x": 31,
+          "y": 52
+        }
+      },
+      {
+        "id": "garland",
+        "label": "The flower garland",
+        "prompt": "What soft thing ties you to your wild side?",
+        "symbols": [
+          "flowers",
+          "wreath"
+        ],
+        "region": {
+          "x": 54,
+          "y": 44
+        }
+      },
+      {
+        "id": "blue-mountain",
+        "label": "The blue mountain",
+        "prompt": "What distant goal does your patience serve?",
+        "symbols": [
+          "heights"
+        ],
+        "region": {
+          "x": 12,
+          "y": 68
+        }
+      }
+    ]
   },
   {
     "id": "hermit",
@@ -565,6 +1052,26 @@
           "x": 50,
           "y": 82
         }
+      },
+      {
+        "id": "bowed-head",
+        "label": "The bowed head",
+        "prompt": "What are you listening for in the quiet?",
+        "symbols": [],
+        "region": {
+          "x": 44,
+          "y": 17
+        }
+      },
+      {
+        "id": "gray-cloak",
+        "label": "The heavy gray cloak",
+        "prompt": "What do you wrap around yourself when you need solitude?",
+        "symbols": [],
+        "region": {
+          "x": 65,
+          "y": 45
+        }
       }
     ]
   },
@@ -608,7 +1115,81 @@
       "four-creatures",
       "cloud"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "wheel",
+        "label": "The turning wheel",
+        "prompt": "What in your life is in a different place than last year?",
+        "symbols": [
+          "wheel"
+        ],
+        "region": {
+          "x": 48,
+          "y": 48
+        }
+      },
+      {
+        "id": "sphinx",
+        "label": "The sphinx on top",
+        "prompt": "How do you stay steady when things keep shifting?",
+        "symbols": [
+          "sphinx",
+          "sword"
+        ],
+        "region": {
+          "x": 45,
+          "y": 20
+        }
+      },
+      {
+        "id": "reading-creatures",
+        "label": "The creatures reading",
+        "prompt": "What are you studying while you wait for change?",
+        "symbols": [
+          "four-creatures"
+        ],
+        "region": {
+          "x": 28,
+          "y": 80
+        }
+      },
+      {
+        "id": "snake",
+        "label": "The snake sliding down",
+        "prompt": "What are you letting slide away right now?",
+        "symbols": [
+          "serpent"
+        ],
+        "region": {
+          "x": 10,
+          "y": 54
+        }
+      },
+      {
+        "id": "jackal-figure",
+        "label": "The red jackal-headed figure",
+        "prompt": "What is rising in your life right now?",
+        "symbols": [
+          "anubis"
+        ],
+        "region": {
+          "x": 85,
+          "y": 52
+        }
+      },
+      {
+        "id": "corner-angel",
+        "label": "The angel in the corner",
+        "prompt": "What steady presence watches over your changing days?",
+        "symbols": [
+          "four-creatures"
+        ],
+        "region": {
+          "x": 18,
+          "y": 15
+        }
+      }
+    ]
   },
   {
     "id": "justice",
@@ -649,7 +1230,78 @@
       "pillars",
       "veil"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "sword",
+        "label": "The upright sword",
+        "prompt": "What decision have you been putting off making?",
+        "symbols": [
+          "sword"
+        ],
+        "region": {
+          "x": 15,
+          "y": 22
+        }
+      },
+      {
+        "id": "scales",
+        "label": "The scales",
+        "prompt": "What are you weighing, and is it fairly balanced?",
+        "symbols": [
+          "scales"
+        ],
+        "region": {
+          "x": 85,
+          "y": 57
+        }
+      },
+      {
+        "id": "curtain",
+        "label": "The curtain behind her",
+        "prompt": "What might be hidden behind the facts you see?",
+        "symbols": [
+          "veil"
+        ],
+        "region": {
+          "x": 70,
+          "y": 16
+        }
+      },
+      {
+        "id": "crown",
+        "label": "The square crown",
+        "prompt": "What clear thinking is guiding you right now?",
+        "symbols": [
+          "crown"
+        ],
+        "region": {
+          "x": 50,
+          "y": 25
+        }
+      },
+      {
+        "id": "pillar",
+        "label": "The stone pillar",
+        "prompt": "What principle would you never bend, even under pressure?",
+        "symbols": [
+          "pillars"
+        ],
+        "region": {
+          "x": 10,
+          "y": 60
+        }
+      },
+      {
+        "id": "foot",
+        "label": "The foot peeking out",
+        "prompt": "What step are you quietly ready to take?",
+        "symbols": [],
+        "region": {
+          "x": 43,
+          "y": 81
+        }
+      }
+    ]
   },
   {
     "id": "hanged-man",
@@ -687,7 +1339,64 @@
       "cross",
       "halo"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "halo",
+        "label": "The glowing head",
+        "prompt": "What have you understood only by slowing down?",
+        "symbols": [
+          "halo"
+        ],
+        "region": {
+          "x": 50,
+          "y": 72
+        }
+      },
+      {
+        "id": "crossed-leg",
+        "label": "The crossed leg",
+        "prompt": "Where are you choosing to wait instead of struggle?",
+        "symbols": [],
+        "region": {
+          "x": 36,
+          "y": 38
+        }
+      },
+      {
+        "id": "living-beam",
+        "label": "The leafy beam",
+        "prompt": "What is still growing while you hang in place?",
+        "symbols": [
+          "tree"
+        ],
+        "region": {
+          "x": 86,
+          "y": 10
+        }
+      },
+      {
+        "id": "tied-foot",
+        "label": "The tied foot",
+        "prompt": "What are you willingly holding still for right now?",
+        "symbols": [
+          "tree"
+        ],
+        "region": {
+          "x": 55,
+          "y": 13
+        }
+      },
+      {
+        "id": "hidden-arms",
+        "label": "The arms behind his back",
+        "prompt": "What could you let go of instead of fixing?",
+        "symbols": [],
+        "region": {
+          "x": 74,
+          "y": 62
+        }
+      }
+    ]
   },
   {
     "id": "death",
@@ -733,7 +1442,80 @@
       "water",
       "boat"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "white-rose",
+        "label": "The white rose banner",
+        "prompt": "What could bloom once something old is cleared away?",
+        "symbols": [
+          "banner",
+          "flowers"
+        ],
+        "region": {
+          "x": 65,
+          "y": 14
+        }
+      },
+      {
+        "id": "rising-sun",
+        "label": "The sun between towers",
+        "prompt": "What new start is showing up on your horizon?",
+        "symbols": [
+          "sun",
+          "tower"
+        ],
+        "region": {
+          "x": 88,
+          "y": 38
+        }
+      },
+      {
+        "id": "fallen-crown",
+        "label": "The fallen crown",
+        "prompt": "What status or role are you ready to set down?",
+        "symbols": [
+          "crown"
+        ],
+        "region": {
+          "x": 31,
+          "y": 85
+        }
+      },
+      {
+        "id": "skeleton-rider",
+        "label": "The skeleton in armor",
+        "prompt": "What ending have you been avoiding looking at?",
+        "symbols": [
+          "skull"
+        ],
+        "region": {
+          "x": 28,
+          "y": 18
+        }
+      },
+      {
+        "id": "praying-bishop",
+        "label": "The praying bishop",
+        "prompt": "What are you pleading with to stay the same?",
+        "symbols": [],
+        "region": {
+          "x": 77,
+          "y": 55
+        }
+      },
+      {
+        "id": "child",
+        "label": "The child looking up",
+        "prompt": "What can you meet with open, curious eyes?",
+        "symbols": [
+          "child"
+        ],
+        "region": {
+          "x": 72,
+          "y": 78
+        }
+      }
+    ]
   },
   {
     "id": "temperance",
@@ -777,7 +1559,82 @@
       "heights",
       "flowers"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "two-cups",
+        "label": "The two cups",
+        "prompt": "What two parts of your life need blending, not choosing?",
+        "symbols": [
+          "cup",
+          "water"
+        ],
+        "region": {
+          "x": 48,
+          "y": 38
+        }
+      },
+      {
+        "id": "foot-in-water",
+        "label": "The foot in the water",
+        "prompt": "Where do you keep one foot in feeling, one on ground?",
+        "symbols": [
+          "water"
+        ],
+        "region": {
+          "x": 47,
+          "y": 80
+        }
+      },
+      {
+        "id": "distant-sun",
+        "label": "The distant sun",
+        "prompt": "What far-off goal is worth approaching slowly?",
+        "symbols": [
+          "sun",
+          "crown"
+        ],
+        "region": {
+          "x": 13,
+          "y": 56
+        }
+      },
+      {
+        "id": "sun-on-brow",
+        "label": "The sun on her brow",
+        "prompt": "What helps you feel calm and clear-headed?",
+        "symbols": [
+          "halo"
+        ],
+        "region": {
+          "x": 47,
+          "y": 13
+        }
+      },
+      {
+        "id": "irises",
+        "label": "The irises",
+        "prompt": "What is quietly blooming while you wait?",
+        "symbols": [
+          "flowers"
+        ],
+        "region": {
+          "x": 77,
+          "y": 55
+        }
+      },
+      {
+        "id": "wings",
+        "label": "The great wings",
+        "prompt": "Where could you give yourself more room to breathe?",
+        "symbols": [
+          "angel"
+        ],
+        "region": {
+          "x": 88,
+          "y": 25
+        }
+      }
+    ]
   },
   {
     "id": "devil",
@@ -817,7 +1674,77 @@
       "fire",
       "harvest"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "loose-chains",
+        "label": "The loose chains",
+        "prompt": "What holds you that you could slip off yourself?",
+        "symbols": [
+          "chains"
+        ],
+        "region": {
+          "x": 45,
+          "y": 73
+        }
+      },
+      {
+        "id": "lowered-torch",
+        "label": "The lowered torch",
+        "prompt": "What desire are you feeding that doesn’t feed you back?",
+        "symbols": [
+          "torch",
+          "fire"
+        ],
+        "region": {
+          "x": 85,
+          "y": 64
+        }
+      },
+      {
+        "id": "pentagram",
+        "label": "The upside-down star",
+        "prompt": "Where have you let comfort outrank what matters most?",
+        "symbols": [
+          "pentacle"
+        ],
+        "region": {
+          "x": 49,
+          "y": 10
+        }
+      },
+      {
+        "id": "raised-hand",
+        "label": "The raised hand",
+        "prompt": "What rule are you obeying that you never chose?",
+        "symbols": [],
+        "region": {
+          "x": 14,
+          "y": 18
+        }
+      },
+      {
+        "id": "grape-tail",
+        "label": "The woman’s grape-tipped tail",
+        "prompt": "What pleasure has started to hold onto you?",
+        "symbols": [
+          "harvest"
+        ],
+        "region": {
+          "x": 12,
+          "y": 76
+        }
+      },
+      {
+        "id": "bat-wings",
+        "label": "The bat wings",
+        "prompt": "What darkness looms larger than it really is?",
+        "symbols": [],
+        "region": {
+          "x": 88,
+          "y": 30
+        }
+      }
+    ]
   },
   {
     "id": "tower",
@@ -859,7 +1786,77 @@
       "dew",
       "heights"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "lightning",
+        "label": "The lightning bolt",
+        "prompt": "What sudden truth shook something you’d built?",
+        "symbols": [
+          "lightning",
+          "fire"
+        ],
+        "region": {
+          "x": 80,
+          "y": 12
+        }
+      },
+      {
+        "id": "falling-crown",
+        "label": "The toppled crown",
+        "prompt": "Which old certainty in you is ready to come down?",
+        "symbols": [
+          "crown"
+        ],
+        "region": {
+          "x": 31,
+          "y": 10
+        }
+      },
+      {
+        "id": "falling-figure",
+        "label": "The falling figure",
+        "prompt": "What would you grab first if everything let go?",
+        "symbols": [],
+        "region": {
+          "x": 20,
+          "y": 50
+        }
+      },
+      {
+        "id": "second-figure",
+        "label": "The second falling figure",
+        "prompt": "Who else is shaken by the same upheaval as you?",
+        "symbols": [],
+        "region": {
+          "x": 78,
+          "y": 60
+        }
+      },
+      {
+        "id": "falling-sparks",
+        "label": "The falling sparks",
+        "prompt": "What small good thing is falling through the chaos?",
+        "symbols": [
+          "dew"
+        ],
+        "region": {
+          "x": 88,
+          "y": 28
+        }
+      },
+      {
+        "id": "rocky-peak",
+        "label": "The rocky peak",
+        "prompt": "What firm ground is still under you?",
+        "symbols": [
+          "heights"
+        ],
+        "region": {
+          "x": 55,
+          "y": 80
+        }
+      }
+    ]
   },
   {
     "id": "star",
@@ -935,6 +1932,43 @@
         "region": {
           "x": 82,
           "y": 28
+        }
+      },
+      {
+        "id": "small-stars",
+        "label": "The seven small stars",
+        "prompt": "What small lights have guided you this far?",
+        "symbols": [
+          "star"
+        ],
+        "region": {
+          "x": 14,
+          "y": 20
+        }
+      },
+      {
+        "id": "pitcher-on-land",
+        "label": "The water poured on land",
+        "prompt": "Where does your care soak in quietly, unseen?",
+        "symbols": [
+          "pitcher",
+          "water"
+        ],
+        "region": {
+          "x": 86,
+          "y": 48
+        }
+      },
+      {
+        "id": "far-hills",
+        "label": "The far hills",
+        "prompt": "What open space are you finally ready to look at?",
+        "symbols": [
+          "heights"
+        ],
+        "region": {
+          "x": 16,
+          "y": 50
         }
       }
     ]
@@ -1019,6 +2053,43 @@
           "x": 41,
           "y": 80
         }
+      },
+      {
+        "id": "moon-face",
+        "label": "The face in the moon",
+        "prompt": "What feeling shows itself only when things go quiet?",
+        "symbols": [
+          "moon",
+          "face"
+        ],
+        "region": {
+          "x": 50,
+          "y": 22
+        }
+      },
+      {
+        "id": "towers",
+        "label": "The two towers",
+        "prompt": "What gateway are you standing at right now?",
+        "symbols": [
+          "tower"
+        ],
+        "region": {
+          "x": 10,
+          "y": 42
+        }
+      },
+      {
+        "id": "falling-drops",
+        "label": "The falling drops",
+        "prompt": "What small comfort is falling on you right now?",
+        "symbols": [
+          "dew"
+        ],
+        "region": {
+          "x": 70,
+          "y": 40
+        }
       }
     ]
   },
@@ -1063,7 +2134,70 @@
       "garden",
       "feather"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "sun-face",
+        "label": "The smiling sun",
+        "prompt": "What makes you feel warm and fully seen?",
+        "symbols": [
+          "sun",
+          "face"
+        ],
+        "region": {
+          "x": 50,
+          "y": 22
+        }
+      },
+      {
+        "id": "child-on-horse",
+        "label": "The child on the horse",
+        "prompt": "When did you last do something just for the joy of it?",
+        "symbols": [
+          "child",
+          "horse"
+        ],
+        "region": {
+          "x": 40,
+          "y": 58
+        }
+      },
+      {
+        "id": "red-banner",
+        "label": "The red banner",
+        "prompt": "What are you ready to celebrate out loud?",
+        "symbols": [
+          "banner"
+        ],
+        "region": {
+          "x": 80,
+          "y": 36
+        }
+      },
+      {
+        "id": "sunflowers",
+        "label": "The sunflowers",
+        "prompt": "What turns you toward the light each day?",
+        "symbols": [
+          "flowers"
+        ],
+        "region": {
+          "x": 14,
+          "y": 45
+        }
+      },
+      {
+        "id": "garden-wall",
+        "label": "The garden wall",
+        "prompt": "What safe boundary lets you play freely?",
+        "symbols": [
+          "garden"
+        ],
+        "region": {
+          "x": 15,
+          "y": 70
+        }
+      }
+    ]
   },
   {
     "id": "judgement",
@@ -1107,7 +2241,78 @@
       "heights",
       "water"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "cross-flag",
+        "label": "The flag with the cross",
+        "prompt": "What cause would you rally behind without hesitating?",
+        "symbols": [
+          "banner",
+          "cross"
+        ],
+        "region": {
+          "x": 33,
+          "y": 42
+        }
+      },
+      {
+        "id": "trumpet",
+        "label": "The trumpet",
+        "prompt": "What call have you been hearing but not answering?",
+        "symbols": [
+          "trumpet"
+        ],
+        "region": {
+          "x": 55,
+          "y": 47
+        }
+      },
+      {
+        "id": "rising-child",
+        "label": "The child rising up",
+        "prompt": "What part of you is ready to wake up again?",
+        "symbols": [
+          "child",
+          "tomb"
+        ],
+        "region": {
+          "x": 47,
+          "y": 74
+        }
+      },
+      {
+        "id": "angel",
+        "label": "The angel",
+        "prompt": "What larger part of you is watching over this moment?",
+        "symbols": [
+          "angel"
+        ],
+        "region": {
+          "x": 50,
+          "y": 16
+        }
+      },
+      {
+        "id": "open-arms",
+        "label": "The woman with open arms",
+        "prompt": "What would you welcome if you stopped holding back?",
+        "symbols": [],
+        "region": {
+          "x": 83,
+          "y": 60
+        }
+      },
+      {
+        "id": "man-looking-up",
+        "label": "The man looking up",
+        "prompt": "What are you ready to look up and face?",
+        "symbols": [],
+        "region": {
+          "x": 16,
+          "y": 65
+        }
+      }
+    ]
   },
   {
     "id": "world",
@@ -1148,7 +2353,92 @@
       "cloud",
       "flowers"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "wreath",
+        "label": "The great wreath",
+        "prompt": "What chapter of your life feels complete right now?",
+        "symbols": [
+          "wreath"
+        ],
+        "region": {
+          "x": 11,
+          "y": 50
+        }
+      },
+      {
+        "id": "dancer",
+        "label": "The dancer",
+        "prompt": "Where do you feel most at ease in your own body?",
+        "symbols": [
+          "dance"
+        ],
+        "region": {
+          "x": 52,
+          "y": 45
+        }
+      },
+      {
+        "id": "lion-corner",
+        "label": "The lion in the corner",
+        "prompt": "Which steady part of you held things together?",
+        "symbols": [
+          "four-creatures"
+        ],
+        "region": {
+          "x": 82,
+          "y": 77
+        }
+      },
+      {
+        "id": "face-in-clouds",
+        "label": "The face in the clouds",
+        "prompt": "Whose voice helped you understand where you’ve been?",
+        "symbols": [
+          "four-creatures"
+        ],
+        "region": {
+          "x": 13,
+          "y": 9
+        }
+      },
+      {
+        "id": "eagle",
+        "label": "The eagle",
+        "prompt": "What looks different now that you can see the whole of it?",
+        "symbols": [
+          "four-creatures"
+        ],
+        "region": {
+          "x": 82,
+          "y": 8
+        }
+      },
+      {
+        "id": "bull",
+        "label": "The bull",
+        "prompt": "What slow, patient work are you finally seeing the fruit of?",
+        "symbols": [
+          "four-creatures"
+        ],
+        "region": {
+          "x": 11,
+          "y": 80
+        }
+      },
+      {
+        "id": "two-wands",
+        "label": "The two wands",
+        "prompt": "What two things are you holding with an easy grip?",
+        "symbols": [
+          "wand"
+        ],
+        "region": {
+          "x": 73,
+          "y": 43
+        }
+      }
+    ]
   },
   {
     "id": "ace-of-wands",
@@ -1192,7 +2482,81 @@
       "water",
       "tree"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "hand-from-cloud",
+        "label": "The hand from the cloud",
+        "prompt": "What spark of an idea has been handed to you?",
+        "symbols": [
+          "hand-from-cloud",
+          "cloud",
+          "wand"
+        ],
+        "region": {
+          "x": 36,
+          "y": 60
+        }
+      },
+      {
+        "id": "falling-leaves",
+        "label": "The falling leaves",
+        "prompt": "What energy are you spending, and where does it land?",
+        "symbols": [],
+        "region": {
+          "x": 25,
+          "y": 40
+        }
+      },
+      {
+        "id": "castle-on-hill",
+        "label": "The castle on the hill",
+        "prompt": "What far-off goal would this new energy carry you toward?",
+        "symbols": [
+          "tower",
+          "heights"
+        ],
+        "region": {
+          "x": 17,
+          "y": 74
+        }
+      },
+      {
+        "id": "wand-top",
+        "label": "The leafy top of the wand",
+        "prompt": "Where in your life is something still sprouting?",
+        "symbols": [
+          "wand"
+        ],
+        "region": {
+          "x": 40,
+          "y": 10
+        }
+      },
+      {
+        "id": "river",
+        "label": "The river below",
+        "prompt": "What is quietly flowing along beneath your plans?",
+        "symbols": [
+          "water"
+        ],
+        "region": {
+          "x": 50,
+          "y": 87
+        }
+      },
+      {
+        "id": "trees",
+        "label": "The trees on the far bank",
+        "prompt": "What has grown steadily while you weren’t watching?",
+        "symbols": [
+          "tree"
+        ],
+        "region": {
+          "x": 84,
+          "y": 83
+        }
+      }
+    ]
   },
   {
     "id": "two-of-wands",
@@ -1235,7 +2599,80 @@
       "heights",
       "house"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "globe",
+        "label": "The globe in his hand",
+        "prompt": "What would you hold differently if you could see the whole picture?",
+        "symbols": [
+          "globe"
+        ],
+        "region": {
+          "x": 35,
+          "y": 37
+        }
+      },
+      {
+        "id": "wall-flowers",
+        "label": "The roses and lilies on the wall",
+        "prompt": "What have you built that you’re not ready to leave behind?",
+        "symbols": [
+          "flowers"
+        ],
+        "region": {
+          "x": 13,
+          "y": 77
+        }
+      },
+      {
+        "id": "fixed-wand",
+        "label": "The wand left standing",
+        "prompt": "Which choice have you set aside without fully letting go?",
+        "symbols": [
+          "wand"
+        ],
+        "region": {
+          "x": 79,
+          "y": 32
+        }
+      },
+      {
+        "id": "held-wand",
+        "label": "The wand he holds",
+        "prompt": "What are you holding onto while you decide?",
+        "symbols": [
+          "wand"
+        ],
+        "region": {
+          "x": 21,
+          "y": 25
+        }
+      },
+      {
+        "id": "sea",
+        "label": "The sea beyond the wall",
+        "prompt": "What lies past the wall you keep looking over?",
+        "symbols": [
+          "water"
+        ],
+        "region": {
+          "x": 30,
+          "y": 54
+        }
+      },
+      {
+        "id": "mountains",
+        "label": "The far mountains",
+        "prompt": "Which distant goal feels bigger from where you stand?",
+        "symbols": [
+          "heights"
+        ],
+        "region": {
+          "x": 85,
+          "y": 48
+        }
+      }
+    ]
   },
   {
     "id": "three-of-wands",
@@ -1276,7 +2713,67 @@
       "water",
       "boat"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "turned-back",
+        "label": "The figure facing away",
+        "prompt": "What are you watching for, and how long have you waited?",
+        "symbols": [],
+        "region": {
+          "x": 42,
+          "y": 45
+        }
+      },
+      {
+        "id": "ships",
+        "label": "The ships at sea",
+        "prompt": "What have you already sent out into the world?",
+        "symbols": [
+          "boat",
+          "water"
+        ],
+        "region": {
+          "x": 75,
+          "y": 80
+        }
+      },
+      {
+        "id": "gripped-wand",
+        "label": "The wand he grips",
+        "prompt": "What steadies you while you wait for something to arrive?",
+        "symbols": [
+          "wand"
+        ],
+        "region": {
+          "x": 82,
+          "y": 44
+        }
+      },
+      {
+        "id": "planted-wands",
+        "label": "The wands planted behind him",
+        "prompt": "What have you already set in place that steadies you?",
+        "symbols": [
+          "wand"
+        ],
+        "region": {
+          "x": 20,
+          "y": 25
+        }
+      },
+      {
+        "id": "ledge",
+        "label": "The rocky ledge",
+        "prompt": "What solid ground lets you look so far ahead?",
+        "symbols": [
+          "heights"
+        ],
+        "region": {
+          "x": 50,
+          "y": 92
+        }
+      }
+    ]
   },
   {
     "id": "four-of-wands",
@@ -1321,7 +2818,82 @@
       "bridge",
       "water"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "garland",
+        "label": "The garland overhead",
+        "prompt": "What in your life deserves a proper celebration right now?",
+        "symbols": [
+          "flowers",
+          "harvest",
+          "wand"
+        ],
+        "region": {
+          "x": 55,
+          "y": 30
+        }
+      },
+      {
+        "id": "raised-bouquets",
+        "label": "The raised bouquets",
+        "prompt": "Who would you most like to share good news with?",
+        "symbols": [
+          "flowers",
+          "dance"
+        ],
+        "region": {
+          "x": 48,
+          "y": 66
+        }
+      },
+      {
+        "id": "tower",
+        "label": "The castle tower",
+        "prompt": "Where do you feel most at home these days?",
+        "symbols": [
+          "tower",
+          "house"
+        ],
+        "region": {
+          "x": 54,
+          "y": 50
+        }
+      },
+      {
+        "id": "people-arriving",
+        "label": "The people coming to join",
+        "prompt": "Who would you like to share good news with?",
+        "symbols": [],
+        "region": {
+          "x": 22,
+          "y": 77
+        }
+      },
+      {
+        "id": "bridge",
+        "label": "The bridge",
+        "prompt": "What connection made this happy moment possible?",
+        "symbols": [
+          "bridge"
+        ],
+        "region": {
+          "x": 72,
+          "y": 75
+        }
+      },
+      {
+        "id": "ribbons",
+        "label": "The ribbons tied to the wands",
+        "prompt": "What small touch would make your home feel festive?",
+        "symbols": [
+          "wand"
+        ],
+        "region": {
+          "x": 13,
+          "y": 20
+        }
+      }
+    ]
   },
   {
     "id": "five-of-wands",
@@ -1359,7 +2931,62 @@
     "symbols": [
       "wand"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "tangle",
+        "label": "The tangle of wands",
+        "prompt": "Is this a real conflict, or everyone talking at once?",
+        "symbols": [
+          "wand"
+        ],
+        "region": {
+          "x": 66,
+          "y": 32
+        }
+      },
+      {
+        "id": "left-youth",
+        "label": "The youth on the left",
+        "prompt": "What are you defending that no one is actually attacking?",
+        "symbols": [
+          "wand"
+        ],
+        "region": {
+          "x": 21,
+          "y": 48
+        }
+      },
+      {
+        "id": "spotted-tunic",
+        "label": "The one with his back turned",
+        "prompt": "What would change if you stepped back from the scuffle?",
+        "symbols": [],
+        "region": {
+          "x": 68,
+          "y": 53
+        }
+      },
+      {
+        "id": "capped-youth",
+        "label": "The youth in the cap",
+        "prompt": "Where are you pushing just to keep up?",
+        "symbols": [],
+        "region": {
+          "x": 36,
+          "y": 52
+        }
+      },
+      {
+        "id": "right-youth",
+        "label": "The youth on the right",
+        "prompt": "Who keeps showing up to spar with you, and why?",
+        "symbols": [],
+        "region": {
+          "x": 88,
+          "y": 45
+        }
+      }
+    ]
   },
   {
     "id": "six-of-wands",
@@ -1399,7 +3026,67 @@
       "wreath",
       "horse"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "wreath",
+        "label": "The wreath on the wand",
+        "prompt": "What win have you not let yourself enjoy yet?",
+        "symbols": [
+          "wreath",
+          "wand"
+        ],
+        "region": {
+          "x": 64,
+          "y": 21
+        }
+      },
+      {
+        "id": "laurel-crown",
+        "label": "The rider’s laurel crown",
+        "prompt": "How do you carry yourself when others are watching?",
+        "symbols": [
+          "wreath"
+        ],
+        "region": {
+          "x": 38,
+          "y": 32
+        }
+      },
+      {
+        "id": "horse",
+        "label": "The white horse",
+        "prompt": "Who or what carried you to where you are now?",
+        "symbols": [
+          "horse"
+        ],
+        "region": {
+          "x": 85,
+          "y": 57
+        }
+      },
+      {
+        "id": "crowd",
+        "label": "The crowd walking beside him",
+        "prompt": "Who has walked alongside you on the way here?",
+        "symbols": [],
+        "region": {
+          "x": 10,
+          "y": 50
+        }
+      },
+      {
+        "id": "horse-cloth",
+        "label": "The horse’s green cloth",
+        "prompt": "What effort is hidden under how things look?",
+        "symbols": [
+          "horse"
+        ],
+        "region": {
+          "x": 68,
+          "y": 64
+        }
+      }
+    ]
   },
   {
     "id": "seven-of-wands",
@@ -1473,6 +3160,28 @@
           "x": 35,
           "y": 70
         }
+      },
+      {
+        "id": "held-staff",
+        "label": "The staff held across him",
+        "prompt": "What are you holding up to keep yourself safe?",
+        "symbols": [
+          "wand"
+        ],
+        "region": {
+          "x": 27,
+          "y": 18
+        }
+      },
+      {
+        "id": "face",
+        "label": "The look on his face",
+        "prompt": "What worry is showing on your face right now?",
+        "symbols": [],
+        "region": {
+          "x": 55,
+          "y": 33
+        }
       }
     ]
   },
@@ -1515,7 +3224,69 @@
       "house",
       "water"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "flying-wands",
+        "label": "The wands in flight",
+        "prompt": "What is already in motion that you can’t call back?",
+        "symbols": [
+          "wand"
+        ],
+        "region": {
+          "x": 40,
+          "y": 30
+        }
+      },
+      {
+        "id": "landing-wands",
+        "label": "The wands coming down",
+        "prompt": "Where are you ready for things to finally land?",
+        "symbols": [
+          "wand"
+        ],
+        "region": {
+          "x": 82,
+          "y": 70
+        }
+      },
+      {
+        "id": "house-on-hill",
+        "label": "The house on the hill",
+        "prompt": "What stays still while everything around you speeds up?",
+        "symbols": [
+          "house",
+          "heights"
+        ],
+        "region": {
+          "x": 14,
+          "y": 81
+        }
+      },
+      {
+        "id": "leaves",
+        "label": "The leaves on the wands",
+        "prompt": "What is still growing while everything moves so fast?",
+        "symbols": [
+          "wand"
+        ],
+        "region": {
+          "x": 47,
+          "y": 56
+        }
+      },
+      {
+        "id": "river",
+        "label": "The river below",
+        "prompt": "What steady current runs under all this rush?",
+        "symbols": [
+          "water"
+        ],
+        "region": {
+          "x": 55,
+          "y": 90
+        }
+      }
+    ]
   },
   {
     "id": "nine-of-wands",
@@ -1554,7 +3325,64 @@
       "wand",
       "heights"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "bandaged-head",
+        "label": "The bandaged head",
+        "prompt": "What old hurt still shapes how you stand guard?",
+        "symbols": [],
+        "region": {
+          "x": 55,
+          "y": 30
+        }
+      },
+      {
+        "id": "row-of-wands",
+        "label": "The row of wands behind him",
+        "prompt": "What have you built up to protect yourself?",
+        "symbols": [
+          "wand"
+        ],
+        "region": {
+          "x": 15,
+          "y": 40
+        }
+      },
+      {
+        "id": "leaning-staff",
+        "label": "The staff he leans on",
+        "prompt": "What keeps you upright when you’re tired of holding on?",
+        "symbols": [
+          "wand"
+        ],
+        "region": {
+          "x": 58,
+          "y": 75
+        }
+      },
+      {
+        "id": "hills",
+        "label": "The green hills behind",
+        "prompt": "What peaceful place are you guarding without noticing it?",
+        "symbols": [
+          "heights"
+        ],
+        "region": {
+          "x": 30,
+          "y": 76
+        }
+      },
+      {
+        "id": "planted-feet",
+        "label": "The planted feet",
+        "prompt": "Where are you standing firm, and is it still needed?",
+        "symbols": [],
+        "region": {
+          "x": 61,
+          "y": 91
+        }
+      }
+    ]
   },
   {
     "id": "ten-of-wands",
@@ -1594,7 +3422,65 @@
       "house",
       "tree"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "bundle",
+        "label": "The armful of wands",
+        "prompt": "Which of these burdens were never yours to carry?",
+        "symbols": [
+          "wand"
+        ],
+        "region": {
+          "x": 45,
+          "y": 25
+        }
+      },
+      {
+        "id": "bowed-head",
+        "label": "The bowed head",
+        "prompt": "What can’t you see because your load is in the way?",
+        "symbols": [],
+        "region": {
+          "x": 62,
+          "y": 44
+        }
+      },
+      {
+        "id": "distant-house",
+        "label": "The house ahead",
+        "prompt": "How far is it really to where you can set this down?",
+        "symbols": [
+          "house",
+          "tree"
+        ],
+        "region": {
+          "x": 85,
+          "y": 77
+        }
+      },
+      {
+        "id": "striding-feet",
+        "label": "The striding feet",
+        "prompt": "What keeps you walking even when the load is heavy?",
+        "symbols": [],
+        "region": {
+          "x": 12,
+          "y": 87
+        }
+      },
+      {
+        "id": "gripping-hands",
+        "label": "The hands around the wands",
+        "prompt": "Where are you gripping harder than the job needs?",
+        "symbols": [
+          "wand"
+        ],
+        "region": {
+          "x": 60,
+          "y": 62
+        }
+      }
+    ]
   },
   {
     "id": "page-of-wands",
@@ -1635,7 +3521,66 @@
       "salamander",
       "heights"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "feather",
+        "label": "The feather in his hat",
+        "prompt": "What new idea has caught your eye lately?",
+        "symbols": [
+          "feather"
+        ],
+        "region": {
+          "x": 41,
+          "y": 13
+        }
+      },
+      {
+        "id": "salamander-tunic",
+        "label": "The salamanders on his tunic",
+        "prompt": "What spark in you is eager to be tested?",
+        "symbols": [
+          "salamander"
+        ],
+        "region": {
+          "x": 50,
+          "y": 45
+        }
+      },
+      {
+        "id": "pyramids",
+        "label": "The distant pyramids",
+        "prompt": "What faraway place or plan keeps calling to you?",
+        "symbols": [
+          "heights"
+        ],
+        "region": {
+          "x": 82,
+          "y": 69
+        }
+      },
+      {
+        "id": "wand-leaves",
+        "label": "The leaves on his wand",
+        "prompt": "What new idea are you gazing at with wonder?",
+        "symbols": [
+          "wand"
+        ],
+        "region": {
+          "x": 71,
+          "y": 15
+        }
+      },
+      {
+        "id": "boots",
+        "label": "The flame-trimmed boots",
+        "prompt": "Where do you want your curiosity to carry you?",
+        "symbols": [],
+        "region": {
+          "x": 50,
+          "y": 77
+        }
+      }
+    ]
   },
   {
     "id": "knight-of-wands",
@@ -1677,7 +3622,78 @@
       "feather",
       "heights"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "plume",
+        "label": "The flaming plume",
+        "prompt": "What lights you up enough to drop everything for it?",
+        "symbols": [
+          "feather"
+        ],
+        "region": {
+          "x": 80,
+          "y": 18
+        }
+      },
+      {
+        "id": "rearing-horse",
+        "label": "The rearing horse",
+        "prompt": "Where is your energy running ahead of your plans?",
+        "symbols": [
+          "horse"
+        ],
+        "region": {
+          "x": 25,
+          "y": 40
+        }
+      },
+      {
+        "id": "pyramids",
+        "label": "The pyramids behind",
+        "prompt": "What are you riding toward, and what are you leaving?",
+        "symbols": [
+          "heights"
+        ],
+        "region": {
+          "x": 20,
+          "y": 79
+        }
+      },
+      {
+        "id": "raised-wand",
+        "label": "The wand held high",
+        "prompt": "What are you charging toward with this much energy?",
+        "symbols": [
+          "wand"
+        ],
+        "region": {
+          "x": 45,
+          "y": 10
+        }
+      },
+      {
+        "id": "salamander-tunic",
+        "label": "The salamanders on his tunic",
+        "prompt": "What fire in you is hard to keep still?",
+        "symbols": [
+          "salamander"
+        ],
+        "region": {
+          "x": 68,
+          "y": 52
+        }
+      },
+      {
+        "id": "stirrup-foot",
+        "label": "The foot in the stirrup",
+        "prompt": "How steady do you feel in what you’re riding?",
+        "symbols": [],
+        "region": {
+          "x": 47,
+          "y": 78
+        }
+      }
+    ]
   },
   {
     "id": "queen-of-wands",
@@ -1721,7 +3737,81 @@
       "cat",
       "heights"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "black-cat",
+        "label": "The black cat",
+        "prompt": "What part of you do you keep close but rarely show?",
+        "symbols": [
+          "cat"
+        ],
+        "region": {
+          "x": 40,
+          "y": 79
+        }
+      },
+      {
+        "id": "sunflower",
+        "label": "The sunflower",
+        "prompt": "What helps you turn toward warmth on hard days?",
+        "symbols": [
+          "flowers"
+        ],
+        "region": {
+          "x": 73,
+          "y": 32
+        }
+      },
+      {
+        "id": "crown",
+        "label": "The leafy crown",
+        "prompt": "Where do you feel confident claiming your own space?",
+        "symbols": [
+          "crown"
+        ],
+        "region": {
+          "x": 45,
+          "y": 18
+        }
+      },
+      {
+        "id": "throne-lions",
+        "label": "The lions on the throne",
+        "prompt": "Where does your courage come from when you need it?",
+        "symbols": [
+          "lion",
+          "throne"
+        ],
+        "region": {
+          "x": 58,
+          "y": 8
+        }
+      },
+      {
+        "id": "leafy-wand",
+        "label": "The leafy wand",
+        "prompt": "What are you growing that you hold with pride?",
+        "symbols": [
+          "wand"
+        ],
+        "region": {
+          "x": 22,
+          "y": 40
+        }
+      },
+      {
+        "id": "pyramid",
+        "label": "The pyramid behind",
+        "prompt": "What old strength stands in the background of your life?",
+        "symbols": [
+          "heights"
+        ],
+        "region": {
+          "x": 9,
+          "y": 70
+        }
+      }
+    ]
   },
   {
     "id": "king-of-wands",
@@ -1763,7 +3853,80 @@
       "lion",
       "salamander"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "crown",
+        "label": "The flame-shaped crown",
+        "prompt": "What vision are you willing to take responsibility for?",
+        "symbols": [
+          "crown"
+        ],
+        "region": {
+          "x": 45,
+          "y": 18
+        }
+      },
+      {
+        "id": "throne-lion",
+        "label": "The lion on the throne",
+        "prompt": "Where do you lead with courage, and where with pride?",
+        "symbols": [
+          "lion",
+          "throne"
+        ],
+        "region": {
+          "x": 78,
+          "y": 30
+        }
+      },
+      {
+        "id": "salamander",
+        "label": "The little salamander",
+        "prompt": "What small, quiet fire keeps your big plans going?",
+        "symbols": [
+          "salamander"
+        ],
+        "region": {
+          "x": 67,
+          "y": 83
+        }
+      },
+      {
+        "id": "flowering-wand",
+        "label": "The flowering wand",
+        "prompt": "What vision are you ready to put your weight behind?",
+        "symbols": [
+          "wand"
+        ],
+        "region": {
+          "x": 20,
+          "y": 25
+        }
+      },
+      {
+        "id": "throne-salamanders",
+        "label": "The salamanders on the throne",
+        "prompt": "What restless energy have you learned to rule?",
+        "symbols": [
+          "salamander",
+          "throne"
+        ],
+        "region": {
+          "x": 65,
+          "y": 12
+        }
+      },
+      {
+        "id": "resting-hand",
+        "label": "The hand resting in his lap",
+        "prompt": "What are you ready to act on, but not yet?",
+        "symbols": [],
+        "region": {
+          "x": 55,
+          "y": 52
+        }
+      }
+    ]
   },
   {
     "id": "ace-of-cups",
@@ -1808,7 +3971,84 @@
       "flowers",
       "cloud"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "dove",
+        "label": "The dove with the wafer",
+        "prompt": "What gentle thing has come to you without being asked for?",
+        "symbols": [
+          "bird",
+          "cross"
+        ],
+        "region": {
+          "x": 48,
+          "y": 9
+        }
+      },
+      {
+        "id": "hand-from-cloud",
+        "label": "The hand from the cloud",
+        "prompt": "What feeling are you being offered the chance to receive?",
+        "symbols": [
+          "hand-from-cloud",
+          "cloud",
+          "cup"
+        ],
+        "region": {
+          "x": 78,
+          "y": 45
+        }
+      },
+      {
+        "id": "lily-pond",
+        "label": "The lily pond",
+        "prompt": "Where does your overflow land, and who does it nourish?",
+        "symbols": [
+          "water",
+          "flowers"
+        ],
+        "region": {
+          "x": 25,
+          "y": 85
+        }
+      },
+      {
+        "id": "cup",
+        "label": "The golden cup",
+        "prompt": "What is filling you up right now?",
+        "symbols": [
+          "cup"
+        ],
+        "region": {
+          "x": 49,
+          "y": 28
+        }
+      },
+      {
+        "id": "streams",
+        "label": "The five streams",
+        "prompt": "Where is your care spilling over to others?",
+        "symbols": [
+          "water"
+        ],
+        "region": {
+          "x": 32,
+          "y": 62
+        }
+      },
+      {
+        "id": "drops",
+        "label": "The falling drops",
+        "prompt": "What small kindness has landed on you lately?",
+        "symbols": [
+          "dew"
+        ],
+        "region": {
+          "x": 72,
+          "y": 70
+        }
+      }
+    ]
   },
   {
     "id": "two-of-cups",
@@ -1852,7 +4092,68 @@
       "house",
       "heights"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "winged-lion",
+        "label": "The winged lion’s head",
+        "prompt": "What lifts a connection from ordinary to something more?",
+        "symbols": [
+          "lion",
+          "wings"
+        ],
+        "region": {
+          "x": 50,
+          "y": 15
+        }
+      },
+      {
+        "id": "meeting-cups",
+        "label": "The two cups meeting",
+        "prompt": "Where are you giving as much as you receive?",
+        "symbols": [
+          "cup"
+        ],
+        "region": {
+          "x": 50,
+          "y": 42
+        }
+      },
+      {
+        "id": "house-on-hill",
+        "label": "The house on the hill",
+        "prompt": "What kind of home would you build with someone?",
+        "symbols": [
+          "house",
+          "heights"
+        ],
+        "region": {
+          "x": 58,
+          "y": 70
+        }
+      },
+      {
+        "id": "laurel-wreath",
+        "label": "The woman’s laurel wreath",
+        "prompt": "What do you honor in the person across from you?",
+        "symbols": [
+          "wreath"
+        ],
+        "region": {
+          "x": 24,
+          "y": 27
+        }
+      },
+      {
+        "id": "forward-step",
+        "label": "The man’s forward step",
+        "prompt": "Who are you stepping toward with an open heart?",
+        "symbols": [],
+        "region": {
+          "x": 76,
+          "y": 80
+        }
+      }
+    ]
   },
   {
     "id": "three-of-cups",
@@ -1928,6 +4229,42 @@
           "x": 14,
           "y": 79
         }
+      },
+      {
+        "id": "pumpkin",
+        "label": "The pumpkin",
+        "prompt": "What have you grown that’s worth sharing?",
+        "symbols": [
+          "harvest"
+        ],
+        "region": {
+          "x": 82,
+          "y": 89
+        }
+      },
+      {
+        "id": "grapes",
+        "label": "The grapes in her hand",
+        "prompt": "What sweetness are you holding onto right now?",
+        "symbols": [
+          "harvest"
+        ],
+        "region": {
+          "x": 88,
+          "y": 57
+        }
+      },
+      {
+        "id": "flower-hair",
+        "label": "The flowers in her hair",
+        "prompt": "What makes you feel most yourself among friends?",
+        "symbols": [
+          "flowers"
+        ],
+        "region": {
+          "x": 21,
+          "y": 26
+        }
       }
     ]
   },
@@ -1971,7 +4308,66 @@
       "tree",
       "heights"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "offered-cup",
+        "label": "The cup from the cloud",
+        "prompt": "What is being offered to you that you haven’t noticed?",
+        "symbols": [
+          "cup",
+          "hand-from-cloud",
+          "cloud"
+        ],
+        "region": {
+          "x": 38,
+          "y": 52
+        }
+      },
+      {
+        "id": "three-cups",
+        "label": "The three cups on the grass",
+        "prompt": "What do you already have that you’ve stopped seeing?",
+        "symbols": [
+          "cup"
+        ],
+        "region": {
+          "x": 27,
+          "y": 82
+        }
+      },
+      {
+        "id": "folded-arms",
+        "label": "The folded arms",
+        "prompt": "What are you closing yourself off from right now?",
+        "symbols": [],
+        "region": {
+          "x": 72,
+          "y": 60
+        }
+      },
+      {
+        "id": "tree",
+        "label": "The tree at his back",
+        "prompt": "What has been quietly supporting you all along?",
+        "symbols": [
+          "tree"
+        ],
+        "region": {
+          "x": 60,
+          "y": 25
+        }
+      },
+      {
+        "id": "downward-gaze",
+        "label": "The downward gaze",
+        "prompt": "What are you staring at so hard you miss the rest?",
+        "symbols": [],
+        "region": {
+          "x": 67,
+          "y": 44
+        }
+      }
+    ]
   },
   {
     "id": "five-of-cups",
@@ -2013,7 +4409,78 @@
       "house",
       "tree"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "cloaked-figure",
+        "label": "The cloaked figure",
+        "prompt": "How long have you been looking at what went wrong?",
+        "symbols": [],
+        "region": {
+          "x": 55,
+          "y": 45
+        }
+      },
+      {
+        "id": "spilled-cups",
+        "label": "The spilled cups",
+        "prompt": "What loss do you still need to let yourself grieve?",
+        "symbols": [
+          "cup"
+        ],
+        "region": {
+          "x": 22,
+          "y": 82
+        }
+      },
+      {
+        "id": "standing-cups",
+        "label": "The two cups still standing",
+        "prompt": "What is still here for you when you turn around?",
+        "symbols": [
+          "cup"
+        ],
+        "region": {
+          "x": 80,
+          "y": 82
+        }
+      },
+      {
+        "id": "bridge",
+        "label": "The bridge",
+        "prompt": "What path back is waiting when you’re ready?",
+        "symbols": [
+          "bridge"
+        ],
+        "region": {
+          "x": 77,
+          "y": 66
+        }
+      },
+      {
+        "id": "river",
+        "label": "The river",
+        "prompt": "What feeling needs time to flow through you?",
+        "symbols": [
+          "water"
+        ],
+        "region": {
+          "x": 34,
+          "y": 71
+        }
+      },
+      {
+        "id": "tower",
+        "label": "The tower across the river",
+        "prompt": "What place or person still feels like shelter?",
+        "symbols": [
+          "house"
+        ],
+        "region": {
+          "x": 18,
+          "y": 62
+        }
+      }
+    ]
   },
   {
     "id": "six-of-cups",
@@ -2056,7 +4523,81 @@
       "tower",
       "garden"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "flower-cup",
+        "label": "The cup of flowers being handed over",
+        "prompt": "What simple kindness from your past still warms you?",
+        "symbols": [
+          "cup",
+          "flowers",
+          "child"
+        ],
+        "region": {
+          "x": 58,
+          "y": 50
+        }
+      },
+      {
+        "id": "tower",
+        "label": "The old tower",
+        "prompt": "What place from childhood do you still carry with you?",
+        "symbols": [
+          "tower",
+          "house"
+        ],
+        "region": {
+          "x": 25,
+          "y": 25
+        }
+      },
+      {
+        "id": "garden-cups",
+        "label": "The row of flowering cups",
+        "prompt": "What have you grown that you could share with someone?",
+        "symbols": [
+          "cup",
+          "flowers",
+          "garden"
+        ],
+        "region": {
+          "x": 60,
+          "y": 85
+        }
+      },
+      {
+        "id": "little-girl",
+        "label": "The little girl",
+        "prompt": "What simple kindness are you still able to receive?",
+        "symbols": [
+          "child"
+        ],
+        "region": {
+          "x": 76,
+          "y": 56
+        }
+      },
+      {
+        "id": "guard",
+        "label": "The guard walking off",
+        "prompt": "Who once kept watch over you without asking for thanks?",
+        "symbols": [],
+        "region": {
+          "x": 8,
+          "y": 47
+        }
+      },
+      {
+        "id": "shield",
+        "label": "The shield on the stone",
+        "prompt": "What old protection do you still lean on today?",
+        "symbols": [],
+        "region": {
+          "x": 18,
+          "y": 68
+        }
+      }
+    ]
   },
   {
     "id": "seven-of-cups",
@@ -2103,7 +4644,79 @@
       "skull",
       "dragon"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "veiled-figure",
+        "label": "The veiled figure",
+        "prompt": "What part of yourself have you kept covered, even from you?",
+        "symbols": [
+          "veil"
+        ],
+        "region": {
+          "x": 50,
+          "y": 17
+        }
+      },
+      {
+        "id": "jewels",
+        "label": "The cup of jewels",
+        "prompt": "Which shiny option are you chasing, and do you really want it?",
+        "symbols": [
+          "cup",
+          "jewels"
+        ],
+        "region": {
+          "x": 40,
+          "y": 46
+        }
+      },
+      {
+        "id": "dreamer",
+        "label": "The dark silhouette",
+        "prompt": "Which of your daydreams is ready to become a real choice?",
+        "symbols": [],
+        "region": {
+          "x": 20,
+          "y": 72
+        }
+      },
+      {
+        "id": "head",
+        "label": "The head in the cup",
+        "prompt": "Whose approval are you picturing when you dream this up?",
+        "symbols": [
+          "face"
+        ],
+        "region": {
+          "x": 20,
+          "y": 12
+        }
+      },
+      {
+        "id": "snake",
+        "label": "The snake",
+        "prompt": "Which tempting option might cost more than it shows?",
+        "symbols": [
+          "serpent"
+        ],
+        "region": {
+          "x": 74,
+          "y": 12
+        }
+      },
+      {
+        "id": "wreath",
+        "label": "The victory wreath",
+        "prompt": "What would winning actually change about your days?",
+        "symbols": [
+          "wreath"
+        ],
+        "region": {
+          "x": 62,
+          "y": 42
+        }
+      }
+    ]
   },
   {
     "id": "eight-of-cups",
@@ -2146,7 +4759,69 @@
       "water",
       "wand"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "moon",
+        "label": "The watching moon",
+        "prompt": "What do you see more clearly when things are quiet?",
+        "symbols": [
+          "moon",
+          "face"
+        ],
+        "region": {
+          "x": 27,
+          "y": 24
+        }
+      },
+      {
+        "id": "walker",
+        "label": "The figure walking away",
+        "prompt": "What are you ready to leave, even though it still looks fine?",
+        "symbols": [
+          "wand"
+        ],
+        "region": {
+          "x": 66,
+          "y": 52
+        }
+      },
+      {
+        "id": "stacked-cups",
+        "label": "The stacked cups",
+        "prompt": "What did you build that no longer fills you up?",
+        "symbols": [
+          "cup"
+        ],
+        "region": {
+          "x": 35,
+          "y": 84
+        }
+      },
+      {
+        "id": "staff",
+        "label": "The walking staff",
+        "prompt": "What will you lean on as you head somewhere new?",
+        "symbols": [
+          "wand"
+        ],
+        "region": {
+          "x": 82,
+          "y": 47
+        }
+      },
+      {
+        "id": "gap",
+        "label": "The gap in the cups",
+        "prompt": "What is missing that makes the rest feel incomplete?",
+        "symbols": [
+          "cup"
+        ],
+        "region": {
+          "x": 57,
+          "y": 68
+        }
+      }
+    ]
   },
   {
     "id": "nine-of-cups",
@@ -2187,7 +4862,65 @@
       "veil",
       "feather"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "cups-on-display",
+        "label": "The row of cups",
+        "prompt": "Which of your good things are you proudest to show?",
+        "symbols": [
+          "cup"
+        ],
+        "region": {
+          "x": 50,
+          "y": 21
+        }
+      },
+      {
+        "id": "folded-arms",
+        "label": "The folded arms",
+        "prompt": "Where are you satisfied, and where are you closed off?",
+        "symbols": [],
+        "region": {
+          "x": 50,
+          "y": 55
+        }
+      },
+      {
+        "id": "draped-table",
+        "label": "The draped table",
+        "prompt": "What sits behind the curtain of your contentment?",
+        "symbols": [
+          "table",
+          "veil"
+        ],
+        "region": {
+          "x": 12,
+          "y": 56
+        }
+      },
+      {
+        "id": "hat",
+        "label": "The red hat",
+        "prompt": "What part of yourself do you enjoy showing off?",
+        "symbols": [
+          "feather"
+        ],
+        "region": {
+          "x": 53,
+          "y": 39
+        }
+      },
+      {
+        "id": "bench",
+        "label": "The plain bench",
+        "prompt": "What ordinary thing quietly holds up your comfort?",
+        "symbols": [],
+        "region": {
+          "x": 25,
+          "y": 72
+        }
+      }
+    ]
   },
   {
     "id": "ten-of-cups",
@@ -2231,7 +4964,69 @@
       "water",
       "tree"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "rainbow",
+        "label": "The rainbow of cups",
+        "prompt": "What would a good life look like, in your own words?",
+        "symbols": [
+          "rainbow",
+          "cup"
+        ],
+        "region": {
+          "x": 50,
+          "y": 20
+        }
+      },
+      {
+        "id": "couple",
+        "label": "The raised arms",
+        "prompt": "Who do you want beside you when you celebrate?",
+        "symbols": [],
+        "region": {
+          "x": 42,
+          "y": 64
+        }
+      },
+      {
+        "id": "children",
+        "label": "The dancing children",
+        "prompt": "When did you last play just for the joy of it?",
+        "symbols": [
+          "child",
+          "dance"
+        ],
+        "region": {
+          "x": 76,
+          "y": 76
+        }
+      },
+      {
+        "id": "house",
+        "label": "The house among the trees",
+        "prompt": "What place feels most like home to you right now?",
+        "symbols": [
+          "house",
+          "tree"
+        ],
+        "region": {
+          "x": 72,
+          "y": 61
+        }
+      },
+      {
+        "id": "river",
+        "label": "The winding river",
+        "prompt": "What keeps flowing through your life without much effort?",
+        "symbols": [
+          "water"
+        ],
+        "region": {
+          "x": 10,
+          "y": 72
+        }
+      }
+    ]
   },
   {
     "id": "page-of-cups",
@@ -2271,7 +5066,63 @@
       "fish",
       "water"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "fish",
+        "label": "The fish in the cup",
+        "prompt": "What surprising feeling has popped up in you lately?",
+        "symbols": [
+          "fish",
+          "cup"
+        ],
+        "region": {
+          "x": 25,
+          "y": 28
+        }
+      },
+      {
+        "id": "gaze",
+        "label": "The page’s gaze",
+        "prompt": "What small wonder deserves more of your attention?",
+        "symbols": [],
+        "region": {
+          "x": 52,
+          "y": 24
+        }
+      },
+      {
+        "id": "waves",
+        "label": "The waves behind",
+        "prompt": "What emotions are moving just behind your everyday mood?",
+        "symbols": [
+          "water"
+        ],
+        "region": {
+          "x": 80,
+          "y": 76
+        }
+      },
+      {
+        "id": "hand-on-hip",
+        "label": "The hand on the hip",
+        "prompt": "Where could you stand a little more at ease?",
+        "symbols": [],
+        "region": {
+          "x": 68,
+          "y": 44
+        }
+      },
+      {
+        "id": "tunic",
+        "label": "The flowered tunic",
+        "prompt": "What playful side of you wants to be seen?",
+        "symbols": [],
+        "region": {
+          "x": 50,
+          "y": 55
+        }
+      }
+    ]
   },
   {
     "id": "knight-of-cups",
@@ -2314,7 +5165,80 @@
       "heights",
       "tree"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "winged-helmet",
+        "label": "The winged helmet",
+        "prompt": "Where is your imagination ready to carry you?",
+        "symbols": [
+          "wings"
+        ],
+        "region": {
+          "x": 19,
+          "y": 12
+        }
+      },
+      {
+        "id": "offered-cup",
+        "label": "The offered cup",
+        "prompt": "What are you holding out to someone, and why?",
+        "symbols": [
+          "cup"
+        ],
+        "region": {
+          "x": 62,
+          "y": 29
+        }
+      },
+      {
+        "id": "horse",
+        "label": "The slow white horse",
+        "prompt": "What would change if you moved toward it more gently?",
+        "symbols": [
+          "horse"
+        ],
+        "region": {
+          "x": 80,
+          "y": 52
+        }
+      },
+      {
+        "id": "winged-heels",
+        "label": "The winged heels",
+        "prompt": "What step are you taking that feels lighter than expected?",
+        "symbols": [
+          "wings"
+        ],
+        "region": {
+          "x": 43,
+          "y": 65
+        }
+      },
+      {
+        "id": "cliffs",
+        "label": "The cliffs ahead",
+        "prompt": "What harder ground are you willing to approach gently?",
+        "symbols": [
+          "heights"
+        ],
+        "region": {
+          "x": 85,
+          "y": 70
+        }
+      },
+      {
+        "id": "river",
+        "label": "The river",
+        "prompt": "What feeling do you need to cross rather than avoid?",
+        "symbols": [
+          "water"
+        ],
+        "region": {
+          "x": 60,
+          "y": 85
+        }
+      }
+    ]
   },
   {
     "id": "queen-of-cups",
@@ -2381,6 +5305,41 @@
           "x": 15,
           "y": 72
         }
+      },
+      {
+        "id": "throne-angels",
+        "label": "The little angels on the throne",
+        "prompt": "What gentle presence helps you feel held?",
+        "symbols": [
+          "angel",
+          "throne"
+        ],
+        "region": {
+          "x": 82,
+          "y": 14
+        }
+      },
+      {
+        "id": "crown",
+        "label": "The crown",
+        "prompt": "Where do you trust your own quiet authority?",
+        "symbols": [
+          "crown"
+        ],
+        "region": {
+          "x": 54,
+          "y": 27
+        }
+      },
+      {
+        "id": "pebbles",
+        "label": "The bright pebbles",
+        "prompt": "What small treasures has your sensitivity helped you notice?",
+        "symbols": [],
+        "region": {
+          "x": 58,
+          "y": 83
+        }
       }
     ]
   },
@@ -2426,7 +5385,82 @@
       "fish",
       "boat"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "cup",
+        "label": "The steady cup",
+        "prompt": "How do you hold strong feelings without spilling them?",
+        "symbols": [
+          "cup"
+        ],
+        "region": {
+          "x": 42,
+          "y": 44
+        }
+      },
+      {
+        "id": "ship",
+        "label": "The distant ship",
+        "prompt": "What journey are you watching from a safe distance?",
+        "symbols": [
+          "boat"
+        ],
+        "region": {
+          "x": 91,
+          "y": 63
+        }
+      },
+      {
+        "id": "leaping-fish",
+        "label": "The leaping fish",
+        "prompt": "What lively feeling keeps rising to your surface?",
+        "symbols": [
+          "fish",
+          "water"
+        ],
+        "region": {
+          "x": 10,
+          "y": 64
+        }
+      },
+      {
+        "id": "sceptre",
+        "label": "The scepter",
+        "prompt": "Where do you lead without raising your voice?",
+        "symbols": [
+          "sceptre"
+        ],
+        "region": {
+          "x": 83,
+          "y": 40
+        }
+      },
+      {
+        "id": "fish-pendant",
+        "label": "The fish pendant",
+        "prompt": "What feeling do you keep close but out of sight?",
+        "symbols": [
+          "fish"
+        ],
+        "region": {
+          "x": 55,
+          "y": 33
+        }
+      },
+      {
+        "id": "throne-on-sea",
+        "label": "The throne on the waves",
+        "prompt": "How do you stay steady when everything around you moves?",
+        "symbols": [
+          "throne",
+          "water"
+        ],
+        "region": {
+          "x": 50,
+          "y": 84
+        }
+      }
+    ]
   },
   {
     "id": "ace-of-swords",
@@ -2469,7 +5503,78 @@
       "dew",
       "heights"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "crown",
+        "label": "The crown on the blade",
+        "prompt": "What truth would you be proud to stand behind?",
+        "symbols": [
+          "crown",
+          "sword"
+        ],
+        "region": {
+          "x": 50,
+          "y": 11
+        }
+      },
+      {
+        "id": "drops",
+        "label": "The falling drops",
+        "prompt": "What fresh idea has just landed in your mind?",
+        "symbols": [
+          "dew"
+        ],
+        "region": {
+          "x": 36,
+          "y": 46
+        }
+      },
+      {
+        "id": "hand",
+        "label": "The hand from the cloud",
+        "prompt": "Where do you need to grip a clear decision?",
+        "symbols": [
+          "hand-from-cloud",
+          "cloud"
+        ],
+        "region": {
+          "x": 52,
+          "y": 63
+        }
+      },
+      {
+        "id": "olive-branch",
+        "label": "The olive branch",
+        "prompt": "What clear truth could also bring you some peace?",
+        "symbols": [],
+        "region": {
+          "x": 34,
+          "y": 22
+        }
+      },
+      {
+        "id": "palm-branch",
+        "label": "The palm branch",
+        "prompt": "What hard-won clarity deserves to be celebrated?",
+        "symbols": [],
+        "region": {
+          "x": 66,
+          "y": 22
+        }
+      },
+      {
+        "id": "mountains",
+        "label": "The distant mountains",
+        "prompt": "What big challenge looks smaller once you think it through?",
+        "symbols": [
+          "heights"
+        ],
+        "region": {
+          "x": 75,
+          "y": 82
+        }
+      }
+    ]
   },
   {
     "id": "two-of-swords",
@@ -2510,7 +5615,66 @@
       "moon",
       "water"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "moon",
+        "label": "The crescent moon",
+        "prompt": "What are you sensing that you haven’t said out loud?",
+        "symbols": [
+          "moon"
+        ],
+        "region": {
+          "x": 70,
+          "y": 16
+        }
+      },
+      {
+        "id": "blindfold",
+        "label": "The blindfold",
+        "prompt": "What are you choosing not to look at right now?",
+        "symbols": [
+          "blindfold"
+        ],
+        "region": {
+          "x": 50,
+          "y": 37
+        }
+      },
+      {
+        "id": "rocks",
+        "label": "The rocks in the water",
+        "prompt": "What is under the surface of this choice?",
+        "symbols": [
+          "water"
+        ],
+        "region": {
+          "x": 24,
+          "y": 57
+        }
+      },
+      {
+        "id": "crossed-swords",
+        "label": "The crossed swords",
+        "prompt": "Which two choices are you holding perfectly still?",
+        "symbols": [
+          "sword"
+        ],
+        "region": {
+          "x": 18,
+          "y": 22
+        }
+      },
+      {
+        "id": "bench",
+        "label": "The stone bench",
+        "prompt": "Where have you settled in to avoid deciding?",
+        "symbols": [],
+        "region": {
+          "x": 34,
+          "y": 72
+        }
+      }
+    ]
   },
   {
     "id": "three-of-swords",
@@ -2550,7 +5714,55 @@
       "sword",
       "cloud"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "heart",
+        "label": "The pierced heart",
+        "prompt": "What hurt are you ready to name plainly?",
+        "symbols": [
+          "heart",
+          "sword"
+        ],
+        "region": {
+          "x": 50,
+          "y": 50
+        }
+      },
+      {
+        "id": "storm-cloud",
+        "label": "The storm cloud",
+        "prompt": "What heavy mood has been hanging over you?",
+        "symbols": [
+          "cloud"
+        ],
+        "region": {
+          "x": 85,
+          "y": 32
+        }
+      },
+      {
+        "id": "rain",
+        "label": "The falling rain",
+        "prompt": "What would it feel like to let yourself cry?",
+        "symbols": [],
+        "region": {
+          "x": 18,
+          "y": 65
+        }
+      },
+      {
+        "id": "blades",
+        "label": "The three blades",
+        "prompt": "Which painful thought keeps cutting in the same place?",
+        "symbols": [
+          "sword"
+        ],
+        "region": {
+          "x": 50,
+          "y": 20
+        }
+      }
+    ]
   },
   {
     "id": "four-of-swords",
@@ -2590,7 +5802,67 @@
       "tomb",
       "window"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "window",
+        "label": "The stained glass window",
+        "prompt": "What gives you comfort when you stop to rest?",
+        "symbols": [
+          "window"
+        ],
+        "region": {
+          "x": 20,
+          "y": 18
+        }
+      },
+      {
+        "id": "hands",
+        "label": "The folded hands",
+        "prompt": "What would real rest look like for you this week?",
+        "symbols": [],
+        "region": {
+          "x": 59,
+          "y": 56
+        }
+      },
+      {
+        "id": "lone-sword",
+        "label": "The sword on the tomb",
+        "prompt": "Which struggle can you set down for a while?",
+        "symbols": [
+          "sword",
+          "tomb"
+        ],
+        "region": {
+          "x": 45,
+          "y": 86
+        }
+      },
+      {
+        "id": "hanging-swords",
+        "label": "The swords on the wall",
+        "prompt": "What struggle can you hang up for a while?",
+        "symbols": [
+          "sword"
+        ],
+        "region": {
+          "x": 71,
+          "y": 28
+        }
+      },
+      {
+        "id": "sleeping-face",
+        "label": "The still face",
+        "prompt": "When did you last let yourself rest completely?",
+        "symbols": [
+          "tomb"
+        ],
+        "region": {
+          "x": 80,
+          "y": 62
+        }
+      }
+    ]
   },
   {
     "id": "five-of-swords",
@@ -2662,6 +5934,28 @@
           "x": 40,
           "y": 20
         }
+      },
+      {
+        "id": "smirk",
+        "label": "The smirk",
+        "prompt": "Who pays the price when you insist on winning?",
+        "symbols": [],
+        "region": {
+          "x": 58,
+          "y": 38
+        }
+      },
+      {
+        "id": "dropped-swords",
+        "label": "The swords on the ground",
+        "prompt": "Which fight are you ready to put down?",
+        "symbols": [
+          "sword"
+        ],
+        "region": {
+          "x": 30,
+          "y": 88
+        }
       }
     ]
   },
@@ -2704,7 +5998,77 @@
       "water",
       "tree"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "ferryman",
+        "label": "The ferryman",
+        "prompt": "Who is helping you get from one shore to another?",
+        "symbols": [],
+        "region": {
+          "x": 28,
+          "y": 50
+        }
+      },
+      {
+        "id": "passenger",
+        "label": "The hooded passenger",
+        "prompt": "What are you carrying with you as you move on?",
+        "symbols": [
+          "boat"
+        ],
+        "region": {
+          "x": 62,
+          "y": 68
+        }
+      },
+      {
+        "id": "swords",
+        "label": "The upright swords",
+        "prompt": "Which old worries are still riding along with you?",
+        "symbols": [
+          "sword"
+        ],
+        "region": {
+          "x": 77,
+          "y": 45
+        }
+      },
+      {
+        "id": "child",
+        "label": "The child in the boat",
+        "prompt": "Who are you carrying with you through this change?",
+        "symbols": [
+          "boat"
+        ],
+        "region": {
+          "x": 44,
+          "y": 72
+        }
+      },
+      {
+        "id": "pole",
+        "label": "The ferryman’s pole",
+        "prompt": "What steady effort is moving you forward?",
+        "symbols": [],
+        "region": {
+          "x": 28,
+          "y": 20
+        }
+      },
+      {
+        "id": "far-shore",
+        "label": "The far shore",
+        "prompt": "What calmer place are you heading toward?",
+        "symbols": [
+          "tree",
+          "water"
+        ],
+        "region": {
+          "x": 60,
+          "y": 36
+        }
+      }
+    ]
   },
   {
     "id": "seven-of-swords",
@@ -2744,7 +6108,75 @@
       "tent",
       "banner"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "glance",
+        "label": "The look over the shoulder",
+        "prompt": "What are you hoping nobody notices you doing?",
+        "symbols": [],
+        "region": {
+          "x": 57,
+          "y": 32
+        }
+      },
+      {
+        "id": "armful",
+        "label": "The armful of swords",
+        "prompt": "Are you trying to carry more than you can hold?",
+        "symbols": [
+          "sword"
+        ],
+        "region": {
+          "x": 25,
+          "y": 52
+        }
+      },
+      {
+        "id": "left-behind",
+        "label": "The swords left behind",
+        "prompt": "What did you leave behind, and does it matter?",
+        "symbols": [
+          "sword"
+        ],
+        "region": {
+          "x": 76,
+          "y": 48
+        }
+      },
+      {
+        "id": "tents",
+        "label": "The tents",
+        "prompt": "Who might be affected by what you take quietly?",
+        "symbols": [
+          "tent",
+          "banner"
+        ],
+        "region": {
+          "x": 88,
+          "y": 72
+        }
+      },
+      {
+        "id": "distant-figures",
+        "label": "The distant figures",
+        "prompt": "Whose attention are you hoping to slip past?",
+        "symbols": [],
+        "region": {
+          "x": 9,
+          "y": 68
+        }
+      },
+      {
+        "id": "tiptoe",
+        "label": "The tiptoeing feet",
+        "prompt": "Where are you moving carefully to avoid being noticed?",
+        "symbols": [],
+        "region": {
+          "x": 62,
+          "y": 78
+        }
+      }
+    ]
   },
   {
     "id": "eight-of-swords",
@@ -2787,7 +6219,69 @@
       "tower",
       "heights"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "blindfold",
+        "label": "The blindfold",
+        "prompt": "What story about yourself keeps you from seeing a way out?",
+        "symbols": [
+          "blindfold"
+        ],
+        "region": {
+          "x": 40,
+          "y": 27
+        }
+      },
+      {
+        "id": "bindings",
+        "label": "The loose bindings",
+        "prompt": "Which of your limits are tighter in your mind than in fact?",
+        "symbols": [
+          "chains"
+        ],
+        "region": {
+          "x": 42,
+          "y": 46
+        }
+      },
+      {
+        "id": "castle",
+        "label": "The castle on the hill",
+        "prompt": "Where would you go if you felt free to leave?",
+        "symbols": [
+          "tower",
+          "heights"
+        ],
+        "region": {
+          "x": 81,
+          "y": 50
+        }
+      },
+      {
+        "id": "puddles",
+        "label": "The puddles at her feet",
+        "prompt": "What small step could you take on uncertain ground?",
+        "symbols": [
+          "water"
+        ],
+        "region": {
+          "x": 45,
+          "y": 89
+        }
+      },
+      {
+        "id": "sword-fence",
+        "label": "The ring of swords",
+        "prompt": "Which barrier around you has a gap you haven’t noticed?",
+        "symbols": [
+          "sword"
+        ],
+        "region": {
+          "x": 76,
+          "y": 30
+        }
+      }
+    ]
   },
   {
     "id": "nine-of-swords",
@@ -2827,7 +6321,67 @@
       "bed",
       "flowers"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "swords",
+        "label": "The wall of swords",
+        "prompt": "Which worry feels biggest in the middle of the night?",
+        "symbols": [
+          "sword"
+        ],
+        "region": {
+          "x": 65,
+          "y": 22
+        }
+      },
+      {
+        "id": "hands",
+        "label": "The face in the hands",
+        "prompt": "Who could you tell about what keeps you awake?",
+        "symbols": [],
+        "region": {
+          "x": 60,
+          "y": 50
+        }
+      },
+      {
+        "id": "quilt",
+        "label": "The rose quilt",
+        "prompt": "What comfort is already within reach of you?",
+        "symbols": [
+          "bed",
+          "flowers"
+        ],
+        "region": {
+          "x": 80,
+          "y": 78
+        }
+      },
+      {
+        "id": "carving",
+        "label": "The carving on the bed",
+        "prompt": "What old conflict replays in your mind at night?",
+        "symbols": [
+          "bed"
+        ],
+        "region": {
+          "x": 25,
+          "y": 84
+        }
+      },
+      {
+        "id": "pillow",
+        "label": "The empty pillow",
+        "prompt": "What would help you lie back down and rest?",
+        "symbols": [
+          "bed"
+        ],
+        "region": {
+          "x": 10,
+          "y": 68
+        }
+      }
+    ]
   },
   {
     "id": "ten-of-swords",
@@ -2867,7 +6421,62 @@
       "water",
       "heights"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "swords",
+        "label": "The ten swords",
+        "prompt": "What has hit bottom that you can finally stop fighting?",
+        "symbols": [
+          "sword"
+        ],
+        "region": {
+          "x": 40,
+          "y": 32
+        }
+      },
+      {
+        "id": "water",
+        "label": "The calm water",
+        "prompt": "What stays calm in you even after a hard ending?",
+        "symbols": [
+          "water"
+        ],
+        "region": {
+          "x": 90,
+          "y": 64
+        }
+      },
+      {
+        "id": "open-hand",
+        "label": "The open hand",
+        "prompt": "What are you ready to let go of completely?",
+        "symbols": [],
+        "region": {
+          "x": 35,
+          "y": 85
+        }
+      },
+      {
+        "id": "dawn",
+        "label": "The light on the horizon",
+        "prompt": "What small sign of a new start can you see?",
+        "symbols": [],
+        "region": {
+          "x": 30,
+          "y": 50
+        }
+      },
+      {
+        "id": "red-cloak",
+        "label": "The red cloak",
+        "prompt": "What have you given everything to that you can release?",
+        "symbols": [],
+        "region": {
+          "x": 20,
+          "y": 73
+        }
+      }
+    ]
   },
   {
     "id": "page-of-swords",
@@ -2909,7 +6518,78 @@
       "heights",
       "tree"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "birds",
+        "label": "The flock of birds",
+        "prompt": "Which of your thoughts keep flying off in every direction?",
+        "symbols": [
+          "bird"
+        ],
+        "region": {
+          "x": 38,
+          "y": 8
+        }
+      },
+      {
+        "id": "sword",
+        "label": "The raised sword",
+        "prompt": "What are you curious enough to question out loud?",
+        "symbols": [
+          "sword"
+        ],
+        "region": {
+          "x": 77,
+          "y": 14
+        }
+      },
+      {
+        "id": "tree",
+        "label": "The windswept tree",
+        "prompt": "Which way is the wind blowing in your life right now?",
+        "symbols": [
+          "tree"
+        ],
+        "region": {
+          "x": 9,
+          "y": 74
+        }
+      },
+      {
+        "id": "clouds",
+        "label": "The billowing clouds",
+        "prompt": "What unsettled thought are you trying to see through?",
+        "symbols": [
+          "cloud"
+        ],
+        "region": {
+          "x": 22,
+          "y": 22
+        }
+      },
+      {
+        "id": "hair",
+        "label": "The windblown hair",
+        "prompt": "Which new idea is stirring you up right now?",
+        "symbols": [],
+        "region": {
+          "x": 58,
+          "y": 13
+        }
+      },
+      {
+        "id": "planted-feet",
+        "label": "The planted feet",
+        "prompt": "Where do you need firmer footing before you speak?",
+        "symbols": [
+          "heights"
+        ],
+        "region": {
+          "x": 48,
+          "y": 73
+        }
+      }
+    ]
   },
   {
     "id": "knight-of-swords",
@@ -2951,7 +6631,68 @@
       "cloud",
       "tree"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "raised-sword",
+        "label": "The raised sword",
+        "prompt": "What are you charging toward, and have you checked why?",
+        "symbols": [
+          "sword"
+        ],
+        "region": {
+          "x": 28,
+          "y": 12
+        }
+      },
+      {
+        "id": "galloping-horse",
+        "label": "The galloping horse",
+        "prompt": "Where is your speed outrunning your sense of direction?",
+        "symbols": [
+          "horse"
+        ],
+        "region": {
+          "x": 20,
+          "y": 46
+        }
+      },
+      {
+        "id": "bent-trees",
+        "label": "The wind-bent trees",
+        "prompt": "What in your life is bending under someone else’s rush?",
+        "symbols": [
+          "tree"
+        ],
+        "region": {
+          "x": 16,
+          "y": 62
+        }
+      },
+      {
+        "id": "red-plume",
+        "label": "The red plume",
+        "prompt": "What are you charging toward, and is it really yours to chase?",
+        "symbols": [
+          "feather"
+        ],
+        "region": {
+          "x": 88,
+          "y": 16
+        }
+      },
+      {
+        "id": "torn-clouds",
+        "label": "The torn clouds",
+        "prompt": "What around you feels scattered by how fast you are moving?",
+        "symbols": [
+          "cloud"
+        ],
+        "region": {
+          "x": 68,
+          "y": 11
+        }
+      }
+    ]
   },
   {
     "id": "queen-of-swords",
@@ -2996,7 +6737,80 @@
       "bird",
       "tree"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "upright-sword",
+        "label": "The upright sword",
+        "prompt": "Where do you need to say plainly what you see?",
+        "symbols": [
+          "sword"
+        ],
+        "region": {
+          "x": 60,
+          "y": 22
+        }
+      },
+      {
+        "id": "open-hand",
+        "label": "The open hand",
+        "prompt": "Who are you ready to welcome, even after being hurt?",
+        "symbols": [],
+        "region": {
+          "x": 72,
+          "y": 36
+        }
+      },
+      {
+        "id": "carved-face",
+        "label": "The winged face on the throne",
+        "prompt": "What gentleness are you carrying underneath your sharpness?",
+        "symbols": [
+          "throne",
+          "angel"
+        ],
+        "region": {
+          "x": 41,
+          "y": 66
+        }
+      },
+      {
+        "id": "butterfly-crown",
+        "label": "The butterfly crown",
+        "prompt": "What change in you is still quietly taking shape?",
+        "symbols": [
+          "butterfly",
+          "crown"
+        ],
+        "region": {
+          "x": 37,
+          "y": 29
+        }
+      },
+      {
+        "id": "clouds",
+        "label": "The clouds at her side",
+        "prompt": "What feelings gather around you while you try to stay clear?",
+        "symbols": [
+          "cloud"
+        ],
+        "region": {
+          "x": 86,
+          "y": 50
+        }
+      },
+      {
+        "id": "dark-trees",
+        "label": "The dark trees",
+        "prompt": "What grows quietly in the background of your days?",
+        "symbols": [
+          "tree"
+        ],
+        "region": {
+          "x": 12,
+          "y": 73
+        }
+      }
+    ]
   },
   {
     "id": "king-of-swords",
@@ -3040,7 +6854,79 @@
       "bird",
       "tree"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "tilted-sword",
+        "label": "The tilted sword",
+        "prompt": "Which of your decisions would you stand behind if questioned?",
+        "symbols": [
+          "sword"
+        ],
+        "region": {
+          "x": 36,
+          "y": 32
+        }
+      },
+      {
+        "id": "butterflies",
+        "label": "The butterflies on the throne",
+        "prompt": "What idea of yours is ready to change shape?",
+        "symbols": [
+          "butterfly",
+          "throne"
+        ],
+        "region": {
+          "x": 50,
+          "y": 11
+        }
+      },
+      {
+        "id": "birds",
+        "label": "The two birds",
+        "prompt": "What would you notice if you looked at this from higher up?",
+        "symbols": [
+          "bird"
+        ],
+        "region": {
+          "x": 83,
+          "y": 24
+        }
+      },
+      {
+        "id": "resting-hand",
+        "label": "The hand on his knee",
+        "prompt": "What can you leave resting while you think it through?",
+        "symbols": [],
+        "region": {
+          "x": 63,
+          "y": 52
+        }
+      },
+      {
+        "id": "cloud",
+        "label": "The passing cloud",
+        "prompt": "What thought keeps drifting in that you could let pass?",
+        "symbols": [
+          "cloud"
+        ],
+        "region": {
+          "x": 88,
+          "y": 40
+        }
+      },
+      {
+        "id": "trees",
+        "label": "The lone trees",
+        "prompt": "What steadies you when everything else is up in the air?",
+        "symbols": [
+          "tree"
+        ],
+        "region": {
+          "x": 12,
+          "y": 70
+        }
+      }
+    ]
   },
   {
     "id": "ace-of-pentacles",
@@ -3121,6 +7007,42 @@
           "x": 52,
           "y": 30
         }
+      },
+      {
+        "id": "cloud",
+        "label": "The cloud",
+        "prompt": "Where does the quiet help in your life come from?",
+        "symbols": [
+          "cloud"
+        ],
+        "region": {
+          "x": 20,
+          "y": 40
+        }
+      },
+      {
+        "id": "path",
+        "label": "The path through the garden",
+        "prompt": "What small step leads you out of the place you know?",
+        "symbols": [
+          "path"
+        ],
+        "region": {
+          "x": 66,
+          "y": 83
+        }
+      },
+      {
+        "id": "flowers",
+        "label": "The flowers in the hedge",
+        "prompt": "What lovely thing grows here that you rarely notice?",
+        "symbols": [
+          "flowers"
+        ],
+        "region": {
+          "x": 22,
+          "y": 79
+        }
       }
     ]
   },
@@ -3164,7 +7086,56 @@
       "water",
       "boat"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "looped-coins",
+        "label": "The looped coins",
+        "prompt": "What two things are you keeping in the air right now?",
+        "symbols": [
+          "pentacle",
+          "infinity"
+        ],
+        "region": {
+          "x": 15,
+          "y": 34
+        }
+      },
+      {
+        "id": "ships-on-waves",
+        "label": "The ships on high waves",
+        "prompt": "How do you keep your footing when things get choppy?",
+        "symbols": [
+          "water",
+          "boat"
+        ],
+        "region": {
+          "x": 75,
+          "y": 72
+        }
+      },
+      {
+        "id": "dancing-feet",
+        "label": "The dancing feet",
+        "prompt": "Where could a lighter step make the juggling easier?",
+        "symbols": [
+          "dance"
+        ],
+        "region": {
+          "x": 55,
+          "y": 85
+        }
+      },
+      {
+        "id": "tall-hat",
+        "label": "The tall red hat",
+        "prompt": "What keeps you playful while you juggle so much?",
+        "symbols": [],
+        "region": {
+          "x": 52,
+          "y": 22
+        }
+      }
+    ]
   },
   {
     "id": "three-of-pentacles",
@@ -3204,7 +7175,73 @@
       "archway",
       "scroll"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "carved-pentacles",
+        "label": "The carved pentacles",
+        "prompt": "What are you building that will outlast this season?",
+        "symbols": [
+          "pentacle",
+          "archway"
+        ],
+        "region": {
+          "x": 48,
+          "y": 20
+        }
+      },
+      {
+        "id": "mason-on-bench",
+        "label": "The mason on the bench",
+        "prompt": "Whose skill do you rely on that you rarely name?",
+        "symbols": [],
+        "region": {
+          "x": 20,
+          "y": 52
+        }
+      },
+      {
+        "id": "plans",
+        "label": "The plans in hand",
+        "prompt": "Who needs to see your plan before you go further?",
+        "symbols": [
+          "scroll"
+        ],
+        "region": {
+          "x": 54,
+          "y": 63
+        }
+      },
+      {
+        "id": "monk",
+        "label": "The monk looking up",
+        "prompt": "Whose skill could you admire out loud?",
+        "symbols": [],
+        "region": {
+          "x": 64,
+          "y": 47
+        }
+      },
+      {
+        "id": "cloaked-patron",
+        "label": "The figure in the spotted cloak",
+        "prompt": "Who trusts you enough to bring you their idea?",
+        "symbols": [],
+        "region": {
+          "x": 80,
+          "y": 62
+        }
+      },
+      {
+        "id": "bench",
+        "label": "The bench he stands on",
+        "prompt": "What simple support lifts you high enough to reach your work?",
+        "symbols": [],
+        "region": {
+          "x": 30,
+          "y": 80
+        }
+      }
+    ]
   },
   {
     "id": "four-of-pentacles",
@@ -3245,7 +7282,58 @@
       "house",
       "tower"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "clutched-coin",
+        "label": "The coin held to the chest",
+        "prompt": "What are you holding so tightly you can’t use it?",
+        "symbols": [
+          "pentacle"
+        ],
+        "region": {
+          "x": 49,
+          "y": 53
+        }
+      },
+      {
+        "id": "coins-underfoot",
+        "label": "The coins under his feet",
+        "prompt": "What security are you standing on without noticing it?",
+        "symbols": [
+          "pentacle"
+        ],
+        "region": {
+          "x": 30,
+          "y": 85
+        }
+      },
+      {
+        "id": "town-behind",
+        "label": "The town behind him",
+        "prompt": "Who have you turned your back on to stay safe?",
+        "symbols": [
+          "house",
+          "tower"
+        ],
+        "region": {
+          "x": 78,
+          "y": 72
+        }
+      },
+      {
+        "id": "coin-on-head",
+        "label": "The coin on his crown",
+        "prompt": "What worry do you keep balanced on top of your head?",
+        "symbols": [
+          "pentacle",
+          "crown"
+        ],
+        "region": {
+          "x": 49,
+          "y": 33
+        }
+      }
+    ]
   },
   {
     "id": "five-of-pentacles",
@@ -3285,7 +7373,65 @@
       "window",
       "snow"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "lit-window",
+        "label": "The lit window",
+        "prompt": "What help is close by that you haven’t asked for?",
+        "symbols": [
+          "window",
+          "pentacle"
+        ],
+        "region": {
+          "x": 49,
+          "y": 18
+        }
+      },
+      {
+        "id": "crutches",
+        "label": "The man on crutches",
+        "prompt": "What are you leaning on to get through this stretch?",
+        "symbols": [],
+        "region": {
+          "x": 30,
+          "y": 62
+        }
+      },
+      {
+        "id": "bare-feet",
+        "label": "The bare feet in the snow",
+        "prompt": "Where do you feel left out in the cold?",
+        "symbols": [
+          "snow"
+        ],
+        "region": {
+          "x": 55,
+          "y": 87
+        }
+      },
+      {
+        "id": "shawled-woman",
+        "label": "The woman in the shawl",
+        "prompt": "Who walks beside you through a hard stretch?",
+        "symbols": [],
+        "region": {
+          "x": 74,
+          "y": 53
+        }
+      },
+      {
+        "id": "falling-snow",
+        "label": "The falling snow",
+        "prompt": "What hard season are you in the middle of right now?",
+        "symbols": [
+          "snow"
+        ],
+        "region": {
+          "x": 85,
+          "y": 25
+        }
+      }
+    ]
   },
   {
     "id": "six-of-pentacles",
@@ -3325,7 +7471,62 @@
       "scales",
       "house"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "scales",
+        "label": "The scales",
+        "prompt": "How do you decide what is fair to give?",
+        "symbols": [
+          "scales"
+        ],
+        "region": {
+          "x": 80,
+          "y": 45
+        }
+      },
+      {
+        "id": "giving-hand",
+        "label": "The giving hand",
+        "prompt": "Where are you giving, and what does it ask of you?",
+        "symbols": [],
+        "region": {
+          "x": 30,
+          "y": 56
+        }
+      },
+      {
+        "id": "kneeling-man",
+        "label": "The man still waiting",
+        "prompt": "When have you waited your turn and wondered if it would come?",
+        "symbols": [],
+        "region": {
+          "x": 73,
+          "y": 64
+        }
+      },
+      {
+        "id": "coins-above",
+        "label": "The six coins above",
+        "prompt": "What do you have more of than you usually admit?",
+        "symbols": [
+          "pentacle"
+        ],
+        "region": {
+          "x": 50,
+          "y": 12
+        }
+      },
+      {
+        "id": "cupped-hands",
+        "label": "The cupped hands",
+        "prompt": "What are you ready to receive if it’s offered?",
+        "symbols": [],
+        "region": {
+          "x": 31,
+          "y": 72
+        }
+      }
+    ]
   },
   {
     "id": "seven-of-pentacles",
@@ -3365,7 +7566,54 @@
       "harvest",
       "garden"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "resting-chin",
+        "label": "The chin on the hands",
+        "prompt": "What would you see if you paused and took stock?",
+        "symbols": [],
+        "region": {
+          "x": 58,
+          "y": 31
+        }
+      },
+      {
+        "id": "heavy-vine",
+        "label": "The heavy vine",
+        "prompt": "What have you grown slowly that deserves your notice?",
+        "symbols": [
+          "pentacle",
+          "harvest",
+          "garden"
+        ],
+        "region": {
+          "x": 28,
+          "y": 60
+        }
+      },
+      {
+        "id": "coin-at-feet",
+        "label": "The coin at his feet",
+        "prompt": "What small result are you overlooking because it isn’t finished?",
+        "symbols": [
+          "pentacle"
+        ],
+        "region": {
+          "x": 70,
+          "y": 89
+        }
+      },
+      {
+        "id": "hoe",
+        "label": "The hoe he leans on",
+        "prompt": "What tool has carried you this far in your work?",
+        "symbols": [],
+        "region": {
+          "x": 62,
+          "y": 60
+        }
+      }
+    ]
   },
   {
     "id": "eight-of-pentacles",
@@ -3405,7 +7653,67 @@
       "table",
       "house"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "coin-in-progress",
+        "label": "The coin being carved",
+        "prompt": "What skill are you practicing one careful stroke at a time?",
+        "symbols": [
+          "pentacle",
+          "table"
+        ],
+        "region": {
+          "x": 63,
+          "y": 74
+        }
+      },
+      {
+        "id": "finished-coins",
+        "label": "The row of finished coins",
+        "prompt": "What does your stack of finished work tell you about yourself?",
+        "symbols": [
+          "pentacle"
+        ],
+        "region": {
+          "x": 82,
+          "y": 40
+        }
+      },
+      {
+        "id": "distant-town",
+        "label": "The distant town",
+        "prompt": "What are you willing to step away from to focus?",
+        "symbols": [
+          "house"
+        ],
+        "region": {
+          "x": 10,
+          "y": 77
+        }
+      },
+      {
+        "id": "hammer",
+        "label": "The raised hammer",
+        "prompt": "What repetition is quietly making you better at something?",
+        "symbols": [],
+        "region": {
+          "x": 58,
+          "y": 58
+        }
+      },
+      {
+        "id": "floor-coin",
+        "label": "The coin on the floor",
+        "prompt": "What did you set aside that still has worth?",
+        "symbols": [
+          "pentacle"
+        ],
+        "region": {
+          "x": 30,
+          "y": 91
+        }
+      }
+    ]
   },
   {
     "id": "nine-of-pentacles",
@@ -3449,7 +7757,77 @@
       "tree",
       "heights"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "falcon",
+        "label": "The falcon on her hand",
+        "prompt": "What wild part of you have you learned to steady?",
+        "symbols": [
+          "bird"
+        ],
+        "region": {
+          "x": 67,
+          "y": 25
+        }
+      },
+      {
+        "id": "hand-on-coin",
+        "label": "The hand resting on a coin",
+        "prompt": "What have you earned that you can simply enjoy?",
+        "symbols": [
+          "pentacle"
+        ],
+        "region": {
+          "x": 20,
+          "y": 56
+        }
+      },
+      {
+        "id": "grapes",
+        "label": "The ripe grapes",
+        "prompt": "What in your life has ripened through patient tending?",
+        "symbols": [
+          "harvest",
+          "garden"
+        ],
+        "region": {
+          "x": 85,
+          "y": 44
+        }
+      },
+      {
+        "id": "snail",
+        "label": "The little snail",
+        "prompt": "What good thing in your life moves at its own pace?",
+        "symbols": [],
+        "region": {
+          "x": 20,
+          "y": 91
+        }
+      },
+      {
+        "id": "flowered-robe",
+        "label": "The flowered robe",
+        "prompt": "How do you let yourself enjoy what you’ve made?",
+        "symbols": [],
+        "region": {
+          "x": 55,
+          "y": 62
+        }
+      },
+      {
+        "id": "house",
+        "label": "The house beyond the vines",
+        "prompt": "What place have you made feel truly yours?",
+        "symbols": [
+          "house"
+        ],
+        "region": {
+          "x": 91,
+          "y": 30
+        }
+      }
+    ]
   },
   {
     "id": "ten-of-pentacles",
@@ -3493,7 +7871,76 @@
       "child",
       "harvest"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "archway",
+        "label": "The stone archway",
+        "prompt": "What have you inherited that frames how you live?",
+        "symbols": [
+          "archway"
+        ],
+        "region": {
+          "x": 72,
+          "y": 14
+        }
+      },
+      {
+        "id": "old-man",
+        "label": "The old man",
+        "prompt": "Whose quiet presence holds your family or circle together?",
+        "symbols": [],
+        "region": {
+          "x": 29,
+          "y": 52
+        }
+      },
+      {
+        "id": "child",
+        "label": "The child by the dog",
+        "prompt": "What do you hope to pass on to those after you?",
+        "symbols": [
+          "child"
+        ],
+        "region": {
+          "x": 89,
+          "y": 67
+        }
+      },
+      {
+        "id": "couple",
+        "label": "The couple under the arch",
+        "prompt": "What everyday conversation keeps your home together?",
+        "symbols": [],
+        "region": {
+          "x": 66,
+          "y": 48
+        }
+      },
+      {
+        "id": "dogs",
+        "label": "The white dogs",
+        "prompt": "Who is loyal to you without needing to be asked?",
+        "symbols": [
+          "dog"
+        ],
+        "region": {
+          "x": 64,
+          "y": 76
+        }
+      },
+      {
+        "id": "grapes",
+        "label": "The grapes below",
+        "prompt": "What is ripening in your family that took years to grow?",
+        "symbols": [
+          "harvest"
+        ],
+        "region": {
+          "x": 24,
+          "y": 86
+        }
+      }
+    ]
   },
   {
     "id": "page-of-pentacles",
@@ -3535,7 +7982,66 @@
       "tree",
       "heights"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "held-coin",
+        "label": "The coin held up",
+        "prompt": "What are you curious enough about to study closely?",
+        "symbols": [
+          "pentacle"
+        ],
+        "region": {
+          "x": 64,
+          "y": 19
+        }
+      },
+      {
+        "id": "grove",
+        "label": "The grove of trees",
+        "prompt": "What needs time to grow before it bears fruit?",
+        "symbols": [
+          "tree"
+        ],
+        "region": {
+          "x": 18,
+          "y": 71
+        }
+      },
+      {
+        "id": "plowed-field",
+        "label": "The plowed field",
+        "prompt": "What ground are you preparing for something new?",
+        "symbols": [],
+        "region": {
+          "x": 78,
+          "y": 82
+        }
+      },
+      {
+        "id": "mountain",
+        "label": "The distant mountain",
+        "prompt": "What faraway goal feels worth studying up close?",
+        "symbols": [
+          "heights"
+        ],
+        "region": {
+          "x": 64,
+          "y": 73
+        }
+      },
+      {
+        "id": "flowers",
+        "label": "The flowers at his feet",
+        "prompt": "What small good thing is growing right where you stand?",
+        "symbols": [
+          "flowers"
+        ],
+        "region": {
+          "x": 46,
+          "y": 85
+        }
+      }
+    ]
   },
   {
     "id": "knight-of-pentacles",
@@ -3577,7 +8083,64 @@
       "tree",
       "heights"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "held-coin",
+        "label": "The coin in his hand",
+        "prompt": "What are you carefully carrying toward a goal?",
+        "symbols": [
+          "pentacle"
+        ],
+        "region": {
+          "x": 65,
+          "y": 27
+        }
+      },
+      {
+        "id": "still-horse",
+        "label": "The standing horse",
+        "prompt": "Where is staying still the wisest move you can make?",
+        "symbols": [
+          "horse"
+        ],
+        "region": {
+          "x": 80,
+          "y": 40
+        }
+      },
+      {
+        "id": "plowed-field",
+        "label": "The plowed field",
+        "prompt": "What steady work are you willing to do without applause?",
+        "symbols": [],
+        "region": {
+          "x": 75,
+          "y": 80
+        }
+      },
+      {
+        "id": "leafy-plume",
+        "label": "The leafy plume",
+        "prompt": "What keeps you growing even when you move slowly?",
+        "symbols": [],
+        "region": {
+          "x": 24,
+          "y": 17
+        }
+      },
+      {
+        "id": "far-trees",
+        "label": "The trees on the horizon",
+        "prompt": "What far-off thing are you patiently heading toward?",
+        "symbols": [
+          "tree"
+        ],
+        "region": {
+          "x": 90,
+          "y": 73
+        }
+      }
+    ]
   },
   {
     "id": "queen-of-pentacles",
@@ -3622,7 +8185,78 @@
       "heights",
       "tree"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "coin-in-lap",
+        "label": "The coin in her lap",
+        "prompt": "What are you looking after that deserves your full attention?",
+        "symbols": [
+          "pentacle"
+        ],
+        "region": {
+          "x": 31,
+          "y": 43
+        }
+      },
+      {
+        "id": "roses",
+        "label": "The roses overhead",
+        "prompt": "Where does beauty show up in your everyday care?",
+        "symbols": [
+          "flowers"
+        ],
+        "region": {
+          "x": 55,
+          "y": 9
+        }
+      },
+      {
+        "id": "rabbit",
+        "label": "The rabbit",
+        "prompt": "What small, ordinary comfort could you make more room for?",
+        "symbols": [
+          "rabbit"
+        ],
+        "region": {
+          "x": 80,
+          "y": 81
+        }
+      },
+      {
+        "id": "lowered-gaze",
+        "label": "The lowered gaze",
+        "prompt": "What deserves your full, quiet attention today?",
+        "symbols": [],
+        "region": {
+          "x": 42,
+          "y": 26
+        }
+      },
+      {
+        "id": "carved-throne",
+        "label": "The carved throne",
+        "prompt": "What solid ground do you rest on when you’re tired?",
+        "symbols": [
+          "throne"
+        ],
+        "region": {
+          "x": 70,
+          "y": 32
+        }
+      },
+      {
+        "id": "mountains",
+        "label": "The distant mountains",
+        "prompt": "What feels far away but is still part of your view?",
+        "symbols": [
+          "heights"
+        ],
+        "region": {
+          "x": 12,
+          "y": 47
+        }
+      }
+    ]
   },
   {
     "id": "king-of-pentacles",
@@ -3670,6 +8304,83 @@
       "house",
       "tower"
     ],
-    "details": []
+    "details": [
+      {
+        "id": "bull-heads",
+        "label": "The bull heads on the throne",
+        "prompt": "What steady strength do you build your life on?",
+        "symbols": [
+          "bull",
+          "throne"
+        ],
+        "region": {
+          "x": 28,
+          "y": 21
+        }
+      },
+      {
+        "id": "pentacle",
+        "label": "The pentacle on his knee",
+        "prompt": "What have you made that you are proud to keep?",
+        "symbols": [
+          "pentacle"
+        ],
+        "region": {
+          "x": 65,
+          "y": 47
+        }
+      },
+      {
+        "id": "castle",
+        "label": "The castle behind him",
+        "prompt": "What have you built that others can shelter in?",
+        "symbols": [
+          "house",
+          "tower"
+        ],
+        "region": {
+          "x": 85,
+          "y": 32
+        }
+      },
+      {
+        "id": "scepter",
+        "label": "The scepter and orb",
+        "prompt": "What do you hold that shows the work you’ve done?",
+        "symbols": [
+          "sceptre",
+          "globe"
+        ],
+        "region": {
+          "x": 26,
+          "y": 40
+        }
+      },
+      {
+        "id": "flower-crown",
+        "label": "The crown of flowers",
+        "prompt": "What do you celebrate about where you’ve arrived?",
+        "symbols": [
+          "crown",
+          "flowers"
+        ],
+        "region": {
+          "x": 54,
+          "y": 19
+        }
+      },
+      {
+        "id": "grape-robe",
+        "label": "The grapes on his robe",
+        "prompt": "What abundance has quietly grown around you over time?",
+        "symbols": [
+          "harvest"
+        ],
+        "region": {
+          "x": 45,
+          "y": 62
+        }
+      }
+    ]
   }
 ]

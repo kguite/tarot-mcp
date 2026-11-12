@@ -62,15 +62,8 @@
   opacity: 0.85;
 }
 
-.reversed {
-  transform: rotate(180deg);
-}
-
 .label {
-  font-size: 11px;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: var(--muted);
+  composes: eyebrow from './Eyebrow.module.css';
 }
 
 .chosen .label {

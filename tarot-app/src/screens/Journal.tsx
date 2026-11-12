@@ -21,28 +21,32 @@ const reflectionOf = (r: SavedReading) => r.entries.find((e) => e.type === 'inte
 export function Journal() {
   const [readings, setReadings] = useState<SavedReading[] | null>(null)
   const [openId, setOpenId] = useState<string | null>(null)
+  const [loadError, setLoadError] = useState<string | null>(null)
 
+  // The journal is on the server now, so a load can fail; say so instead of showing an empty page.
+  const load = () => listReadings().then(setReadings, (error: Error) => setLoadError(error.message))
   useEffect(() => {
-    listReadings().then(setReadings)
+    load()
   }, [])
 
   const open = readings?.find((r) => r.id === openId)
   if (open) {
-    return <SavedReadingView reading={open} onBack={() => setOpenId(null)} onSaved={() => listReadings().then(setReadings)} />
+    return <SavedReadingView reading={open} onBack={() => setOpenId(null)} onSaved={load} />
   }
 
   return (
-    <div className={screen.screen}>
+    <div className={`${screen.screen} ${screen.medium}`}>
       <div className={screen.title}>
         <Eyebrow gold>Journal</Eyebrow>
         <h1>Your readings</h1>
       </div>
+      {loadError && <p className={screen.error} role="alert">{loadError}</p>}
       {readings?.length === 0 && <p className={screen.note}>No saved readings yet. Draw some cards and save the reading.</p>}
       {readings?.map((r) => (
         <button key={r.id} className={styles.row} onClick={() => setOpenId(r.id)}>
           <span className={styles.thumbs}>
             {r.cards.map((c) => (
-              <CardArt key={c.position} card={cardById(c.card_id)} alt="" className={c.reversed ? `${styles.thumb} ${styles.reversed}` : styles.thumb} />
+              <CardArt key={c.position} card={cardById(c.card_id)} alt="" className={styles.thumb} reversed={c.reversed} />
             ))}
           </span>
           <span className={styles.text}>
@@ -58,6 +62,7 @@ export function Journal() {
 
 function SavedReadingView({ reading, onBack, onSaved }: { reading: SavedReading; onBack: () => void; onSaved: () => void }) {
   const [reflection, setReflection] = useState(reflectionOf(reading))
+  const [saveError, setSaveError] = useState<string | null>(null)
   const [inspecting, setInspecting] = useState<{ card: CardData; reversed: boolean; context: string } | null>(null)
   const spread = spreadById(reading.spread_id)
   const changed = reflection !== reflectionOf(reading)
@@ -86,9 +91,13 @@ function SavedReadingView({ reading, onBack, onSaved }: { reading: SavedReading;
         })}
       </div>
       <TextField label="Your reflection" value={reflection} onChange={(e) => setReflection(e.target.value)} />
-      <Button disabled={!changed} onClick={() => updateInterpretation(reading.id, reflection).then(onSaved)}>
+      <Button
+        disabled={!changed}
+        onClick={() => updateInterpretation(reading.id, reflection).then(() => { setSaveError(null); onSaved() }, (error: Error) => setSaveError(error.message))}
+      >
         {changed ? 'Save changes' : 'Saved'}
       </Button>
+      {saveError && <p className={screen.error} role="alert">{saveError}</p>}
       {inspecting && (
         <CardInspect
           key={inspecting.card.id}

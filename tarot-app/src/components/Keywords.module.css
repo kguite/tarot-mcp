@@ -1,7 +1,7 @@
 .keywords {
   margin: 0;
-  font-size: 12px;
-  letter-spacing: 0.18em;
+  font-size: var(--text-small);
+  letter-spacing: var(--tracking-tight);
   text-transform: uppercase;
   color: var(--gold);
   text-align: center;

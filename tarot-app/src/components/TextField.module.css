@@ -1,9 +1,9 @@
 .field {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  font-size: 12px;
-  letter-spacing: 0.12em;
+  gap: var(--space-2);
+  font-size: var(--text-small);
+  letter-spacing: var(--tracking-tight);
   text-transform: uppercase;
   color: var(--muted);
 }
@@ -18,7 +18,7 @@
   background: var(--night);
   color: var(--ivory);
   font-family: var(--font-body);
-  font-size: 15px;
+  font-size: var(--text-body);
   letter-spacing: 0;
   text-transform: none;
 }

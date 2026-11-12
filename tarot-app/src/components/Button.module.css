@@ -1,10 +1,10 @@
 .button {
-  height: 48px;
-  padding: 0 22px;
+  height: var(--control);
+  padding: 0 var(--space-5);
   border-radius: var(--radius);
   font-family: var(--font-body);
-  font-size: 13px;
-  letter-spacing: 0.16em;
+  font-size: var(--text-ui);
+  letter-spacing: var(--tracking-tight);
   text-transform: uppercase;
   cursor: pointer;
 }
@@ -34,8 +34,8 @@
 }
 
 .icon {
-  width: 44px;
-  height: 44px;
+  width: var(--tap);
+  height: var(--tap);
   border: 0;
   background: transparent;
   color: var(--muted);

@@ -6,14 +6,37 @@
   --ivory: #ECE7DA;
   --muted: #A9AFCB;
   --gold: #D4AF62;
+  --gold-tint: rgba(212, 175, 98, 0.12);
   --gold-faint: rgba(212, 175, 98, 0.25);
   --gold-line: rgba(212, 175, 98, 0.35);
   --gold-strong: rgba(212, 175, 98, 0.5);
+  --night-veil: rgba(15, 21, 48, 0.2);
   --glow: 0 0 24px rgba(212, 175, 98, 0.25);
+
+  /* Behind a dialog, and the shadow of a sheet rising from the bottom or a dialog in the middle. */
+  --backdrop: rgba(5, 8, 20, 0.75);
+  --shadow-sheet: 0 -12px 32px rgba(0, 0, 0, 0.45);
+  --shadow-dialog: 0 12px 32px rgba(0, 0, 0, 0.45);
 
   /* Cormorant for what you read slowly (titles, names, summaries); DM Sans for what you use. */
   --font-display: 'Cormorant Garamond', Georgia, serif;
   --font-body: 'DM Sans', system-ui, sans-serif;
+
+  --text-caps: 11px;
+  --text-small: 12px;
+  --text-ui: 13px;
+  --text-body: 15px;
+  --text-lead: 17px;
+  --text-name: 19px;
+  --text-summary: 21px;
+  --text-heading: 24px;
+  --text-title: 30px;
+  --text-page: 32px;
+
+  /* Spaced-out capitals: section headings, labels and eyebrows, then buttons and fields. */
+  --tracking-wide: 0.32em;
+  --tracking: 0.24em;
+  --tracking-tight: 0.14em;
 
   --space-1: 4px;
   --space-2: 8px;
@@ -25,6 +48,17 @@
   --radius-art: 2px;
   --radius: 4px;
   --radius-panel: 6px;
+
+  /* A button's height; the smallest thing a finger can reliably tap; a compact button or chip. */
+  --control: 48px;
+  --tap: 44px;
+  --control-sm: 40px;
+
+  /* Overshoots a little and settles: cards landing, sheets rising. */
+  --ease-spring: cubic-bezier(.34, 1.56, .64, 1);
+
+  /* The desktop sidebar, and the content's margin beside it. */
+  --sidebar-width: 200px;
 
   color-scheme: dark;
 }

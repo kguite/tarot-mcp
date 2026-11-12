@@ -4,7 +4,7 @@
   flex-direction: column;
   align-items: center;
   gap: var(--space-2);
-  animation: land 0.55s cubic-bezier(.34, 1.56, .64, 1);
+  animation: land 0.55s var(--ease-spring);
 }
 
 /* Arriving from the fan below. */
@@ -42,7 +42,7 @@
   display: block;
   aspect-ratio: 0.575;
   transform-style: preserve-3d;
-  transition: transform 0.8s cubic-bezier(.34, 1.56, .64, 1);
+  transition: transform 0.8s var(--ease-spring);
 }
 
 .up {
@@ -78,19 +78,31 @@
   object-fit: cover;
 }
 
-.reversed {
-  transform: rotate(180deg);
-}
-
 .label {
-  font-size: 11px;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: var(--muted);
+  composes: eyebrow from './Eyebrow.module.css';
 }
 
 .selected .label {
   color: var(--gold);
+}
+
+/* Looks like the label it replaces, underlined so it reads as a link. */
+.closer {
+  padding: var(--space-1) 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  cursor: pointer;
+}
+
+.closer:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
 }
 
 @media (prefers-reduced-motion: reduce) {

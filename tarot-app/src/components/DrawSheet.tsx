@@ -39,7 +39,7 @@ export function DrawSheet({ reading, onContinue, onStart, onClose }: DrawSheetPr
             <span className={styles.thumbs}>
               {reading.draws.map((draw, i) => (
                 <span key={i} className={`${styles.thumb} ${styles[reading.phases[i]]}`}>
-                  {reading.phases[i] === 'up' && <CardArt card={draw.card} alt="" className={draw.reversed ? styles.reversed : undefined} />}
+                  {reading.phases[i] === 'up' && <CardArt card={draw.card} alt="" reversed={draw.reversed} />}
                   {reading.phases[i] === 'down' && <Star size={12} />}
                 </span>
               ))}

@@ -546,7 +546,7 @@ Every draw is new and random, so it must never be cached.
   Simplest, and safe when several copies of the app run.
 - A `lifespan` that runs `mcp.session_manager.run()` while the app is up.
 - `TransportSecuritySettings`: MCP only answers requests addressed to its own host
-  (`MCP_SERVER_URL`, default `http://127.0.0.1:8000/mcp`). Deployed, that env var is the public URL.
+  (`MCP_SERVER_URL`, default `http://127.0.0.1:8001/mcp`). Deployed, that env var is the public URL.
 
 **Run it** from `mcp-server/`:
 
@@ -554,12 +554,12 @@ Every draw is new and random, so it must never be cached.
 .venv\Scripts\python.exe main.py
 ```
 
-Then open `http://127.0.0.1:8000/docs`: FastAPI builds a "try it" page from the code, the REST
-version of the Inspector. The Inspector itself can connect to `http://127.0.0.1:8000/mcp` with the
+Then open `http://127.0.0.1:8001/docs`: FastAPI builds a "try it" page from the code, the REST
+version of the Inspector. The Inspector itself can connect to `http://127.0.0.1:8001/mcp` with the
 Streamable HTTP transport instead of starting `server.py`.
 
 **Testing.** `tests/test_main.py` uses FastAPI's `TestClient`, which talks to the app in memory
-(it needs `httpx`). Its `base_url` is `http://127.0.0.1:8000` so the MCP host check passes. Six
+(it needs `httpx`). Its `base_url` is `http://127.0.0.1:8001` so the MCP host check passes. Six
 tests: a card, a 404, a search, a 422, a draw, and the MCP handshake over HTTP.
 
 **Not yet:** no login (that's ACCESS.md), and no public URL. As far as I know, a claude.ai or
@@ -826,6 +826,53 @@ only the card and its orientation, holds back the keywords it already has, and w
 The first real use found a gap: the prompt asks what you notice first, but in Claude Code there
 is no picture to notice. The step was written for the app, where the art is on screen.
 
+## 19. One journal, two doors: the reason for the MCP
+
+Asking Claude "what does the Moon mean?" works, but any tarot site answers that. The MCP earns its
+place when Claude can do what the app can't: read across your own readings. So the journal moved
+from the browser to the server, and the app and Claude now share it.
+
+- **`mcp-server/journal.py`** keeps the readings in `data/readings.json` (git-ignored), in the
+  same three-table shape `store.ts` used in the browser. The app and Claude run as two processes,
+  so every call reads the file fresh; a reading saved in the app shows up in Claude at once.
+- **Two tools.** `get_readings` filters by card, spread and dates in the tool, not in the model,
+  and adds card and position names so Claude needs no `get_card` call per card. `save_reading`
+  checks the spread, the card count and the ids, and its errors say how to fix the call.
+- **The rule travels with the server.** In Claude, the system prompt isn't ours, so nothing stops
+  it predicting "a bad week at work" unless the server says so. `MCPServer(instructions=...)` sends
+  "reflection, not fortune telling... never predict what will happen" in the `initialize` reply,
+  and a test checks it is there. The tool descriptions say it too: a reading is a turn, not an
+  answer.
+- **REST and MCP call the same functions**: `GET` and `POST /readings`, `PUT
+  /readings/{id}/reflection`. `store.ts` now fetches them; Vite forwards `/readings` to the server.
+- **Port 8001, not 8000.** The work API runs on uvicorn's default 8000, and the app's requests went
+  to it and got 404s. The Journal showed an empty page, which hid that; it now says "not running"
+  or the status code.
+- **`seed.py`** writes six pretend weeks (the Moon keeps coming up around a job decision), so there
+  is something to ask about. It replaces the journal; run it to reset before a demo.
+
+Run it: `.venv\Scripts\python.exe main.py` in `mcp-server`, then `npm run dev` in `tarot-app`.
+
+## 20. A desktop layout, and the CSS on tokens
+
+The app was laid out for a phone, so a laptop showed a narrow column in a sea of navy.
+
+- **One scale for every screen.** `index.css` zooms the whole app in steps, up to 1.25x at
+  1440px wide. 1.6x looked best on Journal and Learn but pushed Draw and the card view off the
+  bottom of a laptop, and per-screen scales made sizes jump between tabs.
+- **Draw is two columns.** The cards on the left, the fan (while choosing) or the journal on the
+  right; stacked, the fan fell below the fold. The meaning panel sits under the cards, and the open
+  card's label becomes "Look closer" instead of a big button.
+- **The card view is two columns**: the art stays on the left while the notes scroll on the
+  right, and a picked symbol takes the notes' place instead of rising as a sheet. The Draw menu is
+  a centered dialog. Sheets that rise from the bottom are a phone gesture.
+- **Everything on tokens.** `tokens.css` now holds a 10-step type scale, three letter-spacings,
+  control heights (`--control`, `--tap`, `--control-sm`), the spring easing, backdrop and shadows.
+  Off-scale values were snapped to the nearest step (a gap of 10px became 12px).
+- **No repeated rules.** `CardArt` takes `reversed` instead of five files rotating it, and the
+  small-caps label and the section heading are written once and shared with CSS Modules'
+  `composes`. That makes Vite print a harmless PostCSS warning about the `from` option.
+
 ## Next
 
 - A "Waite says" section in the inspect view: his picture description and meanings from
@@ -840,4 +887,5 @@ is no picture to notice. The step was written for the app, where the art is on s
   Claude choose between the tools
 - Explore the data through the tools and adjust the shape; write the placeholder fields
 - Access: levels, permissions and circles, in the build order in `ACCESS.md`
-- Point `store.ts` at the FastAPI endpoints once readings live in the database
+- Swap `readings.json` for the database; `journal.py` is the one file that changes
+- Whose readings: JWT auth like speak_friend, so each token sees only its own journal

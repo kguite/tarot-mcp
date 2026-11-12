@@ -9,7 +9,7 @@ MCP_HEADERS = {'Accept': 'application/json, text/event-stream', 'Content-Type': 
 # "with" runs the app's startup, which MCP needs. The base URL matches the host MCP accepts.
 @pytest.fixture(scope='module')
 def client():
-    with TestClient(app, base_url='http://127.0.0.1:8000') as c:
+    with TestClient(app, base_url='http://127.0.0.1:8001') as c:
         yield c
 
 
@@ -43,6 +43,7 @@ def test_rest_draw(client):
 
 
 # The same server answers MCP at /mcp: the first message of the handshake, over HTTP.
+# The no-predictions rule rides along in the handshake, since Claude's system prompt isn't ours.
 def test_mcp_over_http(client):
     response = client.post('/mcp', headers=MCP_HEADERS, json={
         'jsonrpc': '2.0', 'id': 1, 'method': 'initialize',
@@ -52,3 +53,18 @@ def test_mcp_over_http(client):
 
     assert response.status_code == 200
     assert response.json()['result']['serverInfo']['name'] == 'tarot'
+    assert 'never predict' in response.json()['result']['instructions']
+
+
+# The app's door: save, list, then edit the reflection.
+def test_rest_journal_round_trip(client, empty_journal):
+    saved = client.post('/readings', json={'spread_id': 'single', 'cards': [{'card_id': 'moon'}], 'reflection': 'First try.'}).json()
+
+    assert client.put(f"/readings/{saved['id']}/reflection", json={'body': 'Second try.'}).status_code == 200
+    reading = client.get('/readings').json()[0]
+    assert reading['id'] == saved['id']
+    assert reading['entries'][0]['body'] == 'Second try.'
+
+
+def test_rest_edit_unknown_reading_is_404(client, empty_journal):
+    assert client.put('/readings/nope/reflection', json={'body': 'x'}).status_code == 404

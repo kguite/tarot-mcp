@@ -15,7 +15,7 @@
 }
 
 .dialog::backdrop {
-  background: rgba(5, 8, 20, 0.8);
+  background: var(--backdrop);
 }
 
 .top {
@@ -29,12 +29,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
+  gap: var(--space-1);
   text-align: center;
 }
 
 .name {
-  font-size: 26px;
+  font-size: var(--text-heading);
   outline: none;
 }
 
@@ -49,10 +49,26 @@
   gap: var(--space-4);
 }
 
+.look {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  text-align: center;
+}
+
+.notes {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
 .frame {
   width: 78%;
   box-sizing: border-box;
-  padding: 5px;
+  padding: var(--space-1);
   border: 1px solid var(--gold);
   border-radius: var(--radius);
   box-shadow: var(--glow);
@@ -96,7 +112,7 @@
   transform: translate(-50%, -50%);
   border-radius: 50%;
   border: 1.5px solid var(--gold);
-  background: rgba(15, 21, 48, 0.2);
+  background: var(--night-veil);
   cursor: pointer;
 }
 
@@ -109,7 +125,7 @@
   width: 44px;
   height: 44px;
   border-width: 2px;
-  background: rgba(212, 175, 98, 0.18);
+  background: var(--gold-tint);
   box-shadow: 0 0 0 4px var(--gold-faint), 0 0 18px var(--gold-strong);
 }
 
@@ -118,7 +134,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
-  padding: var(--space-4) 18px;
+  padding: var(--space-4);
   border: 1px solid var(--gold-line);
   border-radius: var(--radius-panel);
   background: var(--panel);
@@ -129,13 +145,13 @@
   font-family: var(--font-display);
   font-style: italic;
   font-weight: 500;
-  font-size: 21px;
+  font-size: var(--text-summary);
   line-height: 1.3;
 }
 
 .write {
   align-self: flex-end;
-  height: 44px;
+  height: var(--tap);
   padding: 0 var(--space-4);
 }
 
@@ -147,22 +163,7 @@
 }
 
 .heading {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-family: var(--font-body);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.32em;
-  text-transform: uppercase;
-  color: var(--gold);
-}
-
-.heading::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: var(--gold-line);
+  composes: heading from '../screens/Screen.module.css';
 }
 
 .chips {
@@ -172,20 +173,20 @@
 }
 
 .chip {
-  height: 40px;
-  padding: 0 14px;
+  height: var(--control-sm);
+  padding: 0 var(--space-4);
   border-radius: var(--radius);
   border: 1px solid var(--gold-line);
   background: var(--panel);
   color: var(--ivory);
   font-family: var(--font-display);
-  font-size: 18px;
+  font-size: var(--text-lead);
   cursor: pointer;
 }
 
 .lit {
   border-color: var(--gold);
-  background: rgba(212, 175, 98, 0.12);
+  background: var(--gold-tint);
   color: var(--gold);
 }
 
@@ -196,4 +197,34 @@
 
 .figure {
   margin: 0;
+}
+
+/* Desktop: a centered dialog, the art on the left (it stays put) and the notes on the right (they scroll).
+   The art is 200px wide so the whole card fits a laptop's height without scrolling. */
+@media (min-width: 900px) {
+  .dialog {
+    max-width: 880px;
+    height: 92%;
+    margin: auto;
+    border: 1px solid var(--gold-line);
+    border-radius: var(--radius-panel);
+    box-shadow: var(--shadow-dialog);
+  }
+
+  .body {
+    display: grid;
+    grid-template-columns: 200px minmax(0, 1fr);
+    align-items: start;
+    column-gap: var(--space-6);
+    padding-bottom: var(--space-5);
+  }
+
+  .look {
+    position: sticky;
+    top: 0;
+  }
+
+  .frame {
+    width: 100%;
+  }
 }

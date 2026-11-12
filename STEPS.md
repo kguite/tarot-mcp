@@ -899,10 +899,25 @@ where the picture had more to say (the World's four corner creatures and the dan
 Also in Learn: "All" now gets the same panel as the other filters (78 cards, the whole deck, the
 Majors and the four suits in one line), so every filter explains what you're looking at.
 
+## 22. Interpretations: other voices on a card
+
+The card view ends with "Interpretations", each voice labeled as whose it is.
+
+- **Waite, 1911**: his upright and reversed meanings and, behind a toggle, what he saw in the
+  picture, credited. Public domain, so his words can be shown as his. On a drawn card, the meaning
+  for the way it landed gets a gold bar; from Learn, nothing is marked, since nothing was drawn.
+  (`reversed` is now optional on the card view for exactly that reason.)
+- **Your reflections**: every reading with this card, newest first, with the date and position.
+  It is `GET /readings?card_id=`, the same filter Claude's `get_readings` uses, so the app now shows
+  what the MCP made possible: your own words across readings.
+- **Not Dore or Mack.** Their books are copyrighted; quoting them is out. A note in our own words
+  or a page reference could come later.
+- The Journal's date and reflection helpers moved to `lib/readings.ts` so both screens share them.
+
 ## Next
 
-- A "Waite says" section in the inspect view: his picture description and meanings from
-  `waite.json`, credited and clearly labeled as his, next to the app's own voice
+- Dore and Mack in Interpretations: a note in our own words or a page reference, never their
+  wording (both books are copyrighted)
 - Journal: sort and group (newest or oldest first, by day or month), and filter by spread or by a
   card ("every reading with the Moon")
 - New symbols for things spots show but no symbol names (field, branch, snail, beach), so the

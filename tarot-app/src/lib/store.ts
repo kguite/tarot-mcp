@@ -37,6 +37,7 @@ export async function updateInterpretation(readingId: string, body: string) {
   await request(`/readings/${readingId}/reflection`, { method: 'PUT', body: JSON.stringify({ body }) })
 }
 
-export async function listReadings(): Promise<SavedReading[]> {
-  return request('/readings')
+// Every reading, newest first, or only those with one card (filtered on the server, like get_readings).
+export async function listReadings(cardId?: string): Promise<SavedReading[]> {
+  return request(cardId ? `/readings?card_id=${encodeURIComponent(cardId)}` : '/readings')
 }

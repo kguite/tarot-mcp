@@ -910,14 +910,11 @@ The card view ends with "Interpretations", each voice labeled as whose it is.
 - **Your reflections**: every reading with this card, newest first, with the date and position.
   It is `GET /readings?card_id=`, the same filter Claude's `get_readings` uses, so the app now shows
   what the MCP made possible: your own words across readings.
-- **Not Dore or Mack.** Their books are copyrighted; quoting them is out. A note in our own words
-  or a page reference could come later.
+- **Not Dore or Mack.** Their books are copyrighted, so they are left out of the app.
 - The Journal's date and reflection helpers moved to `lib/readings.ts` so both screens share them.
 
 ## Next
 
-- Dore and Mack in Interpretations: a note in our own words or a page reference, never their
-  wording (both books are copyrighted)
 - Journal: sort and group (newest or oldest first, by day or month), and filter by spread or by a
   card ("every reading with the Moon")
 - New symbols for things spots show but no symbol names (field, branch, snail, beach), so the

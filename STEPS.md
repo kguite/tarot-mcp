@@ -752,6 +752,80 @@ At work: country-dashboard's subnational coverage list does the same thing. Each
 with `aria-pressed` and one `focus` state picks which region is shown
 (`apps/frontend/src/pages/data-validation/SubnationalCoverage.tsx`).
 
+## 17. An MCP server with no SDK
+
+`learn/01_raw_stdio/server.py` is one tool, `get_keyword`, written without the `mcp` package, to
+see what `@mcp.tool` hides. It is about 60 lines of plain Python.
+
+- **The transport is one JSON message per line.** The client starts the process, writes requests
+  to its stdin, and reads replies from its stdout. A stray `print` would corrupt the channel, so
+  logs go to stderr.
+- **Three methods are enough for tools.** `initialize` agrees a protocol version and says the
+  server offers tools. `tools/list` returns the menu. `tools/call` runs one.
+- **The menu is a hand-written dict.** Name, description and `inputSchema` are exactly what Claude
+  reads. `@mcp.tool` builds the same dict from a function's name, docstring and type hints.
+- **Two kinds of error.** An unknown card is a normal result with `isError: true`, so Claude reads
+  it and can try again. An unknown method is a JSON-RPC error (`-32601`) for the client app;
+  Claude never sees it.
+- **Notifications get no reply.** A message without an `id` (like `notifications/initialized`) is
+  skipped.
+
+Try it by piping lines in:
+
+```
+printf '%s\n' \
+  '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-06-18"}}' \
+  '{"jsonrpc":"2.0","id":2,"method":"tools/list"}' \
+  '{"jsonrpc":"2.0","id":3,"method":"tools/call","params":{"name":"get_keyword","arguments":{"card":"moon"}}}' \
+  | python learn/01_raw_stdio/server.py
+```
+
+## 18. Connecting the server to Claude Code
+
+The real server (`mcp-server/server.py`) gets registered once, and Claude Code starts it itself
+over stdio whenever a session opens. Nothing is deployed and nothing runs in the background.
+
+```
+claude mcp add --scope user tarot -- "C:\Users\KatieGuite\Documents\codebases\tarot-mcp\mcp-server\.venv\Scripts\python.exe" "C:\Users\KatieGuite\Documents\codebases\tarot-mcp\mcp-server\server.py"
+```
+
+- **Everything after `--` is the command that starts the server**: the venv's Python (it has the
+  `mcp` package) and the script, both as full paths.
+- **`--scope user`** turns it on in every folder. Without it, it only works in the folder the
+  command was run from.
+- **Any folder works for running it.** `server.py` finds its data from its own location
+  (`DATA_DIR`), not from the current folder.
+- **`claude` not recognized?** Claude Code used only through the VS Code extension is not on the
+  PATH. The extension ships its own copy; call it by full path instead (the version number in the
+  folder changes when the extension updates):
+  `"C:\Users\KatieGuite\.vscode\extensions\anthropic.claude-code-2.1.322-win32-x64\resources\native-binary\claude.exe" mcp add ...`
+
+It answers `Added stdio MCP server tarot ... to user config` and `File modified:
+C:\Users\KatieGuite\.claude.json`, which is where the registration lives.
+
+![The first try fails with claude not recognized; the full-path claude.exe adds the server](docs/images/18-mcp-add.png)
+
+Then open a new Claude Code session (a running one does not pick it up) and type `/`:
+
+![The slash menu in a new session: /tarot:daily_draw as a command and tarot Connected](docs/images/18-connected.png)
+
+
+- **`tarot ✓ Connected`** under MCP servers.
+- **`/tarot:daily_draw (MCP)`** under slash commands. That is the prompt from section 7: the
+  client turns each MCP prompt into a command the user types. Tools are chosen by Claude, prompts
+  by the user, which is the "who decides" split showing up in a real client.
+
+Claude asks before each tool call, which shows the arguments it chose.
+
+Running `/tarot:daily_draw` sends the prompt's text as the message. Claude follows it line by
+line: calls `draw_cards` with `single` (no `list_spreads`, the prompt names the spread), says
+only the card and its orientation, holds back the keywords it already has, and waits.
+
+![daily_draw in Claude Code: one draw_cards call, the card named, the keywords held back](docs/images/18-daily-draw.png)
+
+The first real use found a gap: the prompt asks what you notice first, but in Claude Code there
+is no picture to notice. The step was written for the app, where the art is on screen.
+
 ## Next
 
 - A "Waite says" section in the inspect view: his picture description and meanings from

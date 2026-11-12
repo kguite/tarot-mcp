@@ -780,6 +780,29 @@ printf '%s\n' \
   | python learn/01_raw_stdio/server.py
 ```
 
+## 18. Connecting the server to Claude Code
+
+The real server (`mcp-server/server.py`) gets registered once, and Claude Code starts it itself
+over stdio whenever a session opens. Nothing is deployed and nothing runs in the background.
+
+```
+claude mcp add --scope user tarot -- "C:\Users\KatieGuite\Documents\codebases\tarot-mcp\mcp-server\.venv\Scripts\python.exe" "C:\Users\KatieGuite\Documents\codebases\tarot-mcp\mcp-server\server.py"
+```
+
+- **Everything after `--` is the command that starts the server**: the venv's Python (it has the
+  `mcp` package) and the script, both as full paths.
+- **`--scope user`** turns it on in every folder. Without it, it only works in the folder the
+  command was run from.
+- **Any folder works for running it.** `server.py` finds its data from its own location
+  (`DATA_DIR`), not from the current folder.
+- **`claude` not recognized?** Claude Code used only through the VS Code extension is not on the
+  PATH. The extension ships its own copy; call it by full path instead (the version number in the
+  folder changes when the extension updates):
+  `"C:\Users\KatieGuite\.vscode\extensions\anthropic.claude-code-2.1.322-win32-x64\resources\native-binary\claude.exe" mcp add ...`
+
+Then open a new Claude Code session (a running one does not pick it up) and type `/mcp` to see
+`tarot` and its tools. Claude asks before each tool call, which shows the arguments it chose.
+
 ## Next
 
 - A "Waite says" section in the inspect view: his picture description and meanings from

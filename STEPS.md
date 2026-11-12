@@ -817,6 +817,15 @@ Then open a new Claude Code session (a running one does not pick it up) and type
 
 Claude asks before each tool call, which shows the arguments it chose.
 
+Running `/tarot:daily_draw` sends the prompt's text as the message. Claude follows it line by
+line: calls `draw_cards` with `single` (no `list_spreads`, the prompt names the spread), says
+only the card and its orientation, holds back the keywords it already has, and waits.
+
+![daily_draw in Claude Code: one draw_cards call, the card named, the keywords held back](docs/images/18-daily-draw.png)
+
+The first real use found a gap: the prompt asks what you notice first, but in Claude Code there
+is no picture to notice. The step was written for the app, where the art is on screen.
+
 ## Next
 
 - A "Waite says" section in the inspect view: his picture description and meanings from

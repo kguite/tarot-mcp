@@ -800,8 +800,17 @@ claude mcp add --scope user tarot -- "C:\Users\KatieGuite\Documents\codebases\ta
   folder changes when the extension updates):
   `"C:\Users\KatieGuite\.vscode\extensions\anthropic.claude-code-2.1.322-win32-x64\resources\native-binary\claude.exe" mcp add ...`
 
-Then open a new Claude Code session (a running one does not pick it up) and type `/mcp` to see
-`tarot` and its tools. Claude asks before each tool call, which shows the arguments it chose.
+It answers `Added stdio MCP server tarot ... to user config` and `File modified:
+C:\Users\KatieGuite\.claude.json`, which is where the registration lives.
+
+Then open a new Claude Code session (a running one does not pick it up) and type `/`:
+
+- **`tarot ✓ Connected`** under MCP servers.
+- **`/tarot:daily_draw (MCP)`** under slash commands. That is the prompt from section 7: the
+  client turns each MCP prompt into a command the user types. Tools are chosen by Claude, prompts
+  by the user, which is the "who decides" split showing up in a real client.
+
+Claude asks before each tool call, which shows the arguments it chose.
 
 ## Next
 

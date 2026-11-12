@@ -752,6 +752,34 @@ At work: country-dashboard's subnational coverage list does the same thing. Each
 with `aria-pressed` and one `focus` state picks which region is shown
 (`apps/frontend/src/pages/data-validation/SubnationalCoverage.tsx`).
 
+## 17. An MCP server with no SDK
+
+`learn/01_raw_stdio/server.py` is one tool, `get_keyword`, written without the `mcp` package, to
+see what `@mcp.tool` hides. It is about 60 lines of plain Python.
+
+- **The transport is one JSON message per line.** The client starts the process, writes requests
+  to its stdin, and reads replies from its stdout. A stray `print` would corrupt the channel, so
+  logs go to stderr.
+- **Three methods are enough for tools.** `initialize` agrees a protocol version and says the
+  server offers tools. `tools/list` returns the menu. `tools/call` runs one.
+- **The menu is a hand-written dict.** Name, description and `inputSchema` are exactly what Claude
+  reads. `@mcp.tool` builds the same dict from a function's name, docstring and type hints.
+- **Two kinds of error.** An unknown card is a normal result with `isError: true`, so Claude reads
+  it and can try again. An unknown method is a JSON-RPC error (`-32601`) for the client app;
+  Claude never sees it.
+- **Notifications get no reply.** A message without an `id` (like `notifications/initialized`) is
+  skipped.
+
+Try it by piping lines in:
+
+```
+printf '%s\n' \
+  '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-06-18"}}' \
+  '{"jsonrpc":"2.0","id":2,"method":"tools/list"}' \
+  '{"jsonrpc":"2.0","id":3,"method":"tools/call","params":{"name":"get_keyword","arguments":{"card":"moon"}}}' \
+  | python learn/01_raw_stdio/server.py
+```
+
 ## Next
 
 - A "Waite says" section in the inspect view: his picture description and meanings from

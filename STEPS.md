@@ -901,8 +901,13 @@ Majors and the four suits in one line), so every filter explains what you're loo
 
 ## Next
 
-- A "Waite says" section in the inspect view: his picture description and meanings from
-  `waite.json`, credited and clearly labeled as his, next to the app's own voice
+- An "Interpretations" section in the card view, under The figure:
+  - Waite: his picture description and meanings from `waite.json` (public domain), credited and
+    clearly labeled as his, next to the app's own voice
+  - Dore and Mack: copyrighted guidebooks, so never their wording. A note in our own words, or a
+    page reference to look up in the book
+  - Your saved: every reflection you wrote on this card, from the shared journal (the same filter
+    as `get_readings` with `card_id`)
 - Journal: sort and group (newest or oldest first, by day or month), and filter by spread or by a
   card ("every reading with the Moon")
 - New symbols for things spots show but no symbol names (field, branch, snail, beach), so the

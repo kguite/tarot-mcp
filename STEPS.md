@@ -825,6 +825,7 @@ only the card and its orientation, holds back the keywords it already has, and w
 
 The first real use found a gap: the prompt asks what you notice first, but in Claude Code there
 is no picture to notice. The step was written for the app, where the art is on screen.
+
 ## 19. One journal, two doors: the reason for the MCP
 
 Asking Claude "what does the Moon mean?" works, but any tarot site answers that. The MCP earns its

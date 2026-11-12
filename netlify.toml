@@ -1,0 +1,21 @@
+# Netlify builds the React app in tarot-app and serves the built files.
+[build]
+  base = "tarot-app"
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# The journal lives on the API (render.yaml). Netlify forwards /readings to it, like Vite does
+# locally, so the app stays on one address and needs no CORS setup.
+# If Render gives the service a different URL, change it here.
+[[redirects]]
+  from = "/readings"
+  to = "https://tarot-api.onrender.com/readings"
+  status = 200
+
+[[redirects]]
+  from = "/readings/*"
+  to = "https://tarot-api.onrender.com/readings/:splat"
+  status = 200

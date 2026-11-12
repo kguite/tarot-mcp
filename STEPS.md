@@ -873,15 +873,40 @@ The app was laid out for a phone, so a laptop showed a narrow column in a sea of
   small-caps label and the section heading are written once and shared with CSS Modules'
   `composes`. That makes Vite print a harmless PostCSS warning about the `from` option.
 
+## 21. Spots on every card
+
+Only 11 cards had tappable details, so most cards opened up close with nothing to tap. Now every
+card has 4 to 7: 426 spots, up from 32. Two passes: three per card first, then one to three more
+where the picture had more to say (the World's four corner creatures and the dancer's two wands).
+
+- **Placed by looking, then checked by drawing.** Each card was drawn on a 10% grid, three things
+  were picked and placed by eye, then drawn back on the art as numbered rings and looked at again.
+  About one in seven missed on the first pass (rings on a robe instead of the staff) and were
+  moved. Same lesson as section 12: the numbers are only right once you've seen them on the picture.
+- **Four batches in parallel.** The 67 cards were split across four subagents, each with the same
+  brief and style examples. Splitting the work is cheap; checking it is the part that can't be
+  skipped, so every batch came back with its own check images and a list of what it was unsure of.
+- **The second pass saw the first.** Each card was drawn with its spots already on it, so new ones
+  went to things not yet covered and kept clear of the old rings. The agents saw labels but not
+  questions, so a script listed labels sharing a word with an existing one; six repeated an idea
+  ("The lion" next to "The hands on the lion") and were rewritten or dropped.
+- **A script checks every spot before it lands**: kebab-case ids, labels that start
+  with "The", questions that end in "?" and never say "you will", symbols that exist on that card,
+  positions inside the art and far enough apart that the rings don't overlap.
+- **Loose fits were fixed by hand.** A lily pond tagged "dew", a plowed field tagged "garden". A
+  spot with no fitting symbol keeps an empty list rather than a wrong one.
+
+Also in Learn: "All" now gets the same panel as the other filters (78 cards, the whole deck, the
+Majors and the four suits in one line), so every filter explains what you're looking at.
+
 ## Next
 
 - A "Waite says" section in the inspect view: his picture description and meanings from
   `waite.json`, credited and clearly labeled as his, next to the app's own voice
 - Journal: sort and group (newest or oldest first, by day or month), and filter by spread or by a
   card ("every reading with the Moon")
-- More details per card as we notice them, aiming for about 6 each, placed on the art with the
-  grid: the High Priestess's throne and pillars, the Five of Swords' wind and beach, the Moon's two
-  towers. New ones may need new symbols (wind, beach)
+- New symbols for things spots show but no symbol names (field, branch, snail, beach), so the
+  "In this picture" chips light up for them too
 - Trim `get_card`'s reply: measure it, cut what Claude doesn't need, measure again
 - Deploy or tunnel the FastAPI app, then add its URL in Claude Desktop with "+ Add" and watch
   Claude choose between the tools

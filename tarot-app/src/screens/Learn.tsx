@@ -25,14 +25,22 @@ const GROUPS = [
   ...SUITS.map((s) => ({ id: s.id as Group, name: s.name, title: s.name, eyebrow: s.element, summary: s.summary, prompt: s.prompt })),
 ]
 
-const inGroup = (card: CardData, group: Group | null) =>
+// What "All" shows above the grid, in the same shape as a group.
+const ALL = {
+  eyebrow: `${CARDS.length} cards`,
+  title: 'The whole deck',
+  summary: 'All 78 cards: the 22 Major Arcana, for the big themes and turning points, and the 56 Minor Arcana, for everyday moods and choices, in four suits of Wands, Cups, Swords and Pentacles.',
+  prompt: undefined,
+}
+
+const inGroup =(card: CardData, group: Group | null) =>
   group === null || (group === 'major' ? card.arcana === 'major' : card.arcana === 'minor' && card.suit === group)
 
 // All 78 cards to browse, or one group with what it means above it. Tap a card to look closer.
 export function Learn() {
   const [group, setGroup] = useState<Group | null>(null)
   const [inspecting, setInspecting] = useState<CardData | null>(null)
-  const shown = GROUPS.find((g) => g.id === group)
+  const shown = group === null ? ALL : GROUPS.find((g) => g.id === group)!
   return (
     <div className={`${screen.screen} ${screen.wide}`}>
       <div className={screen.title}>
@@ -50,14 +58,12 @@ export function Learn() {
           </button>
         ))}
       </div>
-      {shown && (
-        <section className={styles.about} aria-live="polite">
-          <Eyebrow gold>{shown.eyebrow}</Eyebrow>
-          <h2>{shown.title}</h2>
-          <p className={styles.summary}>{shown.summary}</p>
-          {shown.prompt && <p className={styles.prompt}>{shown.prompt}</p>}
-        </section>
-      )}
+      <section className={styles.about} aria-live="polite">
+        <Eyebrow gold>{shown.eyebrow}</Eyebrow>
+        <h2>{shown.title}</h2>
+        <p className={styles.summary}>{shown.summary}</p>
+        {shown.prompt && <p className={styles.prompt}>{shown.prompt}</p>}
+      </section>
       <div className={styles.grid}>
         {CARDS.filter((card) => inGroup(card, group)).map((card) => (
           <Card key={card.id} state="resting" label={card.name} card={card} onOpen={() => setInspecting(card)} />

@@ -1,11 +1,14 @@
 import json
 import random
+from datetime import date
 from pathlib import Path
 from typing import Annotated, Literal
 
 from mcp.server.mcpserver import MCPServer
 from mcp.server.mcpserver.exceptions import ResourceNotFoundError, ToolError
-from pydantic import Field
+from pydantic import BaseModel, Field
+
+import journal
 
 # The app's data. The path is relative to this file, not to wherever the server is started.
 DATA_DIR = Path(__file__).parent.parent / 'tarot-app' / 'src' / 'data'
@@ -36,7 +39,15 @@ Suit = Literal['wands', 'cups', 'swords', 'pentacles']
 Facing = Literal['left', 'right', 'forward', 'away']
 Pose = Literal['standing', 'seated', 'walking', 'riding', 'kneeling', 'lying', 'falling', 'upside-down', 'dancing', 'flying']
 
-mcp = MCPServer(name='tarot')
+# Sent to the client when it connects. Claude's system prompt isn't ours, so the app's one rule
+# has to travel with the server.
+mcp = MCPServer(
+    name='tarot',
+    instructions=(
+        'Tarot here is for reflection, not fortune telling. A reading is a turn at the cards, not an answer. '
+        "Talk about the cards and what the user wrote, ask questions, and never predict what will happen."
+    ),
+)
 
 
 # The docstring and the Field description are the "menu" Claude reads.
@@ -118,6 +129,61 @@ def draw_cards(
             'keywords': card['keywords']['reversed' if reversed_ else 'upright'],
         })
     return json.dumps(draws, indent=2)
+
+
+class DrawnCard(BaseModel):
+    card_id: str = Field(description="The card's id, like 'moon'")
+    reversed: bool = False
+
+
+@mcp.tool(structured_output=False)
+def get_readings(
+    card_id: Annotated[str | None, Field(description="Only readings with this card, like 'moon'")] = None,
+    spread_id: Annotated[str | None, Field(description="Only readings with this spread, like 'single'")] = None,
+    since: Annotated[date | None, Field(description='Only readings on or after this day (UTC)')] = None,
+    until: Annotated[date | None, Field(description='Only readings on or before this day (UTC)')] = None,
+) -> str:
+    """The user's saved readings from their journal, newest first: when, the spread, each card with its position and whether it was reversed, and the reflection the user wrote. A reading is a turn at the cards, not an answer; the reflections are the user's own words. Filters combine."""
+    if card_id is not None and by_id(CARDS, card_id) is None:
+        raise ToolError(f"No card with id '{card_id}'. Valid ids: {', '.join(c['id'] for c in CARDS)}")
+    if spread_id is not None and by_id(SPREADS, spread_id) is None:
+        raise ToolError(f"No spread with id '{spread_id}'. Valid ids: {', '.join(s['id'] for s in SPREADS)}")
+
+    readings = [
+        r for r in journal.all_readings()
+        if (card_id is None or any(c['card_id'] == card_id for c in r['cards']))
+        and (spread_id is None or r['spread_id'] == spread_id)
+        and (since is None or r['created_at'][:10] >= since.isoformat())
+        and (until is None or r['created_at'][:10] <= until.isoformat())
+    ]
+    # Names alongside the ids, so Claude can talk about a reading without a get_card call per card.
+    for r in readings:
+        positions = by_id(SPREADS, r['spread_id'])['positions']
+        for c in r['cards']:
+            c['position_name'] = positions[c['position']]['name']
+            c['card'] = by_id(CARDS, c['card_id'])['name']
+    return json.dumps(readings, indent=2)
+
+
+@mcp.tool(structured_output=False)
+def save_reading(
+    spread_id: Annotated[str, Field(description="The spread's id from list_spreads, like 'single'")],
+    cards: Annotated[list[DrawnCard], Field(description="One card per position, in the spread's order")],
+    reflection: Annotated[str, Field(description="The user's reflection, in their own words. Empty if they wrote none.")] = '',
+) -> str:
+    """Save a reading to the user's journal, where the app shows it too. For cards the user drew anywhere: in the app, with draw_cards, or from a physical deck. Returns the new reading's id."""
+    spread = by_id(SPREADS, spread_id)
+    if spread is None:
+        raise ToolError(f"No spread with id '{spread_id}'. Valid ids: {', '.join(s['id'] for s in SPREADS)}")
+    positions = spread['positions']
+    if len(cards) != len(positions):
+        raise ToolError(f"'{spread_id}' has {len(positions)} positions ({', '.join(p['name'] for p in positions)}), so it needs {len(positions)} cards, not {len(cards)}.")
+    unknown = [c.card_id for c in cards if by_id(CARDS, c.card_id) is None]
+    if unknown:
+        raise ToolError(f"No card with id {', '.join(repr(u) for u in unknown)}. Valid ids: {', '.join(c['id'] for c in CARDS)}")
+
+    id = journal.add_reading(spread_id, [(p['id'], c.card_id, c.reversed) for p, c in zip(positions, cards)], reflection)
+    return json.dumps({'id': id})
 
 
 # A resource is reading material the person (or app) attaches. Claude reads it; nothing runs.

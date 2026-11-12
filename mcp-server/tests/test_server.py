@@ -207,3 +207,37 @@ def test_daily_draw_includes_question_and_waits():
 
     assert 'What needs my attention?' in text
     assert "Don't share keywords or meanings until I have written my first impression" in text
+
+
+THREE = [{'card_id': 'moon'}, {'card_id': 'sun', 'reversed': True}, {'card_id': 'star'}]
+
+
+# Saved through one tool, read back through the other, with names filled in for Claude.
+def test_save_then_get_reading(empty_journal):
+    saved = call_json('save_reading', {'spread_id': 'past-present-future', 'cards': THREE, 'reflection': 'Foggy, then clearer.'})
+    reading = call_json('get_readings', {})[0]
+
+    assert reading['id'] == saved['id']
+    assert [c['position_name'] for c in reading['cards']] == ['Past', 'Present', 'Future']
+    assert reading['cards'][1]['card'] == 'The Sun'
+    assert reading['cards'][1]['reversed']
+    assert reading['entries'][0]['body'] == 'Foggy, then clearer.'
+
+
+# The filtering happens in the tool, so Claude gets only the readings it asked about.
+def test_get_readings_filters_combine(empty_journal):
+    call('save_reading', {'spread_id': 'past-present-future', 'cards': THREE})
+    call('save_reading', {'spread_id': 'single', 'cards': [{'card_id': 'moon'}]})
+    call('save_reading', {'spread_id': 'single', 'cards': [{'card_id': 'tower'}]})
+
+    assert len(call_json('get_readings', {'card_id': 'moon'})) == 2
+    assert len(call_json('get_readings', {'card_id': 'moon', 'spread_id': 'single'})) == 1
+    assert call_json('get_readings', {'since': '2999-01-01'}) == []
+
+
+# Each mistake comes back as an error Claude can fix and retry.
+def test_save_reading_bad_input(empty_journal):
+    assert "needs 3 cards, not 1" in call('save_reading', {'spread_id': 'past-present-future', 'cards': [{'card_id': 'moon'}]}).content[0].text
+    assert "No card with id 'the-moon'" in call('save_reading', {'spread_id': 'single', 'cards': [{'card_id': 'the-moon'}]}).content[0].text
+    assert "No card with id 'the-moon'" in call('get_readings', {'card_id': 'the-moon'}).content[0].text
+    assert call_json('get_readings', {}) == []

@@ -1,16 +1,20 @@
 import os
 from contextlib import asynccontextmanager
+from datetime import date
 from urllib.parse import urlparse
 
 import uvicorn
 from fastapi import FastAPI, HTTPException, Query, Response
 from mcp.server.mcpserver.exceptions import ToolError
 from mcp.server.transport_security import TransportSecuritySettings
+from pydantic import BaseModel
 
-from server import Facing, Pose, Suit, draw_cards, find_cards, get_card, list_spreads, mcp
+import journal
+from server import DrawnCard, Facing, Pose, Suit, draw_cards, find_cards, get_card, get_readings, list_spreads, mcp, save_reading
 
 # This server's public address. MCP only accepts requests addressed to this host.
-MCP_SERVER_URL = urlparse(os.getenv('MCP_SERVER_URL', 'http://127.0.0.1:8000/mcp'))
+# Port 8001 locally, since the work API (lb_database_api) already runs on uvicorn's default 8000.
+MCP_SERVER_URL = urlparse(os.getenv('MCP_SERVER_URL', 'http://127.0.0.1:8001/mcp'))
 
 
 @asynccontextmanager
@@ -59,6 +63,33 @@ def draw(spread_id: str):
     return json_reply(lambda: draw_cards(spread_id), 404)
 
 
+class NewReading(BaseModel):
+    spread_id: str
+    cards: list[DrawnCard]
+    reflection: str = ''
+
+
+class Reflection(BaseModel):
+    body: str
+
+
+# The journal. The app saves here and Claude saves through save_reading: one journal, two doors.
+@app.get('/readings')
+def read_readings(card_id: str | None = None, spread_id: str | None = None, since: date | None = None, until: date | None = None):
+    return json_reply(lambda: get_readings(card_id, spread_id, since, until), 400)
+
+
+@app.post('/readings')
+def create_reading(reading: NewReading):
+    return json_reply(lambda: save_reading(reading.spread_id, reading.cards, reading.reflection), 400)
+
+
+@app.put('/readings/{reading_id}/reflection')
+def edit_reflection(reading_id: str, reflection: Reflection):
+    if not journal.set_reflection(reading_id, reflection.body):
+        raise HTTPException(status_code=404, detail=f"No reading with id '{reading_id}'")
+
+
 # MCP at /mcp. Mounted last so the routes above take priority.
 # Stateless with plain JSON replies, like speak_friend: simplest, and safe with several copies running.
 app.mount('/', mcp.streamable_http_app(
@@ -73,4 +104,4 @@ app.mount('/', mcp.streamable_http_app(
 
 
 if __name__ == '__main__':
-    uvicorn.run(app='main:app', reload=True)
+    uvicorn.run(app='main:app', port=MCP_SERVER_URL.port, reload=True)

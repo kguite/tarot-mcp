@@ -122,3 +122,16 @@ export interface Spread {
   level: number
   positions: SpreadPosition[]
 }
+
+// Waite's own words on one card, from The Pictorial Key to the Tarot. reversed is null where he gave none.
+export interface WaiteCard {
+  id: string
+  description: string
+  upright: string
+  reversed: string | null
+}
+
+export interface WaiteBook {
+  source: { title: string; author: string; edition: string; from: string; urls: Record<string, string>; status: string }
+  cards: WaiteCard[]
+}

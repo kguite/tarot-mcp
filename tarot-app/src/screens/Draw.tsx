@@ -17,7 +17,7 @@ import styles from './Draw.module.css'
 
 const FAN = 7
 
-type Inspecting = { card: Card; reversed: boolean; context: string }
+type Inspecting = { card: Card; reversed?: boolean; context: string }
 
 // Three taps per card: pick it from the fan, turn it over, then tap again for its meaning.
 // The reading itself lives in App (so switching tabs keeps it); only what's open on screen lives here.
@@ -163,7 +163,7 @@ export function Draw({ reading, onChange }: { reading: Reading; onChange: (readi
           reversed={inspecting.reversed}
           context={inspecting.context}
           onClose={() => setInspecting(null)}
-          onOpen={(card) => setInspecting({ card, reversed: false, context: 'Also in' })}
+          onOpen={(card) => setInspecting({ card, context: 'Also in' })}
           onWrite={(prompt) => {
             // Like the prototype: add the question to the reflection, on its own line.
             const text = reflection.trim() ? `${reflection.trimEnd()}\n\n${prompt}\n` : `${prompt}\n`

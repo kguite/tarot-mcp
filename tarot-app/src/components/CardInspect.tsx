@@ -5,11 +5,13 @@ import type { Card } from '../data/types'
 import { Button, IconButton } from './Button'
 import { CardArt } from './CardArt'
 import { Eyebrow } from './Eyebrow'
+import { Interpretations } from './Interpretations'
 import { SymbolSheet } from './SymbolSheet'
 import styles from './CardInspect.module.css'
 
 type CardInspectProps = {
   card: Card
+  // Only for a drawn card. Left out (Learn), the art is upright and no meaning is marked as the drawn one.
   reversed?: boolean
   context: string
   onClose: () => void
@@ -20,7 +22,7 @@ type CardInspectProps = {
 
 // A card up close: the art in its frame with rings on the tappable details, what's in the picture, and the figure.
 // The parent gives it key={card.id}, so opening another card starts fresh.
-export function CardInspect({ card, reversed = false, context, onClose, onOpen, onWrite }: CardInspectProps) {
+export function CardInspect({ card, reversed, context, onClose, onOpen, onWrite }: CardInspectProps) {
   const dialog = useRef<HTMLDialogElement>(null)
   const title = useRef<HTMLHeadingElement>(null)
   const viewport = useRef<HTMLDivElement>(null)
@@ -135,6 +137,11 @@ export function CardInspect({ card, reversed = false, context, onClose, onOpen, 
                   <p className={styles.figure}>{figure}</p>
                 </section>
               )}
+
+              <section className={styles.section}>
+                <h2 className={styles.heading}>Interpretations</h2>
+                <Interpretations card={card} reversed={reversed} />
+              </section>
             </>
           )}
         </div>

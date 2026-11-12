@@ -7,6 +7,7 @@ import { Eyebrow } from '../components/Eyebrow'
 import { TextField } from '../components/TextField'
 import { CARDS, SPREADS } from '../data'
 import type { Card as CardData } from '../data/types'
+import { reflectionOf, when } from '../lib/readings'
 import { listReadings, updateInterpretation } from '../lib/store'
 import type { SavedReading } from '../lib/store'
 import screen from './Screen.module.css'
@@ -14,8 +15,6 @@ import styles from './Journal.module.css'
 
 const cardById = (id: string) => CARDS.find((c) => c.id === id)!
 const spreadById = (id: string) => SPREADS.find((s) => s.id === id)
-const when = (iso: string) => new Date(iso).toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' })
-const reflectionOf = (r: SavedReading) => r.entries.find((e) => e.type === 'interpretation')?.body ?? ''
 
 // Your saved readings, newest first. Tap one to see its cards and edit its reflection.
 export function Journal() {
@@ -63,7 +62,7 @@ export function Journal() {
 function SavedReadingView({ reading, onBack, onSaved }: { reading: SavedReading; onBack: () => void; onSaved: () => void }) {
   const [reflection, setReflection] = useState(reflectionOf(reading))
   const [saveError, setSaveError] = useState<string | null>(null)
-  const [inspecting, setInspecting] = useState<{ card: CardData; reversed: boolean; context: string } | null>(null)
+  const [inspecting, setInspecting] = useState<{ card: CardData; reversed?: boolean; context: string } | null>(null)
   const spread = spreadById(reading.spread_id)
   const changed = reflection !== reflectionOf(reading)
 
@@ -105,7 +104,7 @@ function SavedReadingView({ reading, onBack, onSaved }: { reading: SavedReading;
           reversed={inspecting.reversed}
           context={inspecting.context}
           onClose={() => setInspecting(null)}
-          onOpen={(card) => setInspecting({ card, reversed: false, context: 'Also in' })}
+          onOpen={(card) => setInspecting({ card, context: 'Also in' })}
         />
       )}
     </div>

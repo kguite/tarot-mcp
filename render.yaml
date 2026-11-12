@@ -1,0 +1,15 @@
+# Render reads this file when the repo is added as a Blueprint: one free web service for the API.
+services:
+  - type: web
+    name: tarot-api
+    runtime: python
+    plan: free
+    # Commands run here, but the whole repo is checked out: server.py reads the cards from ../tarot-app.
+    rootDir: mcp-server
+    # Seeding at build gives the demo journal. The free plan has no lasting disk, so saved readings
+    # last until the next deploy or restart; the database replaces this.
+    buildCommand: pip install -r requirements.txt && python seed.py
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.10.18

@@ -803,7 +803,12 @@ claude mcp add --scope user tarot -- "C:\Users\KatieGuite\Documents\codebases\ta
 It answers `Added stdio MCP server tarot ... to user config` and `File modified:
 C:\Users\KatieGuite\.claude.json`, which is where the registration lives.
 
+![The first try fails with claude not recognized; the full-path claude.exe adds the server](docs/images/18-mcp-add.png)
+
 Then open a new Claude Code session (a running one does not pick it up) and type `/`:
+
+![The slash menu in a new session: /tarot:daily_draw as a command and tarot Connected](docs/images/18-connected.png)
+
 
 - **`tarot ✓ Connected`** under MCP servers.
 - **`/tarot:daily_draw (MCP)`** under slash commands. That is the prompt from section 7: the

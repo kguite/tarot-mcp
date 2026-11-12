@@ -13,8 +13,9 @@ import journal
 from server import DrawnCard, Facing, Pose, Suit, draw_cards, find_cards, get_card, get_readings, list_spreads, mcp, save_reading
 
 # This server's public address. MCP only accepts requests addressed to this host.
+# On Render it's the service's own URL, which Render sets as RENDER_EXTERNAL_URL.
 # Port 8001 locally, since the work API (lb_database_api) already runs on uvicorn's default 8000.
-MCP_SERVER_URL = urlparse(os.getenv('MCP_SERVER_URL', 'http://127.0.0.1:8001/mcp'))
+MCP_SERVER_URL = urlparse(os.getenv('MCP_SERVER_URL') or os.getenv('RENDER_EXTERNAL_URL', 'http://127.0.0.1:8001') + '/mcp')
 
 
 @asynccontextmanager

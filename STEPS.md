@@ -799,6 +799,10 @@ claude mcp add --scope user tarot -- "C:\Users\KatieGuite\Documents\codebases\ta
   PATH. The extension ships its own copy; call it by full path instead (the version number in the
   folder changes when the extension updates):
   `"C:\Users\KatieGuite\.vscode\extensions\anthropic.claude-code-2.1.322-win32-x64\resources\native-binary\claude.exe" mcp add ...`
+- **Since the login (section 24)**, the local server also needs to know whose journal it is. Give
+  it your Auth0 user id with `-e`, after the name: `-e` takes several values and swallows a name
+  that comes after it. In cmd, the quotes keep the `|` from being read as a pipe:
+  `claude mcp add --scope user tarot -e "TAROT_USER=auth0|<your id>" -- <python> <server.py>`
 
 It answers `Added stdio MCP server tarot ... to user config` and `File modified:
 C:\Users\KatieGuite\.claude.json`, which is where the registration lives.
@@ -848,8 +852,10 @@ from the browser to the server, and the app and Claude now share it.
 - **Port 8001, not 8000.** The work API runs on uvicorn's default 8000, and the app's requests went
   to it and got 404s. The Journal showed an empty page, which hid that; it now says "not running"
   or the status code.
-- **`seed.py`** writes six pretend weeks (the Moon keeps coming up around a job decision), so there
-  is something to ask about. It replaces the journal; run it to reset before a demo.
+- **`seed.py`** writes six pretend weeks, so there is something to ask about. It's the journal of
+  Grizelda, the Wicked Witch of the Cul-de-sac (the Moon keeps coming up while she agonizes over
+  Villain of the Year), so a demo never reads like anyone's real life. It replaces the journal; run
+  it to reset before a demo.
 
 Run it: `.venv\Scripts\python.exe main.py` in `mcp-server`, then `npm run dev` in `tarot-app`.
 
@@ -943,6 +949,40 @@ Live:
 - **Errors say what you can do.** Hosted, an unreachable journal reads "isn't reachable right now";
   only the local dev build says to start the server.
 
+## 24. Logging in: Auth0, and whose journal it is
+
+The hosted journal was open to anyone with the URL. Now it needs a login, the same way speak_friend
+does, using the Auth0 tenant Mise already has (a new API and a new app in it, nothing of Mise's
+changed).
+
+- **One token check** (`auth.py`), used by REST and `/mcp` alike: Auth0 signed it, it hasn't
+  expired, and it was issued by our tenant for this API (the audience,
+  `https://tarot-api-5c7k.onrender.com`). Its `sub`, the Auth0 user id, is whose journal it is.
+- **Each reading has an owner**, and every journal function takes the user, so nobody can read or
+  change someone else's. The cards and spreads stay public: Learn and Draw work logged out.
+- **`/mcp` needs a login.** A request without a token gets a 401 that points to
+  `/.well-known/oauth-protected-resource/mcp`, which names the Auth0 tenant: that's how a client
+  like Claude learns where to send you to log in.
+- **Over stdio there is no token**, so "who you are" is a setting on whoever starts the process
+  (`TAROT_USER`). That's the real difference between a local tool and a hosted one, and why a hosted
+  server like speak_friend needs Auth0 at all.
+- **The app** uses `@auth0/auth0-react`: Log in and Log out under Settings, with your account id, and
+  the token on every journal request. Refresh tokens in localStorage keep you logged in; the hidden
+  cookie check Auth0 would use otherwise is blocked by Safari and Firefox.
+- **Tests make their own tokens**, signed with a throwaway key the server is told to trust, so they
+  never call Auth0. They check no token, a forged token, a token for another API, that Alice can't
+  see or edit Bob's readings, and that `get_readings` over `/mcp` returns the caller's journal.
+
+What went wrong on the way, in Auth0's settings, not the code:
+
+- "Client is not authorized to access resource server": newer tenants make you allow each app on
+  each API (the API's Application Access, User Access).
+- Google login was blocked: the tenant's Google connection uses Auth0's shared development keys,
+  which Google refuses. Email and password worked; our own Google keys would fix it.
+- Auth0's own sign-up page only said "Something went wrong"; Monitoring > Logs gives the reason.
+
+The demo journal is now Grizelda's (section 19), seeded for whoever `SEED_USER` names.
+
 ## Next
 
 - Journal: sort and group (newest or oldest first, by day or month), and filter by spread or by a
@@ -950,8 +990,9 @@ Live:
 - New symbols for things spots show but no symbol names (field, branch, snail, beach), so the
   "In this picture" chips light up for them too
 - Trim `get_card`'s reply: measure it, cut what Claude doesn't need, measure again
-- Add the API's `/mcp` URL in Claude as a connector and watch Claude choose between the tools
+- Add the API's `/mcp` URL in Claude as a connector and log in through Auth0 from Claude (find out
+  how claude.ai registers itself with Auth0 first: dynamic registration or a client id)
+- Our own Google keys in Auth0, so "Continue with Google" works
 - Explore the data through the tools and adjust the shape; write the placeholder fields
 - Access: levels, permissions and circles, in the build order in `ACCESS.md`
 - Swap `readings.json` for the database; `journal.py` is the one file that changes
-- Whose readings: JWT auth like speak_friend, so each token sees only its own journal

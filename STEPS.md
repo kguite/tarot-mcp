@@ -930,6 +930,19 @@ app but cannot keep a Python server running; Render runs the API (REST and `/mcp
   work repos keep their own identity. Netlify checks who *wrote* the newest commit, so PRs merge
   with "Rebase and merge": a merge commit would be written by whoever clicked merge.
 
+Live:
+
+- **App:** https://major-minor-arcana.netlify.app. Netlify puts a "Powered by Netlify" badge on
+  new free sites, and on a phone it covered the bottom menu; it's a checkbox under Project
+  configuration > General.
+- **API:** https://tarot-api-5c7k.onrender.com (Render added "-5c7k" because tarot-api was taken),
+  with MCP at `/mcp`. The free instance sleeps when idle, so the first request after a while takes
+  about 50 seconds; open it before a demo.
+- **Checked from the outside**: a card over REST, the seeded journal (18 readings, 5 with the
+  Moon), and the MCP handshake, whose reply carries the no-predictions instructions.
+- **Errors say what you can do.** Hosted, an unreachable journal reads "isn't reachable right now";
+  only the local dev build says to start the server.
+
 ## Next
 
 - Journal: sort and group (newest or oldest first, by day or month), and filter by spread or by a
@@ -937,8 +950,7 @@ app but cannot keep a Python server running; Render runs the API (REST and `/mcp
 - New symbols for things spots show but no symbol names (field, branch, snail, beach), so the
   "In this picture" chips light up for them too
 - Trim `get_card`'s reply: measure it, cut what Claude doesn't need, measure again
-- Deploy: the Render Blueprint, then the Netlify site, then add the API's `/mcp` URL in Claude
-  with "+ Add" and watch Claude choose between the tools
+- Add the API's `/mcp` URL in Claude as a connector and watch Claude choose between the tools
 - Explore the data through the tools and adjust the shape; write the placeholder fields
 - Access: levels, permissions and circles, in the build order in `ACCESS.md`
 - Swap `readings.json` for the database; `journal.py` is the one file that changes

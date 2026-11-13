@@ -67,10 +67,12 @@ export function Draw({ reading, onChange }: { reading: Reading; onChange: (readi
     }
   }
 
+  // Until a meaning is open, always say what to tap next. Once every card was face up (straight away
+  // in a one-card draw), it used to say nothing, and the meaning was easy to miss.
   const hint =
     left > 0 ? `Choose ${left} ${left === 1 ? (placed ? 'more card' : 'card') : 'cards'}`
     : turned === 0 ? 'Tap a card to turn it over'
-    : open === null && turned < draws.length ? 'Look at the picture first. Tap it again for its meaning.'
+    : open === null ? 'Look at the picture first. Tap it again for its meaning.'
     : ''
   const shown = open === null ? null : draws[open]
 

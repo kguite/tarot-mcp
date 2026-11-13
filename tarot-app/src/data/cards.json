@@ -20,14 +20,14 @@
       "courage"
     ],
     "prompt": "Where in your life are you standing at the edge of something new?",
-    "summary": "The Fool placeholder summary.",
+    "summary": "Standing at the edge of something new, with more trust than certainty.",
     "meaning": {
-      "upright": "The Fool placeholder upright paragraph.",
-      "reversed": "The Fool placeholder reversed paragraph."
+      "upright": "The Fool steps toward the cliff edge with a small bundle, a white rose and a little dog close behind. This is the part of you that’s willing to begin before everything is figured out. What would it mean to trust yourself enough to take the first step?",
+      "reversed": "The leap feels too big right now, so you stay frozen at the edge. Or the opposite: you’re jumping without looking at all. Which is closer to true for you, and what would a steadier first step look like?"
     },
-    "advice": "The Fool placeholder advice.",
-    "affirmation": "The Fool placeholder affirmation.",
-    "as_a_person": "The Fool placeholder as a person.",
+    "advice": "Try one small new thing this week without planning it first.",
+    "affirmation": "I can begin without knowing how it all turns out.",
+    "as_a_person": "Curious and open, the friend who says yes to something new.",
     "facing": "left",
     "pose": "walking",
     "symbols": [
@@ -135,14 +135,14 @@
       "creativity"
     ],
     "prompt": "What do you already have on the table that you haven’t used yet?",
-    "summary": "The Magician placeholder summary.",
+    "summary": "Everything you need is on the table; the work is in using it.",
     "meaning": {
-      "upright": "The Magician placeholder upright paragraph.",
-      "reversed": "The Magician placeholder reversed paragraph."
+      "upright": "The Magician stands at a table laid with tools, one hand raised and one pointing to the ground. It’s a picture of focus: taking an idea and giving it a real shape. This card asks what skills and resources you already have, and how you might put them to work.",
+      "reversed": "Your energy may be scattered across too many things, or a talent is sitting unused. Sometimes it’s doubt that keeps the tools on the table. What would you make if you trusted your own skill?"
     },
-    "advice": "The Magician placeholder advice.",
-    "affirmation": "The Magician placeholder affirmation.",
-    "as_a_person": "The Magician placeholder as a person.",
+    "advice": "Choose one idea and take one concrete step to make it real today.",
+    "affirmation": "I have what I need to start.",
+    "as_a_person": "Resourceful and focused, someone who turns ideas into things you can hold.",
     "facing": "forward",
     "pose": "standing",
     "symbols": [
@@ -183,7 +183,7 @@
       },
       {
         "id": "infinity",
-        "label": "The sign above his head",
+        "label": "The sign overhead",
         "prompt": "What keeps renewing your energy?",
         "symbols": [
           "infinity"
@@ -241,14 +241,14 @@
       "rest"
     ],
     "prompt": "What do you know that you haven’t said out loud yet?",
-    "summary": "The High Priestess placeholder summary.",
+    "summary": "A quiet knowing that speaks when you stop and listen.",
     "meaning": {
-      "upright": "The High Priestess placeholder upright paragraph.",
-      "reversed": "The High Priestess placeholder reversed paragraph."
+      "upright": "The High Priestess sits still between two pillars, a half-hidden scroll in hand and a veil hanging behind. Some things are understood before they can be explained. Trust what you sense, even before you can put it into words, and make room for quiet.",
+      "reversed": "The noise around you may be drowning out your inner voice, or you’ve been talking yourself out of what you already sense. What does your gut keep saying that you keep setting aside?"
     },
-    "advice": "The High Priestess placeholder advice.",
-    "affirmation": "The High Priestess placeholder affirmation.",
-    "as_a_person": "The High Priestess placeholder as a person.",
+    "advice": "Spend ten minutes in silence today and write down whatever surfaces.",
+    "affirmation": "I can trust what I know, even quietly.",
+    "as_a_person": "Calm and perceptive, someone who listens more than they speak and notices a lot.",
     "facing": "forward",
     "pose": "seated",
     "symbols": [
@@ -263,7 +263,7 @@
     "details": [
       {
         "id": "veil",
-        "label": "The veil behind her",
+        "label": "The veil behind the throne",
         "prompt": "What feels just out of view right now?",
         "symbols": [
           "veil"
@@ -311,7 +311,7 @@
       },
       {
         "id": "moon-at-feet",
-        "label": "The moon at her feet",
+        "label": "The moon at the feet",
         "prompt": "What steadies you when your feelings rise and fall?",
         "symbols": [
           "moon"
@@ -344,14 +344,14 @@
       "creativity"
     ],
     "prompt": "What are you nurturing, and who nurtures you?",
-    "summary": "The Empress placeholder summary.",
+    "summary": "Care and creativity that help things grow, including you.",
     "meaning": {
-      "upright": "The Empress placeholder upright paragraph.",
-      "reversed": "The Empress placeholder reversed paragraph."
+      "upright": "The Empress rests among ripe wheat and tall trees, with a waterfall flowing nearby. Everything here has been tended and allowed to grow at its own pace. What are you nurturing, whether a project, a relationship or your own body, and are you letting yourself enjoy what has grown?",
+      "reversed": "Giving care to everything and everyone can leave you depleted. Or care can tip into holding on too tightly. Where are you pouring out more than you take in, and what would nourish you?"
     },
-    "advice": "The Empress placeholder advice.",
-    "affirmation": "The Empress placeholder affirmation.",
-    "as_a_person": "The Empress placeholder as a person.",
+    "advice": "Do one thing this week purely to rest your body or delight your senses.",
+    "affirmation": "I deserve the same care I give others.",
+    "as_a_person": "Generous and creative, someone whose care helps everything around them flourish.",
     "facing": "forward",
     "pose": "seated",
     "symbols": [
@@ -405,7 +405,7 @@
       },
       {
         "id": "scepter",
-        "label": "The scepter in her hand",
+        "label": "The raised scepter",
         "prompt": "Where are you ready to claim your own authority?",
         "symbols": [
           "sceptre"
@@ -462,14 +462,14 @@
       "responsibility"
     ],
     "prompt": "Where does structure help you, and where does it hold you back?",
-    "summary": "The Emperor placeholder summary.",
+    "summary": "Structure that protects, as long as it stays flexible enough to breathe.",
     "meaning": {
-      "upright": "The Emperor placeholder upright paragraph.",
-      "reversed": "The Emperor placeholder reversed paragraph."
+      "upright": "The Emperor sits on a stone throne carved with rams’ heads, armor under the robe and bare mountains behind. This is the steadiness of rules, plans and responsibility. The question here is where some order would support you, and where you’re ready to take charge of your own life.",
+      "reversed": "Structure can harden into rigidity, or into a need to control everything, other people included. Or there may be too little ground under you. Where is your grip too tight, or too loose?"
     },
-    "advice": "The Emperor placeholder advice.",
-    "affirmation": "The Emperor placeholder affirmation.",
-    "as_a_person": "The Emperor placeholder as a person.",
+    "advice": "Set one clear boundary or routine this week that makes life easier.",
+    "affirmation": "I can lead with steadiness rather than control.",
+    "as_a_person": "Dependable and organized, the one who takes responsibility when things get messy.",
     "facing": "forward",
     "pose": "seated",
     "symbols": [
@@ -563,14 +563,14 @@
       "community"
     ],
     "prompt": "Which beliefs did you inherit, and which have you chosen?",
-    "summary": "The Hierophant placeholder summary.",
+    "summary": "The traditions and teachings that shaped you, and the ones you choose to keep.",
     "meaning": {
-      "upright": "The Hierophant placeholder upright paragraph.",
-      "reversed": "The Hierophant placeholder reversed paragraph."
+      "upright": "The Hierophant raises a hand in blessing between gray pillars, crossed keys below and two figures kneeling to listen. This card is about the beliefs, communities and teachers that give life its shape. It asks which traditions still nourish you, and who you might learn from now.",
+      "reversed": "You may be questioning rules you once followed without thinking. That can be uncomfortable, and also freeing. Which beliefs are truly yours, and which were simply handed to you?"
     },
-    "advice": "The Hierophant placeholder advice.",
-    "affirmation": "The Hierophant placeholder affirmation.",
-    "as_a_person": "The Hierophant placeholder as a person.",
+    "advice": "Name one belief you inherited and ask whether you still agree with it.",
+    "affirmation": "I can honor where I come from and choose my own path.",
+    "as_a_person": "Thoughtful and steeped in tradition, a mentor who enjoys passing on what they know.",
     "facing": "forward",
     "pose": "seated",
     "symbols": [
@@ -674,14 +674,14 @@
       "values"
     ],
     "prompt": "What choice would bring you closer to what you value?",
-    "summary": "The Lovers placeholder summary.",
+    "summary": "A choice of the heart that shows what you truly value.",
     "meaning": {
-      "upright": "The Lovers placeholder upright paragraph.",
-      "reversed": "The Lovers placeholder reversed paragraph."
+      "upright": "Two figures stand beneath a great angel, a tree of flames on one side and a tree with a serpent on the other. This card is about connection, and also about choosing. It asks what you value most, and whether your relationships and decisions reflect it.",
+      "reversed": "Something feels out of line: between you and someone close, or between what you want and what you do. What would it take for your choices to match your values again?"
     },
-    "advice": "The Lovers placeholder advice.",
-    "affirmation": "The Lovers placeholder affirmation.",
-    "as_a_person": "The Lovers placeholder as a person.",
+    "advice": "Before one decision this week, ask which option fits what you care about most.",
+    "affirmation": "I can choose in line with what I value.",
+    "as_a_person": "Warm and wholehearted, someone who chooses people and principles with care.",
     "facing": "forward",
     "pose": "flying",
     "symbols": [
@@ -758,7 +758,7 @@
       },
       {
         "id": "woman-looking-up",
-        "label": "The woman looking up",
+        "label": "The figure looking up",
         "prompt": "What do you see when you look beyond the person beside you?",
         "symbols": [],
         "region": {
@@ -789,14 +789,14 @@
       "direction"
     ],
     "prompt": "What are you steering toward, and what’s pulling against you?",
-    "summary": "The Chariot placeholder summary.",
+    "summary": "Moving forward by holding opposing pulls together.",
     "meaning": {
-      "upright": "The Chariot placeholder upright paragraph.",
-      "reversed": "The Chariot placeholder reversed paragraph."
+      "upright": "The charioteer rides out from the city under a starry canopy, a dark sphinx and a light one waiting in front. Only a wand is in hand: this is steering by will and focus. Where are you heading, and how can you bring your conflicting parts along with you?",
+      "reversed": "You may feel pulled two ways at once, or pushing hard without knowing where to. Momentum without direction can wear you out. What do you actually want to steer toward?"
     },
-    "advice": "The Chariot placeholder advice.",
-    "affirmation": "The Chariot placeholder affirmation.",
-    "as_a_person": "The Chariot placeholder as a person.",
+    "advice": "Write down one goal for this week and one thing pulling you off it.",
+    "affirmation": "I can move forward with all of me.",
+    "as_a_person": "Driven and determined, someone who keeps going once they’ve set a course.",
     "facing": "forward",
     "pose": "riding",
     "symbols": [
@@ -876,7 +876,7 @@
       },
       {
         "id": "wand",
-        "label": "The wand in his hand",
+        "label": "The wand in hand",
         "prompt": "What are you steering by will alone?",
         "symbols": [
           "wand"
@@ -909,14 +909,14 @@
       "gentleness"
     ],
     "prompt": "Where could gentleness be stronger than force?",
-    "summary": "Strength placeholder summary.",
+    "summary": "Courage that is gentle, patient and kind.",
     "meaning": {
-      "upright": "Strength placeholder upright paragraph.",
-      "reversed": "Strength placeholder reversed paragraph."
+      "upright": "A figure rests calm hands on a lion, a garland of flowers linking the two. There is no fight here, only patience and trust. It’s worth noticing where a soft approach might work better than force, with other people and with your own fierce feelings.",
+      "reversed": "You may be doubting your own strength, or trying to force something that needs patience. Fear can make you shrink or push too hard. Where could you be kinder to yourself?"
     },
-    "advice": "Strength placeholder advice.",
-    "affirmation": "Strength placeholder affirmation.",
-    "as_a_person": "Strength placeholder as a person.",
+    "advice": "When a strong feeling shows up this week, pause and breathe before you respond.",
+    "affirmation": "I am stronger when I am gentle.",
+    "as_a_person": "Patient and kind, quietly brave, and steady when others are not.",
     "facing": "right",
     "pose": "standing",
     "symbols": [
@@ -999,14 +999,14 @@
       "wisdom"
     ],
     "prompt": "What would you hear if things got quiet?",
-    "summary": "The Hermit placeholder summary.",
+    "summary": "Stepping back into quiet to find your own light.",
     "meaning": {
-      "upright": "The Hermit placeholder upright paragraph.",
-      "reversed": "The Hermit placeholder reversed paragraph."
+      "upright": "Alone on a snowy peak, head bowed, the Hermit holds up a lantern. It lights only the next step, and that is enough. Here, you can step back from the noise and listen for your own guidance.",
+      "reversed": "Solitude may have slipped into isolation, or you may be keeping busy to avoid the quiet. Either way, something is not being heard. What might you find if you made a little space to listen?"
     },
-    "advice": "The Hermit placeholder advice.",
-    "affirmation": "The Hermit placeholder affirmation.",
-    "as_a_person": "The Hermit placeholder as a person.",
+    "advice": "Take a short walk alone this week, without your phone, and notice what comes up.",
+    "affirmation": "I can find my way by my own light.",
+    "as_a_person": "Reflective and wise, someone who thinks deeply and values time alone.",
     "facing": "left",
     "pose": "standing",
     "symbols": [
@@ -1096,14 +1096,14 @@
       "cycles"
     ],
     "prompt": "What cycle are you in the middle of?",
-    "summary": "The Wheel of Fortune placeholder summary.",
+    "summary": "Life moves in cycles, and you are somewhere on the turning wheel.",
     "meaning": {
-      "upright": "The Wheel of Fortune placeholder upright paragraph.",
-      "reversed": "The Wheel of Fortune placeholder reversed paragraph."
+      "upright": "A great wheel turns in the sky, a sphinx on top, a snake sliding down one side and a red figure rising on the other. Nothing stays in one place for long. Here, it helps to know what cycle you are in, and how you can stay steady while things shift.",
+      "reversed": "You might feel stuck, or be pushing against a change that is already underway. What would it be like to stop resisting the turn and look for what it offers?"
     },
-    "advice": "The Wheel of Fortune placeholder advice.",
-    "affirmation": "The Wheel of Fortune placeholder affirmation.",
-    "as_a_person": "The Wheel of Fortune placeholder as a person.",
+    "advice": "Look back at this time last year and notice what has changed.",
+    "affirmation": "I can stay steady while things change.",
+    "as_a_person": "Adaptable and easygoing, someone who rolls with the ups and downs.",
     "facing": null,
     "pose": null,
     "symbols": [
@@ -1212,14 +1212,14 @@
       "balance"
     ],
     "prompt": "Where are you being asked to be honest about cause and effect?",
-    "summary": "Justice placeholder summary.",
+    "summary": "Seeing clearly, and owning your part in what happens.",
     "meaning": {
-      "upright": "Justice placeholder upright paragraph.",
-      "reversed": "Justice placeholder reversed paragraph."
+      "upright": "Justice sits between stone pillars, holding an upright sword in one hand and scales in the other. This is clear thinking and honest weighing. Look at cause and effect in your situation, your own part included, and make a fair decision.",
+      "reversed": "Something may feel unfair, or you may be avoiding a responsibility that is yours. Imbalance tends to grow when no one names it. What would honesty with yourself look like here?"
     },
-    "advice": "Justice placeholder advice.",
-    "affirmation": "Justice placeholder affirmation.",
-    "as_a_person": "Justice placeholder as a person.",
+    "advice": "Write down one decision you’ve been delaying, with the facts on each side.",
+    "affirmation": "I can face the truth and act fairly.",
+    "as_a_person": "Fair-minded and honest, someone who weighs things carefully before deciding.",
     "facing": "forward",
     "pose": "seated",
     "symbols": [
@@ -1257,7 +1257,7 @@
       },
       {
         "id": "curtain",
-        "label": "The curtain behind her",
+        "label": "The curtain behind the throne",
         "prompt": "What might be hidden behind the facts you see?",
         "symbols": [
           "veil"
@@ -1324,14 +1324,14 @@
       "surrender"
     ],
     "prompt": "What might you see if you stopped pushing and looked from another angle?",
-    "summary": "The Hanged Man placeholder summary.",
+    "summary": "Pausing on purpose, so you can see things from a new angle.",
     "meaning": {
-      "upright": "The Hanged Man placeholder upright paragraph.",
-      "reversed": "The Hanged Man placeholder reversed paragraph."
+      "upright": "The figure hangs upside down from a leafy beam, calm, head glowing, one leg crossed. This is a chosen pause, not a trap. The card asks what you might notice if you stopped pushing and let yourself see the situation differently.",
+      "reversed": "You might be stalling without learning anything, or fighting a pause you actually need. Rest and avoidance can look alike from the inside. Which one is this for you?"
     },
-    "advice": "The Hanged Man placeholder advice.",
-    "affirmation": "The Hanged Man placeholder affirmation.",
-    "as_a_person": "The Hanged Man placeholder as a person.",
+    "advice": "Pick one stuck problem and describe it from someone else’s point of view.",
+    "affirmation": "I can let a pause show me something new.",
+    "as_a_person": "Patient and unconventional, someone who sees what others miss.",
     "facing": "forward",
     "pose": "upside-down",
     "symbols": [
@@ -1388,7 +1388,7 @@
       },
       {
         "id": "hidden-arms",
-        "label": "The arms behind his back",
+        "label": "The arms behind the back",
         "prompt": "What could you let go of instead of fixing?",
         "symbols": [],
         "region": {
@@ -1419,14 +1419,14 @@
       "endings"
     ],
     "prompt": "What is ending, and what room does that make?",
-    "summary": "Death placeholder summary.",
+    "summary": "Something is ending, and that ending makes room.",
     "meaning": {
-      "upright": "Death placeholder upright paragraph.",
-      "reversed": "Death placeholder reversed paragraph."
+      "upright": "A skeleton in armor rides past a fallen crown, carrying a banner with a white rose, while a sun shines between two towers. This card is about endings in everyday life: a role, a habit or a chapter closing. It asks what you are ready to let go of, and what space that might open.",
+      "reversed": "You may be holding on to something that has already run its course, because change feels frightening. That fear makes sense. What would it feel like to loosen your grip, even a little?"
     },
-    "advice": "Death placeholder advice.",
-    "affirmation": "Death placeholder affirmation.",
-    "as_a_person": "Death placeholder as a person.",
+    "advice": "Name one habit or role you’ve outgrown, and take one small step away from it.",
+    "affirmation": "I can let go and make room for what’s next.",
+    "as_a_person": "Honest and unsentimental, someone who helps others through big changes.",
     "facing": "right",
     "pose": "riding",
     "symbols": [
@@ -1538,14 +1538,14 @@
       "healing"
     ],
     "prompt": "What needs a gentler mix in your life right now?",
-    "summary": "Temperance placeholder summary.",
+    "summary": "Finding the right mix, slowly and patiently.",
     "meaning": {
-      "upright": "Temperance placeholder upright paragraph.",
-      "reversed": "Temperance placeholder reversed paragraph."
+      "upright": "A winged figure pours water between two cups, one foot in the pool and one on land. Nothing is rushed or spilled. This card is about balance and blending: bringing different parts of your life together in a mix that soothes rather than strains.",
+      "reversed": "Something may be out of rhythm: too much of one thing, not enough of another. Excess often shows up when you’re tired or stretched. What needs adjusting so you can find your middle again?"
     },
-    "advice": "Temperance placeholder advice.",
-    "affirmation": "Temperance placeholder affirmation.",
-    "as_a_person": "Temperance placeholder as a person.",
+    "advice": "Notice one area where you’re overdoing it this week, and ease off a little.",
+    "affirmation": "I can find balance at my own pace.",
+    "as_a_person": "Calm and moderate, a peacemaker who brings people together.",
     "facing": "forward",
     "pose": "standing",
     "symbols": [
@@ -1600,7 +1600,7 @@
       },
       {
         "id": "sun-on-brow",
-        "label": "The sun on her brow",
+        "label": "The sun on the brow",
         "prompt": "What helps you feel calm and clear-headed?",
         "symbols": [
           "halo"
@@ -1657,14 +1657,14 @@
       "freedom"
     ],
     "prompt": "What has a hold on you that you could loosen?",
-    "summary": "The Devil placeholder summary.",
+    "summary": "Noticing what has a hold on you, and how loose the chains really are.",
     "meaning": {
-      "upright": "The Devil placeholder upright paragraph.",
-      "reversed": "The Devil placeholder reversed paragraph."
+      "upright": "Two figures stand chained beneath a bat-winged figure, yet the chains hang loose around their necks. This card points to habits, cravings or patterns that feel impossible to escape. It asks you to look honestly at what holds you, without shame, and to notice where you have more choice than it seems.",
+      "reversed": "You may be starting to see a pattern for what it is, and that awareness is already a loosening. What is one link you could slip off now?"
     },
-    "advice": "The Devil placeholder advice.",
-    "affirmation": "The Devil placeholder affirmation.",
-    "as_a_person": "The Devil placeholder as a person.",
+    "advice": "Notice one habit you reach for under stress, and pause once before giving in.",
+    "affirmation": "I can see my patterns and choose differently.",
+    "as_a_person": "Intense and magnetic, someone who knows the pull of desire well.",
     "facing": "forward",
     "pose": "seated",
     "symbols": [
@@ -1724,7 +1724,7 @@
       },
       {
         "id": "grape-tail",
-        "label": "The woman’s grape-tipped tail",
+        "label": "The grape-tipped tail",
         "prompt": "What pleasure has started to hold onto you?",
         "symbols": [
           "harvest"
@@ -1767,14 +1767,14 @@
       "truth"
     ],
     "prompt": "What structure in your life no longer holds up?",
-    "summary": "The Tower placeholder summary.",
+    "summary": "When something built on shaky ground comes down, the truth gets clearer.",
     "meaning": {
-      "upright": "The Tower placeholder upright paragraph.",
-      "reversed": "The Tower placeholder reversed paragraph."
+      "upright": "Lightning strikes a tower on a rocky peak, knocking off its crown, with sparks and figures tumbling through the air. This card is about upheaval: a sudden change or a truth that shakes a belief or plan you relied on. It asks what no longer holds up, and what firm ground is still beneath you.",
+      "reversed": "You may be bracing against a change you can already sense, or still shaken after one. Both are hard. What support do you need while things settle?"
     },
-    "advice": "The Tower placeholder advice.",
-    "affirmation": "The Tower placeholder affirmation.",
-    "as_a_person": "The Tower placeholder as a person.",
+    "advice": "Write down what still feels solid in your life right now.",
+    "affirmation": "I can stay grounded when things are shaken.",
+    "as_a_person": "Bold and honest, someone who says the hard truth everyone else avoids.",
     "facing": null,
     "pose": "falling",
     "symbols": [
@@ -1879,14 +1879,14 @@
       "hope"
     ],
     "prompt": "What is quietly being restored in you?",
-    "summary": "The Star placeholder summary.",
+    "summary": "After a hard stretch, hope returns quietly, like water poured back.",
     "meaning": {
-      "upright": "The Star placeholder upright paragraph.",
-      "reversed": "The Star placeholder reversed paragraph."
+      "upright": "Under one great star and seven small ones, a figure kneels at a pool, pouring water onto the land and back into the water. A bird sings in a nearby tree. This card is about calm, renewal and gentle hope. It asks what is being restored in you, and where care could flow back to yourself.",
+      "reversed": "You may feel discouraged, or like you’re giving from an empty cup. Hope can feel far away when you’re tired. What small thing would help you refill, even a little?"
     },
-    "advice": "The Star placeholder advice.",
-    "affirmation": "The Star placeholder affirmation.",
-    "as_a_person": "The Star placeholder as a person.",
+    "advice": "Do one restful thing today that refills you, with no goal attached.",
+    "affirmation": "I can let hope back in, gently.",
+    "as_a_person": "Hopeful and generous, someone whose calm helps others heal.",
     "facing": "left",
     "pose": "kneeling",
     "symbols": [
@@ -1996,7 +1996,7 @@
     "prompt": "What feels unclear right now, and what might it be asking of you?",
     "summary": "Not everything is clear yet, and that’s where imagination does its work.",
     "meaning": {
-      "upright": "The Moon only half lights the way. Shapes look stranger than they are, and old fears get loud. This card asks you to move slowly through what you can’t fully see, and to notice what your imagination is making of it: the dreams as well as the worries.",
+      "upright": "The Moon only half lights the way. Shapes look stranger than they are, and old fears get loud, so it helps to move slowly through what you can’t fully see and notice what your imagination is making of it: the dreams as well as the worries.",
       "reversed": "The fog is starting to lift. A fear that felt huge looks smaller in better light, or something you’ve been half sensing comes up where you can look at it. What is clearer now than it was?"
     },
     "advice": "Name one fear out loud and check it against what you actually know.",
@@ -2114,14 +2114,14 @@
       "clarity"
     ],
     "prompt": "What lights you up when you stop overthinking it?",
-    "summary": "The Sun placeholder summary.",
+    "summary": "Simple joy, warmth and the freedom to be fully yourself.",
     "meaning": {
-      "upright": "The Sun placeholder upright paragraph.",
-      "reversed": "The Sun placeholder reversed paragraph."
+      "upright": "A child rides a horse beneath a smiling sun, red banner flying, sunflowers along the garden wall. Everything is out in the open and full of warmth. What lights you up? Enjoy it without overthinking.",
+      "reversed": "Joy may feel dimmed right now, or you may be trying so hard to be happy that it becomes work. What would let you relax into something good?"
     },
-    "advice": "The Sun placeholder advice.",
-    "affirmation": "The Sun placeholder affirmation.",
-    "as_a_person": "The Sun placeholder as a person.",
+    "advice": "Do one thing this week purely because it makes you happy.",
+    "affirmation": "I can let myself enjoy what’s good.",
+    "as_a_person": "Cheerful and warm, someone whose openness makes everyone feel welcome.",
     "facing": "forward",
     "pose": "riding",
     "symbols": [
@@ -2220,14 +2220,14 @@
       "renewal"
     ],
     "prompt": "What is calling you, and are you ready to answer?",
-    "summary": "Judgement placeholder summary.",
+    "summary": "Something in you is waking up and asking to be answered.",
     "meaning": {
-      "upright": "Judgement placeholder upright paragraph.",
-      "reversed": "Judgement placeholder reversed paragraph."
+      "upright": "A trumpet sounds, and figures rise from their tombs with open arms. This card can point to a moment of honest reckoning: you look back at who you’ve been and hear what you’re being called toward. What would it mean to answer, even in one small way?",
+      "reversed": "The call is there, but self-doubt keeps turning the volume down. Or you’re judging yourself so harshly that rising feels impossible. What would you hear if you listened with kindness instead of a verdict?"
     },
-    "advice": "Judgement placeholder advice.",
-    "affirmation": "Judgement placeholder affirmation.",
-    "as_a_person": "Judgement placeholder as a person.",
+    "advice": "Write down the call you keep hearing, and one small way to answer it this week.",
+    "affirmation": "I can listen to what’s calling me.",
+    "as_a_person": "Clear-eyed and honest, someone who helps others hear what they already know.",
     "facing": "right",
     "pose": "flying",
     "symbols": [
@@ -2294,7 +2294,7 @@
       },
       {
         "id": "open-arms",
-        "label": "The woman with open arms",
+        "label": "The figure with open arms",
         "prompt": "What would you welcome if you stopped holding back?",
         "symbols": [],
         "region": {
@@ -2304,7 +2304,7 @@
       },
       {
         "id": "man-looking-up",
-        "label": "The man looking up",
+        "label": "The figure looking up",
         "prompt": "What are you ready to look up and face?",
         "symbols": [],
         "region": {
@@ -2335,14 +2335,14 @@
       "wholeness"
     ],
     "prompt": "What has come full circle for you?",
-    "summary": "The World placeholder summary.",
+    "summary": "A circle closes, and you can feel the whole of what you’ve been through.",
     "meaning": {
-      "upright": "The World placeholder upright paragraph.",
-      "reversed": "The World placeholder reversed paragraph."
+      "upright": "A dancer moves inside a great wreath, holding two wands with an easy grip, while a creature watches from each corner. Something has come together: a chapter, a lesson, a way of being at home in your own skin. Before rushing to what’s next, take in the whole of it.",
+      "reversed": "Almost there, but a few loose ends keep the circle from closing. Or you’re racing ahead without pausing to mark what you finished. What small thing would let this feel complete?"
     },
-    "advice": "The World placeholder advice.",
-    "affirmation": "The World placeholder affirmation.",
-    "as_a_person": "The World placeholder as a person.",
+    "advice": "Name one thing you’ve finished this year, and mark it in some small way.",
+    "affirmation": "I can let something be finished.",
+    "as_a_person": "At ease and whole, comfortable in their own skin and their own story.",
     "facing": "left",
     "pose": "dancing",
     "symbols": [
@@ -2463,14 +2463,14 @@
     ],
     "combined": "Fire’s pure potential: a spark of energy and the urge to begin.",
     "prompt": "What idea is asking for your energy?",
-    "summary": "Ace of Wands placeholder summary.",
+    "summary": "A spark of an idea, handed to you and asking for your energy.",
     "meaning": {
-      "upright": "Ace of Wands placeholder upright paragraph.",
-      "reversed": "Ace of Wands placeholder reversed paragraph."
+      "upright": "A hand reaches out of a cloud holding a wand that’s still sprouting leaves. This is energy at its very start: an idea, an urge, a wish to make something. The Ace doesn’t say where it leads, only that the spark is here. What would you like to do with it?",
+      "reversed": "The spark is there, but it isn’t catching. Maybe the timing feels wrong, or a creative block has you second-guessing every idea. What would make it easier to start small?"
     },
-    "advice": "Ace of Wands placeholder advice.",
-    "affirmation": "Ace of Wands placeholder affirmation.",
-    "as_a_person": "Ace of Wands placeholder as a person.",
+    "advice": "Give a new idea ten minutes of real attention today, with no pressure to finish.",
+    "affirmation": "I can follow a spark without knowing where it goes.",
+    "as_a_person": "Bright and inventive, always starting something new and inviting others in.",
     "facing": null,
     "pose": null,
     "symbols": [
@@ -2581,14 +2581,14 @@
     ],
     "combined": "Fire’s energy, weighed: planning what comes next from where you stand.",
     "prompt": "What would you plan for if you trusted your reach?",
-    "summary": "Two of Wands placeholder summary.",
+    "summary": "Standing at the edge of what you know, weighing where to go next.",
     "meaning": {
-      "upright": "Two of Wands placeholder upright paragraph.",
-      "reversed": "Two of Wands placeholder reversed paragraph."
+      "upright": "The figure stands on a castle wall, a small globe in one hand and a wand in the other, looking out to sea. You’ve built something here, and now you’re wondering how far your reach could go. What would you plan for if you trusted yourself?",
+      "reversed": "The world looks big, and staying put feels safer. Fear of the unknown can keep a good plan in the drawer. Is playing it safe still protecting you, or only holding you in place?"
     },
-    "advice": "Two of Wands placeholder advice.",
-    "affirmation": "Two of Wands placeholder affirmation.",
-    "as_a_person": "Two of Wands placeholder as a person.",
+    "advice": "Write down one bigger plan, then the first step you could take toward it.",
+    "affirmation": "I can plan for more than what feels safe.",
+    "as_a_person": "Thoughtful and ambitious, looking past the horizon while weighing every option.",
     "facing": "right",
     "pose": "standing",
     "symbols": [
@@ -2602,7 +2602,7 @@
     "details": [
       {
         "id": "globe",
-        "label": "The globe in his hand",
+        "label": "The globe in hand",
         "prompt": "What would you hold differently if you could see the whole picture?",
         "symbols": [
           "globe"
@@ -2638,7 +2638,7 @@
       },
       {
         "id": "held-wand",
-        "label": "The wand he holds",
+        "label": "The wand held close",
         "prompt": "What are you holding onto while you decide?",
         "symbols": [
           "wand"
@@ -2697,14 +2697,14 @@
     ],
     "combined": "Fire’s energy, growing outward: plans set in motion and the long view.",
     "prompt": "What have you set in motion that needs patience now?",
-    "summary": "Three of Wands placeholder summary.",
+    "summary": "You’ve sent something out, and now the work is patience.",
     "meaning": {
-      "upright": "Three of Wands placeholder upright paragraph.",
-      "reversed": "Three of Wands placeholder reversed paragraph."
+      "upright": "From a rocky ledge, the figure watches ships move across the water, one hand on a planted wand. Plans are in motion and partly out of your hands, so keep the long view, steady yourself on what you’ve already set in place, and let things travel.",
+      "reversed": "Waiting has started to feel like failing, or your view has narrowed to what hasn’t arrived yet. Delays are frustrating, but they aren’t verdicts. What else is growing while you watch the horizon?"
     },
-    "advice": "Three of Wands placeholder advice.",
-    "affirmation": "Three of Wands placeholder affirmation.",
-    "as_a_person": "Three of Wands placeholder as a person.",
+    "advice": "Check on one plan you’ve set in motion, then step back and let it run.",
+    "affirmation": "I can be patient with what I’ve set in motion.",
+    "as_a_person": "Far-sighted and steady, someone who plans big and waits well.",
     "facing": "away",
     "pose": "standing",
     "symbols": [
@@ -2739,7 +2739,7 @@
       },
       {
         "id": "gripped-wand",
-        "label": "The wand he grips",
+        "label": "The gripped wand",
         "prompt": "What steadies you while you wait for something to arrive?",
         "symbols": [
           "wand"
@@ -2751,7 +2751,7 @@
       },
       {
         "id": "planted-wands",
-        "label": "The wands planted behind him",
+        "label": "The wands planted behind",
         "prompt": "What have you already set in place that steadies you?",
         "symbols": [
           "wand"
@@ -2798,14 +2798,14 @@
     ],
     "combined": "Fire’s energy, at rest: a moment to celebrate what you’ve built.",
     "prompt": "Where do you feel at home, and who is there with you?",
-    "summary": "Four of Wands placeholder summary.",
+    "summary": "A pause to celebrate what you’ve built and who you’ve built it with.",
     "meaning": {
-      "upright": "Four of Wands placeholder upright paragraph.",
-      "reversed": "Four of Wands placeholder reversed paragraph."
+      "upright": "Four wands hold up a garland of flowers and fruit, and people raise bouquets as others cross the bridge to join them. This is a threshold moment: something stable enough to rest in and share. The card asks where you feel at home, and whether you’ve stopped long enough to enjoy it.",
+      "reversed": "Home may feel unsettled right now, or caught in the middle of a change. Belonging can be harder to feel when the ground is moving. What small thing could make where you are feel more like yours?"
     },
-    "advice": "Four of Wands placeholder advice.",
-    "affirmation": "Four of Wands placeholder affirmation.",
-    "as_a_person": "Four of Wands placeholder as a person.",
+    "advice": "Share one piece of good news with someone who’ll be glad for you.",
+    "affirmation": "I can stop to enjoy what I’ve built.",
+    "as_a_person": "Welcoming and generous, the one who makes everyone feel at home.",
     "facing": null,
     "pose": null,
     "symbols": [
@@ -2918,14 +2918,14 @@
     ],
     "combined": "Fire’s energy, scattered: everyone pushing in their own direction.",
     "prompt": "Is this friction moving you forward, or just wearing you out?",
-    "summary": "Five of Wands placeholder summary.",
+    "summary": "Many voices pushing at once, with plenty of energy and nowhere clear to go.",
     "meaning": {
-      "upright": "Five of Wands placeholder upright paragraph.",
-      "reversed": "Five of Wands placeholder reversed paragraph."
+      "upright": "Five figures swing their wands into a tangle, each pushing in a different direction. It may be lively competition that sharpens everyone, or simply noise. The question here is whether the friction around you is moving something forward, or just wearing everyone out.",
+      "reversed": "The scuffle is quieting, or you’re avoiding a disagreement that needs to happen. Common ground is possible when someone stops swinging long enough to listen. Which conversation would go better if you went first?"
     },
-    "advice": "Five of Wands placeholder advice.",
-    "affirmation": "Five of Wands placeholder affirmation.",
-    "as_a_person": "Five of Wands placeholder as a person.",
+    "advice": "In your next disagreement, repeat back the other side’s point before making yours.",
+    "affirmation": "I can disagree and still listen.",
+    "as_a_person": "Spirited and competitive, someone who loves a good debate and a challenge.",
     "facing": null,
     "pose": null,
     "symbols": [
@@ -2958,7 +2958,7 @@
       },
       {
         "id": "spotted-tunic",
-        "label": "The one with his back turned",
+        "label": "The one with a back turned",
         "prompt": "What would change if you stepped back from the scuffle?",
         "symbols": [],
         "region": {
@@ -3011,14 +3011,14 @@
     ],
     "combined": "Fire’s energy, rewarded: being seen for what you’ve done.",
     "prompt": "What would you celebrate if no one else was watching?",
-    "summary": "Six of Wands placeholder summary.",
+    "summary": "You’ve made it through, and people are noticing.",
     "meaning": {
-      "upright": "Six of Wands placeholder upright paragraph.",
-      "reversed": "Six of Wands placeholder reversed paragraph."
+      "upright": "A rider in a laurel crown moves through a crowd on a white horse, a wreath tied to a raised wand. Progress is visible now, and it’s okay to let yourself be seen for it. This card also asks who walked beside you, and what you’d celebrate if no one were watching.",
+      "reversed": "Recognition hasn’t come, or it came and didn’t feel like enough. When confidence depends on applause, every quiet moment can feel like doubt. What would you say about this win if your own opinion were the only one?"
     },
-    "advice": "Six of Wands placeholder advice.",
-    "affirmation": "Six of Wands placeholder affirmation.",
-    "as_a_person": "Six of Wands placeholder as a person.",
+    "advice": "Tell one person about something you did well this month, without shrinking it.",
+    "affirmation": "I can let myself be proud of my progress.",
+    "as_a_person": "Confident and encouraging, someone who wears success lightly and shares the credit.",
     "facing": "right",
     "pose": "riding",
     "symbols": [
@@ -3066,7 +3066,7 @@
       },
       {
         "id": "crowd",
-        "label": "The crowd walking beside him",
+        "label": "The crowd walking alongside",
         "prompt": "Who has walked alongside you on the way here?",
         "symbols": [],
         "region": {
@@ -3163,7 +3163,7 @@
       },
       {
         "id": "held-staff",
-        "label": "The staff held across him",
+        "label": "The staff held crosswise",
         "prompt": "What are you holding up to keep yourself safe?",
         "symbols": [
           "wand"
@@ -3175,7 +3175,7 @@
       },
       {
         "id": "face",
-        "label": "The look on his face",
+        "label": "The look on the face",
         "prompt": "What worry is showing on your face right now?",
         "symbols": [],
         "region": {
@@ -3208,14 +3208,14 @@
     ],
     "combined": "Fire’s energy, in flight: things moving quickly toward their end.",
     "prompt": "What is picking up speed in your life?",
-    "summary": "Eight of Wands placeholder summary.",
+    "summary": "Things are moving fast, and the energy is already in the air.",
     "meaning": {
-      "upright": "Eight of Wands placeholder upright paragraph.",
-      "reversed": "Eight of Wands placeholder reversed paragraph."
+      "upright": "Eight wands fly through an open sky over a river and a house on a hill, with nothing in their way. This is energy in motion: plans moving, messages flying back and forth. Where do things feel fast for you right now, and do you know where they’re headed?",
+      "reversed": "The energy is scattered, or everything has slowed to a crawl. Too many things in motion at once can feel the same as nothing moving. Which one thing would you most like to land first?"
     },
-    "advice": "Eight of Wands placeholder advice.",
-    "affirmation": "Eight of Wands placeholder affirmation.",
-    "as_a_person": "Eight of Wands placeholder as a person.",
+    "advice": "Answer the message you’ve been putting off, and keep the reply short.",
+    "affirmation": "I can move quickly and still stay steady.",
+    "as_a_person": "Quick and energetic, someone who gets things moving and answers right away.",
     "facing": null,
     "pose": null,
     "symbols": [
@@ -3311,14 +3311,14 @@
     ],
     "combined": "Fire’s energy, nearly spent: still standing, still on guard.",
     "prompt": "What are you guarding, and is it still worth the effort?",
-    "summary": "Nine of Wands placeholder summary.",
+    "summary": "Tired and still standing, guarding what you’ve worked hard for.",
     "meaning": {
-      "upright": "Nine of Wands placeholder upright paragraph.",
-      "reversed": "Nine of Wands placeholder reversed paragraph."
+      "upright": "The figure leans on a staff, head bandaged, a row of wands standing behind. You’ve been through a lot and you’re still here, which says something real about your resilience. It’s worth noticing what you’re guarding now, and whether it still needs this much watchfulness.",
+      "reversed": "Staying on guard has turned into exhaustion, or every question starts to feel like an attack. Old hurts can keep the walls up long after the danger has passed. What would it be like to lower your guard, even a little?"
     },
-    "advice": "Nine of Wands placeholder advice.",
-    "affirmation": "Nine of Wands placeholder affirmation.",
-    "as_a_person": "Nine of Wands placeholder as a person.",
+    "advice": "Notice one moment this week when you braced for trouble, and ask whether it was needed.",
+    "affirmation": "I can rest without giving up what I’ve built.",
+    "as_a_person": "Resilient and watchful, someone who has been through a lot and keeps going.",
     "facing": "left",
     "pose": "standing",
     "symbols": [
@@ -3338,7 +3338,7 @@
       },
       {
         "id": "row-of-wands",
-        "label": "The row of wands behind him",
+        "label": "The row of wands behind",
         "prompt": "What have you built up to protect yourself?",
         "symbols": [
           "wand"
@@ -3350,7 +3350,7 @@
       },
       {
         "id": "leaning-staff",
-        "label": "The staff he leans on",
+        "label": "The staff to lean on",
         "prompt": "What keeps you upright when you’re tired of holding on?",
         "symbols": [
           "wand"
@@ -3407,14 +3407,14 @@
     ],
     "combined": "Fire’s energy, overloaded: carrying more than one person should.",
     "prompt": "What are you carrying that isn’t yours to carry?",
-    "summary": "Ten of Wands placeholder summary.",
+    "summary": "You’re carrying a lot, and some of it may not be yours.",
     "meaning": {
-      "upright": "Ten of Wands placeholder upright paragraph.",
-      "reversed": "Ten of Wands placeholder reversed paragraph."
+      "upright": "A figure walks bent over an armful of ten wands, head bowed, the house still some way ahead. This is drive taken as far as it goes: responsibility piled up one wand at a time until you can’t see the road. Which loads are really yours, and which could you set down or share?",
+      "reversed": "You may be starting to put something down, or finally asking for help. Or you’re gripping harder than ever, sure no one else could carry it. What would change if you handed one piece to someone else?"
     },
-    "advice": "Ten of Wands placeholder advice.",
-    "affirmation": "Ten of Wands placeholder affirmation.",
-    "as_a_person": "Ten of Wands placeholder as a person.",
+    "advice": "Choose one task on your list to hand off, postpone, or drop this week.",
+    "affirmation": "I don’t have to carry everything alone.",
+    "as_a_person": "Hardworking and dependable, someone who takes on too much rather than say no.",
     "facing": "away",
     "pose": "walking",
     "symbols": [
@@ -3505,14 +3505,14 @@
     ],
     "combined": "Fire’s energy, newly found: eager to explore and try things out.",
     "prompt": "What are you curious enough to try?",
-    "summary": "Page of Wands placeholder summary.",
+    "summary": "Curiosity with energy behind it, eager to try something new.",
     "meaning": {
-      "upright": "Page of Wands placeholder upright paragraph.",
-      "reversed": "Page of Wands placeholder reversed paragraph."
+      "upright": "The Page holds a tall, leafy wand and gazes at it with wonder, salamanders on the tunic and a feather in the hat. This is the beginner’s fire: excited, open, not yet sure where it leads. What are you curious enough to try, just to see what happens?",
+      "reversed": "Ideas are coming fast but nothing is sticking, or you’re holding back because you might not be good at it yet. Which one idea deserves a first try, imperfect as it might be?"
     },
-    "advice": "Page of Wands placeholder advice.",
-    "affirmation": "Page of Wands placeholder affirmation.",
-    "as_a_person": "Page of Wands placeholder as a person.",
+    "advice": "Try something new this week purely because it interests you, with no goal attached.",
+    "affirmation": "I can be a beginner and enjoy it.",
+    "as_a_person": "Enthusiastic and curious, someone who lights up at a new idea.",
     "facing": "right",
     "pose": "standing",
     "symbols": [
@@ -3524,7 +3524,7 @@
     "details": [
       {
         "id": "feather",
-        "label": "The feather in his hat",
+        "label": "The feather in the hat",
         "prompt": "What new idea has caught your eye lately?",
         "symbols": [
           "feather"
@@ -3536,7 +3536,7 @@
       },
       {
         "id": "salamander-tunic",
-        "label": "The salamanders on his tunic",
+        "label": "The salamanders on the tunic",
         "prompt": "What spark in you is eager to be tested?",
         "symbols": [
           "salamander"
@@ -3560,7 +3560,7 @@
       },
       {
         "id": "wand-leaves",
-        "label": "The leaves on his wand",
+        "label": "The leaves on the wand",
         "prompt": "What new idea are you gazing at with wonder?",
         "symbols": [
           "wand"
@@ -3605,14 +3605,14 @@
     ],
     "combined": "Fire’s energy, charging ahead: passion that wants to move now.",
     "prompt": "Where are you rushing in, and where could you use that fire?",
-    "summary": "Knight of Wands placeholder summary.",
+    "summary": "Passion in motion, charging toward whatever lights you up.",
     "meaning": {
-      "upright": "Knight of Wands placeholder upright paragraph.",
-      "reversed": "Knight of Wands placeholder reversed paragraph."
+      "upright": "The rider sits on a rearing horse, wand held high, a flaming plume streaming back. This is energy that wants to go now: bold, adventurous, hard to keep still. The card asks where that fire can carry you, and where it might be running ahead of your plans.",
+      "reversed": "The charge has tipped into impulsiveness, or you’ve burned through your energy and feel spent. Starting fast is easy. Keeping going takes pacing. Where could you slow down enough to finish what you started?"
     },
-    "advice": "Knight of Wands placeholder advice.",
-    "affirmation": "Knight of Wands placeholder affirmation.",
-    "as_a_person": "Knight of Wands placeholder as a person.",
+    "advice": "Before you jump into something new this week, finish one thing you’ve already started.",
+    "affirmation": "I can follow my passion at a pace I can keep.",
+    "as_a_person": "Adventurous and bold, quick to act and bringing energy into every room.",
     "facing": "left",
     "pose": "riding",
     "symbols": [
@@ -3673,7 +3673,7 @@
       },
       {
         "id": "salamander-tunic",
-        "label": "The salamanders on his tunic",
+        "label": "The salamanders on the tunic",
         "prompt": "What fire in you is hard to keep still?",
         "symbols": [
           "salamander"
@@ -3718,14 +3718,14 @@
     ],
     "combined": "Fire’s energy, held with warmth: confidence that draws people in.",
     "prompt": "What would you do if you trusted your own spark?",
-    "summary": "Queen of Wands placeholder summary.",
+    "summary": "Warm confidence that draws people in and trusts its own spark.",
     "meaning": {
-      "upright": "Queen of Wands placeholder upright paragraph.",
-      "reversed": "Queen of Wands placeholder reversed paragraph."
+      "upright": "The Queen sits on a throne carved with lions, a sunflower in one hand and a leafy wand in the other, a black cat at their feet. This is confidence that warms rather than burns: sure of itself and generous with it. Consider where you could take up a little more space.",
+      "reversed": "Self-doubt may be dimming your spark, or your energy runs so hot it leaves others worn out. The black cat is a reminder that some things can stay private. Where do you need to rekindle your fire, and where to turn it down?"
     },
-    "advice": "Queen of Wands placeholder advice.",
-    "affirmation": "Queen of Wands placeholder affirmation.",
-    "as_a_person": "Queen of Wands placeholder as a person.",
+    "advice": "Say yes to one thing this week that you’d usually talk yourself out of.",
+    "affirmation": "I can trust my own spark.",
+    "as_a_person": "Warm, magnetic and self-assured, someone who makes others feel braver.",
     "facing": "forward",
     "pose": "seated",
     "symbols": [
@@ -3836,14 +3836,14 @@
     ],
     "combined": "Fire’s energy, leading others: a vision big enough to share.",
     "prompt": "What vision could you lead others toward?",
-    "summary": "King of Wands placeholder summary.",
+    "summary": "A vision big enough to lead others toward, held with steady fire.",
     "meaning": {
-      "upright": "King of Wands placeholder upright paragraph.",
-      "reversed": "King of Wands placeholder reversed paragraph."
+      "upright": "The King sits on a throne decorated with lions and salamanders, a flowering wand in hand, leaning forward as if ready to rise. This is leadership that comes from a clear vision and the will to carry it. Look at what you can see ahead, and who you could bring along.",
+      "reversed": "Boldness can turn into impatience, or into pushing others to move at your speed. Or you may be holding back a vision because leading feels like too much. Where could you lead by listening first?"
     },
-    "advice": "King of Wands placeholder advice.",
-    "affirmation": "King of Wands placeholder affirmation.",
-    "as_a_person": "King of Wands placeholder as a person.",
+    "advice": "Share one idea you believe in with someone who could help make it real.",
+    "affirmation": "I can lead with vision and with patience.",
+    "as_a_person": "Bold and visionary, a natural leader who inspires others to act.",
     "facing": "left",
     "pose": "seated",
     "symbols": [
@@ -3918,7 +3918,7 @@
       },
       {
         "id": "resting-hand",
-        "label": "The hand resting in his lap",
+        "label": "The hand resting in the lap",
         "prompt": "What are you ready to act on, but not yet?",
         "symbols": [],
         "region": {
@@ -3951,14 +3951,14 @@
     ],
     "combined": "Water’s pure potential: a heart opening, full and overflowing.",
     "prompt": "What would you let in if your heart were open?",
-    "summary": "Ace of Cups placeholder summary.",
+    "summary": "A heart opening, with more feeling than one cup can hold.",
     "meaning": {
-      "upright": "Ace of Cups placeholder upright paragraph.",
-      "reversed": "Ace of Cups placeholder reversed paragraph."
+      "upright": "A hand from a cloud offers a golden cup, its five streams spilling into a pond of lilies while a dove descends. This is feeling at its beginning: love, tenderness, openness, given freely. What would you let in if you weren’t guarding your heart?",
+      "reversed": "The cup is there, but something keeps it from filling or spilling over. You may be holding feelings back, or not letting yourself receive care. What would it take to let a little more in?"
     },
-    "advice": "Ace of Cups placeholder advice.",
-    "affirmation": "Ace of Cups placeholder affirmation.",
-    "as_a_person": "Ace of Cups placeholder as a person.",
+    "advice": "Let someone do something kind for you this week, and simply say thank you.",
+    "affirmation": "I can let love in and let it flow out.",
+    "as_a_person": "Open-hearted and tender, someone who gives love freely and easily.",
     "facing": null,
     "pose": null,
     "symbols": [
@@ -4073,14 +4073,14 @@
     ],
     "combined": "Water’s feelings, shared between two: a meeting of hearts.",
     "prompt": "Who meets you as an equal?",
-    "summary": "Two of Cups placeholder summary.",
+    "summary": "Two people meeting as equals, each offering a cup.",
     "meaning": {
-      "upright": "Two of Cups placeholder upright paragraph.",
-      "reversed": "Two of Cups placeholder reversed paragraph."
+      "upright": "Two figures face each other and raise their cups, a winged lion’s head floating above them. This is connection with balance in it: a friendship, partnership or love where both give and both receive. Who meets you as an equal, and how do you meet them?",
+      "reversed": "One side is giving more than the other, or a connection has gone quiet. Imbalance can creep in so slowly it’s hard to name. Where would an honest conversation help you meet again?"
     },
-    "advice": "Two of Cups placeholder advice.",
-    "affirmation": "Two of Cups placeholder affirmation.",
-    "as_a_person": "Two of Cups placeholder as a person.",
+    "advice": "Reach out to someone you care about and ask how they’re really doing.",
+    "affirmation": "I can give and receive in equal measure.",
+    "as_a_person": "Caring and attentive, someone who makes every relationship feel like a true partnership.",
     "facing": null,
     "pose": "standing",
     "symbols": [
@@ -4133,7 +4133,7 @@
       },
       {
         "id": "laurel-wreath",
-        "label": "The woman’s laurel wreath",
+        "label": "The laurel wreath",
         "prompt": "What do you honor in the person across from you?",
         "symbols": [
           "wreath"
@@ -4145,7 +4145,7 @@
       },
       {
         "id": "forward-step",
-        "label": "The man’s forward step",
+        "label": "The step forward",
         "prompt": "Who are you stepping toward with an open heart?",
         "symbols": [],
         "region": {
@@ -4178,14 +4178,14 @@
     ],
     "combined": "Water’s feelings, growing outward: joy that’s shared with others.",
     "prompt": "Who are the people you feel most yourself around?",
-    "summary": "Three of Cups placeholder summary.",
+    "summary": "Joy shared with friends, the kind that grows when it’s passed around.",
     "meaning": {
-      "upright": "Three of Cups placeholder upright paragraph.",
-      "reversed": "Three of Cups placeholder reversed paragraph."
+      "upright": "Three figures dance in a circle with their cups raised, a harvest of fruit at their feet. This is the joy of community: friendship, belonging, the people you feel most yourself around. Notice who is in your circle, and what deserves celebrating together.",
+      "reversed": "The party may have tipped into too much, or you’re watching the circle from outside. Feeling left out can sting even when no one meant it. Who could you reach toward, or invite in?"
     },
-    "advice": "Three of Cups placeholder advice.",
-    "affirmation": "Three of Cups placeholder affirmation.",
-    "as_a_person": "Three of Cups placeholder as a person.",
+    "advice": "Plan a small get-together, even just coffee, with people who make you laugh.",
+    "affirmation": "I can make room for joy with the people around me.",
+    "as_a_person": "Sociable and fun, someone who brings people together and celebrates their wins.",
     "facing": null,
     "pose": "dancing",
     "symbols": [
@@ -4244,7 +4244,7 @@
       },
       {
         "id": "grapes",
-        "label": "The grapes in her hand",
+        "label": "The grapes held up",
         "prompt": "What sweetness are you holding onto right now?",
         "symbols": [
           "harvest"
@@ -4256,7 +4256,7 @@
       },
       {
         "id": "flower-hair",
-        "label": "The flowers in her hair",
+        "label": "The flowers in the hair",
         "prompt": "What makes you feel most yourself among friends?",
         "symbols": [
           "flowers"
@@ -4291,14 +4291,14 @@
     ],
     "combined": "Water’s feelings, turned inward: not quite satisfied with what’s here.",
     "prompt": "What is being offered that you haven’t noticed?",
-    "summary": "Four of Cups placeholder summary.",
+    "summary": "Turned inward and not quite satisfied, missing what’s being offered.",
     "meaning": {
-      "upright": "Four of Cups placeholder upright paragraph.",
-      "reversed": "Four of Cups placeholder reversed paragraph."
+      "upright": "The figure sits under a tree with arms folded, gazing at three cups on the grass while a hand from a cloud offers a fourth. Sometimes withdrawing is needed reflection. Sometimes it’s a habit of not noticing. This card asks what’s being offered to you right now, and whether you’re ready to look up.",
+      "reversed": "You’re starting to re-engage, lifting your eyes from what felt stale. Something you’d overlooked may look different now. What has been there all along, waiting for you to notice?"
     },
-    "advice": "Four of Cups placeholder advice.",
-    "affirmation": "Four of Cups placeholder affirmation.",
-    "as_a_person": "Four of Cups placeholder as a person.",
+    "advice": "Write down three things you have right now that you’ve stopped noticing.",
+    "affirmation": "I can look up and notice what’s here.",
+    "as_a_person": "Thoughtful and introspective, someone who needs time alone before saying yes.",
     "facing": "forward",
     "pose": "seated",
     "symbols": [
@@ -4347,7 +4347,7 @@
       },
       {
         "id": "tree",
-        "label": "The tree at his back",
+        "label": "The tree behind",
         "prompt": "What has been quietly supporting you all along?",
         "symbols": [
           "tree"
@@ -4392,14 +4392,14 @@
     ],
     "combined": "Water’s feelings, spilled: loss, and what still remains.",
     "prompt": "What is still standing, even after the loss?",
-    "summary": "Five of Cups placeholder summary.",
+    "summary": "Loss fills the whole view for a while, and that’s part of grieving.",
     "meaning": {
-      "upright": "Five of Cups placeholder upright paragraph.",
-      "reversed": "Five of Cups placeholder reversed paragraph."
+      "upright": "A cloaked figure stands over three spilled cups, head bowed, with two cups still upright behind. Grief and regret narrow the view, and that’s a normal part of loss, not a failing. Let the sadness be real and, when you’re ready, notice what is still standing.",
+      "reversed": "You may be starting to turn around, toward the bridge and the cups that remain. Or you may be rushing past a grief that still needs its time. What would accepting this loss look like, without pretending it didn’t matter?"
     },
-    "advice": "Five of Cups placeholder advice.",
-    "affirmation": "Five of Cups placeholder affirmation.",
-    "as_a_person": "Five of Cups placeholder as a person.",
+    "advice": "Write down one thing you lost and one thing that is still here.",
+    "affirmation": "I can grieve what’s gone and still see what remains.",
+    "as_a_person": "Feels loss deeply and takes time to mourn, honest about sadness.",
     "facing": "left",
     "pose": "standing",
     "symbols": [
@@ -4505,14 +4505,14 @@
     ],
     "combined": "Water’s feelings, remembered: the sweetness of the past.",
     "prompt": "What memory are you returning to, and why now?",
-    "summary": "Six of Cups placeholder summary.",
+    "summary": "An old memory returns, carrying a kindness worth remembering.",
     "meaning": {
-      "upright": "Six of Cups placeholder upright paragraph.",
-      "reversed": "Six of Cups placeholder reversed paragraph."
+      "upright": "In an old courtyard, one child hands another a cup full of flowers. Memory is tugging at you: a sweetness from the past, a simple kindness, a place you still carry. What does that memory hold for you now, and what small gift could you pass along in the same spirit?",
+      "reversed": "The past may feel safer than the present, so you keep going back to it. Or you’re ready to take what was good there and move forward. What are you looking for back there that you could look for here?"
     },
-    "advice": "Six of Cups placeholder advice.",
-    "affirmation": "Six of Cups placeholder affirmation.",
-    "as_a_person": "Six of Cups placeholder as a person.",
+    "advice": "Do one small, kind thing for someone, the way it was once done for you.",
+    "affirmation": "I can treasure the past and still live in today.",
+    "as_a_person": "Gentle and sentimental, remembers birthdays and keeps old photographs.",
     "facing": "right",
     "pose": "standing",
     "symbols": [
@@ -4567,7 +4567,7 @@
       },
       {
         "id": "little-girl",
-        "label": "The little girl",
+        "label": "The smaller child",
         "prompt": "What simple kindness are you still able to receive?",
         "symbols": [
           "child"
@@ -4622,14 +4622,14 @@
     ],
     "combined": "Water’s feelings, dreaming: many possibilities, some real and some not.",
     "prompt": "Which of these dreams is worth acting on?",
-    "summary": "Seven of Cups placeholder summary.",
+    "summary": "Many dreams float in front of you, and only some are real choices.",
     "meaning": {
-      "upright": "Seven of Cups placeholder upright paragraph.",
-      "reversed": "Seven of Cups placeholder reversed paragraph."
+      "upright": "Seven cups hang in the clouds, holding jewels, a wreath, a snake, a veiled shape and more, while a dark silhouette looks on. Imagination is rich right now, and options multiply. Here, the work is telling the daydreams from the plans, and noticing which shiny option you want and which you only admire.",
+      "reversed": "The clouds are thinning. You may be ready to pick one dream and give it real time, or to admit that some of these were never yours. Which option still matters once the shine is gone?"
     },
-    "advice": "Seven of Cups placeholder advice.",
-    "affirmation": "Seven of Cups placeholder affirmation.",
-    "as_a_person": "Seven of Cups placeholder as a person.",
+    "advice": "List your options, then cross out every one you wouldn’t act on this month.",
+    "affirmation": "I can dream widely and still choose one thing.",
+    "as_a_person": "Imaginative and full of ideas, sometimes more at home in plans than in action.",
     "facing": "away",
     "pose": "standing",
     "symbols": [
@@ -4741,14 +4741,14 @@
     ],
     "combined": "Water’s feelings, moving on: leaving what no longer fills you.",
     "prompt": "What are you ready to walk away from?",
-    "summary": "Eight of Cups placeholder summary.",
+    "summary": "Walking away from what looks fine but no longer fills you.",
     "meaning": {
-      "upright": "Eight of Cups placeholder upright paragraph.",
-      "reversed": "Eight of Cups placeholder reversed paragraph."
+      "upright": "Under a watching moon, a figure with a staff walks away from eight stacked cups, toward the hills. Nothing here is broken, and yet something is missing, like the gap in the row. You might ask yourself whether you’ve outgrown something, and what you are really looking for beyond it.",
+      "reversed": "Leaving may feel too frightening, so you stay with what no longer fits. Or you may be leaving in a rush, before you know what you’re looking for. What keeps you here, and is it still a good reason?"
     },
-    "advice": "Eight of Cups placeholder advice.",
-    "affirmation": "Eight of Cups placeholder affirmation.",
-    "as_a_person": "Eight of Cups placeholder as a person.",
+    "advice": "Name one thing that drains you, and take one small step back from it.",
+    "affirmation": "I can leave what no longer fits, even if it looks fine.",
+    "as_a_person": "Restless and searching, willing to give up comfort for something more meaningful.",
     "facing": "away",
     "pose": "walking",
     "symbols": [
@@ -4846,14 +4846,14 @@
     ],
     "combined": "Water’s feelings, satisfied: a wish that’s come true.",
     "prompt": "What do you have now that you once wished for?",
-    "summary": "Nine of Cups placeholder summary.",
+    "summary": "A wish has come true, and it’s worth stopping to enjoy it.",
     "meaning": {
-      "upright": "Nine of Cups placeholder upright paragraph.",
-      "reversed": "Nine of Cups placeholder reversed paragraph."
+      "upright": "A figure sits on a plain bench with folded arms, a curved row of cups on display behind. Something you wanted is here, and the satisfaction is real, so take in what you have, with gratitude, and notice the ordinary things that quietly hold your comfort up.",
+      "reversed": "Contentment can tip into smugness, or into always wanting the next thing. The folded arms may be keeping others out. Is this enough, and if not, what is really missing?"
     },
-    "advice": "Nine of Cups placeholder advice.",
-    "affirmation": "Nine of Cups placeholder affirmation.",
-    "as_a_person": "Nine of Cups placeholder as a person.",
+    "advice": "Write down three things you have now that you once wished for.",
+    "affirmation": "I can enjoy what I have without reaching for more.",
+    "as_a_person": "A content and generous host, proud of their good life and glad to share it.",
     "facing": "forward",
     "pose": "seated",
     "symbols": [
@@ -4945,14 +4945,14 @@
     ],
     "combined": "Water’s feelings, complete: love that’s shared and lasting.",
     "prompt": "Where do you feel you truly belong?",
-    "summary": "Ten of Cups placeholder summary.",
+    "summary": "Belonging, shared joy, and a life that feels like home.",
     "meaning": {
-      "upright": "Ten of Cups placeholder upright paragraph.",
-      "reversed": "Ten of Cups placeholder reversed paragraph."
+      "upright": "Two figures stand with raised arms beneath a rainbow of cups, while children dance nearby and a house sits among the trees. Feeling has come full circle into belonging. The question here is what a good life looks like in your own words, and who you want to share it with.",
+      "reversed": "Harmony may feel strained right now, or you may be measuring your life against a picture that was never yours. Where do you feel disconnected, and what would one honest conversation change?"
     },
-    "advice": "Ten of Cups placeholder advice.",
-    "affirmation": "Ten of Cups placeholder affirmation.",
-    "as_a_person": "Ten of Cups placeholder as a person.",
+    "advice": "Spend some unhurried time this week with someone who feels like home.",
+    "affirmation": "I belong, and I can make room for others to belong.",
+    "as_a_person": "Warm and welcoming, the friend whose kitchen everyone ends up in.",
     "facing": "away",
     "pose": "standing",
     "symbols": [
@@ -5051,14 +5051,14 @@
     ],
     "combined": "Water’s feelings, newly found: open to surprise and imagination.",
     "prompt": "What unexpected feeling or idea is surfacing?",
-    "summary": "Page of Cups placeholder summary.",
+    "summary": "A surprising feeling or idea pops up, and curiosity wants to follow it.",
     "meaning": {
-      "upright": "Page of Cups placeholder upright paragraph.",
-      "reversed": "Page of Cups placeholder reversed paragraph."
+      "upright": "The Page stands by the waves, looking at a fish that has popped up out of a cup. A feeling or creative idea has caught you off guard, maybe one that seems a little silly. Meet it with curiosity instead of judgment, and see where it goes.",
+      "reversed": "A feeling may be coming out sideways, or a creative spark is being dismissed before it has a chance. Which idea have you laughed off too quickly?"
     },
-    "advice": "Page of Cups placeholder advice.",
-    "affirmation": "Page of Cups placeholder affirmation.",
-    "as_a_person": "Page of Cups placeholder as a person.",
+    "advice": "Make something small and playful today, with no plan for what it becomes.",
+    "affirmation": "I can welcome a surprising feeling with curiosity.",
+    "as_a_person": "Dreamy and open-hearted, quick to delight in small wonders.",
     "facing": "left",
     "pose": "standing",
     "symbols": [
@@ -5147,14 +5147,14 @@
     ],
     "combined": "Water’s feelings, in motion: following the heart where it leads.",
     "prompt": "Where is your heart leading you?",
-    "summary": "Knight of Cups placeholder summary.",
+    "summary": "Following the heart, offering a feeling, and moving gently toward what matters.",
     "meaning": {
-      "upright": "Knight of Cups placeholder upright paragraph.",
-      "reversed": "Knight of Cups placeholder reversed paragraph."
+      "upright": "The rider holds out a cup from a slow white horse, wearing a winged helmet and winged heels. This is the heart in motion: an invitation, a romance, an ideal you want to pursue. The card asks what you are offering, and to whom, and whether you’re moving at a pace that lets it land.",
+      "reversed": "Ideals can outrun reality, leaving you moody when things don’t match the dream. Or the heart is hesitating at the river’s edge. Which expectation could you soften, and what feeling needs crossing rather than avoiding?"
     },
-    "advice": "Knight of Cups placeholder advice.",
-    "affirmation": "Knight of Cups placeholder affirmation.",
-    "as_a_person": "Knight of Cups placeholder as a person.",
+    "advice": "Make one heartfelt offer this week: an invitation, a note, a kind word.",
+    "affirmation": "I can follow my heart and keep my feet on the ground.",
+    "as_a_person": "Romantic and idealistic, sincere in feeling and easily moved by art and music.",
     "facing": "right",
     "pose": "riding",
     "symbols": [
@@ -5265,7 +5265,7 @@
     "prompt": "Whose feelings are you holding, and who holds yours?",
     "summary": "Deep feeling, held steadily: care that listens before it acts.",
     "meaning": {
-      "upright": "The Queen sits at the water’s edge, studying a closed, ornate cup. She feels things deeply and reads people well, but she doesn’t spill over. This card asks how you can stay open to feeling, your own and other people’s, while keeping your own shape.",
+      "upright": "The Queen sits at the water’s edge, studying a closed, ornate cup. This is someone who feels things deeply and reads people well, but doesn’t spill over. How can you stay open to feeling, your own and other people’s, while keeping your own shape?",
       "reversed": "Feeling everything for everyone can leave you flooded, or empty. Or you may be closing off to stay safe. What do you need to refill, and where would a boundary help?"
     },
     "advice": "Before you look after someone else’s feelings today, check in on your own.",
@@ -5296,7 +5296,7 @@
       },
       {
         "id": "shore",
-        "label": "The water at her feet",
+        "label": "The water at the feet",
         "prompt": "Which feelings are lapping at the edges of your day?",
         "symbols": [
           "water"
@@ -5366,14 +5366,14 @@
     ],
     "combined": "Water’s feelings, steadied: calm care in the middle of strong currents.",
     "prompt": "How can you stay steady while still feeling everything?",
-    "summary": "King of Cups placeholder summary.",
+    "summary": "Calm in strong currents: deep feeling, held with steadiness and care.",
     "meaning": {
-      "upright": "King of Cups placeholder upright paragraph.",
-      "reversed": "King of Cups placeholder reversed paragraph."
+      "upright": "The King sits on a throne afloat on rough water, holding a cup steady while a fish leaps nearby. Strong feelings are present here, and they’re met with calm rather than pushed away. Here, the practice is staying steady and kind while still feeling everything.",
+      "reversed": "Steadiness can harden into holding everything in, or the lid can come off all at once. Which feelings are you keeping out of sight, and where could they safely go?"
     },
-    "advice": "King of Cups placeholder advice.",
-    "affirmation": "King of Cups placeholder affirmation.",
-    "as_a_person": "King of Cups placeholder as a person.",
+    "advice": "When a strong feeling rises today, pause and name it before you respond.",
+    "affirmation": "I can feel deeply and stay steady.",
+    "as_a_person": "Calm and compassionate, the steady one others turn to in a storm.",
     "facing": "forward",
     "pose": "seated",
     "symbols": [
@@ -5485,14 +5485,14 @@
     ],
     "combined": "Air’s pure potential: a clear thought that cuts through.",
     "prompt": "What truth is becoming clear to you?",
-    "summary": "Ace of Swords placeholder summary.",
+    "summary": "A clear thought cuts through the fog, and you can see what’s true.",
     "meaning": {
-      "upright": "Ace of Swords placeholder upright paragraph.",
-      "reversed": "Ace of Swords placeholder reversed paragraph."
+      "upright": "A hand reaches from a cloud, gripping an upright sword topped with a crown, above distant mountains. This is a beginning of the mind: a breakthrough, a truth you can finally name. Consider what has become clear, and whether you’re willing to hold it firmly and speak it plainly.",
+      "reversed": "The fog hasn’t lifted yet, or a clear idea is getting tangled in second-guessing. Truth used carelessly can also cut. What do you know for certain, and what still needs thinking through?"
     },
-    "advice": "Ace of Swords placeholder advice.",
-    "affirmation": "Ace of Swords placeholder affirmation.",
-    "as_a_person": "Ace of Swords placeholder as a person.",
+    "advice": "Write the one sentence you know to be true about this situation.",
+    "affirmation": "I can trust what I see clearly.",
+    "as_a_person": "Sharp and honest, says the clear thing others are circling around.",
     "facing": null,
     "pose": null,
     "symbols": [
@@ -5599,14 +5599,14 @@
     ],
     "combined": "Air’s thoughts, at a standstill: two options and a blindfold.",
     "prompt": "What decision are you avoiding, and what would help you see it?",
-    "summary": "Two of Swords placeholder summary.",
+    "summary": "Two choices held perfectly still, behind a blindfold that keeps the decision away.",
     "meaning": {
-      "upright": "Two of Swords placeholder upright paragraph.",
-      "reversed": "Two of Swords placeholder reversed paragraph."
+      "upright": "A blindfolded figure sits on a stone bench, two swords crossed over the chest, with water and rocks behind. Holding still can feel safer than choosing, and sometimes a pause is wise. You might ask yourself what you are choosing not to look at, and what you would need to see in order to decide.",
+      "reversed": "The stalemate is breaking: you may be ready to take the blindfold off and choose. Or there is so much information that every option blurs. What one fact would make this choice simpler?"
     },
-    "advice": "Two of Swords placeholder advice.",
-    "affirmation": "Two of Swords placeholder affirmation.",
-    "as_a_person": "Two of Swords placeholder as a person.",
+    "advice": "Write each option down with one honest line about what you fear in it.",
+    "affirmation": "I can look at this choice with open eyes.",
+    "as_a_person": "Diplomatic and careful, a peacekeeper who sometimes waits too long to choose.",
     "facing": "forward",
     "pose": "seated",
     "symbols": [
@@ -5699,14 +5699,14 @@
     ],
     "combined": "Air’s thoughts, piercing: a painful truth that hurts to hear.",
     "prompt": "What hurt needs to be acknowledged before it can heal?",
-    "summary": "Three of Swords placeholder summary.",
+    "summary": "A painful truth has landed, and the hurt deserves to be named.",
     "meaning": {
-      "upright": "Three of Swords placeholder upright paragraph.",
-      "reversed": "Three of Swords placeholder reversed paragraph."
+      "upright": "Three swords pierce a heart under a storm cloud and falling rain. Something has hurt: a loss, a hard word, a truth you didn’t want to hear. The card doesn’t ask you to rush past it. It asks you to name the hurt plainly, let it rain if it needs to, and notice what this pain says about what mattered.",
+      "reversed": "The hurt may be easing, little by little, or you may be ready to stop replaying the thought that keeps cutting in the same place. Healing keeps its own pace. What would it mean to let some of this go?"
     },
-    "advice": "Three of Swords placeholder advice.",
-    "affirmation": "Three of Swords placeholder affirmation.",
-    "as_a_person": "Three of Swords placeholder as a person.",
+    "advice": "Tell one trusted person, or a page in your journal, what hurt.",
+    "affirmation": "I can let this hurt be real and still be gentle with myself.",
+    "as_a_person": "Tender and truthful, someone who has known heartbreak and doesn’t hide it.",
     "facing": null,
     "pose": null,
     "symbols": [
@@ -5787,14 +5787,14 @@
     ],
     "combined": "Air’s thoughts, at rest: a pause to let the mind recover.",
     "prompt": "What would real rest look like for you right now?",
-    "summary": "Four of Swords placeholder summary.",
+    "summary": "A pause to rest the mind, so it can recover.",
     "meaning": {
-      "upright": "Four of Swords placeholder upright paragraph.",
-      "reversed": "Four of Swords placeholder reversed paragraph."
+      "upright": "A figure lies still on a tomb with folded hands, one sword beneath and three hanging on the wall, under a stained glass window. After struggle, the mind needs quiet. It’s worth picturing what real rest would look like for you, and which worry you can hang up for a while.",
+      "reversed": "Rest may feel impossible, with your thoughts still running even when you lie down. Or burnout is asking louder than it should have to. What is keeping you from stopping, and what is the smallest real break you could take?"
     },
-    "advice": "Four of Swords placeholder advice.",
-    "affirmation": "Four of Swords placeholder affirmation.",
-    "as_a_person": "Four of Swords placeholder as a person.",
+    "advice": "Set aside twenty quiet minutes this week with no screen, no task, and no plan.",
+    "affirmation": "I can rest without earning it first.",
+    "as_a_person": "Calm and reflective, someone who knows when to step back and recharge.",
     "facing": null,
     "pose": "lying",
     "symbols": [
@@ -5887,14 +5887,14 @@
     ],
     "combined": "Air’s thoughts, disrupted: the sharp edges of an argument and what it leaves behind.",
     "prompt": "Is there a conflict where winning might cost more than it’s worth?",
-    "summary": "Five of Swords placeholder summary.",
+    "summary": "Winning the argument, and noticing what it cost.",
     "meaning": {
-      "upright": "Five of Swords placeholder upright paragraph.",
-      "reversed": "Five of Swords placeholder reversed paragraph."
+      "upright": "A figure with a smirk gathers swords while two others walk away toward the water, under a broken sky. Someone has won, but the air is tense and no one looks at peace. This card asks whether a conflict in your life is worth winning, and who pays the price if you insist.",
+      "reversed": "You may be ready to set this fight down, or to reach out to someone who walked away. Pride can make that hard. What would making peace ask of you, and what would it give back?"
     },
-    "advice": "Five of Swords placeholder advice.",
-    "affirmation": "Five of Swords placeholder affirmation.",
-    "as_a_person": "Five of Swords placeholder as a person.",
+    "advice": "Pick one disagreement and ask what the other person needed, before arguing your side.",
+    "affirmation": "I can let a fight go without losing myself.",
+    "as_a_person": "Competitive and quick-witted, sometimes more focused on being right than being close.",
     "facing": "left",
     "pose": "standing",
     "symbols": [
@@ -5982,14 +5982,14 @@
     ],
     "combined": "Air’s thoughts, in passage: moving toward calmer water.",
     "prompt": "What are you leaving behind as you move forward?",
-    "summary": "Six of Swords placeholder summary.",
+    "summary": "Moving through a transition, toward calmer water.",
     "meaning": {
-      "upright": "Six of Swords placeholder upright paragraph.",
-      "reversed": "Six of Swords placeholder reversed paragraph."
+      "upright": "Someone poles a boat toward a far shore, carrying a hooded passenger, a child and six upright swords. You’re in the middle of a change, leaving something difficult behind. It’s worth noticing what you are carrying with you, and who or what is helping you across.",
+      "reversed": "The crossing may feel stalled, or unfinished business keeps pulling you back to the shore you left. What still needs to be settled before you can move on?"
     },
-    "advice": "Six of Swords placeholder advice.",
-    "affirmation": "Six of Swords placeholder affirmation.",
-    "as_a_person": "Six of Swords placeholder as a person.",
+    "advice": "Name one worry you could leave on the old shore this week.",
+    "affirmation": "I can move forward gently, one stroke at a time.",
+    "as_a_person": "Quietly resilient, someone who gets themselves and others through hard changes.",
     "facing": "away",
     "pose": "standing",
     "symbols": [
@@ -6093,14 +6093,14 @@
     ],
     "combined": "Air’s thoughts, scheming: a plan made on your own.",
     "prompt": "Is there something you’re not saying, even to yourself?",
-    "summary": "Seven of Swords placeholder summary.",
+    "summary": "A plan made alone, and the question of what you’re keeping quiet.",
     "meaning": {
-      "upright": "Seven of Swords placeholder upright paragraph.",
-      "reversed": "Seven of Swords placeholder reversed paragraph."
+      "upright": "A figure tiptoes away from a camp of tents, arms full of swords, glancing back over one shoulder while two swords stay behind. This can be clever strategy, or going it alone because asking feels risky. The question here is what you are not saying, even to yourself, and whether the plan needs secrecy at all.",
+      "reversed": "You may be ready to come clean, or to rethink a plan that has grown too heavy to carry alone. What would change if you said this out loud to someone you trust?"
     },
-    "advice": "Seven of Swords placeholder advice.",
-    "affirmation": "Seven of Swords placeholder affirmation.",
-    "as_a_person": "Seven of Swords placeholder as a person.",
+    "advice": "Tell one person about the plan you’ve been keeping to yourself.",
+    "affirmation": "I can be strategic and still be honest.",
+    "as_a_person": "Resourceful and independent, clever at finding a way, slow to ask for help.",
     "facing": "left",
     "pose": "walking",
     "symbols": [
@@ -6201,14 +6201,14 @@
     ],
     "combined": "Air’s thoughts, binding: a trap that is looser than it looks.",
     "prompt": "Which of these limits are real, and which are thoughts?",
-    "summary": "Eight of Swords placeholder summary.",
+    "summary": "A trap that feels tight, and may be looser than it looks.",
     "meaning": {
-      "upright": "Eight of Swords placeholder upright paragraph.",
-      "reversed": "Eight of Swords placeholder reversed paragraph."
+      "upright": "A blindfolded figure stands bound inside a ring of swords, puddles underfoot, a castle on the hill behind. The bindings are loose and the ring has gaps. Which limits are real and which are thoughts? What story about yourself keeps you from seeing a way out?",
+      "reversed": "The blindfold is slipping. A new perspective may be showing you a gap you hadn’t noticed, or a belief that no longer holds. What small step is possible now?"
     },
-    "advice": "Eight of Swords placeholder advice.",
-    "affirmation": "Eight of Swords placeholder affirmation.",
-    "as_a_person": "Eight of Swords placeholder as a person.",
+    "advice": "Write down one limit you believe in, then one piece of evidence against it.",
+    "affirmation": "I can take one step even when I can’t see the whole way.",
+    "as_a_person": "Thoughtful and cautious, sometimes held back more by worries than by real limits.",
     "facing": "forward",
     "pose": "standing",
     "symbols": [
@@ -6259,7 +6259,7 @@
       },
       {
         "id": "puddles",
-        "label": "The puddles at her feet",
+        "label": "The puddles underfoot",
         "prompt": "What small step could you take on uncertain ground?",
         "symbols": [
           "water"
@@ -6306,14 +6306,14 @@
     ],
     "combined": "Air’s thoughts, racing at night: worry that grows in the dark.",
     "prompt": "What would you say to a friend who was worrying like this?",
-    "summary": "Nine of Swords placeholder summary.",
+    "summary": "Worry grows loud in the dark, and it doesn’t have to be carried alone.",
     "meaning": {
-      "upright": "Nine of Swords placeholder upright paragraph.",
-      "reversed": "Nine of Swords placeholder reversed paragraph."
+      "upright": "A figure sits up in bed, face in hands, with nine swords lined up on the black wall behind. Anxious thoughts can feel enormous at night, when there’s nothing to check them against. The card names that weight without deciding what it means for you. It asks what you would say to a friend worrying like this, and who you could tell.",
+      "reversed": "The worry may be loosening its grip, or you may be ready to reach out instead of carrying it alone. Hope can start small. Which thought looks different in daylight, or said aloud to someone?"
     },
-    "advice": "Nine of Swords placeholder advice.",
-    "affirmation": "Nine of Swords placeholder affirmation.",
-    "as_a_person": "Nine of Swords placeholder as a person.",
+    "advice": "Tell one person what has been keeping you up, or write it down before bed.",
+    "affirmation": "I can be gentle with my worried mind.",
+    "as_a_person": "Conscientious and caring, a deep thinker who sometimes worries alone at night.",
     "facing": "forward",
     "pose": "seated",
     "symbols": [
@@ -6406,14 +6406,14 @@
     ],
     "combined": "Air’s thoughts, at their end: nothing more to lose, and the dawn coming.",
     "prompt": "What can begin now that this is over?",
-    "summary": "Ten of Swords placeholder summary.",
+    "summary": "Something has reached its end, and you can stop fighting it.",
     "meaning": {
-      "upright": "Ten of Swords placeholder upright paragraph.",
-      "reversed": "Ten of Swords placeholder reversed paragraph."
+      "upright": "A figure lies on the shore under a black sky, ten swords standing in their back, while a band of yellow light stretches over calm water. Something has reached bottom: an ending, or the exhaustion of a long struggle. Only you know what this is. What can you finally stop fighting, and what might begin now that it’s over?",
+      "reversed": "The worst of it may be behind you, and recovery is starting, slowly and unevenly. Or you may be holding on to something that has already ended. What are you ready to let go of completely?"
     },
-    "advice": "Ten of Swords placeholder advice.",
-    "affirmation": "Ten of Swords placeholder affirmation.",
-    "as_a_person": "Ten of Swords placeholder as a person.",
+    "advice": "Rest today, and name one small thing that could begin from here.",
+    "affirmation": "I can let this be over and start small.",
+    "as_a_person": "Someone who has been through the worst and is quietly finding their feet.",
     "facing": null,
     "pose": "lying",
     "symbols": [
@@ -6501,14 +6501,14 @@
     ],
     "combined": "Air’s thoughts, newly sharpened: eager, watchful, full of questions.",
     "prompt": "What are you trying to understand?",
-    "summary": "Page of Swords placeholder summary.",
+    "summary": "Curiosity with its eyes open: a mind eager to understand, watching from high ground.",
     "meaning": {
-      "upright": "Page of Swords placeholder upright paragraph.",
-      "reversed": "Page of Swords placeholder reversed paragraph."
+      "upright": "The Page stands on a windy rise, sword raised, birds scattering across the sky. This is a mind waking up, full of questions and quick to notice things. Consider what you’re trying to understand, and whether you’re ready to ask about it plainly.",
+      "reversed": "Curiosity can turn into restlessness, with thoughts flying off before any one of them lands, or into talk about people instead of with them. Which question would you actually like answered?"
     },
-    "advice": "Page of Swords placeholder advice.",
-    "affirmation": "Page of Swords placeholder affirmation.",
-    "as_a_person": "Page of Swords placeholder as a person.",
+    "advice": "Write down one question you keep circling, then find one honest source to ask.",
+    "affirmation": "I can stay curious without needing every answer today.",
+    "as_a_person": "Quick, watchful and full of questions, always the first to ask why.",
     "facing": "left",
     "pose": "standing",
     "symbols": [
@@ -6614,14 +6614,14 @@
     ],
     "combined": "Air’s thoughts, charging: ideas rushed into action.",
     "prompt": "Where could slowing down make you sharper?",
-    "summary": "Knight of Swords placeholder summary.",
+    "summary": "Ideas at full gallop: sharp, fast, and sometimes ahead of themselves.",
     "meaning": {
-      "upright": "Knight of Swords placeholder upright paragraph.",
-      "reversed": "Knight of Swords placeholder reversed paragraph."
+      "upright": "Sword high, the rider charges past wind-bent trees under torn clouds. There’s real force here: a quick mind that sees what it wants and goes. It’s worth noticing whether you know why you’re charging, and where slowing down might make you sharper.",
+      "reversed": "Speed may be outrunning sense: words said before they were thought through, plans pushed ahead without checking who they flatten. Or the drive has stalled. What would change if you paused for one breath first?"
     },
-    "advice": "Knight of Swords placeholder advice.",
-    "affirmation": "Knight of Swords placeholder affirmation.",
-    "as_a_person": "Knight of Swords placeholder as a person.",
+    "advice": "Before you send the next urgent message, reread it once and wait ten minutes.",
+    "affirmation": "I can move with purpose and still take a breath.",
+    "as_a_person": "Driven and quick-witted, ready to argue a point and race toward a goal.",
     "facing": "left",
     "pose": "riding",
     "symbols": [
@@ -6717,14 +6717,14 @@
     ],
     "combined": "Air’s thoughts, held with clarity: honest, direct, and fair.",
     "prompt": "What would you say if you spoke with kind clarity?",
-    "summary": "Queen of Swords placeholder summary.",
+    "summary": "Clear thinking spoken kindly: honesty that knows its own boundaries.",
     "meaning": {
-      "upright": "Queen of Swords placeholder upright paragraph.",
-      "reversed": "Queen of Swords placeholder reversed paragraph."
+      "upright": "The Queen sits upright among the clouds, sword raised in one hand and the other hand open. The open hand matters as much as the blade. This card speaks to seeing clearly, saying what’s true, and keeping your boundaries without shutting people out. What would you say if you spoke with kind clarity?",
+      "reversed": "Clarity can harden into coldness, judging quickly to stay protected. Or you may be blunting your honesty to keep the peace. Where has the sword come down when an open hand would have done more?"
     },
-    "advice": "Queen of Swords placeholder advice.",
-    "affirmation": "Queen of Swords placeholder affirmation.",
-    "as_a_person": "Queen of Swords placeholder as a person.",
+    "advice": "Say one true thing you’ve been holding back, plainly and kindly.",
+    "affirmation": "I can be honest and kind in the same breath.",
+    "as_a_person": "Clear-eyed and direct, someone who tells you the truth and means well by it.",
     "facing": "right",
     "pose": "seated",
     "symbols": [
@@ -6788,7 +6788,7 @@
       },
       {
         "id": "clouds",
-        "label": "The clouds at her side",
+        "label": "The clouds alongside",
         "prompt": "What feelings gather around you while you try to stay clear?",
         "symbols": [
           "cloud"
@@ -6835,14 +6835,14 @@
     ],
     "combined": "Air’s thoughts, leading others: fair decisions made with a clear head.",
     "prompt": "What decision needs both your head and your fairness?",
-    "summary": "King of Swords placeholder summary.",
+    "summary": "A clear head in charge: decisions made fairly and owned openly.",
     "meaning": {
-      "upright": "King of Swords placeholder upright paragraph.",
-      "reversed": "King of Swords placeholder reversed paragraph."
+      "upright": "The King faces forward on a throne carved with butterflies, sword tilted, two birds high in the sky behind. Here thought becomes responsibility: weighing things fairly, deciding, and standing behind the decision. Which choice needs both your head and your fairness?",
+      "reversed": "Judgment can stiffen into rules for their own sake, or authority can be used to win rather than to be fair. Is there a decision you’re defending more from pride than from reason?"
     },
-    "advice": "King of Swords placeholder advice.",
-    "affirmation": "King of Swords placeholder affirmation.",
-    "as_a_person": "King of Swords placeholder as a person.",
+    "advice": "Write down the reasons behind one decision this week, and check them for fairness.",
+    "affirmation": "I can decide clearly and stay open to being wrong.",
+    "as_a_person": "Fair-minded and principled, a steady voice others trust to make the hard call.",
     "facing": "forward",
     "pose": "seated",
     "symbols": [
@@ -6894,7 +6894,7 @@
       },
       {
         "id": "resting-hand",
-        "label": "The hand on his knee",
+        "label": "The hand on the knee",
         "prompt": "What can you leave resting while you think it through?",
         "symbols": [],
         "region": {
@@ -6951,14 +6951,14 @@
     ],
     "combined": "Earth’s pure potential: a practical, tangible beginning you can hold in your hand.",
     "prompt": "What small, practical seed could you plant this week?",
-    "summary": "Ace of Pentacles placeholder summary.",
+    "summary": "A small, solid beginning you can hold in your hand.",
     "meaning": {
-      "upright": "Ace of Pentacles placeholder upright paragraph.",
-      "reversed": "Ace of Pentacles placeholder reversed paragraph."
+      "upright": "A hand reaches out of a cloud holding a single coin over a quiet garden, with a path running out through an archway. This is an offer you can touch: a skill, a routine, a modest resource, a fresh start in daily life. What small, practical seed could you plant this week?",
+      "reversed": "The ground may feel shaky, or an offer may have slipped by while you were unsure. Beginnings in the body and in daily life don’t need to be big. What is still within reach, even if it’s smaller than you hoped?"
     },
-    "advice": "Ace of Pentacles placeholder advice.",
-    "affirmation": "Ace of Pentacles placeholder affirmation.",
-    "as_a_person": "Ace of Pentacles placeholder as a person.",
+    "advice": "Choose one practical habit to start this week and do it once today.",
+    "affirmation": "I can start small and still build something real.",
+    "as_a_person": "Grounded and resourceful, someone who turns a modest chance into something useful.",
     "facing": null,
     "pose": null,
     "symbols": [
@@ -7069,14 +7069,14 @@
     ],
     "combined": "Earth’s matters, juggled: keeping two things in motion.",
     "prompt": "What are you juggling, and what could you set down?",
-    "summary": "Two of Pentacles placeholder summary.",
+    "summary": "Keeping two things in motion, lightly, while the waves rise and fall.",
     "meaning": {
-      "upright": "Two of Pentacles placeholder upright paragraph.",
-      "reversed": "Two of Pentacles placeholder reversed paragraph."
+      "upright": "A figure in a tall red hat dances with two coins joined by a looping band, while ships ride high waves behind. Life is asking you to juggle: work and rest, needs and wants, two demands at once. The card asks how you keep a light step, and what you could set down.",
+      "reversed": "The juggling may have tipped into overwhelm, with something about to drop or already dropped. That’s information, not failure. Which ball could you put down on purpose instead of by accident?"
     },
-    "advice": "Two of Pentacles placeholder advice.",
-    "affirmation": "Two of Pentacles placeholder affirmation.",
-    "as_a_person": "Two of Pentacles placeholder as a person.",
+    "advice": "List what you’re juggling right now and set one item down for the week.",
+    "affirmation": "I can keep my balance by holding a little less.",
+    "as_a_person": "Adaptable and quick on their feet, good at keeping several things going at once.",
     "facing": "forward",
     "pose": "dancing",
     "symbols": [
@@ -7160,14 +7160,14 @@
     ],
     "combined": "Earth’s work, growing: skill shared with others.",
     "prompt": "Who helps make your work better?",
-    "summary": "Three of Pentacles placeholder summary.",
+    "summary": "Good work made better by many hands and shared skill.",
     "meaning": {
-      "upright": "Three of Pentacles placeholder upright paragraph.",
-      "reversed": "Three of Pentacles placeholder reversed paragraph."
+      "upright": "A mason on a bench works on a carved archway while two others hold the plans and look on. Each brings something the others don’t have. This card points to craft, teamwork, and the trust it takes to share an unfinished piece. Who helps make your work better?",
+      "reversed": "The plans may not match, or you may be trying to build it all alone. Misalignment often comes from things nobody said out loud. Who needs to see your plan, and whose skill have you not asked for?"
     },
-    "advice": "Three of Pentacles placeholder advice.",
-    "affirmation": "Three of Pentacles placeholder affirmation.",
-    "as_a_person": "Three of Pentacles placeholder as a person.",
+    "advice": "Show one piece of unfinished work to someone whose skill you respect.",
+    "affirmation": "I do better work when I let others in.",
+    "as_a_person": "Skilled and cooperative, someone who listens to the plan and takes pride in the craft.",
     "facing": null,
     "pose": "standing",
     "symbols": [
@@ -7233,7 +7233,7 @@
       },
       {
         "id": "bench",
-        "label": "The bench he stands on",
+        "label": "The bench to stand on",
         "prompt": "What simple support lifts you high enough to reach your work?",
         "symbols": [],
         "region": {
@@ -7266,14 +7266,14 @@
     ],
     "combined": "Earth’s resources, held tight: safety, and the fear of losing it.",
     "prompt": "What are you holding on to out of fear?",
-    "summary": "Four of Pentacles placeholder summary.",
+    "summary": "Holding on for safety, and wondering what the holding costs.",
     "meaning": {
-      "upright": "Four of Pentacles placeholder upright paragraph.",
-      "reversed": "Four of Pentacles placeholder reversed paragraph."
+      "upright": "The figure sits with one coin clutched to the chest, one balanced on the crown and two underfoot, a town at their back. Security matters, and wanting to keep what you have is human. Notice where the grip has become so tight that you can’t use or enjoy what you hold.",
+      "reversed": "The grip may be loosening: a chance to share, to spend a little on what matters, or to let a worry go. Or holding on may be turning into fear. What would feel safe enough to open your hand to?"
     },
-    "advice": "Four of Pentacles placeholder advice.",
-    "affirmation": "Four of Pentacles placeholder affirmation.",
-    "as_a_person": "Four of Pentacles placeholder as a person.",
+    "advice": "Notice one thing you’re gripping tightly, and loosen it by one small step.",
+    "affirmation": "I can feel secure without holding on to everything.",
+    "as_a_person": "Careful and protective, someone who guards what they have and plans for lean times.",
     "facing": "forward",
     "pose": "seated",
     "symbols": [
@@ -7297,7 +7297,7 @@
       },
       {
         "id": "coins-underfoot",
-        "label": "The coins under his feet",
+        "label": "The coins underfoot",
         "prompt": "What security are you standing on without noticing it?",
         "symbols": [
           "pentacle"
@@ -7309,7 +7309,7 @@
       },
       {
         "id": "town-behind",
-        "label": "The town behind him",
+        "label": "The town behind",
         "prompt": "Who have you turned your back on to stay safe?",
         "symbols": [
           "house",
@@ -7322,7 +7322,7 @@
       },
       {
         "id": "coin-on-head",
-        "label": "The coin on his crown",
+        "label": "The coin on the crown",
         "prompt": "What worry do you keep balanced on top of your head?",
         "symbols": [
           "pentacle",
@@ -7358,14 +7358,14 @@
     ],
     "combined": "Earth’s matters, in winter: hardship, and help that is closer than it looks.",
     "prompt": "Where could you ask for help you haven’t asked for?",
-    "summary": "Five of Pentacles placeholder summary.",
+    "summary": "A hard season, and help that may be closer than it feels.",
     "meaning": {
-      "upright": "Five of Pentacles placeholder upright paragraph.",
-      "reversed": "Five of Pentacles placeholder reversed paragraph."
+      "upright": "Two figures walk barefoot through falling snow, one on crutches, past a lit window they don’t look up at. This card names hardship plainly: worry, strain, feeling left out in the cold. It also asks where help is close by, and what makes it hard to ask for.",
+      "reversed": "Things may be easing, or you may be starting to let help in. Recovery is often uneven, and asking is part of it. Who or what has been there for you that you’re only now noticing?"
     },
-    "advice": "Five of Pentacles placeholder advice.",
-    "affirmation": "Five of Pentacles placeholder affirmation.",
-    "as_a_person": "Five of Pentacles placeholder as a person.",
+    "advice": "Ask one person or service for a specific kind of help this week.",
+    "affirmation": "I deserve warmth and help, even in a hard season.",
+    "as_a_person": "Resilient through hard times, someone who keeps walking and stays beside a companion.",
     "facing": null,
     "pose": "walking",
     "symbols": [
@@ -7389,7 +7389,7 @@
       },
       {
         "id": "crutches",
-        "label": "The man on crutches",
+        "label": "The figure on crutches",
         "prompt": "What are you leaning on to get through this stretch?",
         "symbols": [],
         "region": {
@@ -7411,7 +7411,7 @@
       },
       {
         "id": "shawled-woman",
-        "label": "The woman in the shawl",
+        "label": "The figure in the shawl",
         "prompt": "Who walks beside you through a hard stretch?",
         "symbols": [],
         "region": {
@@ -7456,14 +7456,14 @@
     ],
     "combined": "Earth’s resources, shared: giving and receiving in balance.",
     "prompt": "Where are you giving, and where are you receiving?",
-    "summary": "Six of Pentacles placeholder summary.",
+    "summary": "Giving and receiving in balance, with fairness held in the scales.",
     "meaning": {
-      "upright": "Six of Pentacles placeholder upright paragraph.",
-      "reversed": "Six of Pentacles placeholder reversed paragraph."
+      "upright": "A figure holds scales in one hand and drops coins into cupped hands with the other, while someone else still waits. Generosity is here, and so is the question of fairness: who gives, who receives, and who decides. Where are you giving, and where are you receiving?",
+      "reversed": "Giving can come with strings, or one side can do all the giving while the other only waits. Either way the balance tips. Is anything owed, expected or held back that would be better said out loud?"
     },
-    "advice": "Six of Pentacles placeholder advice.",
-    "affirmation": "Six of Pentacles placeholder affirmation.",
-    "as_a_person": "Six of Pentacles placeholder as a person.",
+    "advice": "Notice one exchange this week where you give or receive, and check that it feels fair.",
+    "affirmation": "I can give freely and receive without shame.",
+    "as_a_person": "Generous and fair-minded, someone who shares what they have and notices who is left out.",
     "facing": "left",
     "pose": "standing",
     "symbols": [
@@ -7496,7 +7496,7 @@
       },
       {
         "id": "kneeling-man",
-        "label": "The man still waiting",
+        "label": "The one still waiting",
         "prompt": "When have you waited your turn and wondered if it would come?",
         "symbols": [],
         "region": {
@@ -7551,14 +7551,14 @@
     ],
     "combined": "Earth’s work, growing slowly: waiting to see what grows.",
     "prompt": "What are you tending that needs more time?",
-    "summary": "Seven of Pentacles placeholder summary.",
+    "summary": "Pausing over slow work to see what has grown and what still needs time.",
     "meaning": {
-      "upright": "Seven of Pentacles placeholder upright paragraph.",
-      "reversed": "Seven of Pentacles placeholder reversed paragraph."
+      "upright": "A figure leans on a hoe, chin on hands, looking at a vine heavy with coins. The work is real and so is the waiting. Take stock honestly: what has grown, what hasn’t, and whether this effort still deserves your time.",
+      "reversed": "Impatience can make good slow work look like wasted effort, or tempt you to dig up seeds to check on them. Or the effort may truly be going somewhere you no longer want. Which is it?"
     },
-    "advice": "Seven of Pentacles placeholder advice.",
-    "affirmation": "Seven of Pentacles placeholder affirmation.",
-    "as_a_person": "Seven of Pentacles placeholder as a person.",
+    "advice": "Spend ten minutes listing what your effort has produced so far, however small.",
+    "affirmation": "I can let good things grow at their own pace.",
+    "as_a_person": "Patient and thoughtful, someone who tends things steadily and checks honestly how they are doing.",
     "facing": "left",
     "pose": "standing",
     "symbols": [
@@ -7593,7 +7593,7 @@
       },
       {
         "id": "coin-at-feet",
-        "label": "The coin at his feet",
+        "label": "The coin at the feet",
         "prompt": "What small result are you overlooking because it isn’t finished?",
         "symbols": [
           "pentacle"
@@ -7605,7 +7605,7 @@
       },
       {
         "id": "hoe",
-        "label": "The hoe he leans on",
+        "label": "The hoe to lean on",
         "prompt": "What tool has carried you this far in your work?",
         "symbols": [],
         "region": {
@@ -7638,14 +7638,14 @@
     ],
     "combined": "Earth’s work, practiced: getting better one piece at a time.",
     "prompt": "What skill are you building, one day at a time?",
-    "summary": "Eight of Pentacles placeholder summary.",
+    "summary": "Getting better at something, one careful piece at a time.",
     "meaning": {
-      "upright": "Eight of Pentacles placeholder upright paragraph.",
-      "reversed": "Eight of Pentacles placeholder reversed paragraph."
+      "upright": "At a bench outside town, a figure carves a coin, with finished coins hung in a row above. Nothing flashy happens here: practice, repetition, attention. The card honors the quiet satisfaction of building a skill and asks what you are getting better at, day by day.",
+      "reversed": "Practice can turn into perfectionism, redoing one coin forever, or attention can scatter across too many benches. Where would “good enough for today” let you move forward?"
     },
-    "advice": "Eight of Pentacles placeholder advice.",
-    "affirmation": "Eight of Pentacles placeholder affirmation.",
-    "as_a_person": "Eight of Pentacles placeholder as a person.",
+    "advice": "Set aside twenty focused minutes this week to practice one skill.",
+    "affirmation": "I get better through practice, not perfection.",
+    "as_a_person": "Diligent and absorbed in their craft, happy to learn by doing it again.",
     "facing": "right",
     "pose": "seated",
     "symbols": [
@@ -7738,14 +7738,14 @@
     ],
     "combined": "Earth’s rewards, enjoyed: a life you’ve grown yourself.",
     "prompt": "What have you grown that you can enjoy now?",
-    "summary": "Nine of Pentacles placeholder summary.",
+    "summary": "Enjoying a life you’ve tended yourself, with enough to feel at ease.",
     "meaning": {
-      "upright": "Nine of Pentacles placeholder upright paragraph.",
-      "reversed": "Nine of Pentacles placeholder reversed paragraph."
+      "upright": "A figure stands in a vineyard heavy with grapes, a falcon resting on one gloved hand and a snail at their feet. This is the quiet pleasure of self-sufficiency: knowing what you’ve grown and letting yourself enjoy it. What have you made that you can enjoy now?",
+      "reversed": "Independence can slide into overwork, earning comfort you never stop to feel. Or you may be leaning on others more than you’d like. What would “enough” look like if you let yourself have it?"
     },
-    "advice": "Nine of Pentacles placeholder advice.",
-    "affirmation": "Nine of Pentacles placeholder affirmation.",
-    "as_a_person": "Nine of Pentacles placeholder as a person.",
+    "advice": "Spend an hour this week enjoying something you worked for, with no task attached.",
+    "affirmation": "I can enjoy what I’ve built without earning it again.",
+    "as_a_person": "Self-reliant and cultured, someone who has made a comfortable life and savors it.",
     "facing": "right",
     "pose": "standing",
     "symbols": [
@@ -7760,7 +7760,7 @@
     "details": [
       {
         "id": "falcon",
-        "label": "The falcon on her hand",
+        "label": "The falcon on the hand",
         "prompt": "What wild part of you have you learned to steady?",
         "symbols": [
           "bird"
@@ -7852,14 +7852,14 @@
     ],
     "combined": "Earth’s resources, complete: what lasts across generations.",
     "prompt": "What do you want to pass on?",
-    "summary": "Ten of Pentacles placeholder summary.",
+    "summary": "What lasts: the people, habits and home you build and pass on.",
     "meaning": {
-      "upright": "Ten of Pentacles placeholder upright paragraph.",
-      "reversed": "Ten of Pentacles placeholder reversed paragraph."
+      "upright": "Under a stone archway an elder sits with two white dogs while a couple talks and a child looks on. This card completes the suit: daily life, work and care gathered into something that lasts beyond one person. It asks what you want to pass on, in values and habits as much as in things.",
+      "reversed": "Family or community ties may feel strained, or the ground you rely on less steady than it looked. Old patterns pass down too. What would you keep from what you were given, and what would you change?"
     },
-    "advice": "Ten of Pentacles placeholder advice.",
-    "affirmation": "Ten of Pentacles placeholder affirmation.",
-    "as_a_person": "Ten of Pentacles placeholder as a person.",
+    "advice": "Share one family story, recipe or skill with someone younger this week.",
+    "affirmation": "I am part of something bigger than one lifetime.",
+    "as_a_person": "Rooted and generous, someone who keeps traditions alive and makes room for everyone at the table.",
     "facing": null,
     "pose": null,
     "symbols": [
@@ -7886,7 +7886,7 @@
       },
       {
         "id": "old-man",
-        "label": "The old man",
+        "label": "The elder",
         "prompt": "Whose quiet presence holds your family or circle together?",
         "symbols": [],
         "region": {
@@ -7965,14 +7965,14 @@
     ],
     "combined": "Earth’s matters, newly found: a student with a practical goal.",
     "prompt": "What practical skill do you want to learn?",
-    "summary": "Page of Pentacles placeholder summary.",
+    "summary": "A student of the practical world, studying one coin with care.",
     "meaning": {
-      "upright": "Page of Pentacles placeholder upright paragraph.",
-      "reversed": "Page of Pentacles placeholder reversed paragraph."
+      "upright": "The Page stands in a green field holding a coin up to study it, a plowed field and a distant mountain behind. This is the start of learning something useful, slowly and with real attention. What practical skill do you want to learn, and what would a first lesson look like?",
+      "reversed": "Plans to learn may be stuck in the planning, or attention may wander before the first step. Procrastination often hides a worry about being a beginner. What would make starting feel smaller?"
     },
-    "advice": "Page of Pentacles placeholder advice.",
-    "affirmation": "Page of Pentacles placeholder affirmation.",
-    "as_a_person": "Page of Pentacles placeholder as a person.",
+    "advice": "Pick one thing you want to learn and spend fifteen minutes on it today.",
+    "affirmation": "I can be a beginner and take it seriously.",
+    "as_a_person": "Studious and down-to-earth, someone who asks good questions and follows through.",
     "facing": "right",
     "pose": "standing",
     "symbols": [
@@ -8031,7 +8031,7 @@
       },
       {
         "id": "flowers",
-        "label": "The flowers at his feet",
+        "label": "The flowers underfoot",
         "prompt": "What small good thing is growing right where you stand?",
         "symbols": [
           "flowers"
@@ -8066,14 +8066,14 @@
     ],
     "combined": "Earth’s work, in slow motion: steady, careful, and reliable.",
     "prompt": "What steady habit is carrying you forward?",
-    "summary": "Knight of Pentacles placeholder summary.",
+    "summary": "Slow, steady progress: the reliable work of showing up again.",
     "meaning": {
-      "upright": "Knight of Pentacles placeholder upright paragraph.",
-      "reversed": "Knight of Pentacles placeholder reversed paragraph."
+      "upright": "The rider sits on a still horse at the edge of a plowed field, holding a coin and looking at it closely. Nothing rushes here. This card values reliability, routine and the patient work no one applauds. What steady habit is carrying you forward?",
+      "reversed": "Routine can harden into a rut, steady turning into stuck, or boredom draining the care out of the work. Is this a pace you’ve chosen, or one you’ve stopped noticing?"
     },
-    "advice": "Knight of Pentacles placeholder advice.",
-    "affirmation": "Knight of Pentacles placeholder affirmation.",
-    "as_a_person": "Knight of Pentacles placeholder as a person.",
+    "advice": "Keep one small routine every day this week, and refresh one that has gone stale.",
+    "affirmation": "I move forward one steady step at a time.",
+    "as_a_person": "Reliable and methodical, someone who quietly finishes what they start.",
     "facing": "right",
     "pose": "riding",
     "symbols": [
@@ -8086,7 +8086,7 @@
     "details": [
       {
         "id": "held-coin",
-        "label": "The coin in his hand",
+        "label": "The coin in hand",
         "prompt": "What are you carefully carrying toward a goal?",
         "symbols": [
           "pentacle"
@@ -8165,14 +8165,14 @@
     ],
     "combined": "Earth’s resources, held with care: practical warmth and a well-kept home.",
     "prompt": "How are you caring for your body and your home?",
-    "summary": "Queen of Pentacles placeholder summary.",
+    "summary": "Practical care for body and home, warm and well rooted.",
     "meaning": {
-      "upright": "Queen of Pentacles placeholder upright paragraph.",
-      "reversed": "Queen of Pentacles placeholder reversed paragraph."
+      "upright": "The Queen sits in a flowering garden, gazing down at a coin held in the lap, with a rabbit nearby and roses overhead. Care here is practical: meals, rest, a comfortable home, attention to what bodies need. Do you count yourself among the people you look after?",
+      "reversed": "Looking after everyone can leave you last on the list, worn out and running on empty. Or comfort may be slipping into avoidance. Where could some of the care you give others come back to you?"
     },
-    "advice": "Queen of Pentacles placeholder advice.",
-    "affirmation": "Queen of Pentacles placeholder affirmation.",
-    "as_a_person": "Queen of Pentacles placeholder as a person.",
+    "advice": "Do one practical thing for your own body today: a real meal, a walk, an early night.",
+    "affirmation": "I deserve the same care I give others.",
+    "as_a_person": "Warm and practical, someone whose home feels welcoming and whose kitchen always has something to share.",
     "facing": "left",
     "pose": "seated",
     "symbols": [
@@ -8188,7 +8188,7 @@
     "details": [
       {
         "id": "coin-in-lap",
-        "label": "The coin in her lap",
+        "label": "The coin in the lap",
         "prompt": "What are you looking after that deserves your full attention?",
         "symbols": [
           "pentacle"
@@ -8281,14 +8281,14 @@
     ],
     "combined": "Earth’s resources, leading others: steady success that provides.",
     "prompt": "What does real security look like for you?",
-    "summary": "King of Pentacles placeholder summary.",
+    "summary": "Steady provision built over time, and a clear sense of what enough means.",
     "meaning": {
-      "upright": "King of Pentacles placeholder upright paragraph.",
-      "reversed": "King of Pentacles placeholder reversed paragraph."
+      "upright": "The King sits among grapes and flowers, a coin on one knee, a castle behind and bull heads carved into the throne. This is stability made by long effort: providing for yourself and others, and knowing the worth of what you’ve built. What does real security look like for you?",
+      "reversed": "Wanting security can tip into wanting more for its own sake, or into a stubborn refusal to change how things are done. When is enough enough, and who gets left out of the holding?"
     },
-    "advice": "King of Pentacles placeholder advice.",
-    "affirmation": "King of Pentacles placeholder affirmation.",
-    "as_a_person": "King of Pentacles placeholder as a person.",
+    "advice": "Write down what “enough” means for you this year, in plain terms.",
+    "affirmation": "I can feel secure in what I’ve built.",
+    "as_a_person": "Steady and generous, a dependable provider who shares the fruits of long work.",
     "facing": "forward",
     "pose": "seated",
     "symbols": [
@@ -8320,7 +8320,7 @@
       },
       {
         "id": "pentacle",
-        "label": "The pentacle on his knee",
+        "label": "The pentacle on the knee",
         "prompt": "What have you made that you are proud to keep?",
         "symbols": [
           "pentacle"
@@ -8332,7 +8332,7 @@
       },
       {
         "id": "castle",
-        "label": "The castle behind him",
+        "label": "The castle behind",
         "prompt": "What have you built that others can shelter in?",
         "symbols": [
           "house",
@@ -8371,7 +8371,7 @@
       },
       {
         "id": "grape-robe",
-        "label": "The grapes on his robe",
+        "label": "The grapes on the robe",
         "prompt": "What abundance has quietly grown around you over time?",
         "symbols": [
           "harvest"

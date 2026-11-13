@@ -4,11 +4,14 @@ from datetime import date
 from pathlib import Path
 from typing import Annotated, Literal
 
+from mcp.server.auth.middleware.auth_context import get_access_token
+from mcp.server.auth.settings import AuthSettings
 from mcp.server.mcpserver import MCPServer
 from mcp.server.mcpserver.exceptions import ResourceNotFoundError, ToolError
 from pydantic import BaseModel, Field
 
 import journal
+from auth import AUTH0_ISSUER, LOCAL_USER, MCP_SERVER_URL, Auth0TokenVerifier
 
 # The app's data. The path is relative to this file, not to wherever the server is started.
 DATA_DIR = Path(__file__).parent.parent / 'tarot-app' / 'src' / 'data'
@@ -39,15 +42,30 @@ Suit = Literal['wands', 'cups', 'swords', 'pentacles']
 Facing = Literal['left', 'right', 'forward', 'away']
 Pose = Literal['standing', 'seated', 'walking', 'riding', 'kneeling', 'lying', 'falling', 'upside-down', 'dancing', 'flying']
 
-# Sent to the client when it connects. Claude's system prompt isn't ours, so the app's one rule
-# has to travel with the server.
+# instructions are sent to the client when it connects. Claude's system prompt isn't ours, so the
+# app's one rule has to travel with the server.
+# Over HTTP, /mcp needs an Auth0 token, and AuthSettings tells clients where to log in. Over stdio
+# (Claude Code starting this file) there is no login, so the auth settings don't apply.
 mcp = MCPServer(
     name='tarot',
     instructions=(
         'Tarot here is for reflection, not fortune telling. A reading is a turn at the cards, not an answer. '
         "Talk about the cards and what the user wrote, ask questions, and never predict what will happen."
     ),
+    token_verifier=Auth0TokenVerifier(),
+    auth=AuthSettings(
+        issuer_url=AUTH0_ISSUER,
+        resource_server_url=MCP_SERVER_URL.geturl(),
+        # Auth0TokenVerifier already checks the token was issued for this API.
+        validate_token_resource=False,
+    ),
 )
+
+
+def current_user():
+    """Whose journal a tool uses: the logged-in caller over HTTP, LOCAL_USER over stdio."""
+    token = get_access_token()
+    return token.subject if token else LOCAL_USER
 
 
 # The docstring and the Field description are the "menu" Claude reads.
@@ -144,13 +162,18 @@ def get_readings(
     until: Annotated[date | None, Field(description='Only readings on or before this day (UTC)')] = None,
 ) -> str:
     """The user's saved readings from their journal, newest first: when, the spread, each card with its position and whether it was reversed, and the reflection the user wrote. A reading is a turn at the cards, not an answer; the reflections are the user's own words. Filters combine."""
+    return readings_for(current_user(), card_id, spread_id, since, until)
+
+
+# The tools' work, for an explicit user. The REST endpoints call these with the token's user.
+def readings_for(user, card_id=None, spread_id=None, since=None, until=None):
     if card_id is not None and by_id(CARDS, card_id) is None:
         raise ToolError(f"No card with id '{card_id}'. Valid ids: {', '.join(c['id'] for c in CARDS)}")
     if spread_id is not None and by_id(SPREADS, spread_id) is None:
         raise ToolError(f"No spread with id '{spread_id}'. Valid ids: {', '.join(s['id'] for s in SPREADS)}")
 
     readings = [
-        r for r in journal.all_readings()
+        r for r in journal.all_readings(user)
         if (card_id is None or any(c['card_id'] == card_id for c in r['cards']))
         and (spread_id is None or r['spread_id'] == spread_id)
         and (since is None or r['created_at'][:10] >= since.isoformat())
@@ -172,6 +195,10 @@ def save_reading(
     reflection: Annotated[str, Field(description="The user's reflection, in their own words. Empty if they wrote none.")] = '',
 ) -> str:
     """Save a reading to the user's journal, where the app shows it too. For cards the user drew anywhere: in the app, with draw_cards, or from a physical deck. Returns the new reading's id."""
+    return save_for(current_user(), spread_id, cards, reflection)
+
+
+def save_for(user, spread_id, cards, reflection=''):
     spread = by_id(SPREADS, spread_id)
     if spread is None:
         raise ToolError(f"No spread with id '{spread_id}'. Valid ids: {', '.join(s['id'] for s in SPREADS)}")
@@ -182,7 +209,7 @@ def save_reading(
     if unknown:
         raise ToolError(f"No card with id {', '.join(repr(u) for u in unknown)}. Valid ids: {', '.join(c['id'] for c in CARDS)}")
 
-    id = journal.add_reading(spread_id, [(p['id'], c.card_id, c.reversed) for p, c in zip(positions, cards)], reflection)
+    id = journal.add_reading(user, spread_id, [(p['id'], c.card_id, c.reversed) for p, c in zip(positions, cards)], reflection)
     return json.dumps({'id': id})
 
 

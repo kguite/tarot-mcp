@@ -3,6 +3,9 @@
 A JSON file stands in for the database, shaped like its future tables (the same shape store.ts
 used in the browser). The app and Claude run as two processes, so every call reads the file fresh
 and each sees the other's saves.
+
+Every reading has an owner (user_id, the Auth0 `sub`), and every function takes the user: nobody
+can read or change another person's readings.
 """
 import json
 import uuid
@@ -28,12 +31,12 @@ def now():
     return datetime.now(timezone.utc).isoformat(timespec='milliseconds').replace('+00:00', 'Z')
 
 
-def add_reading(spread_id, cards, body):
+def add_reading(user_id, spread_id, cards, body):
     """cards: (position_id, card_id, reversed) in position order. Returns the new reading's id."""
     db = load()
     id = str(uuid.uuid4())
     created = now()
-    db['readings'].append({'id': id, 'spread_id': spread_id, 'created_at': created})
+    db['readings'].append({'id': id, 'user_id': user_id, 'spread_id': spread_id, 'created_at': created})
     for i, (position_id, card_id, reversed_) in enumerate(cards):
         db['reading_cards'].append({'reading_id': id, 'position': i, 'position_id': position_id, 'card_id': card_id, 'reversed': reversed_})
     if body:
@@ -42,10 +45,10 @@ def add_reading(spread_id, cards, body):
     return id
 
 
-def set_reflection(reading_id, body):
-    """Returns False when there is no such reading."""
+def set_reflection(user_id, reading_id, body):
+    """Returns False when the user has no such reading (someone else's counts as none)."""
     db = load()
-    if not any(r['id'] == reading_id for r in db['readings']):
+    if not any(r['id'] == reading_id and r.get('user_id') == user_id for r in db['readings']):
         return False
     entry = next((e for e in db['entries'] if e['reading_id'] == reading_id and e['type'] == 'interpretation'), None)
     if entry:
@@ -57,8 +60,8 @@ def set_reflection(reading_id, body):
     return True
 
 
-def all_readings():
-    """Every reading with its cards and entries, newest first, like a select with relations."""
+def all_readings(user_id):
+    """The user's readings with their cards and entries, newest first, like a select with relations."""
     db = load()
     return [
         {
@@ -67,4 +70,5 @@ def all_readings():
             'entries': sorted((e for e in db['entries'] if e['reading_id'] == r['id']), key=lambda e: e['created_at']),
         }
         for r in sorted(db['readings'], key=lambda r: r['created_at'], reverse=True)
+        if r.get('user_id') == user_id
     ]

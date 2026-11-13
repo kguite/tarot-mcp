@@ -1,3 +1,4 @@
+import { useAuth0 } from '@auth0/auth0-react'
 import { useState } from 'react'
 import { DrawSheet } from './components/DrawSheet'
 import { Nav } from './components/Nav'
@@ -5,6 +6,7 @@ import type { Page } from './components/Nav'
 import { SPREADS } from './data'
 import { isFinished, newReading } from './lib/deck'
 import type { Reading } from './lib/deck'
+import { setTokenSource } from './lib/store'
 import { Draw } from './screens/Draw'
 import { Journal } from './screens/Journal'
 import { Learn } from './screens/Learn'
@@ -18,6 +20,11 @@ function App() {
   const [page, setPage] = useState<Page>('today')
   const [reading, setReading] = useState<Reading | null>(null)
   const [choosing, setChoosing] = useState(false)
+  const { isLoading, isAuthenticated, getAccessTokenSilently } = useAuth0()
+
+  // Give the journal's requests a way to get your token. Set during render, not in an effect: a
+  // screen's effects run before App's, so the Journal would ask for readings before it was set.
+  setTokenSource(isAuthenticated ? () => getAccessTokenSilently() : null)
 
   function start(spreadId: string) {
     setReading(newReading(SPREADS.find((s) => s.id === spreadId)!))
@@ -38,7 +45,8 @@ function App() {
         {page === 'today' && <Today onStart={start} />}
         {page === 'draw' && reading && <Draw key={reading.draws.map((d) => d.card.id).join()} reading={reading} onChange={setReading} />}
         {page === 'learn' && <Learn />}
-        {page === 'journal' && <Journal />}
+        {/* Wait while Auth0 checks for a saved login, or the Journal would load as logged out. */}
+        {page === 'journal' && !isLoading && <Journal />}
         {page === 'settings' && <Settings />}
       </main>
       {choosing && (

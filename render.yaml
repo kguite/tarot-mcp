@@ -13,3 +13,7 @@ services:
     envVars:
       - key: PYTHON_VERSION
         value: 3.10.18
+      # Whose account the demo journal belongs to: Katie's Auth0 user id. Not a secret: it's only a
+      # label, and reading the journal still takes that account's token.
+      - key: SEED_USER
+        value: auth0|6a0baba86bc6960859797149

@@ -986,6 +986,27 @@ What went wrong on the way, in Auth0's settings, not the code:
 
 The demo journal is now Grizelda's (section 19), seeded for whoever `SEED_USER` names.
 
+## 25. Writing the placeholders
+
+Every card's long text was a placeholder ("Nine of Wands placeholder summary.") except the Moon,
+the Seven of Wands and the Queen of Cups. Now all 78 have a summary, upright and reversed meanings,
+advice, an affirmation and "as a person", and all 81 symbols have their "Also in" line.
+
+- **The three written cards set the voice and the lengths.** A brief gave the rules from CLAUDE.md
+  (psychology-minded, inclusive, original words, reflection not prediction, qualities never gender)
+  and the three cards as examples, and four agents wrote about 19 cards each from the cards' own
+  keywords, themes, prompts and spots, so the text agrees with what the app already says.
+- **A checker read every field** before it landed: no leftover placeholder, no "you will" or
+  "soon", no gendered words, lengths within the range the three examples set, curly apostrophes, no
+  dashes. Only the text fields changed in `cards.json`; everything else is byte for byte the same.
+- **Read by a person too.** The checker can't hear tone. Reading through found a line that leaned
+  toward prediction (the Eight of Wands' "stuck plans pick up speed"), an affirmation that assumed
+  you have a circle of friends, and 51 of 78 meanings leaning on "This card asks". A second pass
+  varied that to 8, with direct questions, "The question here is", and plain imperatives.
+- **The rule caught older text.** The same gender check found 54 of our own spot labels saying
+  "his", "her", "man" or "woman" ("The feather in his hat"), and the Queen of Cups' "She feels things
+  deeply". All rewritten ("The feather in the hat", "This is someone who feels things deeply").
+
 ## Next
 
 - Journal: sort and group (newest or oldest first, by day or month), and filter by spread or by a
@@ -996,6 +1017,7 @@ The demo journal is now Grizelda's (section 19), seeded for whoever `SEED_USER` 
 - Add the API's `/mcp` URL in Claude as a connector and log in through Auth0 from Claude (find out
   how claude.ai registers itself with Auth0 first: dynamic registration or a client id)
 - Our own Google keys in Auth0, so "Continue with Google" works
-- Explore the data through the tools and adjust the shape; write the placeholder fields
+- Explore the data through the tools and adjust the shape
+- Read the new card text in use and fix what sounds off (the first draft of 450 pieces)
 - Access: levels, permissions and circles, in the build order in `ACCESS.md`
 - Swap `readings.json` for the database; `journal.py` is the one file that changes

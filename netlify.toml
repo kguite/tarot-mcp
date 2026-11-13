@@ -9,13 +9,13 @@
 
 # The journal lives on the API (render.yaml). Netlify forwards /readings to it, like Vite does
 # locally, so the app stays on one address and needs no CORS setup.
-# If Render gives the service a different URL, change it here.
+# Render added "-5c7k" because tarot-api was taken; a new Render service would get a new URL.
 [[redirects]]
   from = "/readings"
-  to = "https://tarot-api.onrender.com/readings"
+  to = "https://tarot-api-5c7k.onrender.com/readings"
   status = 200
 
 [[redirects]]
   from = "/readings/*"
-  to = "https://tarot-api.onrender.com/readings/:splat"
+  to = "https://tarot-api-5c7k.onrender.com/readings/:splat"
   status = 200

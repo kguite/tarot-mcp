@@ -1,6 +1,6 @@
 // The one boundary between the app and storage. The journal lives on the FastAPI server
 // (mcp-server/main.py), so the app and Claude, through the MCP tools, share the same readings.
-// Vite forwards /readings to the server (vite.config.ts), so start it with .venv\Scripts\python.exe main.py.
+// Locally Vite forwards /readings to the server (vite.config.ts); hosted, Netlify forwards it to Render.
 // Shaped like the future database tables (readings, reading_cards, entries).
 
 type ReadingRow = { id: string; spread_id: string; created_at: string }
@@ -11,15 +11,18 @@ type EntryRow = { id: string; reading_id: string; type: 'interpretation'; body: 
 export type SavedReading = ReadingRow & { cards: ReadingCardRow[]; entries: EntryRow[] }
 
 async function request(path: string, init?: RequestInit) {
-  const notRunning = new Error('The journal server is not running. Start it in mcp-server with .venv\\Scripts\\python.exe main.py')
+  // The hint to start the server only makes sense on your own computer, not on the hosted site.
+  const unreachable = new Error(import.meta.env.DEV
+    ? 'The journal server is not running. Start it in mcp-server with .venv\\Scripts\\python.exe main.py'
+    : 'The journal isn’t reachable right now. Try again in a minute.')
   let response: Response
   try {
     response = await fetch(path, { ...init, headers: { 'Content-Type': 'application/json' } })
   } catch {
-    throw notRunning
+    throw unreachable
   }
-  // Vite's forwarding answers 502 when nothing is listening on the server's port.
-  if (response.status === 502) throw notRunning
+  // A forwarder answers 502, 503 or 504 when the server behind it is down or still waking up.
+  if ([502, 503, 504].includes(response.status)) throw unreachable
   if (!response.ok) throw new Error(`The journal server answered ${response.status}.`)
   return response.json()
 }

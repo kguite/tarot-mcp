@@ -1,21 +1,18 @@
-import os
 from contextlib import asynccontextmanager
 from datetime import date
-from urllib.parse import urlparse
+from typing import Annotated
 
 import uvicorn
-from fastapi import FastAPI, HTTPException, Query, Response
+from fastapi import Depends, FastAPI, Header, HTTPException, Query, Response
 from mcp.server.mcpserver.exceptions import ToolError
 from mcp.server.transport_security import TransportSecuritySettings
 from pydantic import BaseModel
 
+import auth
 import journal
-from server import DrawnCard, Facing, Pose, Suit, draw_cards, find_cards, get_card, get_readings, list_spreads, mcp, save_reading
+from server import DrawnCard, Facing, Pose, Suit, draw_cards, find_cards, get_card, list_spreads, mcp, readings_for, save_for
 
-# This server's public address. MCP only accepts requests addressed to this host.
-# On Render it's the service's own URL, which Render sets as RENDER_EXTERNAL_URL.
-# Port 8001 locally, since the work API (lb_database_api) already runs on uvicorn's default 8000.
-MCP_SERVER_URL = urlparse(os.getenv('MCP_SERVER_URL') or os.getenv('RENDER_EXTERNAL_URL', 'http://127.0.0.1:8001') + '/mcp')
+MCP_SERVER_URL = auth.MCP_SERVER_URL
 
 
 @asynccontextmanager
@@ -36,7 +33,22 @@ def json_reply(call, error_status: int) -> Response:
         raise HTTPException(status_code=error_status, detail=str(error))
 
 
+def logged_in_user(authorization: Annotated[str | None, Header()] = None) -> str:
+    """The Auth0 user id from the request's "Authorization: Bearer <token>" header, or a 401."""
+    denied = HTTPException(status_code=401, detail='Log in to use your journal.', headers={'WWW-Authenticate': 'Bearer'})
+    if not authorization or not authorization.startswith('Bearer '):
+        raise denied
+    try:
+        return auth.verify(authorization.removeprefix('Bearer '))['sub']
+    except auth.AccessDenied:
+        raise denied
+
+
+User = Annotated[str, Depends(logged_in_user)]
+
+
 # REST and MCP call the same functions, so the app and Claude always get the same answer.
+# The cards and spreads are public; only the journal needs a login.
 @app.get('/cards/{card_id}')
 def read_card(card_id: str):
     return json_reply(lambda: get_card(card_id), 404)
@@ -75,23 +87,24 @@ class Reflection(BaseModel):
 
 
 # The journal. The app saves here and Claude saves through save_reading: one journal, two doors.
+# Each person sees and changes only their own readings.
 @app.get('/readings')
-def read_readings(card_id: str | None = None, spread_id: str | None = None, since: date | None = None, until: date | None = None):
-    return json_reply(lambda: get_readings(card_id, spread_id, since, until), 400)
+def read_readings(user: User, card_id: str | None = None, spread_id: str | None = None, since: date | None = None, until: date | None = None):
+    return json_reply(lambda: readings_for(user, card_id, spread_id, since, until), 400)
 
 
 @app.post('/readings')
-def create_reading(reading: NewReading):
-    return json_reply(lambda: save_reading(reading.spread_id, reading.cards, reading.reflection), 400)
+def create_reading(user: User, reading: NewReading):
+    return json_reply(lambda: save_for(user, reading.spread_id, reading.cards, reading.reflection), 400)
 
 
 @app.put('/readings/{reading_id}/reflection')
-def edit_reflection(reading_id: str, reflection: Reflection):
-    if not journal.set_reflection(reading_id, reflection.body):
+def edit_reflection(user: User, reading_id: str, reflection: Reflection):
+    if not journal.set_reflection(user, reading_id, reflection.body):
         raise HTTPException(status_code=404, detail=f"No reading with id '{reading_id}'")
 
 
-# MCP at /mcp. Mounted last so the routes above take priority.
+# MCP at /mcp, which needs a login (server.py). Mounted last so the routes above take priority.
 # Stateless with plain JSON replies, like speak_friend: simplest, and safe with several copies running.
 app.mount('/', mcp.streamable_http_app(
     streamable_http_path='/mcp',

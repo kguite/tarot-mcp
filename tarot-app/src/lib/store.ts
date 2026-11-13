@@ -10,19 +10,33 @@ type EntryRow = { id: string; reading_id: string; type: 'interpretation'; body: 
 // A reading joined with its cards and entries, like a database select with relations.
 export type SavedReading = ReadingRow & { cards: ReadingCardRow[]; entries: EntryRow[] }
 
+// The journal is private, so every request carries your Auth0 token. App sets this while you're
+// logged in (from useAuth0) and clears it when you're not.
+let getToken: (() => Promise<string | undefined>) | null = null
+export function setTokenSource(source: (() => Promise<string | undefined>) | null) {
+  getToken = source
+}
+
+const loggedOut = () => new Error('Log in to keep a journal. It’s under Settings.')
+
 async function request(path: string, init?: RequestInit) {
+  if (!getToken) throw loggedOut()
   // The hint to start the server only makes sense on your own computer, not on the hosted site.
   const unreachable = new Error(import.meta.env.DEV
     ? 'The journal server is not running. Start it in mcp-server with .venv\\Scripts\\python.exe main.py'
     : 'The journal isn’t reachable right now. Try again in a minute.')
+  // A token that can't be renewed (the login expired) means logging in again, not a server problem.
+  const token = await getToken().catch(() => undefined)
+  if (!token) throw loggedOut()
   let response: Response
   try {
-    response = await fetch(path, { ...init, headers: { 'Content-Type': 'application/json' } })
+    response = await fetch(path, { ...init, headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` } })
   } catch {
     throw unreachable
   }
   // A forwarder answers 502, 503 or 504 when the server behind it is down or still waking up.
   if ([502, 503, 504].includes(response.status)) throw unreachable
+  if (response.status === 401) throw loggedOut()
   if (!response.ok) throw new Error(`The journal server answered ${response.status}.`)
   return response.json()
 }

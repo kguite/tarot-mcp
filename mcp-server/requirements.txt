@@ -1,6 +1,8 @@
-﻿fastapi==0.162.0
+fastapi==0.162.0
 uvicorn==0.54.0
 mcp==2.3.0
+# Checks Auth0 access tokens (auth.py); [crypto] adds the RS256 support they need.
+PyJWT[crypto]==2.15.1
 pytest==9.1.1
 # FastAPI's TestClient sends its requests through httpx.
 httpx==0.28.1

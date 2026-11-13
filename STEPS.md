@@ -913,6 +913,23 @@ The card view ends with "Interpretations", each voice labeled as whose it is.
 - **Not Dore or Mack.** Their books are copyrighted, so they are left out of the app.
 - The Journal's date and reflection helpers moved to `lib/readings.ts` so both screens share them.
 
+## 23. Getting ready to deploy: two hosts, one repo
+
+The app and the API live in different places. Netlify serves static sites, so it hosts the React
+app but cannot keep a Python server running; Render runs the API (REST and `/mcp`).
+
+- **`render.yaml`** describes the API service: a free Python web service from `mcp-server`,
+  seeded with the demo journal at build. The free plan has no lasting disk, so saved readings last
+  until the next deploy; the database fixes that. The server takes its public address from
+  `RENDER_EXTERNAL_URL`, which Render sets, so MCP's host check passes with no setup.
+- **`netlify.toml`** builds `tarot-app` and forwards `/readings` to the API, like Vite's proxy does
+  locally. The app keeps one address, so there is no CORS to set up.
+- **One contributor on a private repo.** Netlify's free plan only deploys commits from one GitHub
+  user. The repo moved to `kguite` (with `katie-guite` as a collaborator, to push), and this repo
+  alone commits as kguite: `git config user.email` without `--global` writes to `.git/config`, so
+  work repos keep their own identity. Netlify checks who *wrote* the newest commit, so PRs merge
+  with "Rebase and merge": a merge commit would be written by whoever clicked merge.
+
 ## Next
 
 - Journal: sort and group (newest or oldest first, by day or month), and filter by spread or by a
@@ -920,8 +937,8 @@ The card view ends with "Interpretations", each voice labeled as whose it is.
 - New symbols for things spots show but no symbol names (field, branch, snail, beach), so the
   "In this picture" chips light up for them too
 - Trim `get_card`'s reply: measure it, cut what Claude doesn't need, measure again
-- Deploy or tunnel the FastAPI app, then add its URL in Claude Desktop with "+ Add" and watch
-  Claude choose between the tools
+- Deploy: the Render Blueprint, then the Netlify site, then add the API's `/mcp` URL in Claude
+  with "+ Add" and watch Claude choose between the tools
 - Explore the data through the tools and adjust the shape; write the placeholder fields
 - Access: levels, permissions and circles, in the build order in `ACCESS.md`
 - Swap `readings.json` for the database; `journal.py` is the one file that changes

@@ -931,10 +931,13 @@ app but cannot keep a Python server running; Render runs the API (REST and `/mcp
 - **`netlify.toml`** builds `tarot-app` and forwards `/readings` to the API, like Vite's proxy does
   locally. The app keeps one address, so there is no CORS to set up.
 - **One contributor on a private repo.** Netlify's free plan only deploys commits from one GitHub
-  user. The repo moved to `kguite` (with `katie-guite` as a collaborator, to push), and this repo
-  alone commits as kguite: `git config user.email` without `--global` writes to `.git/config`, so
-  work repos keep their own identity. Netlify checks who *wrote* the newest commit, so PRs merge
-  with "Rebase and merge": a merge commit would be written by whoever clicked merge.
+  user. The repo moved to `kguite`, and this repo alone commits as kguite: `git config user.email`
+  without `--global` writes to `.git/config`, so work repos keep their own identity. That wasn't
+  enough: a commit written *and* committed by kguite was still blocked, because it was pushed with
+  the laptop's katie-guite login. Netlify appears to check who pushed. So this repo also pushes as
+  kguite (the remote is `https://kguite@github.com/...`, and Git Credential Manager keeps that
+  login for this URL only), PRs are merged on the laptop and pushed, not with GitHub's button, and
+  the repo is public, which lifts the one-contributor limit anyway.
 
 Live:
 

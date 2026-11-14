@@ -7,7 +7,6 @@ import { Eyebrow } from '../components/Eyebrow'
 import { FlipCard } from '../components/FlipCard'
 import { Ornament } from '../components/Ornament'
 import { ReadingPanel } from '../components/ReadingPanel'
-import { Star } from '../components/Star'
 import { TextField } from '../components/TextField'
 import type { Card } from '../data/types'
 import { isFinished, newReading } from '../lib/deck'
@@ -16,27 +15,22 @@ import { saveReading, updateInterpretation } from '../lib/store'
 import screen from './Screen.module.css'
 import styles from './Draw.module.css'
 
-const FAN = 7
-
 type Inspecting = { card: Card; reversed?: boolean; context: string }
 
-// Three taps per card: pick it from the fan, turn it over, then tap again for its meaning.
+// Three taps per card: tap its outline to draw it, turn it over, then tap again for its meaning.
 // The reading itself lives in App (so switching tabs keeps it); only what's open on screen lives here.
 export function Draw({ reading, onChange }: { reading: Reading; onChange: (reading: Reading) => void }) {
   const [open, setOpen] = useState<number | null>(null)
   const [inspecting, setInspecting] = useState<Inspecting | null>(null)
   const [saveError, setSaveError] = useState<string | null>(null)
   const { isAuthenticated } = useAuth0()
-  const { spread, draws, phases, picked, reflection } = reading
+  const { spread, draws, phases, reflection } = reading
 
-  const placed = picked.length
-  const left = draws.length - placed
+  const left = phases.filter((p) => p === 'empty').length
   const turned = phases.filter((p) => p === 'up').length
 
-  // From the fan, the card goes in the next empty spot; from an outline, in that spot.
-  function pick(fanIndex: number, slot = phases.indexOf('empty')) {
-    if (phases[slot] !== 'empty' || picked.includes(fanIndex)) return
-    onChange({ ...reading, picked: [...picked, fanIndex], phases: phases.map((p, i) => (i === slot ? 'down' : p)) })
+  function place(slot: number) {
+    onChange({ ...reading, phases: phases.map((p, i) => (i === slot ? 'down' : p)) })
   }
 
   function tap(i: number) {
@@ -73,7 +67,7 @@ export function Draw({ reading, onChange }: { reading: Reading; onChange: (readi
   // Until a meaning is open, always say what to tap next. Once every card was face up (straight away
   // in a one-card draw), it used to say nothing, and the meaning was easy to miss.
   const hint =
-    left > 0 ? `Choose ${left} ${left === 1 ? (placed ? 'more card' : 'card') : 'cards'}`
+    left > 0 ? (draws.length === 1 ? 'Tap the outline to draw your card' : `Tap an outline to draw a card · ${left} to go`)
     : turned === 0 ? 'Tap a card to turn it over'
     : open === null ? 'Look at the picture first. Tap it again for its meaning.'
     : ''
@@ -91,13 +85,13 @@ export function Draw({ reading, onChange }: { reading: Reading; onChange: (readi
       </div>
 
       {/* Two columns on a wide screen, stacked on a phone. Left: the cards and what they mean.
-          Right: the fan while choosing, then the journal (reflection and save). */}
+          Right: the journal (reflection and save), once every card is placed. */}
       <div
         className={[
           styles.stage,
           (left > 0 || !isAuthenticated) && styles.oneColumn,
-          // Every card placed and no meaning open: the cards are the thing to look at, so a phone shows them big.
-          left === 0 && open === null && styles.looking,
+          // No meaning open: the cards are the thing to look at, so a phone shows them big.
+          open === null && styles.looking,
         ].filter(Boolean).join(' ')}
         style={{ '--cols': Math.min(draws.length, 4) } as CSSProperties}
       >
@@ -105,8 +99,7 @@ export function Draw({ reading, onChange }: { reading: Reading; onChange: (readi
           <div className={styles.spread}>
             {draws.map((draw, i) =>
               phases[i] === 'empty' ? (
-                // FAN + i is past the fan's cards, so drawing from an outline doesn't take one from the fan.
-                <button key={i} className={styles.empty} onClick={() => pick(FAN + i, i)} aria-label={`Draw a card for ${draw.position.name}`}>
+                <button key={i} className={styles.empty} onClick={() => place(i)} aria-label={`Draw a card for ${draw.position.name}`}>
                   <span className={styles.outline} />
                   <span className={styles.caption}>{draw.position.name}</span>
                 </button>
@@ -128,7 +121,7 @@ export function Draw({ reading, onChange }: { reading: Reading; onChange: (readi
               ),
             )}
           </div>
-          {left === 0 && hint && <p className={styles.hint}>{hint}</p>}
+          {hint && <p className={styles.hint}>{hint}</p>}
           {shown && (
             <div className={styles.meaning}>
               <ReadingPanel card={shown.card} reversed={shown.reversed} position={shown.position.name} question={shown.position.prompt} />
@@ -137,25 +130,7 @@ export function Draw({ reading, onChange }: { reading: Reading; onChange: (readi
         </div>
 
         <div className={styles.side}>
-          {left > 0 && hint && <p className={styles.hint}>{hint}</p>}
-          {left > 0 ? (
-            <div className={styles.fan}>
-              {Array.from({ length: FAN }, (_, k) => (
-                <button
-                  key={k}
-                  className={picked.includes(k) ? `${styles.fanCard} ${styles.gone}` : styles.fanCard}
-                  style={{ '--angle': `${-27 + k * 9}deg` } as CSSProperties}
-                  onClick={() => pick(k)}
-                  aria-label="Choose this card"
-                  disabled={picked.includes(k)}
-                >
-                  <span className={styles.fanBack}>
-                    <Star size={22} />
-                  </span>
-                </button>
-              ))}
-            </div>
-          ) : !isAuthenticated ? (
+          {left > 0 ? null : !isAuthenticated ? (
             // No reflection box: logging in reloads the page, so anything written before it would be lost.
             <div className={styles.loggedOut}>
               <div className={styles.actions}>

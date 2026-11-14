@@ -15,7 +15,6 @@ export type Reading = {
   spread: Spread
   draws: Draw[]
   phases: Phase[]
-  picked: number[]
   reflection: string
   savedId?: string
   savedReflection?: string
@@ -42,5 +41,5 @@ export function drawSpread(spread: Spread): Draw[] {
 }
 
 export function newReading(spread: Spread): Reading {
-  return { spread, draws: drawSpread(spread), phases: spread.positions.map(() => 'empty'), picked: [], reflection: '' }
+  return { spread, draws: drawSpread(spread), phases: spread.positions.map(() => 'empty'), reflection: '' }
 }

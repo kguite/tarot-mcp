@@ -7,10 +7,10 @@
   animation: land 0.55s var(--ease-spring);
 }
 
-/* Arriving from the fan below. */
+/* Settling into the outline it was drawn from. */
 @keyframes land {
   from {
-    transform: translateY(120px) scale(0.85);
+    transform: scale(0.85);
     opacity: 0;
   }
 }

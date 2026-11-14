@@ -1,4 +1,4 @@
-/* Each side is a column, and on a phone the two sides stack: cards, hint, meaning, then the fan or the journal.
+/* Each side is a column, and on a phone the two sides stack: cards, hint, meaning, then the journal.
    Tight gaps on a phone, so the meaning starts above the bottom bar. */
 .stage,
 .side {
@@ -26,9 +26,9 @@
   }
 }
 
-/* On a wide screen, the cards and meaning on the left, the fan or journal on the right. Stacked, the
-   fan fell below the fold. Centered while choosing. After, both columns are the same height: the
-   reflection box stretches to fill, so the save buttons line up with Look closer at the bottom. */
+/* On a wide screen, the cards and meaning on the left, the journal on the right. Centered while
+   choosing. After, both columns are the same height: the reflection box stretches to fill, so the
+   save buttons line up with Look closer at the bottom. */
 @media (min-width: 900px) {
   .stage {
     display: grid;
@@ -41,15 +41,10 @@
     gap: var(--space-5);
   }
 
-  /* One centered column while choosing (click the outlines, no fan), and when logged out, with no
-     journal for the right side. */
+  /* One centered column while choosing, and when logged out, with no journal for the right side. */
   .oneColumn {
     grid-template-columns: minmax(0, 1fr);
     row-gap: var(--space-5); /* The same as within a column, not the gap between two columns. */
-  }
-
-  .oneColumn .fan {
-    display: none;
   }
 
   /* The meaning as wide as the row of cards, but never narrower than a one-card reading needs. */
@@ -77,9 +72,9 @@
   --card-max: 130px;
 }
 
-/* Phone, before a meaning is open: the card big, to look at. Tapping for the meaning shrinks it back
-   so the meaning fits. A three-card spread is already as wide as the screen allows, so this mostly
-   grows one and two cards. */
+/* Phone, until a meaning is open: the outline and then the card big, to look at. Tapping for the
+   meaning shrinks it back so the meaning fits. A three-card spread is already as wide as the screen
+   allows, so this mostly grows one and two cards. */
 @media (max-width: 899px) {
   .looking {
     --card-max: 220px;
@@ -153,57 +148,6 @@
   text-align: center;
 }
 
-/* The fan: every card pivots from a point below the middle, each turned by its own --angle. */
-.fan {
-  position: relative;
-  height: 210px;
-}
-
-.fanCard {
-  position: absolute;
-  left: 50%;
-  bottom: var(--space-3);
-  width: 92px;
-  margin-left: -46px; /* Half the width, to center it: transform is taken by the rotation. */
-  padding: var(--space-1);
-  box-sizing: border-box;
-  border: 1px solid var(--gold-strong);
-  border-radius: var(--radius);
-  background: var(--night);
-  cursor: pointer;
-  transform-origin: 50% 160%;
-  transform: rotate(var(--angle));
-  transition: transform 0.45s var(--ease-spring), opacity 0.3s;
-}
-
-.fanCard:hover,
-.fanCard:focus-visible {
-  transform: rotate(var(--angle)) translateY(-10px);
-}
-
-.fanCard:focus-visible {
-  outline: 2px solid var(--gold);
-  outline-offset: 2px;
-}
-
-.gone {
-  transform: rotate(var(--angle)) translateY(-60px) scale(0.9);
-  opacity: 0;
-  pointer-events: none;
-}
-
-.fanBack {
-  display: flex;
-  aspect-ratio: 0.575;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-  border: 1px solid var(--gold-line);
-  border-radius: var(--radius-art);
-  background: var(--card-back);
-  color: var(--gold);
-}
-
 .actions {
   display: flex;
   gap: var(--space-3);
@@ -234,10 +178,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .fanCard {
-    transition: none;
-  }
-
   .meaning {
     animation: none;
   }

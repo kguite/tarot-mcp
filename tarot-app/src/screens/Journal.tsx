@@ -1,3 +1,4 @@
+import { useAuth0 } from '@auth0/auth0-react'
 import { useEffect, useState } from 'react'
 import { Button } from '../components/Button'
 import { Card } from '../components/Card'
@@ -8,7 +9,7 @@ import { TextField } from '../components/TextField'
 import { CARDS, SPREADS } from '../data'
 import type { Card as CardData } from '../data/types'
 import { reflectionOf, when } from '../lib/readings'
-import { listReadings, updateInterpretation } from '../lib/store'
+import { LOG_IN_PROMPT, listReadings, updateInterpretation } from '../lib/store'
 import type { SavedReading } from '../lib/store'
 import screen from './Screen.module.css'
 import styles from './Journal.module.css'
@@ -21,12 +22,13 @@ export function Journal() {
   const [readings, setReadings] = useState<SavedReading[] | null>(null)
   const [openId, setOpenId] = useState<string | null>(null)
   const [loadError, setLoadError] = useState<string | null>(null)
+  const { isAuthenticated, loginWithRedirect } = useAuth0()
 
   // The journal is on the server now, so a load can fail; say so instead of showing an empty page.
   const load = () => listReadings().then(setReadings, (error: Error) => setLoadError(error.message))
   useEffect(() => {
-    load()
-  }, [])
+    if (isAuthenticated) load()
+  }, [isAuthenticated])
 
   const open = readings?.find((r) => r.id === openId)
   if (open) {
@@ -39,6 +41,12 @@ export function Journal() {
         <Eyebrow gold>Journal</Eyebrow>
         <h1>Your readings</h1>
       </div>
+      {!isAuthenticated && (
+        <>
+          <p className={screen.note}>{LOG_IN_PROMPT}</p>
+          <Button variant="secondary" className={screen.centered} onClick={() => loginWithRedirect()}>Log in</Button>
+        </>
+      )}
       {loadError && <p className={screen.error} role="alert">{loadError}</p>}
       {readings?.length === 0 && <p className={screen.note}>No saved readings yet. Draw some cards and save the reading.</p>}
       {readings?.map((r) => (

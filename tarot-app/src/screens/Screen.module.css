@@ -60,3 +60,8 @@
   color: var(--ivory);
   text-align: center;
 }
+
+/* A button at its own width in the middle of the column, instead of stretched across it. */
+.centered {
+  align-self: center;
+}

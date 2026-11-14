@@ -17,7 +17,9 @@ export function setTokenSource(source: (() => Promise<string | undefined>) | nul
   getToken = source
 }
 
-const loggedOut = () => new Error('To record your own reflections, log in under Settings.')
+// Shown beside every Log in button, and as the error if a journal request goes out logged out anyway.
+export const LOG_IN_PROMPT = 'Log in to keep a journal of your readings.'
+const loggedOut = () => new Error(LOG_IN_PROMPT)
 
 async function request(path: string, init?: RequestInit) {
   if (!getToken) throw loggedOut()

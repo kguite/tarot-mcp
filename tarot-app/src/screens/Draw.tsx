@@ -33,9 +33,10 @@ export function Draw({ reading, onChange }: { reading: Reading; onChange: (readi
   const left = draws.length - placed
   const turned = phases.filter((p) => p === 'up').length
 
-  function pick(fanIndex: number) {
-    if (left === 0 || picked.includes(fanIndex)) return
-    onChange({ ...reading, picked: [...picked, fanIndex], phases: phases.map((p, i) => (i === placed ? 'down' : p)) })
+  // From the fan, the card goes in the next empty spot; from an outline, in that spot.
+  function pick(fanIndex: number, slot = phases.indexOf('empty')) {
+    if (phases[slot] !== 'empty' || picked.includes(fanIndex)) return
+    onChange({ ...reading, picked: [...picked, fanIndex], phases: phases.map((p, i) => (i === slot ? 'down' : p)) })
   }
 
   function tap(i: number) {
@@ -88,15 +89,19 @@ export function Draw({ reading, onChange }: { reading: Reading; onChange: (readi
 
       {/* Two columns on a wide screen, stacked on a phone. Left: the cards and what they mean.
           Right: the fan while choosing, then the journal (reflection and save). */}
-      <div className={left > 0 ? `${styles.stage} ${styles.choosing}` : styles.stage}>
+      <div
+        className={left > 0 || !isAuthenticated ? `${styles.stage} ${styles.oneColumn}` : styles.stage}
+        style={{ '--cols': Math.min(draws.length, 4) } as CSSProperties}
+      >
         <div className={styles.side}>
-          <div className={styles.spread} style={{ gridTemplateColumns: `repeat(${Math.min(draws.length, 4)}, minmax(0, var(--card-max)))` }}>
+          <div className={styles.spread}>
             {draws.map((draw, i) =>
               phases[i] === 'empty' ? (
-                <figure key={i} className={styles.empty}>
+                // FAN + i is past the fan's cards, so drawing from an outline doesn't take one from the fan.
+                <button key={i} className={styles.empty} onClick={() => pick(FAN + i, i)} aria-label={`Draw a card for ${draw.position.name}`}>
                   <span className={styles.outline} />
-                  <figcaption>{draw.position.name}</figcaption>
-                </figure>
+                  <span className={styles.caption}>{draw.position.name}</span>
+                </button>
               ) : (
                 <FlipCard
                   key={i}
@@ -106,7 +111,11 @@ export function Draw({ reading, onChange }: { reading: Reading; onChange: (readi
                   selected={open === i}
                   label={draw.position.name}
                   onTap={() => tap(i)}
-                  onLookCloser={() => setInspecting({ card: draw.card, reversed: draw.reversed, context: `${draw.position.name} · ${draw.reversed ? 'reversed' : 'upright'}` })}
+                  onLookCloser={() => {
+                    // A one-card reading's only position is "The card", which says nothing here.
+                    const orientation = draw.reversed ? 'reversed' : 'upright'
+                    setInspecting({ card: draw.card, reversed: draw.reversed, context: draws.length > 1 ? `${draw.position.name} · ${orientation}` : orientation })
+                  }}
                 />
               ),
             )}
@@ -139,13 +148,12 @@ export function Draw({ reading, onChange }: { reading: Reading; onChange: (readi
               ))}
             </div>
           ) : !isAuthenticated ? (
-            // Logging in reloads the page, so anything written before it would be lost.
-            <>
-              <p className={screen.note}>Log in under Settings to write and save a reflection.</p>
+            // No reflection box: logging in reloads the page, so anything written before it would be lost.
+            <div className={styles.loggedOut}>
               <div className={styles.actions}>
-                <Button variant="secondary" onClick={startOver}>Start over</Button>
+                <Button variant="secondary" onClick={startOver}>Draw again</Button>
               </div>
-            </>
+            </div>
           ) : (
             <>
               <div className={styles.journal}>
@@ -157,7 +165,7 @@ export function Draw({ reading, onChange }: { reading: Reading; onChange: (readi
                 />
               </div>
               <div className={styles.actions}>
-                <Button variant="secondary" onClick={startOver}>Start over</Button>
+                <Button variant="secondary" onClick={startOver}>Draw again</Button>
                 <Button onClick={save} disabled={isFinished(reading)}>
                   {isFinished(reading) ? 'Saved' : reading.savedId ? 'Save changes' : 'Save reading'}
                 </Button>

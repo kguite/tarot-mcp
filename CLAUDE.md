@@ -61,7 +61,7 @@ The prototype's deck in play is 10 cards: The Fool, The Magician, The High Pries
 
 ## Data
 
-JSON files in `tarot-app/src/data/`, normalized so cards point to shared reference data instead of repeating it. `types.ts` has a type for each file, and `index.ts` exports each one typed (`CARDS`, `SPREADS`, `SUITS`, `RANKS`, `JOURNEY`, `ARCANA`, `SYMBOLS`). Import data from there, not from the JSON files. `waite.json` is read only by the MCP server.
+JSON files in `tarot-app/src/data/`, normalized so cards point to shared reference data instead of repeating it. `types.ts` has a type for each file, and `index.ts` exports each one typed (`CARDS`, `SPREADS`, `SUITS`, `RANKS`, `JOURNEY`, `ARCANA`, `SYMBOLS`, `WAITE`). Import data from there, not from the JSON files. `waite.json` is read by the MCP server (the `tarot://waite/{id}` resource) and by the card view's Interpretations.
 
 | File | Holds | Future table |
 | --- | --- | --- |

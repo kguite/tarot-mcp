@@ -17,8 +17,22 @@
     gap: var(--space-6);
   }
 
-  .choosing {
-    align-items: center;
+  /* One centered column while choosing (click the outlines, no fan), and when logged out, with no
+     journal for the right side. */
+  .oneColumn {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: var(--space-5); /* The same as within a column, not the gap between two columns. */
+  }
+
+  .oneColumn .fan {
+    display: none;
+  }
+
+  /* The meaning as wide as the row of cards, but never narrower than a one-card reading needs. */
+  .oneColumn .meaning {
+    align-self: center;
+    width: max(calc(var(--cols) * var(--card-max) + (var(--cols) - 1) * var(--space-3)), 360px);
+    max-width: 100%;
   }
 
   .journal {
@@ -33,27 +47,30 @@
   }
 }
 
-/* Each card at most 150px wide, centered, so one card is not the width of the screen. */
-.spread {
+/* Each card at most 150px wide, centered, so one card is not the width of the screen. --card-max is
+   on the stage so the meaning can size to the row of cards too. */
+.stage {
   --card-max: 150px;
+}
+
+.spread {
   display: grid;
+  grid-template-columns: repeat(var(--cols), minmax(0, var(--card-max)));
   justify-content: center;
   gap: var(--space-3);
 }
 
 /* Desktop: smaller cards and buttons, so a reading and the journal fit a laptop's height.
-   After .spread, or its 150px wins. */
+   After the base .stage, or its 150px wins. */
 @media (min-width: 900px) {
   .stage {
+    --card-max: 120px;
     padding-inline: var(--space-6);
   }
 
-  .spread {
-    --card-max: 120px;
-  }
-
   /* Tighter, so the longest position name ("The situation") fits on one line under a card. */
-  .spread figcaption {
+  .spread figcaption,
+  .caption {
     letter-spacing: var(--tracking-tight);
   }
 
@@ -63,13 +80,27 @@
   }
 }
 
-/* A spot still waiting for its card. */
+/* A spot still waiting for its card: click it to draw one. */
 .empty {
   composes: eyebrow from '../components/Eyebrow.module.css';
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: var(--space-2);
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.empty:hover .outline,
+.empty:focus-visible .outline {
+  border-style: solid;
+  border-color: var(--gold);
+}
+
+.empty:focus-visible {
+  outline: none;
 }
 
 .outline {
@@ -143,6 +174,12 @@
 .actions {
   display: flex;
   gap: var(--space-3);
+}
+
+/* Logged out, Draw again on its own: centered, at its own width. */
+.loggedOut {
+  display: flex;
+  justify-content: center;
 }
 
 .actions > * {

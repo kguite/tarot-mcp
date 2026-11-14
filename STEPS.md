@@ -879,6 +879,15 @@ The app was laid out for a phone, so a laptop showed a narrow column in a sea of
   small-caps label and the section heading are written once and shared with CSS Modules'
   `composes`. That makes Vite print a harmless PostCSS warning about the `from` option.
 
+Later tweaks, once it was in use:
+
+- **Choosing on desktop is one column**: click the card outlines instead of a fan off to the side.
+  Phones keep the fan. Logged out there is no journal, so the reading stays one column with just
+  Draw again (renamed from "Start over", which didn't say what it started).
+- **The meaning box is as wide as the row of cards** when the reading is one column.
+- **A size smaller**: page and sidebar padding, `--text-body` 14 and `--text-lead` 16, and symbol
+  chips 32px tall on desktop (`--control-xs`). A phone keeps 40px chips, big enough for a finger.
+
 ## 21. Spots on every card
 
 Only 11 cards had tappable details, so most cards opened up close with nothing to tap. Now every
@@ -972,7 +981,7 @@ changed).
 - **The app** uses `@auth0/auth0-react`: Log in and Log out under Settings, with your account id, and
   the token on every journal request. Refresh tokens in localStorage keep you logged in; the hidden
   cookie check Auth0 would use otherwise is blocked by Safari and Firefox.
-- **Draw hides the reflection box when logged out**, and says to log in under Settings. It used
+- **Draw hides the reflection box when logged out**, leaving just Draw again. It used
   to let you write and only refuse at Save, and logging in reloads the page, so the text was lost.
 - **Tests make their own tokens**, signed with a throwaway key the server is told to trust, so they
   never call Auth0. They check no token, a forged token, a token for another API, that Alice can't

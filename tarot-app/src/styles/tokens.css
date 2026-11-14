@@ -25,8 +25,8 @@
   --text-caps: 11px;
   --text-small: 12px;
   --text-ui: 13px;
-  --text-body: 15px;
-  --text-lead: 17px;
+  --text-body: 14px;
+  --text-lead: 16px;
   --text-name: 19px;
   --text-summary: 21px;
   --text-heading: 24px;
@@ -49,10 +49,12 @@
   --radius: 4px;
   --radius-panel: 6px;
 
-  /* A button's height; the smallest thing a finger can reliably tap; a compact button or chip. */
+  /* A button's height; the smallest thing a finger can reliably tap; a compact button or chip; a
+     chip on desktop, clicked with a mouse. */
   --control: 48px;
   --tap: 44px;
   --control-sm: 40px;
+  --control-xs: 32px;
 
   /* Overshoots a little and settles: cards landing, sheets rising. */
   --ease-spring: cubic-bezier(.34, 1.56, .64, 1);

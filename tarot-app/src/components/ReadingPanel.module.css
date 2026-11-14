@@ -63,10 +63,10 @@
   }
 
   .name {
-    font-size: var(--text-heading);
+    font-size: var(--text-summary);
   }
 
   .summary {
-    font-size: var(--text-lead);
+    font-size: var(--text-body);
   }
 }

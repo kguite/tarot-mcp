@@ -227,4 +227,10 @@
   .frame {
     width: 100%;
   }
+
+  /* Smaller with a mouse; a phone keeps them big enough for a finger. */
+  .chip {
+    height: var(--control-xs);
+    padding: 0 var(--space-3);
+  }
 }

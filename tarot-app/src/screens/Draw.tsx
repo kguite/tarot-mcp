@@ -82,9 +82,12 @@ export function Draw({ reading, onChange }: { reading: Reading; onChange: (readi
   return (
     <div className={`${screen.screen} ${screen.wide}`}>
       <div className={screen.title}>
-        <Eyebrow gold>Your reading</Eyebrow>
-        <h1>{spread.name}</h1>
-        <Ornament />
+        {/* A phone shows one small line, "Your reading · One card"; a wide screen the full title. */}
+        <Eyebrow gold>Your reading<span className={styles.phoneOnly}> · {spread.name}</span></Eyebrow>
+        <div className={styles.bigTitle}>
+          <h1>{spread.name}</h1>
+          <Ornament />
+        </div>
       </div>
 
       {/* Two columns on a wide screen, stacked on a phone. Left: the cards and what they mean.

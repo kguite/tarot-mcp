@@ -1,9 +1,29 @@
-/* Each side is a column, and on a phone the two sides stack: cards, hint, meaning, then the fan or the journal. */
+/* Each side is a column, and on a phone the two sides stack: cards, hint, meaning, then the fan or the journal.
+   Tight gaps on a phone, so the meaning starts above the bottom bar. */
 .stage,
 .side {
   display: flex;
   flex-direction: column;
-  gap: var(--space-5);
+  gap: var(--space-3);
+}
+
+/* On a phone the spread's name rides in the small label instead of a big title, so the cards start
+   near the top. */
+.bigTitle {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .bigTitle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .phoneOnly {
+    display: none;
+  }
 }
 
 /* On a wide screen, the cards and meaning on the left, the fan or journal on the right. Stacked, the
@@ -15,6 +35,10 @@
     /* The cards side a little wider: a wider meaning panel wraps onto fewer rows. */
     grid-template-columns: minmax(0, 1.2fr) minmax(300px, 1fr);
     gap: var(--space-6);
+  }
+
+  .side {
+    gap: var(--space-5);
   }
 
   /* One centered column while choosing (click the outlines, no fan), and when logged out, with no
@@ -47,10 +71,10 @@
   }
 }
 
-/* Each card at most 150px wide, centered, so one card is not the width of the screen. --card-max is
+/* Each card at most 130px wide, centered, so one card is not the width of the screen. --card-max is
    on the stage so the meaning can size to the row of cards too. */
 .stage {
-  --card-max: 150px;
+  --card-max: 130px;
 }
 
 .spread {

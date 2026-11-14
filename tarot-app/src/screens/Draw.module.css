@@ -77,6 +77,15 @@
   --card-max: 130px;
 }
 
+/* Phone, before a meaning is open: the card big, to look at. Tapping for the meaning shrinks it back
+   so the meaning fits. A three-card spread is already as wide as the screen allows, so this mostly
+   grows one and two cards. */
+@media (max-width: 899px) {
+  .looking {
+    --card-max: 220px;
+  }
+}
+
 .spread {
   display: grid;
   grid-template-columns: repeat(var(--cols), minmax(0, var(--card-max)));

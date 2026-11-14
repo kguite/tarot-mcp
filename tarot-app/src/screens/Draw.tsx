@@ -93,7 +93,12 @@ export function Draw({ reading, onChange }: { reading: Reading; onChange: (readi
       {/* Two columns on a wide screen, stacked on a phone. Left: the cards and what they mean.
           Right: the fan while choosing, then the journal (reflection and save). */}
       <div
-        className={left > 0 || !isAuthenticated ? `${styles.stage} ${styles.oneColumn}` : styles.stage}
+        className={[
+          styles.stage,
+          (left > 0 || !isAuthenticated) && styles.oneColumn,
+          // Every card placed and no meaning open: the cards are the thing to look at, so a phone shows them big.
+          left === 0 && open === null && styles.looking,
+        ].filter(Boolean).join(' ')}
         style={{ '--cols': Math.min(draws.length, 4) } as CSSProperties}
       >
         <div className={styles.side}>

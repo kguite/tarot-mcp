@@ -1,3 +1,4 @@
+import os
 import time
 from types import SimpleNamespace
 
@@ -13,10 +14,15 @@ import journal
 KEY = rsa.generate_private_key(public_exponent=65537, key_size=2048)
 
 
-# Journal tests write to a temporary file, never the real data/readings.json.
+# Journal tests use the 'test' schema in Supabase, emptied before each test, never the real
+# journal. Without DATABASE_URL (no .env) they are skipped, not failed.
 @pytest.fixture
-def empty_journal(monkeypatch, tmp_path):
-    monkeypatch.setattr(journal, 'PATH', tmp_path / 'readings.json')
+def empty_journal(monkeypatch):
+    if not os.getenv('DATABASE_URL'):
+        pytest.skip('DATABASE_URL is not set')
+    monkeypatch.setattr(journal, 'SCHEMA', 'test')
+    with journal.connect() as conn:
+        conn.execute('delete from test.readings')  # Named outright, so it can never empty the real journal.
 
 
 @pytest.fixture

@@ -1009,6 +1009,52 @@ advice, an affirmation and "as a person", and all 81 symbols have their "Also in
   "his", "her", "man" or "woman" ("The feather in his hat"), and the Queen of Cups' "She feels things
   deeply". All rewritten ("The feather in the hat", "This is someone who feels things deeply").
 
+## 26. More for Claude to do: pictures, Waite, comparing, reviewing, editing
+
+Five additions to the server, each one a different MCP idea.
+
+- **`show_card`: a tool result can be a picture.** It returns a line of text and the card's 1909
+  art as an image block, the same WebP the app shows, and Claude looks at it like any image. Upright
+  as printed: turning reversed cards would need an image library. A tool, not part of
+  `draw_cards`, so a ten-card draw doesn't send ten pictures; Claude asks when it wants to look.
+- **`search_waite`: a resource only the person can attach,** so Claude couldn't quote Waite on its
+  own and answered from memory instead. The tool searches the book and returns only the sentences
+  with the word, marked picture, upright or reversed. "Cloud" finds 9, in 8 cards.
+- **`compare_cards`: the set work happens on the server.** Two to four cards in, out come the
+  symbols, themes and keywords they share and what only each one has.
+- **`/weekly-review`: a prompt can carry data.** The last N days of readings go in with the
+  instructions: point out patterns, show the card that came up most, ask questions, never predict.
+- **`edit_reflection`: Claude changes what the app shows.** It calls the same
+  `journal.set_reflection` as the app's Save changes. Its annotations mark it destructive (it
+  overwrites) and idempotent (saving the same text twice changes nothing more). Claude Code asks
+  before running it and shows the text, which is the check that the words are still yours.
+
+A journal search tool was dropped: a word search is Ctrl+F, `get_readings` already filters by card
+and date, and the journal is small enough for Claude to read whole.
+
+## 27. The journal moves to Supabase
+
+`readings.json` lived on Render's disk, which the free plan wipes on every deploy. Now the journal
+is three Postgres tables in Supabase (`schema.sql`), the same shape the JSON had, so `journal.py`
+was the only file whose job changed.
+
+- **One journal everywhere.** The laptop's server, Claude Code and the hosted API all read the same
+  rows, so an edit from Claude on the laptop shows on the live site.
+- **The connection string** is `DATABASE_URL`: in a git-ignored `mcp-server/.env` on the laptop
+  (read with python-dotenv) and in Render's dashboard. Use the **Session pooler** string. The
+  direct one (`db.<project>.supabase.co`) only resolves over IPv6, and this laptop couldn't find it.
+- **Row level security is on with no policies.** Supabase also serves every table on its own public
+  API; RLS with no rules shuts that door. Our server connects as the owner, which RLS doesn't
+  apply to, and filters by `user_id` itself.
+- **Tests use a `test` schema**, the same tables beside the real ones, like work's tests use a
+  sandbox database. Each journal test empties `test.readings` first (by name, so it can never touch
+  the real journal), and without `DATABASE_URL` the journal tests skip. 47 pass, in about 7 seconds
+  instead of under one: every call crosses the network now.
+- **Seeding is on purpose now.** `seed.py` deletes one person's readings and writes Grizelda's; it
+  ran at every Render build when the disk was wiped anyway, and would now wipe the real journal.
+- **Run the server from the venv.** The laptop's API was running on conda's Python, which doesn't
+  have psycopg.
+
 ## Next
 
 - Journal: sort and group (newest or oldest first, by day or month), and filter by spread or by a
@@ -1022,4 +1068,7 @@ advice, an affirmation and "as a person", and all 81 symbols have their "Also in
 - Explore the data through the tools and adjust the shape
 - Read the new card text in use and fix what sounds off (the first draft of 450 pieces)
 - Access: levels, permissions and circles, in the build order in `ACCESS.md`
-- Swap `readings.json` for the database; `journal.py` is the one file that changes
+- Claude leaves a question on a reading (an entry of type "question") that the app shows
+- Elicitation: the server asks for the reflection in a form, so the words are typed, not written by
+  Claude (check the client supports it first)
+- A connection pool, if one connection per journal call ever feels slow

@@ -1,2 +1,4 @@
 # Reference books (copyrighted, read for ideas only)
 *.pdf
+# Secrets, wherever a .env lands.
+.env

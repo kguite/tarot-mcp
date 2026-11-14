@@ -6,9 +6,8 @@ services:
     plan: free
     # Commands run here, but the whole repo is checked out: server.py reads the cards from ../tarot-app.
     rootDir: mcp-server
-    # Seeding at build gives the demo journal. The free plan has no lasting disk, so saved readings
-    # last until the next deploy or restart; the database replaces this.
-    buildCommand: pip install -r requirements.txt && python seed.py
+    # No seeding here: the journal lives in Supabase now, and seed.py would wipe it on every deploy.
+    buildCommand: pip install -r requirements.txt
     startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: PYTHON_VERSION
@@ -17,3 +16,7 @@ services:
       # label, and reading the journal still takes that account's token.
       - key: SEED_USER
         value: auth0|6a0baba86bc6960859797149
+      # Supabase's session pooler connection string, with the password. Set in Render's dashboard,
+      # never here.
+      - key: DATABASE_URL
+        sync: false

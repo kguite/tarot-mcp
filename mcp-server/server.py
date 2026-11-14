@@ -1,6 +1,7 @@
 import json
 import random
-from datetime import date
+import re
+from datetime import date, timedelta
 from pathlib import Path
 from typing import Annotated, Literal
 
@@ -8,13 +9,16 @@ from mcp.server.auth.middleware.auth_context import get_access_token
 from mcp.server.auth.settings import AuthSettings
 from mcp.server.mcpserver import MCPServer
 from mcp.server.mcpserver.exceptions import ResourceNotFoundError, ToolError
+from mcp.server.mcpserver.utilities.types import Image
+from mcp_types import ToolAnnotations
 from pydantic import BaseModel, Field
 
 import journal
 from auth import AUTH0_ISSUER, LOCAL_USER, MCP_SERVER_URL, Auth0TokenVerifier
 
-# The app's data. The path is relative to this file, not to wherever the server is started.
+# The app's data and card art. The paths are relative to this file, not to wherever the server is started.
 DATA_DIR = Path(__file__).parent.parent / 'tarot-app' / 'src' / 'data'
+ART_DIR = Path(__file__).parent.parent / 'tarot-app' / 'public' / 'cards'
 
 
 def load(name):
@@ -80,6 +84,71 @@ def get_card(
     if card is None:
         raise ToolError(f"No card with id '{id}'. Valid ids: {', '.join(c['id'] for c in CARDS)}")
     return json.dumps(card, indent=2)
+
+
+# A tool result is a list of content blocks, not only text: here a line of text and the picture,
+# which Claude looks at like any image. The app's own art, so both doors show the same card.
+@mcp.tool(structured_output=False)
+def show_card(
+    id: Annotated[str, Field(description="The card's id, lowercase with hyphens, like 'moon' or 'two-of-cups'")],
+) -> list:
+    """Show one tarot card's picture: Pamela Colman Smith's 1909 art, upright as printed, with the card's name and the labeled details in it."""
+    card = by_id(CARDS, id)
+    if card is None:
+        raise ToolError(f"No card with id '{id}'. Valid ids: {', '.join(c['id'] for c in CARDS)}")
+    details = ', '.join(d['label'] for d in card['details'])
+    return [f"{card['name']}. Details in the picture: {details}.", Image(path=ART_DIR / f'{id}.webp')]
+
+
+# The set work is done here, so Claude gets what the cards share, not two full cards to diff by eye.
+@mcp.tool(structured_output=False)
+def compare_cards(
+    ids: Annotated[list[str], Field(min_length=2, max_length=4, description="Two to four card ids, like ['moon', 'star']")],
+) -> str:
+    """Compare two to four tarot cards: the symbols, themes and upright keywords they share, then for each card its arcana or suit, the main figure's facing and pose, and the symbols only it has."""
+    unknown = [i for i in ids if by_id(CARDS, i) is None]
+    if unknown:
+        raise ToolError(f"No card with id {', '.join(repr(u) for u in unknown)}. Valid ids: {', '.join(c['id'] for c in CARDS)}")
+    cards = [by_id(CARDS, i) for i in ids]
+    symbol_name = lambda s: by_id(SYMBOLS, s)['name']
+    shared_symbols = set.intersection(*(set(c['symbols']) for c in cards))
+    return json.dumps({
+        'shared': {
+            'symbols': sorted(symbol_name(s) for s in shared_symbols),
+            'themes': sorted(set.intersection(*(set(c['themes']) for c in cards))),
+            'upright_keywords': sorted(set.intersection(*(set(c['keywords']['upright']) for c in cards))),
+        },
+        'cards': [
+            {
+                'id': c['id'],
+                'name': c['name'],
+                'suit': c.get('suit', 'major arcana'),
+                'facing': c['facing'],
+                'pose': c['pose'],
+                'only_here': sorted(symbol_name(s) for s in set(c['symbols']) - shared_symbols),
+            }
+            for c in cards
+        ],
+    }, indent=2)
+
+
+WAITE_PARTS = {'description': 'picture', 'upright': 'upright', 'reversed': 'reversed'}
+
+
+# The book is a resource, which only the person can attach. This tool lets Claude quote it, and the
+# server picks out the sentences instead of handing Claude 78 cards of Waite to scan.
+@mcp.tool(structured_output=False)
+def search_waite(
+    word: Annotated[str, Field(min_length=3, description="A word or phrase to look for, like 'cloud' or 'pillar'. It also matches inside longer words: 'cloud' finds 'clouds' and 'clouded'")],
+) -> str:
+    """Search A.E. Waite's The Pictorial Key to the Tarot (1911) for a word. Returns each card where it appears with only the sentences that contain it, and whether each is from his description of the picture or his upright or reversed meaning."""
+    matches = []
+    for text in WAITE['cards']:
+        for part, label in WAITE_PARTS.items():
+            sentences = [s for s in re.split(r'(?<=[.?!])\s+', text[part] or '') if word.lower() in s.lower()]
+            if sentences:
+                matches.append({'card_id': text['id'], 'card': by_id(CARDS, text['id'])['name'], 'part': label, 'sentences': sentences})
+    return json.dumps({'word': word, 'matches': matches}, indent=2)
 
 
 # The filtering happens here, not in the model: Claude gets the matching cards, not all of them to scan.
@@ -213,6 +282,19 @@ def save_for(user, spread_id, cards, reflection=''):
     return json.dumps({'id': id})
 
 
+# The same edit as the app's "Save changes", through the other door. The annotations tell the client
+# it overwrites (destructive), and that sending the same text twice changes nothing more (idempotent).
+@mcp.tool(structured_output=False, annotations=ToolAnnotations(destructive_hint=True, idempotent_hint=True))
+def edit_reflection(
+    reading_id: Annotated[str, Field(description="The reading's id, from get_readings")],
+    reflection: Annotated[str, Field(description="The whole new reflection, in the user's own words. It replaces the old one.")],
+) -> str:
+    """Replace the reflection on one of the user's saved readings. The app shows the new text."""
+    if not journal.set_reflection(current_user(), reading_id, reflection):
+        raise ToolError(f"No reading with id '{reading_id}' in this journal. get_readings lists the ids.")
+    return json.dumps({'id': reading_id, 'saved': True})
+
+
 # A resource is reading material the person (or app) attaches. Claude reads it; nothing runs.
 # {id} makes this a template: one resource per card, read by URI like tarot://waite/moon.
 @mcp.resource('tarot://waite/{id}', mime_type='text/plain')
@@ -246,6 +328,24 @@ def daily_draw(
 2. Tell me only the card's name and whether it is reversed. Then ask what I notice first, before any meaning.
 3. Wait for my answer. Don't share keywords or meanings until I have written my first impression.
 4. Then talk about the card, starting from what I wrote. Ask questions; don't predict what will happen."""
+
+
+# A prompt can carry data as well as instructions: the week's readings go in with the request.
+@mcp.prompt()
+def weekly_review(
+    days: Annotated[int, Field(ge=1, le=90, description='How many days back to look. 7 if blank.')] = 7,
+) -> str:
+    """Look back over your recent readings for patterns, as questions to you, not answers."""
+    readings = readings_for(current_user(), since=date.today() - timedelta(days=days))
+    return f"""Here are my tarot readings from the last {days} days, with what I wrote:
+
+{readings}
+
+Look back over them with me.
+1. If there are none, say so and stop.
+2. Point out patterns: cards or suits that keep coming up, reversals, and words or people that recur in what I wrote.
+3. Call show_card for the card that came up most, and ask what I notice in it now.
+4. Ask me two or three questions about the patterns. Don't predict what will happen, and don't tell me what they mean."""
 
 
 if __name__ == '__main__':

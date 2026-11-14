@@ -1,11 +1,12 @@
 import asyncio
+import base64
 import json
 from typing import get_args
 
 import pytest
 from mcp import Client, MCPError
 
-from server import CARDS, SYMBOLS, WAITE, Facing, Pose, mcp, rng
+from server import ART_DIR, CARDS, SYMBOLS, WAITE, Facing, Pose, mcp, rng
 
 
 # Client(mcp) runs the server in-process: the same calls Claude makes, no subprocess.
@@ -51,6 +52,48 @@ def test_get_card_unknown_id_lists_valid_ids():
     assert result.is_error
     assert "No card with id 'the-moon'" in result.content[0].text
     assert 'moon' in result.content[0].text
+
+
+# show_card returns two blocks: a line of text, then the card's art as an image Claude can look at.
+def test_show_card_returns_text_then_the_picture():
+    result = call('show_card', {'id': 'two-of-cups'})
+
+    assert not result.is_error
+    text, image = result.content
+    assert text.text.startswith('Two of Cups. Details in the picture: ')
+    assert image.type == 'image'
+    assert image.mime_type == 'image/webp'
+    assert base64.b64decode(image.data)[8:12] == b'WEBP'
+
+
+# Every card has its art, so show_card never fails on a real id.
+def test_every_card_has_art():
+    assert [c['id'] for c in CARDS if not (ART_DIR / f"{c['id']}.webp").exists()] == []
+
+
+def test_show_card_unknown_id_lists_valid_ids():
+    result = call('show_card', {'id': 'the-moon'})
+
+    assert result.is_error
+    assert "No card with id 'the-moon'" in result.content[0].text
+
+
+# Every card where Waite says "cloud", in the picture or a meaning, with only those sentences.
+def test_search_waite_finds_every_cloud():
+    found = call_json('search_waite', {'word': 'Cloud'})['matches']
+
+    assert {(m['card_id'], m['part']) for m in found} == {
+        ('judgement', 'picture'), ('ace-of-wands', 'picture'), ('ace-of-wands', 'reversed'),
+        ('ace-of-cups', 'picture'), ('four-of-cups', 'picture'), ('ace-of-swords', 'picture'),
+        ('three-of-swords', 'picture'), ('page-of-swords', 'picture'), ('ace-of-pentacles', 'picture'),
+    }
+    three_of_swords = next(m for m in found if m['card_id'] == 'three-of-swords')
+    assert three_of_swords['card'] == 'Three of Swords'
+    assert three_of_swords['sentences'] == ['Three swords piercing a heart; cloud and rain behind.']
+
+
+def test_search_waite_no_match_is_an_empty_list():
+    assert call_json('search_waite', {'word': 'bicycle'})['matches'] == []
 
 
 # Symbol ids are typed by hand, so a typo would silently drop a card from find_cards.
@@ -233,6 +276,49 @@ def test_get_readings_filters_combine(empty_journal):
     assert len(call_json('get_readings', {'card_id': 'moon'})) == 2
     assert len(call_json('get_readings', {'card_id': 'moon', 'spread_id': 'single'})) == 1
     assert call_json('get_readings', {'since': '2999-01-01'}) == []
+
+
+# Edited through Claude, read back the way the app reads it, and flagged to the client as overwriting.
+def test_edit_reflection_replaces_the_text(empty_journal):
+    saved = call_json('save_reading', {'spread_id': 'single', 'cards': [{'card_id': 'moon'}], 'reflection': 'Foggy.'})
+    call('edit_reflection', {'reading_id': saved['id'], 'reflection': 'Foggy, then clearer.'})
+    tools = {tool.name: tool for tool in ask(lambda client: client.list_tools()).tools}
+
+    assert [e['body'] for e in call_json('get_readings', {})[0]['entries']] == ['Foggy, then clearer.']
+    assert tools['edit_reflection'].annotations.destructive_hint
+
+
+# Someone else's reading is "no such reading", the same as the REST door.
+def test_edit_reflection_only_your_own(empty_journal, monkeypatch):
+    saved = call_json('save_reading', {'spread_id': 'single', 'cards': [{'card_id': 'moon'}]})
+    monkeypatch.setattr('server.current_user', lambda: 'someone-else')
+
+    result = call('edit_reflection', {'reading_id': saved['id'], 'reflection': 'Mine now.'})
+    assert result.is_error
+    assert 'No reading with id' in result.content[0].text
+
+
+# The server does the set work: what the cards share, and what only each one has.
+def test_compare_cards_shared_and_only_here():
+    result = call_json('compare_cards', {'ids': ['ace-of-cups', 'ace-of-swords']})
+
+    assert result['shared']['symbols'] == ['Cloud', 'Dew', 'Hand from a cloud']
+    assert result['cards'][1]['only_here'] == ['Crown', 'Heights and edges', 'Sword']
+
+
+def test_compare_cards_bad_input():
+    assert "No card with id 'the-moon'" in call('compare_cards', {'ids': ['star', 'the-moon']}).content[0].text
+    assert call('compare_cards', {'ids': ['star']}).is_error
+
+
+# The week's readings travel inside the prompt, with the instructions.
+def test_weekly_review_carries_the_readings(empty_journal):
+    call('save_reading', {'spread_id': 'single', 'cards': [{'card_id': 'moon'}], 'reflection': 'Bertha again.'})
+    text = ask(lambda client: client.get_prompt('weekly_review', {'days': '14'})).messages[0].content.text
+
+    assert 'from the last 14 days' in text
+    assert 'Bertha again.' in text
+    assert 'Call show_card' in text
 
 
 # Each mistake comes back as an error Claude can fix and retry.

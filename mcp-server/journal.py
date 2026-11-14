@@ -1,74 +1,103 @@
 """The journal: each reading, the cards in it, and the reflection written about it.
 
-A JSON file stands in for the database, shaped like its future tables (the same shape store.ts
-used in the browser). The app and Claude run as two processes, so every call reads the file fresh
-and each sees the other's saves.
+Three Postgres tables in Supabase (schema.sql). The app, Claude on this laptop, and the hosted
+server all read and write the same rows, so each sees the others' saves.
 
 Every reading has an owner (user_id, the Auth0 `sub`), and every function takes the user: nobody
 can read or change another person's readings.
 """
-import json
-import uuid
-from datetime import datetime, timezone
+import os
+from datetime import timezone
 from pathlib import Path
 
-PATH = Path(__file__).parent / 'data' / 'readings.json'
+import psycopg
+from dotenv import load_dotenv
+from psycopg import sql
+from psycopg.rows import dict_row
+
+# Locally DATABASE_URL comes from mcp-server/.env (git-ignored); Render sets it in its dashboard.
+load_dotenv(Path(__file__).parent / '.env')
+
+# Tests point this at the 'test' schema, a copy of the tables they can empty freely.
+SCHEMA = 'public'
 
 
-def load():
-    if not PATH.exists():
-        return {'readings': [], 'reading_cards': [], 'entries': []}
-    return json.loads(PATH.read_text(encoding='utf-8'))
+def connect():
+    conn = psycopg.connect(os.environ['DATABASE_URL'], row_factory=dict_row)
+    conn.execute(sql.SQL('set search_path to {}').format(sql.Identifier(SCHEMA)))
+    return conn
 
 
-def persist(db):
-    PATH.parent.mkdir(exist_ok=True)
-    PATH.write_text(json.dumps(db, indent=2), encoding='utf-8')
+def iso(when):
+    # Same format as JavaScript's toISOString, so dates sort and show the same in the app and here.
+    return when.astimezone(timezone.utc).isoformat(timespec='milliseconds').replace('+00:00', 'Z')
 
 
-def now():
-    # Same format as JavaScript's toISOString, so dates sort the same in the app and here.
-    return datetime.now(timezone.utc).isoformat(timespec='milliseconds').replace('+00:00', 'Z')
-
-
-def add_reading(user_id, spread_id, cards, body):
-    """cards: (position_id, card_id, reversed) in position order. Returns the new reading's id."""
-    db = load()
-    id = str(uuid.uuid4())
-    created = now()
-    db['readings'].append({'id': id, 'user_id': user_id, 'spread_id': spread_id, 'created_at': created})
-    for i, (position_id, card_id, reversed_) in enumerate(cards):
-        db['reading_cards'].append({'reading_id': id, 'position': i, 'position_id': position_id, 'card_id': card_id, 'reversed': reversed_})
-    if body:
-        db['entries'].append({'id': str(uuid.uuid4()), 'reading_id': id, 'type': 'interpretation', 'body': body, 'created_at': created})
-    persist(db)
+def add_reading(user_id, spread_id, cards, body, created_at=None):
+    """cards: (position_id, card_id, reversed) in position order. created_at only for seeding the past.
+    Returns the new reading's id."""
+    with connect() as conn:
+        id = conn.execute(
+            'insert into readings (user_id, spread_id, created_at) values (%s, %s, coalesce(%s, now())) returning id::text',
+            (user_id, spread_id, created_at),
+        ).fetchone()['id']
+        conn.cursor().executemany(
+            'insert into reading_cards (reading_id, position, position_id, card_id, reversed) values (%s, %s, %s, %s, %s)',
+            [(id, i, position_id, card_id, reversed_) for i, (position_id, card_id, reversed_) in enumerate(cards)],
+        )
+        if body:
+            conn.execute(
+                "insert into entries (reading_id, type, body, created_at) values (%s, 'interpretation', %s, coalesce(%s, now()))",
+                (id, body, created_at),
+            )
     return id
 
 
 def set_reflection(user_id, reading_id, body):
     """Returns False when the user has no such reading (someone else's counts as none)."""
-    db = load()
-    if not any(r['id'] == reading_id and r.get('user_id') == user_id for r in db['readings']):
-        return False
-    entry = next((e for e in db['entries'] if e['reading_id'] == reading_id and e['type'] == 'interpretation'), None)
-    if entry:
-        entry['body'] = body
-        entry['updated_at'] = now()
-    else:
-        db['entries'].append({'id': str(uuid.uuid4()), 'reading_id': reading_id, 'type': 'interpretation', 'body': body, 'created_at': now()})
-    persist(db)
+    with connect() as conn:
+        # id::text, so an id that isn't a uuid at all is "no such reading", not a database error.
+        if not conn.execute('select 1 from readings where id::text = %s and user_id = %s', (reading_id, user_id)).fetchone():
+            return False
+        conn.execute(
+            """insert into entries (reading_id, type, body) values (%s, 'interpretation', %s)
+               on conflict (reading_id) where type = 'interpretation'
+               do update set body = excluded.body, updated_at = now()""",
+            (reading_id, body),
+        )
     return True
 
 
 def all_readings(user_id):
-    """The user's readings with their cards and entries, newest first, like a select with relations."""
-    db = load()
-    return [
-        {
-            **r,
-            'cards': sorted((c for c in db['reading_cards'] if c['reading_id'] == r['id']), key=lambda c: c['position']),
-            'entries': sorted((e for e in db['entries'] if e['reading_id'] == r['id']), key=lambda e: e['created_at']),
-        }
-        for r in sorted(db['readings'], key=lambda r: r['created_at'], reverse=True)
-        if r.get('user_id') == user_id
-    ]
+    """The user's readings with their cards and entries, newest first."""
+    with connect() as conn:
+        readings = conn.execute(
+            'select id::text as id, user_id, spread_id, created_at from readings where user_id = %s order by created_at desc',
+            (user_id,),
+        ).fetchall()
+        ids = [r['id'] for r in readings]
+        cards = conn.execute(
+            'select reading_id::text as reading_id, position, position_id, card_id, reversed from reading_cards'
+            ' where reading_id = any(%s::uuid[]) order by position',
+            (ids,),
+        ).fetchall()
+        entries = conn.execute(
+            'select id::text as id, reading_id::text as reading_id, type, body, created_at, updated_at from entries'
+            ' where reading_id = any(%s::uuid[]) order by created_at',
+            (ids,),
+        ).fetchall()
+
+    for e in entries:
+        e['created_at'] = iso(e['created_at'])
+        e['updated_at'] = e['updated_at'] and iso(e['updated_at'])
+    for r in readings:
+        r['created_at'] = iso(r['created_at'])
+        r['cards'] = [c for c in cards if c['reading_id'] == r['id']]
+        r['entries'] = [e for e in entries if e['reading_id'] == r['id']]
+    return readings
+
+
+def clear(user_id):
+    """Delete all of one user's readings; their cards and entries go with them."""
+    with connect() as conn:
+        conn.execute('delete from readings where user_id = %s', (user_id,))

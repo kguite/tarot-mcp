@@ -3,6 +3,10 @@ uvicorn==0.54.0
 mcp==2.3.0
 # Checks Auth0 access tokens (auth.py); [crypto] adds the RS256 support they need.
 PyJWT[crypto]==2.15.1
+# The journal is in Supabase's Postgres (journal.py); [binary] ships the driver ready-built.
+psycopg[binary]==3.3.9
+# Reads DATABASE_URL from mcp-server/.env on a laptop. Render sets it in its dashboard.
+python-dotenv==1.2.4
 pytest==9.1.1
 # FastAPI's TestClient sends its requests through httpx.
 httpx==0.28.1

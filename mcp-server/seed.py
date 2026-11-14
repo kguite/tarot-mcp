@@ -1,4 +1,4 @@
-"""Replace the journal with a pretend six weeks of readings, for trying the tools and for demos.
+"""Replace one person's journal with a pretend six weeks of readings, for trying the tools and for demos.
 
 Run from mcp-server: .venv\\Scripts\\python.exe seed.py
 The journal of Grizelda, the Wicked Witch of the Cul-de-sac: obviously made up, so a demo shows
@@ -7,10 +7,10 @@ entering Villain of the Year, Cups cluster in late October around her old rival 
 Eight of Cups appears twice as she thinks about leaving her coven.
 
 The readings belong to SEED_USER (an Auth0 user id, like "github|12345"), so they show up when that
-person logs in. Without it they go to TAROT_USER, the local no-login user.
+person logs in. Without it they go to TAROT_USER, the local no-login user. It deletes that person's
+readings first, so run it on purpose, never on every deploy.
 """
 import os
-import uuid
 
 import journal
 from auth import LOCAL_USER
@@ -42,19 +42,15 @@ READINGS = [
 
 
 def seed():
-    db = {'readings': [], 'reading_cards': [], 'entries': []}
+    journal.clear(OWNER)
     for when, spread_id, cards, body in READINGS:
-        created = f'{when}:00.000Z'
-        id = str(uuid.uuid4())
-        db['readings'].append({'id': id, 'user_id': OWNER, 'spread_id': spread_id, 'created_at': created})
-        for i, (position, card) in enumerate(zip(by_id(SPREADS, spread_id)['positions'], cards, strict=True)):
+        drawn = []
+        for position, card in zip(by_id(SPREADS, spread_id)['positions'], cards, strict=True):
             card_id = card.removesuffix('-r')
             assert by_id(CARDS, card_id), card_id
-            db['reading_cards'].append({'reading_id': id, 'position': i, 'position_id': position['id'], 'card_id': card_id, 'reversed': card.endswith('-r')})
-        if body:
-            db['entries'].append({'id': str(uuid.uuid4()), 'reading_id': id, 'type': 'interpretation', 'body': body, 'created_at': created})
-    journal.persist(db)
-    print(f'Wrote {len(READINGS)} readings for {OWNER} to {journal.PATH}')
+            drawn.append((position['id'], card_id, card.endswith('-r')))
+        journal.add_reading(OWNER, spread_id, drawn, body, created_at=f'{when}:00Z')
+    print(f'Wrote {len(READINGS)} readings for {OWNER} to the {journal.SCHEMA} schema')
 
 
 if __name__ == '__main__':

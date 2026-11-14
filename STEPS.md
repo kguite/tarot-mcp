@@ -972,6 +972,8 @@ changed).
 - **The app** uses `@auth0/auth0-react`: Log in and Log out under Settings, with your account id, and
   the token on every journal request. Refresh tokens in localStorage keep you logged in; the hidden
   cookie check Auth0 would use otherwise is blocked by Safari and Firefox.
+- **Draw hides the reflection box when logged out**, and says to log in under Settings. It used
+  to let you write and only refuse at Save, and logging in reloads the page, so the text was lost.
 - **Tests make their own tokens**, signed with a throwaway key the server is told to trust, so they
   never call Auth0. They check no token, a forged token, a token for another API, that Alice can't
   see or edit Bob's readings, and that `get_readings` over `/mcp` returns the caller's journal.

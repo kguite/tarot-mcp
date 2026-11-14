@@ -1,3 +1,4 @@
+import { useAuth0 } from '@auth0/auth0-react'
 import { useState } from 'react'
 import type { CSSProperties } from 'react'
 import { Button } from '../components/Button'
@@ -25,6 +26,7 @@ export function Draw({ reading, onChange }: { reading: Reading; onChange: (readi
   const [open, setOpen] = useState<number | null>(null)
   const [inspecting, setInspecting] = useState<Inspecting | null>(null)
   const [saveError, setSaveError] = useState<string | null>(null)
+  const { isAuthenticated } = useAuth0()
   const { spread, draws, phases, picked, reflection } = reading
 
   const placed = picked.length
@@ -136,6 +138,14 @@ export function Draw({ reading, onChange }: { reading: Reading; onChange: (readi
                 </button>
               ))}
             </div>
+          ) : !isAuthenticated ? (
+            // Logging in reloads the page, so anything written before it would be lost.
+            <>
+              <p className={screen.note}>Log in under Settings to write and save a reflection.</p>
+              <div className={styles.actions}>
+                <Button variant="secondary" onClick={startOver}>Start over</Button>
+              </div>
+            </>
           ) : (
             <>
               <div className={styles.journal}>
@@ -166,12 +176,12 @@ export function Draw({ reading, onChange }: { reading: Reading; onChange: (readi
           context={inspecting.context}
           onClose={() => setInspecting(null)}
           onOpen={(card) => setInspecting({ card, context: 'Also in' })}
-          onWrite={(prompt) => {
+          onWrite={isAuthenticated ? (prompt) => {
             // Like the prototype: add the question to the reflection, on its own line.
             const text = reflection.trim() ? `${reflection.trimEnd()}\n\n${prompt}\n` : `${prompt}\n`
             onChange({ ...reading, reflection: text })
             setInspecting(null)
-          }}
+          } : undefined}
         />
       )}
     </div>
